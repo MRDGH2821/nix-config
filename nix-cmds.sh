@@ -16,11 +16,12 @@ fi
 # Default values (override with environment variables)
 USER=${TARGET_USER:-root}
 HOST_IP=${TARGET_HOST:-""}
+FLAKE=${TARGET_FLAKE:-".#home-lab"}
 
 # Validate that HOST is set properly and not empty
 if [[ -z "$HOST_IP" || "$HOST_IP" == "" ]]; then
     echo "Error: TARGET_HOST is not set or is empty"
-    echo "Please set the TARGET_HOST environment variable or create a config.local file"
+    echo "Please set the TARGET_HOST environment variable or create a config.local.sh file"
     echo ""
     echo "Example 1: Environment variable"
     echo "  export TARGET_HOST=192.168.1.150"
@@ -28,7 +29,7 @@ if [[ -z "$HOST_IP" || "$HOST_IP" == "" ]]; then
     echo ""
     echo "Example 2: Local config file"
     echo "  cp config.example config.local"
-    echo "  # Edit config.local with your settings"
+    echo "  # Edit config.local.sh with your settings"
     echo "  ./nix-cmds.sh"
     exit 1
 fi
@@ -44,7 +45,7 @@ echo "Deploying to: $USER@$HOST_IP"
 nix_anywhere() {
     echo "About to run nixos-anywhere deployment..."
     echo "Target: $USER@$HOST_IP"
-    echo "Flake: .#bose-game"
+    echo "Flake: $FLAKE"
     echo ""
     read -p "Continue with deployment? (y/N): " -n 1 -r
     echo
@@ -53,7 +54,7 @@ nix_anywhere() {
         return 1
     fi
 
-    sudo nix run github:nix-community/nixos-anywhere --extra-experimental-features nix-command --extra-experimental-features flakes -- "$@" --flake .#home-lab
+    sudo nix run github:nix-community/nixos-anywhere --extra-experimental-features nix-command --extra-experimental-features flakes -- "$@" --flake "$FLAKE"
 }
 
 generate_hardware_config() {

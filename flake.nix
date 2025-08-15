@@ -40,5 +40,21 @@
           }
         ];
       };
+
+      nixosConfigurations.home-lab = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          ./configuration.nix
+          nixos-facter-modules.nixosModules.facter
+          {
+            config.facter.reportPath =
+              if builtins.pathExists ./facter.json then
+                ./facter.json
+              else
+                throw "Have you forgotten to run nixos-anywhere with `--generate-hardware-config nixos-facter ./facter.json`?";
+          }
+        ];
+      };
     };
 }
