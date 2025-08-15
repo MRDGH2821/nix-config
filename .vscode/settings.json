@@ -1,5 +1,7 @@
 {
   "bashIde.enableSourceErrorDiagnostics": true,
   "bashIde.shfmt.simplifyCode": true,
-  "conventionalCommits.scopes": ["cspell", "vscode"]
+  "conventionalCommits.scopes": ["cspell", "vscode"],
+  "nix.enableLanguageServer": true,
+  "nix.serverPath": "nixd"
 }
