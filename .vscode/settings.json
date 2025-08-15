@@ -1,0 +1,5 @@
+{
+  "bashIde.enableSourceErrorDiagnostics": true,
+  "bashIde.shfmt.simplifyCode": true,
+  "conventionalCommits.scopes": ["cspell", "vscode"]
+}
