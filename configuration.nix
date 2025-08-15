@@ -29,5 +29,5 @@
   ]
   ++ (args.extraPublicKeys or [ ]); # this is used for unit-testing this module and can be removed if not needed
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 }
