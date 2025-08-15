@@ -3,5 +3,5 @@
   "bashIde.shfmt.simplifyCode": true,
   "conventionalCommits.scopes": ["cspell", "vscode"],
   "nix.enableLanguageServer": true,
-  "nix.serverPath": "nixd"
+  "nix.serverPath": "nil"
 }
