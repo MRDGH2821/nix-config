@@ -3,5 +3,14 @@
   "caseSensitive": false,
   "language": "en,en-GB,en-AU",
   "version": "0.2",
-  "words": ["facter", "nixos"]
+  "words": [
+    "disko",
+    "facter",
+    "gnomovision",
+    "nixos",
+    "nixpkgs",
+    "numtide",
+    "pkgs",
+    "prio"
+  ]
 }
