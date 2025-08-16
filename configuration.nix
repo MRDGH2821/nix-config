@@ -14,10 +14,22 @@
   boot.loader.efi.canTouchEfiVariables = true;
   services.openssh.enable = true;
 
-  environment.systemPackages = map lib.lowPrio [
-    pkgs.curl
-    pkgs.gitMinimal
-  ];
+  environment.systemPackages =
+    with pkgs;
+    map lib.lowPrio [
+      curl
+      gitMinimal
+      neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      git
+      wget
+      curl
+    ];
+
+  programs.ssh.startAgent = true;
+  networking = {
+    # configures the network interface(include wireless) via `nmcli` & `nmtui`
+    networkmanager.enable = true;
+  };
 
   users.users.root.openssh.authorizedKeys.keys = [
     # change this to your ssh key
