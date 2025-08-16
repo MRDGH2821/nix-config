@@ -3300,7 +3300,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 48
+            "address": 101
           },
           {
             "type": "irq",
@@ -3841,7 +3841,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 48
+            "address": 101
           },
           {
             "type": "phwaddr",
