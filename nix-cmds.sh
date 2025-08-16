@@ -60,7 +60,7 @@ nix_anywhere() {
 generate_hardware_config() {
     echo "Running hardware configuration generation..."
     echo "Target: $USER@$HOST_IP"
-    echo "Output: ./facter.json"
+    echo "Output: ./bose-game-home-lab.json"
     echo ""
     read -p "Continue with hardware config generation? (y/N): " -n 1 -r
     echo
@@ -69,7 +69,7 @@ generate_hardware_config() {
         return 1
     fi
 
-    nix_anywhere --target-host "$USER"@"$HOST_IP" --generate-hardware-config nixos-facter ./facter.json
+    nix_anywhere --target-host "$USER"@"$HOST_IP" --generate-hardware-config nixos-facter ./bose-game-home-lab.json
 }
 
 # nix_anywhere --help
