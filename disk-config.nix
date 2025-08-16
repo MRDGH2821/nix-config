@@ -1,6 +1,5 @@
-# Example to create a bios compatible gpt partition
-{ lib, ... }:
 {
+  # checkout the example folder for how to configure different disko layouts
   disko.devices = {
     disk = {
       main = {
@@ -10,11 +9,8 @@
           type = "gpt";
           partitions = {
             ESP = {
-              priority = 1;
-              name = "ESP";
-              start = "1M";
-              end = "128M";
               type = "EF00";
+              size = "100M";
               content = {
                 type = "filesystem";
                 format = "vfat";
@@ -25,13 +21,9 @@
             root = {
               size = "100%";
               content = {
-                type = "btrfs";
-                extraArgs = [ "-f" ]; # Override existing partition
+                type = "filesystem";
+                format = "ext4";
                 mountpoint = "/";
-                mountOptions = [
-                  "compress=zstd"
-                  "noatime"
-                ];
               };
             };
           };
