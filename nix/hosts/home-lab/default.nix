@@ -8,7 +8,7 @@
     (modulesPath + "/profiles/qemu-guest.nix")
     ./disk-config.nix
     ../../modules/features/ssh.nix
-    ../../modules/features/packages.nix
+    ../../packages/default.nix
   ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
