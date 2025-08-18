@@ -6,6 +6,7 @@
     "disko",
     "features",
     "hosts",
+    "hosts/home-lab",
     "vscode"
   ],
   "nix.enableLanguageServer": true,
