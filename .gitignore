@@ -1,4 +1,6 @@
 # Ignore build outputs from performing a nix-build or `nix build` command
+
+# nix
 result
 result-*
 
@@ -7,3 +9,4 @@ result-*
 
 # Ignore local configuration files containing sensitive information
 config.local.sh
+*.local
