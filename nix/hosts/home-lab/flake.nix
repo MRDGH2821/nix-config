@@ -45,7 +45,7 @@
         system = "x86_64-linux";
         modules = [
           disko.nixosModules.disko
-          ./configuration.nix
+          ./default.nix
           nixos-facter-modules.nixosModules.facter
           {
             config.facter.reportPath =
