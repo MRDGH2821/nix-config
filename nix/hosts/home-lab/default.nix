@@ -6,9 +6,11 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
-    ./disk-config.nix
+    ../../modules/features/docker.nix
     ../../modules/features/ssh.nix
     ../../packages/default.nix
+    ../../vars/default.nix
+    ./disk-config.nix
   ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
