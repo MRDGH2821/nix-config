@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   programs.ssh.startAgent = true;
 
@@ -10,4 +11,7 @@
     # configures the network interface(include wireless) via `nmcli` & `nmtui`
     networkmanager.enable = true;
   };
+  environment.systemPackages = with pkgs; [
+    openssh
+  ];
 }
