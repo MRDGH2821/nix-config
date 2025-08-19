@@ -19,7 +19,7 @@ HOST_IP=${TARGET_HOST:-""}
 FLAKE=${TARGET_FLAKE:-"./nix/hosts/home-lab#home-lab"}
 
 # Validate that HOST is set properly and not empty
-if [[ -z "$HOST_IP" || "$HOST_IP" == "" ]]; then
+if [[ -z ${HOST_IP} || ${HOST_IP} == "" ]]; then
     echo "Error: TARGET_HOST is not set or is empty"
     echo "Please set the TARGET_HOST environment variable or create a .envrc.local file"
     echo ""
@@ -35,41 +35,41 @@ if [[ -z "$HOST_IP" || "$HOST_IP" == "" ]]; then
 fi
 
 # Additional validation for valid IP format (basic check)
-if [[ ! "$HOST_IP" =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
-    echo "Warning: TARGET_HOST does not appear to be a valid IP address format: $HOST_IP"
+if [[ ! ${HOST_IP} =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+    echo "Warning: TARGET_HOST does not appear to be a valid IP address format: ${HOST_IP}"
     echo "Continuing anyway as it might be a hostname..."
 fi
 
-echo "Deploying to: $USER@$HOST_IP"
+echo "Deploying to: ${USER}@${HOST_IP}"
 
 nix_anywhere() {
     echo "About to run nixos-anywhere deployment..."
-    echo "Target: $USER@$HOST_IP"
-    echo "Flake: $FLAKE"
+    echo "Target: ${USER}@${HOST_IP}"
+    echo "Flake: ${FLAKE}"
     echo ""
     read -p "Continue with deployment? (y/N): " -n 1 -r
     echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    if [[ ! ${REPLY} =~ ^[Yy]$ ]]; then
         echo "Deployment cancelled."
         return 1
     fi
 
-    sudo nix run github:nix-community/nixos-anywhere --extra-experimental-features nix-command --extra-experimental-features flakes -- "$@" --flake "$FLAKE"
+    sudo nix run github:nix-community/nixos-anywhere --extra-experimental-features nix-command --extra-experimental-features flakes -- "$@" --flake "${FLAKE}"
 }
 
 generate_hardware_config() {
     echo "Running hardware configuration generation..."
-    echo "Target: $USER@$HOST_IP"
+    echo "Target: ${USER}@${HOST_IP}"
     echo "Output: ./bose-game-home-lab.json"
     echo ""
     read -p "Continue with hardware config generation? (y/N): " -n 1 -r
     echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    if [[ ! ${REPLY} =~ ^[Yy]$ ]]; then
         echo "Hardware config generation cancelled."
         return 1
     fi
 
-    nix_anywhere --target-host "$USER"@"$HOST_IP" --generate-hardware-config nixos-facter ./bose-game-home-lab.json
+    nix_anywhere --target-host "${USER}"@"${HOST_IP}" --generate-hardware-config nixos-facter ./bose-game-home-lab.json
 }
 
 # nix_anywhere --help
