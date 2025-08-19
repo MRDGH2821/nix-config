@@ -9,6 +9,10 @@
     "hosts/home-lab",
     "vscode"
   ],
+  "files.associations": {
+    ".envrc": "shellscript",
+    ".envrc.local": "shellscript"
+  },
   "nix.enableLanguageServer": true,
   "nix.serverPath": "nil"
 }

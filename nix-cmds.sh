@@ -5,31 +5,31 @@
 # export TARGET_HOST=192.168.1.150  # Replace with your target server IP
 # export TARGET_USER=root           # Replace with your target username (optional)
 #
-# Alternatively, copy config.example to config.local and customize it
+# Alternatively, copy .envrc.local.sample to .envrc.local and customize it
 
 # Source local config if it exists
-if [[ -f "./config.local.sh" ]]; then
-    # shellcheck source=./config.local.sh
-    source ./config.local.sh
+if [[ -f "./.envrc" ]]; then
+    # shellcheck source=./.envrc
+    source ./.envrc
 fi
 
 # Default values (override with environment variables)
 USER=${TARGET_USER:-root}
 HOST_IP=${TARGET_HOST:-""}
-FLAKE=${TARGET_FLAKE:-".#home-lab"}
+FLAKE=${TARGET_FLAKE:-"./nix/hosts/home-lab#home-lab"}
 
 # Validate that HOST is set properly and not empty
 if [[ -z "$HOST_IP" || "$HOST_IP" == "" ]]; then
     echo "Error: TARGET_HOST is not set or is empty"
-    echo "Please set the TARGET_HOST environment variable or create a config.local.sh file"
+    echo "Please set the TARGET_HOST environment variable or create a .envrc.local file"
     echo ""
     echo "Example 1: Environment variable"
     echo "  export TARGET_HOST=192.168.1.150"
     echo "  ./nix-cmds.sh"
     echo ""
     echo "Example 2: Local config file"
-    echo "  cp config.example config.local"
-    echo "  # Edit config.local.sh with your settings"
+    echo "  cp .envrc.local.sample .envrc.local"
+    echo "  # Edit .envrc.local with your settings"
     echo "  ./nix-cmds.sh"
     exit 1
 fi
