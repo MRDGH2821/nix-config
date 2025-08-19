@@ -1,7 +1,9 @@
 {
   "allowCompoundWords": true,
   "caseSensitive": false,
+  "ignorePaths": ["**/bose-game-home-lab.json", ".trunk", ".direnv"],
   "language": "en,en-GB,en-AU",
+  "useGitignore": true,
   "version": "0.2",
   "words": [
     "disko",
