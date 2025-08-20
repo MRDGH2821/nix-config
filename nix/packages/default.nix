@@ -4,11 +4,11 @@
     with pkgs;
     map lib.lowPrio [
       curl
-      curl
       git
       gitMinimal
       nano
       neovim
       wget
     ];
+  programs.nix-ld.enable = true;
 }
