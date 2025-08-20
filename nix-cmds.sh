@@ -77,4 +77,12 @@ generate_hardware_config() {
 # nix_anywhere --target-host root@<YOUR_TARGET_IP> --generate-hardware-config nixos-generate-config ./hardware-configuration.nix
 
 # Run hardware configuration generation
-generate_hardware_config
+# generate_hardware_config
+
+nixos_rebuild() {
+    HOST=root@"${HOST_IP}"
+
+    nixos-rebuild switch --flake "${FLAKE}" --target-host "${HOST}" --build-host "${HOST}" --verbose
+}
+
+nixos_rebuild
