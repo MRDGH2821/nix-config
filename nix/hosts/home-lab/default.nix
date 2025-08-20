@@ -1,6 +1,7 @@
 {
   imports = [
     ../../modules/features/avahi.nix
+    ../../modules/features/direnv.nix
     ../../modules/features/docker.nix
     ../../modules/features/ssh.nix
     ../../modules/features/system-packages.nix
