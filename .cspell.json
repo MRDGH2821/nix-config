@@ -25,6 +25,7 @@
     "nixpkgs",
     "nmcli",
     "nmtui",
+    "nssmdns",
     "numtide",
     "nvme",
     "pkgs",
