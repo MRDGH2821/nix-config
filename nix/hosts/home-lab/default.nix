@@ -10,7 +10,6 @@
     ../../modules/features/ssh.nix
     ../../packages/default.nix
     ../../vars/default.nix
-    ./disk-config.nix
   ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
