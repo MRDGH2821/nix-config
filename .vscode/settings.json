@@ -7,6 +7,7 @@
     "features",
     "hosts",
     "hosts/home-lab",
+    "packages",
     "vscode"
   ],
   "files.associations": {
