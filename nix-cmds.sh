@@ -17,6 +17,7 @@ fi
 USER=${TARGET_USER:-root}
 HOST_IP=${TARGET_HOST:-""}
 FLAKE=${TARGET_FLAKE:-"./nix/hosts/home-lab#home-lab"}
+HOST_FOLDER=${TARGET_HOST_FOLDER:-"./nix/hosts/home-lab"}
 
 # Validate that HOST is set properly and not empty
 if [[ -z ${HOST_IP} || ${HOST_IP} == "" ]]; then
@@ -60,7 +61,7 @@ nix_anywhere() {
 generate_hardware_config() {
     echo "Running hardware configuration generation..."
     echo "Target: ${USER}@${HOST_IP}"
-    echo "Output: ./bose-game-home-lab.json"
+    echo "Output: ${HOST_FOLDER}/hardware-configuration.nix"
     echo ""
     read -p "Continue with hardware config generation? (y/N): " -n 1 -r
     echo
@@ -69,7 +70,7 @@ generate_hardware_config() {
         return 1
     fi
 
-    nix_anywhere --target-host "${USER}"@"${HOST_IP}" --generate-hardware-config nixos-facter ./nix/hosts/home-lab/bose-game-home-lab.json
+    nix_anywhere --target-host "${USER}"@"${HOST_IP}" --generate-hardware-config nixos-generate-config "${HOST_FOLDER}"/hardware-configuration.nix
 }
 
 # nix_anywhere --help
