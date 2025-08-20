@@ -15,6 +15,9 @@
     {
       # Development shell
       devShells.${system}.default = pkgs.mkShell {
+        buildInputs = with pkgs; [
+          nil # Nix Language Server
+        ];
         shellHook = ''
           echo "Welcome to the nix-config development environment!"
         '';
