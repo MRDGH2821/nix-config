@@ -2,25 +2,33 @@
   "allowCompoundWords": true,
   "caseSensitive": false,
   "ignorePaths": [
-    "**/bose-game-home-lab.json",
+    ".direnv",
     ".trunk",
-    ".direnv"
+    "*.lock",
+    "**/bose-game-home-lab.json"
   ],
   "language": "en,en-GB,en-AU",
   "useGitignore": true,
   "version": "0.2",
   "words": [
+    "avahi",
     "buildx",
     "disko",
+    "dmask",
     "envrc",
     "facter",
+    "fmask",
     "gnomovision",
+    "networkd",
     "nixos",
     "nixpkgs",
     "nmcli",
     "nmtui",
     "numtide",
+    "nvme",
     "pkgs",
-    "prio"
+    "prio",
+    "vfat",
+    "xhci"
   ]
 }
