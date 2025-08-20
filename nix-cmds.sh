@@ -69,7 +69,7 @@ generate_hardware_config() {
         return 1
     fi
 
-    nix_anywhere --target-host "${USER}"@"${HOST_IP}" --generate-hardware-config nixos-facter ./bose-game-home-lab.json
+    nix_anywhere --target-host "${USER}"@"${HOST_IP}" --generate-hardware-config nixos-facter ./nix/hosts/home-lab/bose-game-home-lab.json
 }
 
 # nix_anywhere --help
