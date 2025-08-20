@@ -83,7 +83,11 @@ generate_hardware_config() {
 nixos_rebuild() {
     HOST=mr-nix@"${HOST_IP}"
 
-    nixos-rebuild switch --flake "${FLAKE}" --target-host "${HOST}" --build-host "${HOST}" --verbose
+    if [[ "${HOST_IP}" != "localhost" ]]; then
+        nixos-rebuild switch --flake "${FLAKE}" --target-host "${HOST}" --build-host "${HOST}" --verbose
+    else
+        sudo nixos-rebuild switch --flake "${FLAKE}" --target-host "${HOST}" --build-host "${HOST}" --verbose
+    fi
 }
 
 nixos_rebuild
