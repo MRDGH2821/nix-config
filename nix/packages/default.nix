@@ -1,14 +1,12 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
-  environment.systemPackages =
-    with pkgs;
-    map lib.lowPrio [
-      curl
-      git
-      gitMinimal
-      nano
-      neovim
-      wget
-    ];
+  environment.systemPackages = with pkgs; [
+    curl
+    git
+    gitMinimal
+    nano
+    neovim
+    wget
+  ];
   programs.nix-ld.enable = true;
 }
