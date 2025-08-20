@@ -2,7 +2,7 @@
   imports = [
     ../../modules/features/docker.nix
     ../../modules/features/ssh.nix
-    ../../packages/default.nix
+    ../../modules/features/system-packages.nix
     ../../vars/default.nix
     ./hardware-configuration.nix
     ./configuration.nix
