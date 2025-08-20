@@ -19,6 +19,7 @@
   networking = {
     # configures the network interface(include wireless) via `nmcli` & `nmtui`
     networkmanager.enable = true;
+    hostName = "home-lab";
   };
 
   system.stateVersion = "25.05";
