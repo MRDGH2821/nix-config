@@ -15,6 +15,8 @@
         system = "x86_64-linux";
         modules = [
           ./default.nix
+          # ./hardware-configuration.nix
+          # ./configuration.nix
           nixos-facter-modules.nixosModules.facter
           {
             config.facter.reportPath =
