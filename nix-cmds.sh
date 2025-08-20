@@ -81,7 +81,7 @@ generate_hardware_config() {
 # generate_hardware_config
 
 nixos_rebuild() {
-    HOST=root@"${HOST_IP}"
+    HOST=mr-nix@"${HOST_IP}"
 
     nixos-rebuild switch --flake "${FLAKE}" --target-host "${HOST}" --build-host "${HOST}" --verbose
 }
