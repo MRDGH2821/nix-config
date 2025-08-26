@@ -4,7 +4,7 @@ services:
     restart: always
     ports:
       - 127.0.0.1:8000:8000
-    mem_limit: '256m'
+    mem_limit: 256m
     env_file:
       - path: .env
         required: true
@@ -49,8 +49,7 @@ services:
     volumes:
       - ./data-radicale:/data
       - ./radicale-config:/config:ro
-    mem_limit: '256m'
-
-volumes:
-  bewcloud-db:
-    driver: local
+    mem_limit: 256m
+# volumes:
+#   bewcloud-db:
+#     driver: local
