@@ -1,0 +1,56 @@
+services:
+  website:
+    image: ghcr.io/bewcloud/bewcloud:v2.4.0
+    restart: always
+    ports:
+      - 127.0.0.1:8000:8000
+    mem_limit: '256m'
+    env_file:
+      - path: .env
+        required: true
+    volumes:
+      - ./data-files:/app/data-files
+      - ./bewcloud.config.ts:/app/bewcloud.config.ts
+
+  # postgresql:
+  #   image: postgres:17
+  #   environment:
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=fake
+  #     - POSTGRES_DB=bewcloud
+  #   restart: always
+  #   volumes:
+  #     - bewcloud-db:/var/lib/postgresql/data
+  #   ports:
+  #     - 127.0.0.1:5432:5432
+  #   ulimits:
+  #     memlock:
+  #       soft: -1
+  #       hard: -1
+  #   mem_limit: '256m'
+
+  # NOTE: If you don't want to use the CardDav/CalDav servers, you can comment/remove this service.
+  radicale:
+    image: tomsquest/docker-radicale:3.5.4.0
+    ports:
+      - 127.0.0.1:5232:5232
+    init: true
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETUID
+      - SETGID
+      - CHOWN
+      - KILL
+    restart: always
+    volumes:
+      - ./data-radicale:/data
+      - ./radicale-config:/config:ro
+    mem_limit: '256m'
+
+volumes:
+  bewcloud-db:
+    driver: local
