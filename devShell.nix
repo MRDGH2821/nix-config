@@ -4,6 +4,7 @@ pkgs.mkShell {
   buildInputs = with pkgs; [
     nil # Nix Language Server
     compose2nix
+    deno
   ];
 
   shellHook = ''

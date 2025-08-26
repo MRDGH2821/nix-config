@@ -3,6 +3,7 @@
   "bashIde.shfmt.simplifyCode": true,
   "conventionalCommits.scopes": [
     "cspell",
+    "devshell",
     "disko",
     "features",
     "hosts",
