@@ -8,6 +8,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
     ../../modules/features/system-packages.nix
+    ./sops.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -22,6 +23,17 @@
     # configures the network interface(include wireless) via `nmcli` & `nmtui`
     networkmanager.enable = true;
     hostName = "home-lab";
+  };
+
+  users.users.bose-game = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF5wVbxASqs1YeVPFBzUoyNCABQFDOF0/JXxGrz2u215 Bose Game Mini PC"
+    ];
   };
 
   system.stateVersion = "25.05";
