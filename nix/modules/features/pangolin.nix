@@ -1,6 +1,6 @@
-{ pkgs }:
+{ pkgs, ... }:
 {
-  environment.system-packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     fosrl-pangolin
   ];
 }
