@@ -20,13 +20,9 @@
     in
     {
       # Development shell
-      devShells.${system}.default = import ./devShell.nix { inherit pkgs; };
-      nixosConfigurations.${system} = nixpkgs.lib.nixosSystem {
-        # customize to your system
-        system = "x86_64-linux";
-        modules = [
-          sops-nix.nixosModules.sops
-        ];
+      devShells.${system}.default = import ./devShell.nix {
+        inherit pkgs;
+        sopsModule = sops-nix.nixosModules.sops;
       };
     };
 }
