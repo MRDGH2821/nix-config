@@ -20,6 +20,6 @@
   services.postgresqlBackup = {
     enable = true;
     backupAll = true;
-    backupPath = "/etc/nixos/persist/pg_backup/";
+    location = "../pg_backup/";
   };
 }
