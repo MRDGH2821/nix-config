@@ -6,7 +6,6 @@
     ensureUsers = [
       {
         name = "bewcloud";
-        password = "fake";
         ensureDBOwnership = true;
       }
     ];
