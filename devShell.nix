@@ -10,7 +10,11 @@ pkgs.mkShell {
       nil # Nix Language Server
       compose2nix
       deno
+      sops # SOPS tool for encryption/decryption
+      age # Age encryption tool
+      ssh-to-age # Convert SSH keys to age keys
       sopsModule
+      # sops-nix.nixosModules.sops
     ]
   );
 
