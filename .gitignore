@@ -10,3 +10,5 @@ result-*
 # Ignore local configuration files containing sensitive information
 config.local.sh
 *.local
+
+.env
