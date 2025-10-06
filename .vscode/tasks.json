@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Generate docker-compose.nix",
+      "type": "shell",
+      "command": "compose2nix -include_env_files=true -env_files_only=true -runtime docker -inputs ${file} -output docker-compose.nix",
+      "problemMatcher": [],
+      "group": { "kind": "build", "isDefault": true },
+      "options": { "cwd": "${fileDirname}" },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "detail": "Generates docker-compose.nix from docker-compose.yml using compose2nix"
+    }
+  ]
+}
