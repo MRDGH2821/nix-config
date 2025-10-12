@@ -16,9 +16,6 @@
         "showReuseMessage": true,
         "clear": false
       },
-      "runOptions": {
-        "runOn": "folderOpen"
-      },
       "detail": "Generates docker-compose.nix from docker-compose.yml using compose2nix"
     }
   ]
