@@ -8,7 +8,8 @@
   services.pangolin = {
     enable = true;
     openFirewall = true;
-    letsEncryptEmail = "${config.sops.secrets.letsencrypt_email}";
+    # Use placeholder to substitute the actual secret value at runtime
+    letsEncryptEmail = "${config.sops.placeholder.letsencrypt_email}";
     environmentFile = config.sops.secrets.pangolin.path;
   };
 }
