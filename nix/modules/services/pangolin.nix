@@ -1,6 +1,9 @@
-{ pkgs, config, ... }:
 {
-  environment.systemPackages = with pkgs; [ fosrl-pangolin ];
+  pkgs,
+  config,
+  ...
+}: {
+  environment.systemPackages = with pkgs; [fosrl-pangolin];
 
   services.pangolin = {
     enable = true;
@@ -8,5 +11,4 @@
     letsEncryptEmail = config.sops.secrets.letsencrypt_email;
     environmentFile = config.sops.secrets.pangolin.path;
   };
-
 }

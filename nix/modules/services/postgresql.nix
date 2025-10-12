@@ -1,8 +1,7 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   services.postgresql = {
     enable = true;
-    ensureDatabases = [ "bewcloud" ];
+    ensureDatabases = ["bewcloud"];
     ensureUsers = [
       {
         name = "bewcloud";

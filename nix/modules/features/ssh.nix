@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.ssh.startAgent = true;
 
   users.users.system-recovery = {

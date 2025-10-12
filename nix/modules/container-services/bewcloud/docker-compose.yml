@@ -51,6 +51,7 @@ services:
       - ./data-radicale:/data
       - ./radicale-config:/config:ro
     mem_limit: 256m
+
 # volumes:
 #   bewcloud-db:
 #     driver: local

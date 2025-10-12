@@ -1,4 +1,7 @@
 {
+  "[nix]": {
+    "editor.defaultFormatter": "kamadorueda.alejandra"
+  },
   "bashIde.enableSourceErrorDiagnostics": true,
   "bashIde.shfmt.simplifyCode": true,
   "conventionalCommits.scopes": [
