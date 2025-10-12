@@ -35,4 +35,6 @@
     sopsFile = "./secrets/pangolin.yaml";
     key = "";
   };
+
+  sops.secrets.letsencrypt_email = {};
 }
