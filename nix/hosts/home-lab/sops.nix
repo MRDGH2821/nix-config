@@ -33,8 +33,6 @@
 
   sops.secrets.pangolin = {
     sopsFile = "./secrets/pangolin.yaml";
-    owner = "pangolin";
-    group = "pangolin";
     key = "";
   };
 }
