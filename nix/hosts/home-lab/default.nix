@@ -1,8 +1,8 @@
 {
   imports = [
+    ./sops.nix
     ../../modules/features
     ../../modules/fixes
-    ./sops.nix
     ../../modules/services
     ../../vars/default.nix
     ./configuration.nix

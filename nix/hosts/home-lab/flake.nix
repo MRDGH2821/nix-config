@@ -10,8 +10,8 @@
     nixosConfigurations.home-lab = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./default.nix
         sops-nix.nixosModules.sops
+        ./default.nix
       ];
     };
   };
