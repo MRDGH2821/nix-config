@@ -38,27 +38,6 @@
           echo "Available tools: nil, compose2nix, deno, sops, age, ssh-to-age"
         '';
       };
-
-      # Alternative shell for CI/testing
-      ci = pkgs.mkShell {
-        buildInputs = with pkgs; [
-          nil
-          sops
-          age
-          ssh-to-age
-        ];
-      };
-    };
-
-    # Export our utility libraries for reuse
-    lib = myLib;
-
-    # Export modules for reuse in other flakes
-    nixosModules = {
-      homelab-features = ./nix/modules/features;
-      homelab-services = ./nix/modules/services;
-      homelab-fixes = ./nix/modules/fixes;
-      homelab-vars = ./nix/vars;
     };
   };
 }
