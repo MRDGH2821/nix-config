@@ -15,6 +15,7 @@
 
   sops.secrets.pangolin = {
     sopsFile = "./secrets/pangolin.yaml";
+    format = "yaml";
     key = "";
   };
 
