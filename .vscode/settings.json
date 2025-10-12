@@ -9,6 +9,7 @@
     "hosts",
     "hosts/home-lab",
     "packages",
+    "secrets",
     "services",
     "vscode"
   ],
