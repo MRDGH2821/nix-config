@@ -13,28 +13,10 @@
   # This will generate a new key if the key specified above does not exist
   sops.age.generateKey = true;
 
-  # This is the actual specification of the secrets.
-  sops.secrets.database_password = {
-    # The secret will be available at /run/secrets/database_password
-    # The file will be owned by root:root with permissions 0400
-  };
-
-  sops.secrets.api_key = {
-    # Example: make secret available to a specific user/group
-    owner = "nginx";
-    group = "nginx";
-    mode = "0440";
-  };
-
-  sops.secrets.jwt_secret = {
-    # Example: place secret in a specific location
-    path = "/etc/jwt/secret";
-  };
-
   sops.secrets.pangolin = {
     sopsFile = "./secrets/pangolin.yaml";
     key = "";
   };
 
-  sops.secrets.letsencrypt_email = {};
+  sops.secrets.letsencryptemail = {};
 }

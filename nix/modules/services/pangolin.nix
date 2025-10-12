@@ -9,7 +9,7 @@
     enable = true;
     openFirewall = true;
     # Use placeholder to substitute the actual secret value at runtime
-    letsEncryptEmail = "${config.sops.placeholder.letsencrypt_email}";
+    letsEncryptEmail = "${config.sops.placeholder.letsencryptemail}";
     environmentFile = config.sops.secrets.pangolin.path;
   };
 }
