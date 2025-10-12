@@ -31,9 +31,10 @@
     path = "/etc/jwt/secret";
   };
 
-  # Add more secrets as needed
-  # sops.secrets.postgres_bewcloud_password = {
-  #   owner = "postgres";
-  #   group = "postgres";
-  # };
+  sops.secrets.pangolin = {
+    sopsFile = "./secrets/pangolin.yaml";
+    owner = "pangolin";
+    group = "pangolin";
+    key = "";
+  };
 }
