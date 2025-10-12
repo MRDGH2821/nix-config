@@ -18,5 +18,6 @@
     key = "";
   };
 
-  sops.secrets.letsencryptemail = {};
+  sops.secrets.letsEncryptEmail = {};
+  sops.secrets.baseDomain = {};
 }
