@@ -12,3 +12,9 @@ config.local.sh
 *.local
 
 .env
+
+# Ignore pangolin dirs
+public
+node_modules
+.next
+config
