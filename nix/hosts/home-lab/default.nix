@@ -1,5 +1,6 @@
 {
   imports = [
+    ./acme.nix
     ./sops.nix
     ../../modules/features
     ../../modules/fixes
