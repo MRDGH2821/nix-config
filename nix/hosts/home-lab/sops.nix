@@ -14,7 +14,7 @@
   sops.age.generateKey = true;
 
   sops.secrets.pangolin = {
-    sopsFile = "./secrets/pangolin.yaml";
+    sopsFile = ./secrets/pangolin.yaml;
     format = "yaml";
     key = "";
   };
