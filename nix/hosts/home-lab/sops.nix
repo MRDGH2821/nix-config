@@ -19,10 +19,25 @@
     key = "";
     restartUnits = ["pangolin.service"];
     owner = "pangolin";
+    group = "fossorial";
   };
 
-  sops.secrets.letsEncryptEmail = {};
-  sops.secrets.baseDomain = {};
+  sops.secrets.letsEncryptEmail = {
+    restartUnits = ["pangolin.service"];
+    owner = "pangolin";
+    group = "fossorial";
+  };
+  sops.secrets.baseDomain = {
+    restartUnits = ["pangolin.service"];
+    owner = "pangolin";
+    group = "fossorial";
+  };
+  sops.secrets.smtpEmail = {
+    restartUnits = ["pangolin.service"];
+    owner = "pangolin";
+    group = "fossorial";
+  };
+
   sops.secrets.traefik = {
     sopsFile = ./secrets/traefik.env;
     format = "env";
