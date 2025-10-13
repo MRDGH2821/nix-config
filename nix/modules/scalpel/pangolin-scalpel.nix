@@ -12,7 +12,7 @@ in {
   );
   scalpel.trafos."config.yaml" = {
     source = pangolin_cfgfile;
-    matchers."SMTP_USER".secret = config.sops.secrets.smtpEmail.path;
+    matchers."SMTP_EMAIL".secret = config.sops.secrets.smtpEmail.path;
     matchers."LETSENCRYPT_EMAIL".secret = config.sops.secrets.letsEncryptEmail.path;
     matchers."BASE_DOMAIN".secret = config.sops.secrets.baseDomain.path;
     owner = "pangolin";
