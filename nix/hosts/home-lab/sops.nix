@@ -14,8 +14,8 @@
   sops.age.generateKey = true;
 
   sops.secrets.pangolin = {
-    sopsFile = ./secrets/pangolin.yaml;
-    format = "yaml";
+    sopsFile = ./secrets/pangolin.env;
+    format = "env";
     key = "";
     restartUnits = ["pangolin.service"];
   };
