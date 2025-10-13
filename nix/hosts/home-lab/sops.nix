@@ -17,6 +17,7 @@
     sopsFile = ./secrets/pangolin.yaml;
     format = "yaml";
     key = "";
+    restartUnits = ["pangolin.service"];
   };
 
   sops.secrets.letsEncryptEmail = {};
