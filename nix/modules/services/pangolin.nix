@@ -27,8 +27,16 @@
         disable_user_create_org = true;
       };
     };
-    letsEncryptEmail = "letsencrypt@example.com";
-    baseDomain = "pangolin.example.com";
+    letsEncryptEmail = config.sops.placeholder.letsEncryptEmail;
+    baseDomain = config.sops.placeholder.baseDomain;
     environmentFile = config.sops.secrets.pangolin.path;
+    dnsProvider = "duckdns";
+  };
+
+  services.traefik = {
+    environmentFiles = [
+      config.sops.secrets.traefik.path
+      config.sops.secrets.acme.path
+    ];
   };
 }

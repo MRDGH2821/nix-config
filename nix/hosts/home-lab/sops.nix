@@ -18,8 +18,22 @@
     format = "env";
     key = "";
     restartUnits = ["pangolin.service"];
+    owner = "pangolin";
   };
 
   sops.secrets.letsEncryptEmail = {};
   sops.secrets.baseDomain = {};
+  sops.secrets.traefik = {
+    sopsFile = ./secrets/traefik.env;
+    format = "env";
+    key = "";
+    restartUnits = ["traefik.service"];
+    owner = "traefik";
+  };
+  sops.secrets.acme = {
+    sopsFile = ./secrets/acme.env;
+    format = "env";
+    key = "";
+    restartUnits = ["acme.service"];
+  };
 }
