@@ -32,6 +32,8 @@
           nixpkgs-review
           alejandraPkg
           nixos-rebuild-ng
+          scalpel
+          nixos-container
         ];
         shellHook = ''
           echo "Welcome to the nix-config development environment!"
