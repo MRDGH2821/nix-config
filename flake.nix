@@ -8,22 +8,19 @@
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      flake-utils,
-      alejandra,
-    }:
+  outputs = {
+    self,
+    nixpkgs,
+    flake-utils,
+    alejandra,
+  }:
     flake-utils.lib.eachDefaultSystem (
-      system:
-      let
+      system: let
         pkgs = nixpkgs.legacyPackages.${system};
         alejandraPkg = alejandra.packages.${system}.default or alejandra.defaultPackage.${system};
-      in
-      {
+      in {
         devShells.default = pkgs.mkShell {
-          packages = with pkgs self; [
+          packages = with pkgs; [
             nil
             compose2nix
             deno
