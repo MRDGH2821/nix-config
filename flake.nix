@@ -19,9 +19,23 @@
       myLib = import ./nix/mylib/auto-import.nix {inherit (pkgs) lib;};
       alejandraPkg =
         alejandra.packages.${system}.default or alejandra.defaultPackage.${system};
+      mk_scalpel = {
+        matchers,
+        source,
+        destination,
+        user ? null,
+        group ? null,
+        mode ? null,
+      }:
+        pkgs.callPackage ./nix/packages/scalpel.nix {
+          inherit matchers source destination user group mode;
+        };
+
+      nixosModules.scalpel = import ./nix/modules/scalpel {inherit self;};
+      nixosModule = self.nixosModules.scalpel;
     in {
       devShells.default = pkgs.mkShell {
-        packages = with pkgs; [
+        packages = with pkgs self; [
           nil
           compose2nix
           deno
@@ -32,7 +46,7 @@
           nixpkgs-review
           alejandraPkg
           nixos-rebuild-ng
-          scalpel
+          self.nixosModules.scalpel
           nixos-container
         ];
         shellHook = ''

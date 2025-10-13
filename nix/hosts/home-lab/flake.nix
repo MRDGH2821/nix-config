@@ -7,9 +7,25 @@
     nixpkgs,
     sops-nix,
     ...
-  }: {
+  }: let
+    pkgs = nixpkgs.legacyPackages.x86_64-linux;
+  in {
+    mk_scalpel = {
+      matchers,
+      source,
+      destination,
+      user ? null,
+      group ? null,
+      mode ? null,
+    }:
+      pkgs.callPackage ./../../packages/scalpel.nix {
+        inherit matchers source destination user group mode;
+      };
+
+    nixosModules.scalpel = import ./modules/scalpel {inherit self;};
+    nixosModule = self.nixosModules.scalpel;
     nixosConfigurations = let
-      home-lab = nixpkgs.lib.nixosSystem {
+      base-lab = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           sops-nix.nixosModules.sops
@@ -17,11 +33,14 @@
         ];
       };
     in {
-      home_sys = home-lab.extendModules {
+      home-lab = base-lab.extendModules {
         modules = [
           self.nixosModules.scalpel
         ];
-        specialArgs = {prev = home-lab;};
+        specialArgs = {
+          prev = base-lab;
+          inherit (self) mk_scalpel;
+        };
       };
     };
   };
