@@ -31,6 +31,7 @@
           nixpkgs-fmt
           nixpkgs-review
           alejandraPkg
+          nixos-rebuild-ng
         ];
         shellHook = ''
           echo "Welcome to the nix-config development environment!"
