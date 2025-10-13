@@ -10,8 +10,8 @@
     enable = true;
     openFirewall = true;
 
-    letsEncryptEmail = "";
-    baseDomain = "";
+    letsEncryptEmail = "letsencrypt@example.com";
+    baseDomain = "pangolin.example.com";
     environmentFile = config.sops.secrets.pangolin.path;
   };
 }
