@@ -36,10 +36,10 @@
       home-lab = base-lab.extendModules {
         modules = [
           self.nixosModules.scalpel
+          ./../../modules/scalpel/pangolin-scalpel.nix
         ];
         specialArgs = {
           prev = base-lab;
-          inherit (self) mk_scalpel;
         };
       };
     };
