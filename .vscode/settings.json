@@ -12,6 +12,7 @@
     "hosts",
     "hosts/home-lab",
     "packages",
+    "scalpel",
     "secrets",
     "services",
     "vscode"
