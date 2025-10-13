@@ -15,7 +15,7 @@
 
   sops.secrets.pangolin = {
     sopsFile = ./secrets/pangolin.env;
-    format = "env";
+    format = "dotenv";
     key = "";
     restartUnits = ["pangolin.service"];
     owner = "pangolin";
@@ -40,14 +40,14 @@
 
   sops.secrets.traefik = {
     sopsFile = ./secrets/traefik.env;
-    format = "env";
+    format = "dotenv";
     key = "";
     restartUnits = ["traefik.service"];
     owner = "traefik";
   };
   sops.secrets.acme = {
     sopsFile = ./secrets/acme.env;
-    format = "env";
+    format = "dotenv";
     key = "";
     restartUnits = ["acme.service"];
   };
