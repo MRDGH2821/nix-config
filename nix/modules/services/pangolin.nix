@@ -4,6 +4,7 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [fosrl-pangolin];
+  boot.kernelModules = ["wireguard"];
 
   services.pangolin = {
     enable = true;
