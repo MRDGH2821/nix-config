@@ -21,5 +21,10 @@
     ".envrc.local": "shellscript"
   },
   "nix.enableLanguageServer": true,
-  "nix.serverPath": "nil"
+  "nix.serverPath": "nil",
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/chri11g6/sops-schema/refs/heads/master/sops.schema.json": [
+      ".sops.yaml"
+    ]
+  }
 }
