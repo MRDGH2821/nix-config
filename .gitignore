@@ -18,3 +18,5 @@ public
 node_modules
 .next
 config
+
+.debug/
