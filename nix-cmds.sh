@@ -86,7 +86,7 @@ nixos_rebuild() {
     if [[ "${HOST_IP}" == "localhost" ]]; then
         sudo nixos-rebuild switch --flake "${FLAKE}" --verbose
     else
-        nixos-rebuild switch --flake "${FLAKE}" --target-host "${HOST}" --build-host "${HOST}" --verbose
+        NIX_SSHOPTS="-o RequestTTY=force" nixos-rebuild switch --flake "${FLAKE}" --target-host "${HOST}" --build-host "${HOST}" --verbose --use-remote-sudo
     fi
 }
 
