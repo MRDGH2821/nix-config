@@ -22,7 +22,7 @@
         inherit matchers source destination user group mode;
       };
 
-    nixosModules.scalpel = import ./modules/scalpel {inherit self;};
+    nixosModules.scalpel = import ./../../modules/scalpel {inherit self;};
     nixosModule = self.nixosModules.scalpel;
     nixosConfigurations = let
       base-lab = nixpkgs.lib.nixosSystem {
