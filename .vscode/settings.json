@@ -28,7 +28,7 @@
       "args": [
         "Bose-Game-Homelab",
         "-t",
-        "bash -l -c 'cd /etc/nixos/persist/nix-config && exec bash -l'"
+        "bash -l -c 'cd /etc/nixos/persist/nix-config && git pull &&exec bash -l'"
       ],
       "icon": "terminal-bash",
       "path": "ssh"
