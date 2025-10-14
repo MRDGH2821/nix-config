@@ -23,6 +23,17 @@
   },
   "nix.enableLanguageServer": true,
   "nix.serverPath": "nil",
+  "terminal.integrated.profiles.linux": {
+    "bash - nix-homelab": {
+      "args": [
+        "Bose-Game-Homelab",
+        "-t",
+        "bash -l -c 'cd /etc/nixos/persist/nix-config && exec bash -l'"
+      ],
+      "icon": "terminal-bash",
+      "path": "ssh"
+    }
+  },
   "yaml.schemas": {
     "https://raw.githubusercontent.com/chri11g6/sops-schema/refs/heads/master/sops.schema.json": [
       ".sops.yaml"
