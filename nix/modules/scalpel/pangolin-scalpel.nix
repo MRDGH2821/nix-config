@@ -2,6 +2,7 @@
   lib,
   config,
   prev,
+  pkgs,
   ...
 }: let
   preStart = "${prev.config.systemd.services.pangolin.preStart}";
@@ -18,6 +19,19 @@ in {
     ];
     # Ensure pangolin starts after the scalpel activation
     after = ["sysinit.target"];
+  };
+
+  # Delayed restart service to ensure config is properly loaded after boot
+  systemd.services.pangolin-delayed-restart = {
+    description = "Restart pangolin 10 seconds after boot to ensure config is loaded";
+    wantedBy = ["multi-user.target"];
+    after = ["multi-user.target" "pangolin.service"];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 10";
+      ExecStart = "${pkgs.systemd}/bin/systemctl restart pangolin.service";
+      RemainAfterExit = true;
+    };
   };
 
   scalpel.trafos."config.yaml" = {
