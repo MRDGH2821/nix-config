@@ -2,40 +2,39 @@
   lib,
   config,
   prev,
-  pkgs,
   ...
 }: let
-  preStart = "${prev.config.systemd.services.pangolin.preStart}";
-  pangolin_cfgfile = builtins.head (builtins.match ".*cp -f ([^[:space:]]+).*" "${preStart}");
+  # The upstream preStart does: cp -f ${cfgFile} ${cfg.dataDir}/config/config.yml
+  # We'll add an additional step to copy the scalpel-transformed config
+  originalPreStart = "${prev.config.systemd.services.pangolin.preStart}";
+  scalpelConfigPath = config.scalpel.trafos."config.yaml".destination;
 in {
-  systemd.services.pangolin.preStart = lib.mkForce (
-    builtins.replaceStrings ["${pangolin_cfgfile}"] ["${config.scalpel.trafos."config.yaml".destination} "] "${preStart}"
-  );
+  # Override the preStart to add scalpel config copy AFTER the original copy
+  systemd.services.pangolin.preStart = lib.mkForce ''
+    ${originalPreStart}
+
+    # Copy scalpel-transformed config over the nix store config
+    # This must happen after the mkdir and original cp
+    if [ -f ${scalpelConfigPath} ]; then
+      echo "[scalpel] Copying transformed config from ${scalpelConfigPath}"
+      cp -f ${scalpelConfigPath} ${prev.config.services.pangolin.dataDir}/config/config.yml
+    else
+      echo "[scalpel] WARNING: Scalpel config not found at ${scalpelConfigPath}"
+    fi
+  '';
 
   # Restart pangolin after scalpel transformations complete
   systemd.services.pangolin = {
     restartTriggers = [
-      config.scalpel.trafos."config.yaml".destination
+      scalpelConfigPath
     ];
     # Ensure pangolin starts after the scalpel activation
     after = ["sysinit.target"];
   };
 
-  # Delayed restart service to ensure config is properly loaded after boot
-  systemd.services.pangolin-delayed-restart = {
-    description = "Restart pangolin 10 seconds after boot to ensure config is loaded";
-    wantedBy = ["multi-user.target"];
-    after = ["multi-user.target" "pangolin.service"];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStartPre = "${pkgs.coreutils}/bin/sleep 10";
-      ExecStart = "${pkgs.systemd}/bin/systemctl restart pangolin.service";
-      RemainAfterExit = true;
-    };
-  };
-
+  # Scalpel transformation configuration
   scalpel.trafos."config.yaml" = {
-    source = pangolin_cfgfile;
+    source = "${prev.config.services.pangolin.dataDir}/config/config.yml";
     matchers."SMTP_EMAIL".secret = config.sops.secrets.smtpEmail.path;
     matchers."LETSENCRYPT_EMAIL".secret = config.sops.secrets.letsEncryptEmail.path;
     matchers."BASE_DOMAIN".secret = config.sops.secrets.baseDomain.path;
