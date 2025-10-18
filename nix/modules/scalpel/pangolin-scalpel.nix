@@ -7,7 +7,7 @@
   # The upstream preStart does: cp -f ${cfgFile} ${cfg.dataDir}/config/config.yml
   # We'll add an additional step to copy the scalpel-transformed config
   originalPreStart = "${prev.config.systemd.services.pangolin.preStart}";
-  scalpelConfigPath = config.scalpel.trafos."config.yaml".destination;
+  scalpelConfigPath = config.scalpel.trafos."config.yml".destination;
 in {
   # Override the preStart to add scalpel config copy AFTER the original copy
   systemd.services.pangolin.preStart = lib.mkForce ''
@@ -33,7 +33,7 @@ in {
   };
 
   # Scalpel transformation configuration
-  scalpel.trafos."config.yaml" = {
+  scalpel.trafos."config.yml" = {
     source = "${prev.config.services.pangolin.dataDir}/config/config.yml";
     matchers."SMTP_EMAIL".secret = config.sops.secrets.smtpEmail.path;
     matchers."LETSENCRYPT_EMAIL".secret = config.sops.secrets.letsEncryptEmail.path;
