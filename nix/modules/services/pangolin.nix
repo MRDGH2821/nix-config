@@ -5,6 +5,11 @@
 }: {
   environment.systemPackages = with pkgs; [fosrl-pangolin];
   boot.kernelModules = ["wireguard"];
+  sops.templates.pangolin = {
+    smtpEmail = "${config.sops.placeholder.smtpEmail}";
+    letsEncryptEmail = "${config.sops.placeholder.letsEncryptEmail}";
+    baseDomain = "${config.sops.placeholder.baseDomain}";
+  };
 
   services.pangolin = {
     enable = true;
@@ -21,15 +26,15 @@
       };
       smtp_host = "smtp.gmail.com";
       smtp_port = 587;
-      smtp_user = "!!SMTP_EMAIL!!";
+      smtp_user = config.sops.templates.pangolin.smtpEmail;
       flags = {
         require_email_verification = false;
         disable_signup_without_invite = true;
         disable_user_create_org = true;
       };
     };
-    letsEncryptEmail = "!!LETSENCRYPT_EMAIL!!";
-    baseDomain = "!!BASE_DOMAIN!!";
+    letsEncryptEmail = config.sops.templates.pangolin.letsEncryptEmail;
+    baseDomain = config.sops.templates.pangolin.baseDomain;
     environmentFile = config.sops.secrets.pangolin.path;
     dnsProvider = "duckdns";
   };
