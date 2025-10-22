@@ -1,0 +1,1 @@
+hosts/home-lab/secrets/** filter=git-agecrypt diff=git-agecrypt
