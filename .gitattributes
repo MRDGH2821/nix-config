@@ -1,1 +1,2 @@
 nix/hosts/home-lab/secrets/agecrypt/** filter=git-agecrypt diff=git-agecrypt
+./nix/hosts/home-lab/secrets/agecrypt/** filter=git-agecrypt diff=git-agecrypt
