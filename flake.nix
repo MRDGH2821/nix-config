@@ -16,19 +16,17 @@
   }:
     flake-utils.lib.eachDefaultSystem (
       system: let
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = import nixpkgs {system = system;};
         alejandraPkg = alejandra.packages.${system}.default or alejandra.defaultPackage.${system};
       in {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             age
             alejandraPkg
-            cocogitto
             compose2nix
             deno
             git-agecrypt
             nil
-            nixos-container
             nixos-rebuild-ng
             nixpkgs-fmt
             nixpkgs-review
