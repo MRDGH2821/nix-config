@@ -21,17 +21,19 @@
       in {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
-            nil
+            age
+            alejandraPkg
+            cocogitto
             compose2nix
             deno
-            sops
-            age
-            ssh-to-age
+            git-agecrypt
+            nil
+            nixos-container
+            nixos-rebuild-ng
             nixpkgs-fmt
             nixpkgs-review
-            alejandraPkg
-            nixos-rebuild-ng
-            nixos-container
+            sops
+            ssh-to-age
           ];
           shellHook = ''
             echo "Welcome to the nix-config development environment!"
