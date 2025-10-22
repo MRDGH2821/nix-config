@@ -6,19 +6,14 @@
 }: let
   scalpelConfigPath = config.scalpel.trafos."config.yml".destination;
 in {
-  # Override the preStart to add scalpel config copy AFTER the original copy
-  systemd.services.pangolin.ExecStartPre = lib.mkForce ''
-
-    # Copy scalpel-transformed config over the nix store config
-    # This must happen after the mkdir and original cp
-    if [ -f ${scalpelConfigPath} ]; then
-      echo "[scalpel] Copying transformed config from ${scalpelConfigPath}"
-      cp -f ${scalpelConfigPath} ${prev.config.services.pangolin.dataDir}/config/config.yml
-      echo "[scalpel] Copy complete"
-    else
-      echo "[scalpel] WARNING: Scalpel config not found at ${scalpelConfigPath}"
-    fi
-  '';
+  # Use a forced serviceConfig override to add an ExecStartPre that copies
+  # the scalpel-generated config into the runtime config dir. Using
+  # `serviceConfig.ExecStartPre` modifies the generated unit directly.
+  systemd.services.pangolin.serviceConfig = lib.mkForce {
+    ExecStartPre = [
+      ''/bin/sh -c 'if [ -f ${scalpelConfigPath} ]; then echo "[scalpel] Copying transformed config from ${scalpelConfigPath}"; cp -f ${scalpelConfigPath} ${prev.config.services.pangolin.dataDir}/config/config.yml; echo "[scalpel] Copy complete"; else echo "[scalpel] WARNING: Scalpel config not found at ${scalpelConfigPath}"; fi' ''
+    ];
+  };
 
   # Scalpel transformation configuration
   scalpel.trafos."config.yml" = {
