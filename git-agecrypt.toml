@@ -2,3 +2,6 @@
 "nix/hosts/home-lab/secrets/agecrypt/git-agecrpyt-test.txt" = [
     "age18mhd309clh6tm24nm68zu2jl5nslwre64ap7sucuquslhy94pcksdg793a",
 ]
+"./nix/hosts/home-lab/secrets/agecrypt/git-agecrpyt-test.txt" = [
+    "age18mhd309clh6tm24nm68zu2jl5nslwre64ap7sucuquslhy94pcksdg793a",
+]
