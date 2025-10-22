@@ -21,6 +21,11 @@
     ".envrc": "shellscript",
     ".envrc.local": "shellscript"
   },
+  "git.diagnosticsCommitHook.enabled": true,
+  "git.enableCommitSigning": true,
+  "git.followTagsWhenSync": true,
+  "git.mergeEditor": true,
+  "git.verboseCommit": true,
   "nix.enableLanguageServer": true,
   "nix.serverPath": "nil",
   "terminal.integrated.profiles.linux": {
