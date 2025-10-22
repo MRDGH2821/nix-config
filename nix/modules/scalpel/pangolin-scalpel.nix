@@ -28,6 +28,9 @@ in {
     matchers."SMTP_EMAIL".secret = config.sops.secrets.smtpEmail.path;
     matchers."LETSENCRYPT_EMAIL".secret = config.sops.secrets.letsEncryptEmail.path;
     matchers."BASE_DOMAIN".secret = config.sops.secrets.baseDomain.path;
+    matchers."smtp_email".secret = config.sops.secrets.smtpEmail.path;
+    matchers."letsencrypt_email".secret = config.sops.secrets.letsEncryptEmail.path;
+    matchers."base_domain".secret = config.sops.secrets.baseDomain.path;
     owner = "pangolin";
     group = "fossorial";
     mode = "0440";
