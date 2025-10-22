@@ -13,12 +13,6 @@ post_bump_hooks = []
 pre_package_bump_hooks = []
 post_package_bump_hooks = []
 
-[git_hooks.pre-push]
-path = ".git-hooks/lock-secrets.sh"
-
-[git_hooks.post-checkout]
-path = ".git-hooks/unlock-secrets.sh"
-
 [git_hooks.commit-msg]
 script = """#!/bin/sh
 set -e
