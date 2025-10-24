@@ -32,6 +32,7 @@
       shellHook = ''
         echo "Welcome to the nix-config development environment!"
         echo "Available tools: nil, compose2nix, deno, sops, age, ssh-to-age"
+        git-agecrypt init
       '';
     };
   };
