@@ -34,6 +34,6 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF5wVbxASqs1YeVPFBzUoyNCABQFDOF0/JXxGrz2u215 Bose Game Mini PC"
     ];
   };
-  nix.settings.allowed-users = [ "@wheel" "bose-game" ];
+  nix.settings.allowed-users = ["@wheel" "bose-game"];
   system.stateVersion = "25.05";
 }
