@@ -8,6 +8,10 @@ in {
     enable = true;
     virtualHosts."${dmn}".extraConfig = ''
       respond "OK"
+
+      tls ${certloc}/cert.pem ${certloc}/key.pem {
+        protocols tls1.3
+      }
     '';
 
     virtualHosts."pdf.${dmn}".extraConfig = ''
