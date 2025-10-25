@@ -29,14 +29,15 @@
   "nix.enableLanguageServer": true,
   "nix.serverPath": "nil",
   "terminal.integrated.profiles.linux": {
-    "bash - nix-homelab": {
+    "nix-homelab shell": {
       "args": [
         "Bose-Game-Homelab",
         "-t",
-        "bash -l -c 'cd /etc/nixos/persist/nix-config && git pull &&exec bash -l'"
+        "$SHELL -l -c 'cd /etc/nixos/persist/nix-config && git pull && exec $SHELL -l'"
       ],
-      "icon": "terminal-bash",
-      "path": "ssh"
+      "icon": "server-environment",
+      "path": "ssh",
+      "overrideName": true
     }
   },
   "yaml.schemas": {
