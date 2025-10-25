@@ -13,38 +13,9 @@
   # This will generate a new key if the key specified above does not exist
   sops.age.generateKey = true;
 
-  sops.secrets.pangolin = {
-    sopsFile = ./secrets/pangolin.env;
-    format = "dotenv";
-    key = "";
-    restartUnits = ["pangolin.service"];
-    owner = "pangolin";
-    group = "fossorial";
-  };
-
-  sops.secrets.letsEncryptEmail = {
-    restartUnits = ["pangolin.service"];
-    owner = "pangolin";
-    group = "fossorial";
-  };
-  sops.secrets.baseDomain = {
-    restartUnits = ["pangolin.service"];
-    owner = "pangolin";
-    group = "fossorial";
-  };
-  sops.secrets.smtpEmail = {
-    restartUnits = ["pangolin.service"];
-    owner = "pangolin";
-    group = "fossorial";
-  };
-
-  sops.secrets.traefik = {
-    sopsFile = ./secrets/traefik.env;
-    format = "dotenv";
-    key = "";
-    restartUnits = ["traefik.service"];
-    owner = "traefik";
-  };
+  sops.secrets.letsEncryptEmail = {};
+  sops.secrets.baseDomain = {};
+  sops.secrets.smtpEmail = {};
   sops.secrets.acme = {
     sopsFile = ./secrets/acme.env;
     format = "dotenv";
