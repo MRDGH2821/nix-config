@@ -1,6 +1,6 @@
 {
   imports = [
-    ./secrets/agecrypt/pangolin-secrets.nix
+    ./secrets/agecrypt/domain.nix
     ./acme.nix
     ./sops.nix
     ../../modules/features
