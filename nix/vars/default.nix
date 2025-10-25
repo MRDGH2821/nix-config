@@ -18,4 +18,9 @@
     "flakes"
   ];
   nix.settings.allowed-users = ["@wheel" "mr-nix"];
+
+  security.pam.services = {
+    login.u2fAuth = true;
+    sudo.u2fAuth = true;
+  };
 }
