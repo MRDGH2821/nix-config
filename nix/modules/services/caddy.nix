@@ -1,6 +1,6 @@
 {config, ...}: let
   dmn = config.vars.baseDomain;
-  certloc = "/var/lib/acme/${dmn}";
+  certloc = config.security.acme.certs."${dmn}".directory;
 in {
   networking.firewall.allowedTCPPorts = [80 443];
 
