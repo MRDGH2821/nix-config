@@ -6,8 +6,9 @@
       connectivityCheck = true;
     };
     virtualHost = {
-      caddy.enable = config.services.caddy.enable;
-      nginx.enable = config.services.nginx.enable;
+      caddy.enable = true;
+      nginx.enable = false;
+      domain = config.networking.baseDomain;
     };
   };
 }
