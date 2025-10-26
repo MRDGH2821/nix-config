@@ -11,7 +11,7 @@
     certs."${config.vars.baseDomain}" = {
       domain = "${config.vars.baseDomain}";
       extraDomainNames = ["*.${config.vars.baseDomain}"];
-      # dnsProvider = config.vars.dnsProvider;
+      dnsProvider = config.vars.dnsProvider;
     };
   };
 }
