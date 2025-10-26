@@ -4,7 +4,7 @@ in {
   networking.firewall.allowedTCPPorts = [80 443];
 
   services.nginx = {
-    enable = true;
+    enable = false;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
     # enableHTTP2 = true;
