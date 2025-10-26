@@ -1,6 +1,6 @@
 {
   imports = [
-    ./secrets/agecrypt/domain.nix
+    ./secrets/agecrypt/duckdns-domain.nix
     ./acme.nix
     ./sops.nix
     ../../modules/features
