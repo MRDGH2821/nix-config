@@ -1,5 +1,5 @@
 {config, ...}: let
-  dmn = config.vars.baseDomain;
+  dmn = config.networking.baseDomain;
 in {
   networking.firewall.allowedTCPPorts = [80 443];
 
