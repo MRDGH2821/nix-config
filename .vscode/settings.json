@@ -15,6 +15,7 @@
     "scalpel",
     "secrets",
     "services",
+    "variables",
     "vscode"
   ],
   "files.associations": {

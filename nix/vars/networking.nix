@@ -1,5 +1,5 @@
 {lib, ...}: {
-  options.vars = {
+  options.networking = {
     baseDomain = lib.mkOption {
       type = lib.types.str;
       default = "your-new-domain.com"; # Change this
