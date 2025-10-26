@@ -7,7 +7,7 @@ in {
     enable = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
-    enableHTTP2 = true;
+    # enableHTTP2 = true;
     virtualHosts."${dmn}" = {
       enableACME = true;
       forceSSL = true;
