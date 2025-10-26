@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ./sops.nix
+    ./modules/sops.nix
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
     ../../modules/features/system-packages.nix
