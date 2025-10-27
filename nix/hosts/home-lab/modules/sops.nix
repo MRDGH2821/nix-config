@@ -15,6 +15,7 @@
 
   sops.secrets.baseDomain = {};
   sops.secrets.duckDnsToken = {};
+  sops.secrets.dummyPassword = {};
   sops.secrets.letsEncryptEmail = {};
   sops.secrets.smtpEmail = {};
   sops.secrets.smtpPassword = {};
