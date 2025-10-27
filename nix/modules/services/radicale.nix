@@ -14,4 +14,21 @@
       };
     };
   };
+
+  # Ensure the directory is created with correct permissions before service starts
+  systemd.services.radicale = {
+    serviceConfig = {
+      # Create the directory structure automatically
+      StateDirectory = "radicale";
+      StateDirectoryMode = "0750";
+      # Bind mount to the persist location
+      ReadWritePaths = ["/etc/nixos/persist/radicale"];
+    };
+    preStart = ''
+      # Ensure the persist directory exists with correct permissions
+      mkdir -p /etc/nixos/persist/radicale/collection-root
+      chown -R radicale:radicale /etc/nixos/persist/radicale
+      chmod -R 750 /etc/nixos/persist/radicale
+    '';
+  };
 }
