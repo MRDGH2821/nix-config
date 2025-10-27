@@ -38,7 +38,6 @@
     format = "dotenv";
     key = "";
     restartUnits = ["traefik.service"];
-    owner = "traefik";
   };
   sops.secrets.bewcloud = {
     sopsFile = ../secrets/bewcloud.env;
