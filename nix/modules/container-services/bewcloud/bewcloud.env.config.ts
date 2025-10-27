@@ -1,5 +1,12 @@
 import { Config, OptionalApp, PartialDeep } from "./lib/types.ts";
 /** Check the Config type for all the possible options and instructions. */
+function requireValue<T>(value: T | undefined, key: string): T {
+  if (value === undefined || value === "") {
+    throw new Error(`Environment variable ${key} is required but not set`);
+  }
+  return value;
+}
+
 function getEnvString(key: string, defaultValue: string): string {
   return Deno.env.get(key) ?? defaultValue;
 }
