@@ -8,5 +8,6 @@
     ./hardware-configuration.nix
     ./modules
     ./secrets/agecrypt/duckdns-domain.nix
+    ./secrets/agecrypt/smtp.nix
   ];
 }
