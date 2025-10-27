@@ -34,6 +34,20 @@
       "label": "Open SOPS Encrypted file",
       "type": "shell",
       "command": "EDITOR='code --wait' sops ${file}"
+    },
+    {
+      "label": "Nix flake check",
+      "type": "shell",
+      "command": "nix flake check",
+      "group": "test"
+    },
+    {
+      "label": "Deploy Flake",
+      "type": "shell",
+      "command": "bash",
+      "args": ["${workspaceFolderBasename}/nix-cmds.sh"],
+      "group": "build",
+      "dependsOn": ["Nix flake check"]
     }
   ]
 }
