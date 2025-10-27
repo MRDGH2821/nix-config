@@ -43,6 +43,7 @@
     nixosConfigurations = {
       home-lab = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = {inherit self;};
         modules = [
           ./nix/hosts/home-lab
           sops-nix.nixosModules.sops

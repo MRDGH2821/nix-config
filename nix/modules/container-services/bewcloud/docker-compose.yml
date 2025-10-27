@@ -8,7 +8,6 @@ services:
     mem_limit: 256m
     volumes:
       - ./data-files/:/app/data-files/
-      - ./bewcloud.config.ts:/app/bewcloud.config.ts
   # postgresql:
   #   image: postgres:17
   #   environment:
