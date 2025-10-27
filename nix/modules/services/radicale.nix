@@ -1,5 +1,5 @@
-let
-  radicale_dir = "/etc/nixos/persist/radicale/";
+{config, ...}: let
+  radicale_dir = "${config.persistant_storage}/radicale/";
 in {
   services.radicale = {
     enable = true;
@@ -19,7 +19,7 @@ in {
 
   # Ensure the directory has correct permissions
   systemd.tmpfiles.rules = [
-    "d /etc/nixos/persist/radicale 0750 radicale radicale -"
-    "d /etc/nixos/persist/radicale/collection-root 0750 radicale radicale -"
+    "d ${radicale_dir} 0750 radicale radicale -"
+    "d ${radicale_dir}/collection-root 0750 radicale radicale -"
   ];
 }
