@@ -40,6 +40,9 @@
       config.sops.secrets.traefik.path
       config.sops.secrets.acme.path
     ];
-    group = "docker";
+  };
+
+  users.users.traefik = {
+    extraGroups = ["docker"];
   };
 }
