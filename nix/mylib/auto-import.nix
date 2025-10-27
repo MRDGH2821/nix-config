@@ -24,4 +24,23 @@
     localModules = map (f: dir + "/${f}") nixFiles;
   in
     localModules;
+
+  # Function to automatically import all folders in a given directory
+  # Each folder should contain a default.nix file
+  # Usage: autoImportFolders ./.
+  autoImportFolders = dir: let
+    # Function to check if an entry is a directory and not hidden
+    # Exclude hidden directories
+    isValidFolder = name: type: let
+      isHidden = lib.hasPrefix "." name;
+    in
+      type == "directory" && !isHidden;
+
+    # Get all matching directories in the specified directory
+    folders = lib.attrNames (lib.filterAttrs isValidFolder (builtins.readDir dir));
+
+    # Convert folder names to paths pointing to their default.nix
+    folderModules = map (f: dir + "/${f}") folders;
+  in
+    folderModules;
 }
