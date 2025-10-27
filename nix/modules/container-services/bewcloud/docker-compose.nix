@@ -2,7 +2,6 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }: {
   # Runtime
@@ -16,7 +15,6 @@
   virtualisation.oci-containers.containers."bewcloud-website" = {
     image = "ghcr.io/bewcloud/bewcloud:v2.7.1";
     volumes = [
-      "/etc/nixos/persist/bewcloud/bewcloud.config.ts:/app/bewcloud.config.ts:rw"
       "/etc/nixos/persist/bewcloud/data-files:/app/data-files:rw"
     ];
     ports = [
@@ -26,9 +24,6 @@
     extraOptions = [
       "--network-alias=website"
       "--network=bewcloud_default"
-    ];
-    environmentFiles = [
-      config.sops.secrets.bewcloud.path
     ];
   };
   systemd.services."docker-bewcloud-website" = {
