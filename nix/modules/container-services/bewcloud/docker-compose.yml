@@ -1,18 +1,14 @@
 name: bewcloud
 services:
   website:
-    image: ghcr.io/bewcloud/bewcloud:v2.4.0
+    image: ghcr.io/bewcloud/bewcloud:v2.7.1
     restart: always
     ports:
-      - 127.0.0.1:8000:8000
+      - 8000:8000
     mem_limit: 256m
-    env_file:
-      - path: .env
-        required: true
     volumes:
-      - ./data-files:/app/data-files
+      - ./data-files/:/app/data-files/
       - ./bewcloud.config.ts:/app/bewcloud.config.ts
-
   # postgresql:
   #   image: postgres:17
   #   environment:
