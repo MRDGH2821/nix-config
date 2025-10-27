@@ -4,7 +4,19 @@
     {
       "label": "Generate docker-compose.nix",
       "type": "shell",
-      "command": "compose2nix -include_env_files=true -env_files_only=true -runtime docker -inputs ${file} -output docker-compose.nix",
+      "command": "compose2nix",
+      "args": [
+        "-include_env_files=true",
+        "-env_files_only=true",
+        "-runtime",
+        "docker",
+        "-inputs",
+        "${file}",
+        "-output",
+        "docker-compose.nix",
+        "-root_path",
+        "/etc/nixos/persist/${fileDirnameBasename}"
+      ],
       "problemMatcher": [],
       "group": { "kind": "build", "isDefault": true },
       "options": { "cwd": "${fileDirname}" },
