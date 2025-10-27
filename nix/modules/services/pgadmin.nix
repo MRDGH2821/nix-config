@@ -11,7 +11,7 @@
       enable = true;
       address = config.networking.smtp.host;
       port = config.networking.smtp.port;
-      username = config.networking.smtp.user;
+      username = config.networking.smtp.email;
       passwordFile = config.sops.secrets.smtpPassword.path;
       sender = config.networking.smtp.email;
     };
