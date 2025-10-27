@@ -13,10 +13,12 @@
   # This will generate a new key if the key specified above does not exist
   sops.age.generateKey = true;
 
-  sops.secrets.letsEncryptEmail = {};
   sops.secrets.baseDomain = {};
-  sops.secrets.smtpEmail = {};
   sops.secrets.duckDnsToken = {};
+  sops.secrets.letsEncryptEmail = {};
+  sops.secrets.smtpEmail = {};
+  sops.secrets.smtpPassword = {};
+
   sops.secrets.acme = {
     sopsFile = ../secrets/acme.env;
     format = "dotenv";
