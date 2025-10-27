@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   services.postgresql = {
     enable = true;
     ensureDatabases = ["bewcloud"];
@@ -14,6 +18,9 @@
       local all       all     trust
     '';
     enableTCPIP = false;
+    initialScript = ''
+      alter user bewcloud with password '${config.sops.placeholder."postgres/bewcloud/password"}';
+    '';
   };
   services.postgresqlBackup = {
     enable = true;
