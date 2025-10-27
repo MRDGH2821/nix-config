@@ -18,6 +18,7 @@
     "variables",
     "vscode"
   ],
+  "deno.enablePaths": ["./nix/modules/container-services/bewcloud/"],
   "files.associations": {
     ".envrc": "shellscript",
     ".envrc.local": "shellscript"
@@ -37,8 +38,8 @@
         "$SHELL -l -c 'cd /etc/nixos/persist/nix-config && git pull && exec $SHELL -l'"
       ],
       "icon": "server-environment",
-      "path": "ssh",
-      "overrideName": true
+      "overrideName": true,
+      "path": "ssh"
     }
   },
   "yaml.schemas": {
