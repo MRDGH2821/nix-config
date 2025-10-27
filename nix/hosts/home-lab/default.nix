@@ -1,5 +1,6 @@
 {
   imports = [
+    ../../modules/container-services
     ../../modules/features
     ../../modules/fixes
     ../../modules/services
