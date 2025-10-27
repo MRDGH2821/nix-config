@@ -22,8 +22,7 @@
     ];
     log-driver = "journald";
     extraOptions = [
-      "--network-alias=website"
-      "--network=bewcloud_default"
+      "--network=host"
     ];
   };
   systemd.services."docker-bewcloud-website" = {
@@ -33,33 +32,12 @@
       RestartSec = lib.mkOverride 90 "100ms";
       RestartSteps = lib.mkOverride 90 9;
     };
-    after = [
-      "docker-network-bewcloud_default.service"
-    ];
-    requires = [
-      "docker-network-bewcloud_default.service"
-    ];
     partOf = [
       "docker-compose-bewcloud-root.target"
     ];
     wantedBy = [
       "docker-compose-bewcloud-root.target"
     ];
-  };
-
-  # Networks
-  systemd.services."docker-network-bewcloud_default" = {
-    path = [pkgs.docker];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      ExecStop = "docker network rm -f bewcloud_default";
-    };
-    script = ''
-      docker network inspect bewcloud_default || docker network create bewcloud_default
-    '';
-    partOf = ["docker-compose-bewcloud-root.target"];
-    wantedBy = ["docker-compose-bewcloud-root.target"];
   };
 
   # Root service

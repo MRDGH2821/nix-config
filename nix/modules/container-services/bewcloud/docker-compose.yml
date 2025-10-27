@@ -8,6 +8,7 @@ services:
     mem_limit: 256m
     volumes:
       - ./data-files/:/app/data-files/
+    network_mode: host
   # postgresql:
   #   image: postgres:17
   #   environment:
