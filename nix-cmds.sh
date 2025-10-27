@@ -19,6 +19,11 @@ HOST_IP=${TARGET_HOST:-""}
 FLAKE=${TARGET_FLAKE:-"./nix/hosts/home-lab#home-lab"}
 HOST_FOLDER=${TARGET_HOST_FOLDER:-"./nix/hosts/home-lab"}
 
+# Update the local git repository
+echo "Updating local git repository..."
+git pull
+echo "-----------------------------"
+
 # Validate that HOST is set properly and not empty
 if [[ -z ${HOST_IP} || ${HOST_IP} == "" ]]; then
     echo "Error: TARGET_HOST is not set or is empty"
@@ -86,7 +91,7 @@ nixos_rebuild() {
     if [[ "${HOST_IP}" == "localhost" ]]; then
         sudo nixos-rebuild switch --flake "${FLAKE}" --verbose
     else
-        nixos-rebuild-ng switch --flake "${FLAKE}" --sudo --ask-sudo-password --target-host "${HOST}" --build-host "${HOST}"  --verbose
+        nixos-rebuild-ng switch --flake "${FLAKE}" --sudo --ask-sudo-password --target-host "${HOST}" --build-host "${HOST}" --verbose
     fi
 }
 
