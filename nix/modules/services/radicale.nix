@@ -17,17 +17,9 @@ in {
     };
   };
 
-  # Ensure the directory is created with correct permissions before service starts
-  systemd.services.radicale = {
-    serviceConfig = {
-      # Bind mount to the persist location
-      ReadWritePaths = [radicale_dir];
-    };
-    preStart = ''
-      # Ensure the persist directory exists with correct permissions
-      mkdir -p ${radicale_dir}/collection-root
-      chown -R radicale:radicale ${radicale_dir}
-      # chmod -R 750 ${radicale_dir}
-    '';
-  };
+  # Ensure the directory has correct permissions
+  systemd.tmpfiles.rules = [
+    "d /etc/nixos/persist/radicale 0750 radicale radicale -"
+    "d /etc/nixos/persist/radicale/collection-root 0750 radicale radicale -"
+  ];
 }
