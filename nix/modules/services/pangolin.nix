@@ -12,9 +12,11 @@
       app = {
         save_logs = true;
       };
-      smtp_host = config.networking.smtp.host;
-      smtp_port = config.networking.smtp.port;
-      smtp_user = config.networking.smtp.email;
+      email = {
+        smtp_host = config.networking.smtp.host;
+        smtp_port = config.networking.smtp.port;
+        smtp_user = config.networking.smtp.email;
+      };
       flags = {
         require_email_verification = false;
         disable_signup_without_invite = true;
