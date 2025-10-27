@@ -16,6 +16,7 @@
   sops.secrets.letsEncryptEmail = {};
   sops.secrets.baseDomain = {};
   sops.secrets.smtpEmail = {};
+  sops.secrets.duckDnsToken = {};
   sops.secrets.acme = {
     sopsFile = ../secrets/acme.env;
     format = "dotenv";
