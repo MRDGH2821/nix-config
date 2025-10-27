@@ -1,5 +1,6 @@
 {config, ...}: let
   dmn = config.networking.baseDomain;
+  certloc = config.security.acme.certs."${dmn}".directory;
 in {
   networking.firewall.allowedTCPPorts = [80 443];
 
@@ -12,17 +13,15 @@ in {
     environmentFile = config.sops.templates."caddy.env".path;
     virtualHosts."${dmn}".extraConfig = ''
       respond "OK"
-      tls {
-          dns duckdns {env.DUCKDNS_TOKEN}
-          resolvers 192.168.1.1:53 1.1.1.1:53 8.8.8.8:53
+      tls ${certloc}/cert.pem ${certloc}/key.pem {
+        protocols tls1.3
       }
     '';
 
     virtualHosts."pdf.${dmn}".extraConfig = ''
       reverse_proxy http://localhost:${toString config.services.stirling-pdf.environment.SERVER_PORT}
-      tls {
-          dns duckdns {env.DUCKDNS_TOKEN}
-          resolvers 192.168.1.1:53 1.1.1.1:53 8.8.8.8:53
+      tls ${certloc}/cert.pem ${certloc}/key.pem {
+        protocols tls1.3
       }
     '';
   };
