@@ -45,7 +45,7 @@
       "label": "Deploy Flake",
       "type": "shell",
       "command": "bash",
-      "args": ["${workspaceFolderBasename}/nix-cmds.sh"],
+      "args": ["${workspaceFolder}/nix-cmds.sh"],
       "group": "build",
       "dependsOn": ["Nix flake check"]
     }
