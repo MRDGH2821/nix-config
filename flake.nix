@@ -1,11 +1,13 @@
 {
   description = "NixOS Homelab Configuration with Development Environment";
   inputs = {
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
-    alejandra.url = "github:kamadorueda/alejandra/4.0.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
+    alejandra.url = "github:kamadorueda/alejandra/4.0.0";
+    compose2nix.inputs.nixpkgs.follows = "nixpkgs";
+    compose2nix.url = "github:aksiksi/compose2nix";
+    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = {
@@ -13,6 +15,7 @@
     nixpkgs,
     alejandra,
     sops-nix,
+    compose2nix,
   }: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
@@ -21,7 +24,7 @@
       packages = with pkgs; [
         age
         alejandra.packages.${system}.default
-        compose2nix
+        compose2nix.packages.${system}.default
         deno
         git-agecrypt
         nil
