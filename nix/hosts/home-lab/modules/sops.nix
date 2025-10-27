@@ -45,4 +45,8 @@
     format = "dotenv";
     key = "";
   };
+  sops.secrets.postgres = {
+    sopsFile = ../secrets/postgres.yaml;
+    format = "yaml";
+  };
 }
