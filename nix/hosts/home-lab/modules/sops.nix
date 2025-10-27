@@ -45,16 +45,10 @@
     format = "dotenv";
     key = "";
   };
-  sops.secrets."postgres/bewcloud/user" = {
-    sopsFile = ../secrets/postgres.yaml;
-    format = "yaml";
-  };
-  sops.secrets."postgres/bewcloud/password" = {
-    sopsFile = ../secrets/postgres.yaml;
-    format = "yaml";
-  };
-  sops.secrets."postgres/bewcloud/db" = {
-    sopsFile = ../secrets/postgres.yaml;
-    format = "yaml";
+
+  sops.secrets.bewcloud_db_pass = {
+    sopsFile = ../secrets/bewcloud.env;
+    format = "dotenv";
+    key = "POSTGRESQL_PASSWORD";
   };
 }
