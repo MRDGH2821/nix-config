@@ -4,13 +4,8 @@
 in {
   networking.firewall.allowedTCPPorts = [80 443];
 
-  sops.templates."caddy.env".content = ''
-    DUCKDNS_TOKEN="${config.sops.placeholder.duckDnsToken}";
-  '';
-
   services.caddy = {
-    enable = true;
-    environmentFile = config.sops.templates."caddy.env".path;
+    enable = false;
     virtualHosts."${dmn}".extraConfig = ''
       respond "OK"
       tls ${certloc}/cert.pem ${certloc}/key.pem {
