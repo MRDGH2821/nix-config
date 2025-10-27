@@ -1,14 +1,14 @@
 {config, ...}: {
   services.homer = {
-    enable = true;
+    enable = false;
     settings = {
       title = "Home Lab";
       connectivityCheck = true;
     };
     virtualHost = {
-      caddy.enable = true;
+      caddy.enable = false;
       nginx.enable = false;
-      domain = config.networking.baseDomain;
+      # domain = config.networking.baseDomain;
     };
   };
 }
