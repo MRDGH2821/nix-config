@@ -23,4 +23,19 @@
     key = "";
     restartUnits = ["acme.service"];
   };
+    sops.secrets.pangolin = {
+    sopsFile = ./secrets/pangolin.env;
+    format = "dotenv";
+    key = "";
+    restartUnits = ["pangolin.service"];
+    owner = "pangolin";
+    group = "fossorial";
+  };
+  sops.secrets.traefik = {
+    sopsFile = ./secrets/traefik.env;
+    format = "dotenv";
+    key = "";
+    restartUnits = ["traefik.service"];
+    owner = "traefik";
+  };
 }
