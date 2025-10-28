@@ -16,6 +16,9 @@
     image = "ghcr.io/bewcloud/bewcloud:v2.7.1";
     volumes = [
       "/etc/nixos/persist/bewcloud/data-files:/app/data-files:rw"
+      "/etc/nixos/persist/bewcloud/data-files/.Trash:/app/data-files/.Trash:rw"
+      "/etc/nixos/persist/bewcloud/data-files/Notes:/app/data-files/Notes:rw"
+      "/etc/nixos/persist/bewcloud/data-files/Photos:/app/data-files/Photos:rw"
     ];
     ports = [
       "8000:8000/tcp"
