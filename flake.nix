@@ -3,6 +3,8 @@
   inputs = {
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
     alejandra.url = "github:kamadorueda/alejandra/4.0.0";
+    authentik-nix.inputs.nixpkgs.follows = "nixpkgs";
+    authentik-nix.url = "github:nix-community/authentik-nix";
     compose2nix.inputs.nixpkgs.follows = "nixpkgs";
     compose2nix.url = "github:aksiksi/compose2nix";
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
@@ -14,8 +16,9 @@
     self,
     nixpkgs,
     alejandra,
-    sops-nix,
+    authentik-nix,
     compose2nix,
+    sops-nix,
   }: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
@@ -47,6 +50,7 @@
         modules = [
           ./nix/hosts/home-lab
           sops-nix.nixosModules.sops
+          authentik-nix.nixosModules.default
         ];
       };
     };

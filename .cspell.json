@@ -11,6 +11,7 @@
   "useGitignore": true,
   "version": "0.2",
   "words": [
+    "authentik",
     "avahi",
     "bewcloud",
     "buildx",
