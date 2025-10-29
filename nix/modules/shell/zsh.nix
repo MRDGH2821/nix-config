@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   environment.systemPackages = [
     pkgs.zimfw
     pkgs.oh-my-posh
@@ -15,20 +15,8 @@
       "notify"
     ];
     promptInit = ''
-        #provide path to oh-my-posh installed themes
-        omp_themes_dir="$HOME/.cache/oh-my-posh/themes"
-
-        # Get a list of all JSON theme files in the directory
-        omp_themes=($(ls $omp_themes_dir/*.json))
-
-        # Get the number of JSON theme files
-        num_files=${#omp_themes[@]}
-
-        # Generate a random index
-        random_index=$((RANDOM % num_files))
-
-        # Select a random theme
-        random_omp_theme=${omp_themes[$random_index]}
+      omp_themes_dir="${pkgs.oh-my-posh}/share/oh-my-posh/themes"
+      ${builtins.readFile ./zsh-prompt-init.sh}
     '';
   };
 }
