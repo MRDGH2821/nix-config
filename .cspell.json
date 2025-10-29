@@ -23,6 +23,7 @@
     "doesnt",
     "envrc",
     "facter",
+    "fgrep",
     "fmask",
     "fosrl",
     "gnomovision",
@@ -43,6 +44,7 @@
     "tcpip",
     "totp",
     "ulimits",
+    "vdir",
     "vfat",
     "xhci"
   ]
