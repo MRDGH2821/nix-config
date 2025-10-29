@@ -7,14 +7,13 @@
   "conventionalCommits.scopes": [
     "cspell",
     "devshell",
-    "disko",
     "features",
     "hosts",
     "hosts/home-lab",
     "packages",
-    "scalpel",
     "secrets",
     "services",
+    "shell",
     "variables",
     "vscode"
   ],
