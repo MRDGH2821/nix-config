@@ -29,7 +29,7 @@
   "git.mergeEditor": true,
   "git.verboseCommit": true,
   "nix.enableLanguageServer": true,
-  "nix.serverPath": "nil",
+  "nix.serverPath": "nixd",
   "terminal.integrated.profiles.linux": {
     "nix-homelab shell": {
       "args": [

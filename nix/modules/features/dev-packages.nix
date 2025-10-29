@@ -3,7 +3,7 @@
     age
     compose2nix
     git-agecrypt
-    nil
+    nixd
     nixos-rebuild-ng
     nixpkgs-fmt
     nixpkgs-review
