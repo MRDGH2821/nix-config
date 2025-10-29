@@ -4,6 +4,7 @@
     ../../modules/features
     ../../modules/fixes
     ../../modules/services
+    ../../modules/shell
     ../../vars
     ./configuration.nix
     ./hardware-configuration.nix
