@@ -26,6 +26,7 @@
     key = "";
     restartUnits = ["acme.service"];
   };
+
   sops.secrets.pangolin = {
     sopsFile = ../secrets/pangolin.env;
     format = "dotenv";
@@ -34,12 +35,14 @@
     owner = "pangolin";
     group = "fossorial";
   };
+
   sops.secrets.traefik = {
     sopsFile = ../secrets/traefik.env;
     format = "dotenv";
     key = "";
     restartUnits = ["traefik.service"];
   };
+
   sops.secrets.bewcloud = {
     sopsFile = ../secrets/bewcloud.env;
     format = "dotenv";
@@ -50,5 +53,11 @@
     sopsFile = ../secrets/bewcloud.env;
     format = "dotenv";
     key = "POSTGRESQL_PASSWORD";
+  };
+
+  sops.secrets.authentik = {
+    sopsFile = ../secrets/authentik.env;
+    format = "dotenv";
+    key = "";
   };
 }
