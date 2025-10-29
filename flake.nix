@@ -30,7 +30,7 @@
         compose2nix.packages.${system}.default
         deno
         git-agecrypt
-        nil
+        nixd
         nixos-rebuild-ng
         nixpkgs-fmt
         nixpkgs-review
@@ -39,7 +39,7 @@
       ];
       shellHook = ''
         echo "Welcome to the nix-config development environment!"
-        echo "Available tools: nil, compose2nix, deno, sops, age, ssh-to-age"
+        echo "Available tools: nixd, compose2nix, deno, sops, age, ssh-to-age"
         git-agecrypt init
       '';
     };
