@@ -17,6 +17,8 @@
 
     # Initialize oh-my-posh with the random theme
     eval "$(oh-my-posh init zsh --config $random_omp_theme)"
+
+    SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
   '';
 in {
   environment.systemPackages = [
@@ -35,5 +37,27 @@ in {
       "notify"
     ];
     promptInit = builtins.readFile promptInitScript;
+    shellInit = ''
+      bindkey -e
+      ZIM_HOME=''${ZDOTDIR:-$HOME}/.zim
+      if [[ ! ''${ZIM_HOME}/init.zsh -nt ''${ZIM_CONFIG_FILE:-''${ZDOTDIR:-''${HOME}}/.zimrc} ]]; then
+        source ${pkgs.zimfw}/zimfw.zsh init
+      fi
+      source ''${ZIM_HOME}/init.zsh
+
+      zmodload -F zsh/terminfo +p:terminfo
+    '';
+
+    autosuggestions = {
+      enable = true;
+      extraConfig = {
+        "ZSH_AUTOSUGGEST_MANUAL_REBIND" = "1";
+      };
+    };
+
+    syntaxHighlighting = {
+      enable = true;
+      highlighters = ["main" "brackets"];
+    };
   };
 }
