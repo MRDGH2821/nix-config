@@ -17,6 +17,7 @@
     settings = {
       server = {
         DISABLE_SSH = true;
+        HTTP_PORT = 4000;
       };
       openid = {
         ENABLE_OPENID_SIGNIN = true;
