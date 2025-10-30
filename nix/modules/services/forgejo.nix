@@ -20,7 +20,7 @@
         DISABLE_SSH = true;
         HTTP_PORT = 4000;
         DOMAIN = config.networking.baseDomain;
-        ROOT_URL = "git.${config.networking.baseDomain}";
+        ROOT_URL = "https://git.${config.networking.baseDomain}";
       };
       openid = {
         ENABLE_OPENID_SIGNIN = true;
