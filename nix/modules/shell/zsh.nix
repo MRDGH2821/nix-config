@@ -39,12 +39,6 @@ in {
     promptInit = builtins.readFile promptInitScript;
     shellInit = ''
       bindkey -e
-      ZIM_HOME=''${ZDOTDIR:-$HOME}/.zim
-      if [[ ! ''${ZIM_HOME}/init.zsh -nt ''${ZIM_CONFIG_FILE:-''${ZDOTDIR:-''${HOME}}/.zimrc} ]]; then
-        source ${pkgs.zimfw}/zimfw.zsh init
-      fi
-      source ''${ZIM_HOME}/init.zsh
-
       zmodload -F zsh/terminfo +p:terminfo
     '';
 
