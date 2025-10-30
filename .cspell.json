@@ -33,19 +33,26 @@
     "nixpkgs",
     "nmcli",
     "nmtui",
+    "nomatch",
     "nssmdns",
     "numtide",
     "nvme",
+    "nyae",
     "pkgs",
     "prio",
     "rabbitmq",
     "radicale",
     "signup",
+    "SPROMPT",
     "tcpip",
     "totp",
     "ulimits",
     "vdir",
     "vfat",
-    "xhci"
+    "xhci",
+    "ZDOTDIR",
+    "zimfw",
+    "zimrc",
+    "zmodload"
   ]
 }
