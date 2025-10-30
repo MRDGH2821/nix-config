@@ -1,5 +1,5 @@
 {config, ...}: let
-  radicale_dir = "${config.persistant_storage}/radicale/";
+  radicale_dir = "${config.persistent_storage}/radicale/";
 in {
   services.radicale = {
     enable = true;

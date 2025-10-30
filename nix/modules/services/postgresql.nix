@@ -30,6 +30,6 @@
   services.postgresqlBackup = {
     enable = true;
     backupAll = true;
-    location = "${config.persistant_storage}/pg_backup/";
+    location = "${config.persistent_storage}/pg_backup/";
   };
 }
