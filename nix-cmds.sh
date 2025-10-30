@@ -91,7 +91,7 @@ nixos_rebuild() {
     if [[ "${HOST_IP}" == "localhost" ]]; then
         sudo nixos-rebuild switch --flake "${FLAKE}" --verbose
     else
-        nixos-rebuild-ng switch --flake "${FLAKE}" --sudo --ask-sudo-password --target-host "${HOST}" --verbose
+        nixos-rebuild-ng switch --flake "${FLAKE}" --sudo --ask-sudo-password --target-host "${HOST}" --build-host "${HOST}" --verbose
     fi
 }
 
