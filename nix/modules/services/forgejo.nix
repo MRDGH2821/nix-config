@@ -1,4 +1,5 @@
 {config, ...}: {
+  networking.firewall.allowedTCPPorts = [4000];
   services.forgejo = {
     enable = true;
     database = {
@@ -18,6 +19,8 @@
       server = {
         DISABLE_SSH = true;
         HTTP_PORT = 4000;
+        DOMAIN = config.networking.baseDomain;
+        ROOT_URL = "git.${config.networking.baseDomain}";
       };
       openid = {
         ENABLE_OPENID_SIGNIN = true;
