@@ -5,7 +5,7 @@
   ...
 }: let
   autoImportLib = import ../../../mylib/auto-import.nix {inherit lib;};
-  bewcloud_path = "${config.persistant_storage}/bewcloud";
+  bewcloud_path = "${config.persistent_storage}/bewcloud";
   data-files = "${bewcloud_path}/data-files";
 in {
   imports = autoImportLib.autoImportModules ./.;
