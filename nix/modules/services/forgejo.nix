@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   services.forgejo = {
     enable = true;
     database = {
@@ -37,12 +41,13 @@
       };
       mailer = {
         ENABLED = true;
-        PROTOCOL = "smtp";
+        PROTOCOL = "smtp+starttls";
         SMTP_ADDR = config.networking.smtp.host;
         SMTP_PORT = config.networking.smtp.port;
-        USER = config.networking.smtp.email;
+        USER = config.networking.smtp.username;
         FROM = config.networking.smtp.email;
         PASSWD_URI = config.sops.secrets.smtpPassword.path;
+        # SENDMAIL_PATH = "${pkgs.msmtp}/bin/msmtp";
       };
     };
   };
