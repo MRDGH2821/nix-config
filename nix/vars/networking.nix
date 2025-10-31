@@ -38,6 +38,11 @@
             default = "starttls";
             description = "SMTP security mode: starttls, tls, or none";
           };
+          username = lib.mkOption {
+            type = lib.types.str;
+            default = "user";
+            description = "SMTP username from the email address";
+          };
         };
       };
     };
