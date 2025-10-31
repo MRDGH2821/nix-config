@@ -12,7 +12,7 @@
         tls = "on";
         tls_starttls = "on";
         from = config.networking.smtp.email;
-        logfile = "/var/log/msmtp.log";
+        logfile = config.persistent_storage + "msmtp.log";
         syslog = "on";
       };
     };
