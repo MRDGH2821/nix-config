@@ -1,0 +1,9 @@
+name: omni-tools
+services:
+  omni-tools:
+    container_name: omni-tools
+    hostname: omni-tools
+    image: iib0011/omni-tools:latest
+    ports:
+      - 3081:80
+    restart: unless-stopped
