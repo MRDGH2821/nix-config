@@ -27,4 +27,15 @@ in {
       config.sops.secrets.bewcloud.path
     ];
   };
+
+  services.postgresql = {
+    ensureDatabases = ["bewcloud"];
+    ensureUsers = [
+      {
+        name = "bewcloud";
+        ensureDBOwnership = true;
+        ensureClauses.login = true;
+      }
+    ];
+  };
 }
