@@ -41,14 +41,15 @@
       };
       mailer = {
         ENABLED = true;
-        PROTOCOL = "sendmail";
+        PROTOCOL = "smtp+starttls";
         SMTP_ADDR = config.networking.smtp.host;
         SMTP_PORT = config.networking.smtp.port;
-        USER = config.networking.smtp.username;
+        USER = config.networking.smtp.email;
         FROM = config.networking.smtp.email;
-        PASSWD_URI = config.sops.secrets.smtpPassword.path;
-        SENDMAIL_PATH = "${pkgs.msmtp}/bin/msmtp";
       };
+    };
+    secrets = {
+      mailer.PASSWD = config.sops.secrets.smtpPassword.path;
     };
   };
 }
