@@ -45,6 +45,7 @@
     ];
     log-driver = "journald";
     extraOptions = [
+      "--add-host=host.docker.internal:172.17.0.1"
       "--hostname=portnote-web"
       "--network-alias=web"
       "--network=portnote_default"

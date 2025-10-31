@@ -10,7 +10,7 @@ services:
   web:
     container_name: portnote-web
     extra_hosts:
-      - host.docker.internal:127.0.0.1
+      - host.docker.internal:172.17.0.1
     # environment:
     #   DATABASE_URL: postgresql://postgres:postgres@db:5432/postgres
     #   JWT_SECRET: RANDOM_SECRET # Replace with a secure random string
