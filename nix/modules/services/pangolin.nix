@@ -5,6 +5,13 @@
 }: {
   environment.systemPackages = with pkgs; [fosrl-pangolin];
   boot.kernelModules = ["wireguard"];
+
+  sops.templates.pangolin.content = ''
+    ${config.sops.placeholder.pangolin}
+
+    EMAIL_SMTP_PASS=${config.sops.placeholder.smtpPassword}
+  '';
+
   services.pangolin = {
     enable = true;
     openFirewall = true;
@@ -31,14 +38,13 @@
     };
     letsEncryptEmail = config.networking.email;
     baseDomain = config.networking.baseDomain;
-    environmentFile = config.sops.secrets.pangolin.path;
+    environmentFile = config.sops.templates.pangolin.path;
     dnsProvider = config.networking.dnsProvider;
   };
 
   services.traefik = {
     environmentFiles = [
-      config.sops.secrets.traefik.path
-      config.sops.secrets.acme.path
+      config.sops.templates.acme.path
     ];
   };
 
