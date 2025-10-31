@@ -60,4 +60,10 @@
     format = "dotenv";
     key = "";
   };
+
+  sops.secrets.linkwarden = {
+    sopsFile = ../secrets/linkwarden.env;
+    format = "dotenv";
+    key = "";
+  };
 }
