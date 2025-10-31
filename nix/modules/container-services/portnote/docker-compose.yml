@@ -1,0 +1,23 @@
+name: portnote
+services:
+
+  agent:
+    container_name: portnote-agent
+    # environment:
+    #   DATABASE_URL: postgresql://postgres:postgres@db:5432/postgres
+    hostname: portnote-agent
+    image: haedlessdev/portnote-agent:latest
+  web:
+    container_name: portnote-web
+    extra_hosts:
+      - host.docker.internal:127.0.0.1
+    # environment:
+    #   DATABASE_URL: postgresql://postgres:postgres@db:5432/postgres
+    #   JWT_SECRET: RANDOM_SECRET # Replace with a secure random string
+    #   LOGIN_PASSWORD: mypassword # Replace with a custom password
+    #   LOGIN_USERNAME: username # Replace with a username
+    #   USER_SECRET: RANDOM_SECRET # Replace with a secure random string
+    hostname: portnote-web
+    image: haedlessdev/portnote:latest
+    ports:
+      - 3050:3000

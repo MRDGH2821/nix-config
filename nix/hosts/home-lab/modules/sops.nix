@@ -54,4 +54,10 @@
     format = "dotenv";
     key = "";
   };
+
+  sops.secrets.portnote = {
+    sopsFile = ../secrets/portnote.env;
+    format = "dotenv";
+    key = "";
+  };
 }
