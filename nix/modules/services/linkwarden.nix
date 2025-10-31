@@ -11,7 +11,7 @@
     enable = true;
     port = 3060;
     database.createLocally = true;
-    services.linkwarden.openFirewall = true;
+    openFirewall = true;
     environment = {
       NEXT_PUBLIC_OLLAMA_ENDPOINT_URL = "http://localhost:11434";
       OLLAMA_MODEL = "phi3:mini-4k";
