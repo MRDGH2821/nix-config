@@ -7,7 +7,7 @@
   autoImportLib = import ../../../mylib/auto-import.nix {inherit lib;};
   bewcloud_path = "${config.persistent_storage}/bewcloud";
   data-files = "${bewcloud_path}/data-files";
-  port = 8000;
+  port = toString 8000;
 in {
   imports = autoImportLib.autoImportModules ./.;
 
@@ -36,25 +36,25 @@ in {
       POSTGRESQL_HOST = "127.0.0.1";
       POSTGRESQL_USER = "bewcloud";
       POSTGRESQL_DBNAME = "bewcloud";
-      POSTGRESQL_PORT = 5432;
+      POSTGRESQL_PORT = toString 5432;
       PORT = port;
       SMTP_USERNAME = config.networking.smtp.email;
 
       # Auth Configuration
       BEWCLOUD_AUTH_BASE_URL = "http://cloud.${config.networking.baseDomain}";
-      BEWCLOUD_AUTH_ALLOW_SIGNUPS = false;
-      BEWCLOUD_AUTH_ENABLE_EMAIL_VERIFICATION = false;
-      BEWCLOUD_AUTH_ENABLE_FOREVER_SIGNUP = true;
-      BEWCLOUD_AUTH_ENABLE_MULTI_FACTOR = false;
+      BEWCLOUD_AUTH_ALLOW_SIGNUPS = toString false;
+      BEWCLOUD_AUTH_ENABLE_EMAIL_VERIFICATION = toString false;
+      BEWCLOUD_AUTH_ENABLE_FOREVER_SIGNUP = toString true;
+      BEWCLOUD_AUTH_ENABLE_MULTI_FACTOR = toString false;
 
       # Comma-separated list of allowed cookie domains
       BEWCLOUD_AUTH_ALLOWED_COOKIE_DOMAINS = "cloud.${config.networking.baseDomain},*.${config.networking.baseDomain},localhost:${port}";
 
       # Set to true to skip cookie domain security checks (not recommended)
-      BEWCLOUD_AUTH_SKIP_COOKIE_DOMAIN_SECURITY = false;
+      BEWCLOUD_AUTH_SKIP_COOKIE_DOMAIN_SECURITY = toString false;
 
       # Single Sign-On Configuration
-      BEWCLOUD_AUTH_ENABLE_SINGLE_SIGN_ON = true;
+      BEWCLOUD_AUTH_ENABLE_SINGLE_SIGN_ON = toString true;
       BEWCLOUD_AUTH_SINGLE_SIGN_ON_URL = "https://authentik.${config.networking.baseDomain}/application/o/bewcloud/";
       BEWCLOUD_AUTH_SINGLE_SIGN_ON_EMAIL_ATTRIBUTE = "email";
 
@@ -62,7 +62,7 @@ in {
       BEWCLOUD_AUTH_SINGLE_SIGN_ON_SCOPES = "openid,email";
       # Files Configuration
       BEWCLOUD_FILES_ROOT_PATH = "data-files";
-      BEWCLOUD_FILES_ALLOW_PUBLIC_SHARING = false;
+      BEWCLOUD_FILES_ALLOW_PUBLIC_SHARING = toString false;
       # Core Configuration
       # Comma-separated list of enabled apps (dashboard and files cannot be disabled)
       BEWCLOUD_CORE_ENABLED_APPS = "news,notes,photos,expenses,contacts,calendar";
@@ -74,12 +74,12 @@ in {
       # Email/SMTP Configuration
       BEWCLOUD_EMAIL_FROM = config.networking.smtp.email;
       BEWCLOUD_EMAIL_HOST = config.networking.smtp.host;
-      BEWCLOUD_EMAIL_PORT = config.networking.smtp.port;
+      BEWCLOUD_EMAIL_PORT = toString config.networking.smtp.port;
       # Contacts Configuration
-      BEWCLOUD_CONTACTS_ENABLE_CARDDAV_SERVER = true;
+      BEWCLOUD_CONTACTS_ENABLE_CARDDAV_SERVER = toString true;
       BEWCLOUD_CONTACTS_CARDDAV_URL = "http://127.0.0.1:5232";
       # Calendar Configuration
-      BEWCLOUD_CALENDAR_ENABLE_CALDAV_SERVER = true;
+      BEWCLOUD_CALENDAR_ENABLE_CALDAV_SERVER = toString true;
       BEWCLOUD_CALENDAR_CALDAV_URL = "http://127.0.0.1:5232";
     };
   };
