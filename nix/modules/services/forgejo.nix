@@ -45,10 +45,9 @@
         SMTP_ADDR = config.networking.smtp.host;
         SMTP_PORT = config.networking.smtp.port;
         USER = config.networking.smtp.username;
-        ENVELOPE_FROM = config.networking.smtp.email;
+        FROM = config.networking.smtp.email;
         PASSWD_URI = config.sops.secrets.smtpPassword.path;
         SENDMAIL_PATH = "${pkgs.msmtp}/bin/msmtp";
-        SENDMAIL_ARGS = "-- --account default";
       };
     };
   };
