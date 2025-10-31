@@ -9,13 +9,6 @@
 
   services.postgresql = {
     enable = true;
-    ensureDatabases = ["bewcloud"];
-    ensureUsers = [
-      {
-        name = "bewcloud";
-        ensureDBOwnership = true;
-      }
-    ];
     package = pkgs.postgresql_17;
     authentication = ''
       #type database  DBuser  auth-method
