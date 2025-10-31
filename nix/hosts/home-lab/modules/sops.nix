@@ -49,12 +49,6 @@
     key = "";
   };
 
-  sops.secrets.bewcloud_db_pass = {
-    sopsFile = ../secrets/bewcloud.env;
-    format = "dotenv";
-    key = "POSTGRESQL_PASSWORD";
-  };
-
   sops.secrets.authentik = {
     sopsFile = ../secrets/authentik.env;
     format = "dotenv";
