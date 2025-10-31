@@ -16,6 +16,7 @@
     image = "haedlessdev/portnote-agent:latest";
     log-driver = "journald";
     extraOptions = [
+      "--add-host=host.docker.internal:172.17.0.1"
       "--hostname=portnote-agent"
       "--network-alias=agent"
       "--network=portnote_default"

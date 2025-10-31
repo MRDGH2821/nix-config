@@ -3,6 +3,8 @@ services:
 
   agent:
     container_name: portnote-agent
+    extra_hosts:
+      - host.docker.internal:172.17.0.1
     # environment:
     #   DATABASE_URL: postgresql://postgres:postgres@db:5432/postgres
     hostname: portnote-agent
