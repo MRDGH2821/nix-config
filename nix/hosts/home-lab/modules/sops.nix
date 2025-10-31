@@ -36,13 +36,6 @@
     group = "fossorial";
   };
 
-  sops.secrets.traefik = {
-    sopsFile = ../secrets/traefik.env;
-    format = "dotenv";
-    key = "";
-    restartUnits = ["traefik.service"];
-  };
-
   sops.secrets.bewcloud = {
     sopsFile = ../secrets/bewcloud.env;
     format = "dotenv";
