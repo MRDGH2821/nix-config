@@ -1,8 +1,9 @@
 name: vert-sh
 services:
   vert:
-    restart: unless-stopped
+    container_name: vert
+    hostname: vert
+    image: ghcr.io/vert-sh/vert:latest
     ports:
       - 3080:80
-    container_name: vert
-    image: ghcr.io/vert-sh/vert:latest
+    restart: unless-stopped
