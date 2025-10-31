@@ -1,5 +1,4 @@
 {config, ...}: {
-  networking.firewall.allowedTCPPorts = [4000];
   services.forgejo = {
     enable = true;
     database = {
@@ -42,6 +41,7 @@
         SMTP_ADDR = config.networking.smtp.host;
         SMTP_PORT = config.networking.smtp.port;
         USER = config.networking.smtp.email;
+        FROM = config.networking.smtp.email;
         PASSWD_URI = config.sops.secrets.smtpPassword.path;
       };
     };
