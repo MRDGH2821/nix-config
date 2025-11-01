@@ -53,4 +53,13 @@
     format = "dotenv";
     key = "";
   };
+
+  sops.secrets.pgadmin = {
+    sopsFile = ../secrets/pgadmin_local.py;
+    format = "binary";
+    key = "";
+    restartUnits = ["pgadmin.service"];
+    owner = "pgadmin";
+    group = "pgadmin";
+  };
 }
