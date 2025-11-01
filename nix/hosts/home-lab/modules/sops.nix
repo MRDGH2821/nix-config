@@ -55,8 +55,8 @@
   };
 
   sops.secrets.pgadmin = {
-    sopsFile = ../secrets/pgadmin_local.py;
-    format = "binary";
+    sopsFile = ../secrets/pgadmin.env;
+    format = "env";
     key = "";
     restartUnits = ["pgadmin.service"];
     owner = "pgadmin";

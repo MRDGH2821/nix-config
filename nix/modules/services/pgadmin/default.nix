@@ -19,9 +19,12 @@
     };
   };
   environment.etc."pgadmin/config_local.py" = {
-    source = config.sops.secrets.pgadmin.path;
+    source = ./config_local.py;
     mode = "0640";
     owner = "pgadmin";
     group = "pgadmin";
+  };
+  systemd.services.pgadmin = {
+    environmentFile = config.sops.secrets.pgadmin.path;
   };
 }
