@@ -53,13 +53,4 @@
     format = "dotenv";
     key = "";
   };
-
-  sops.secrets.pgadmin = {
-    sopsFile = ../secrets/pgadmin.env;
-    format = "dotenv";
-    key = "";
-    restartUnits = ["pgadmin.service"];
-    owner = "pgadmin";
-    group = "pgadmin";
-  };
 }
