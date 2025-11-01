@@ -21,10 +21,10 @@
   environment.etc."pgadmin/config_local.py" = {
     source = ./config_local.py;
     mode = "0640";
-    owner = "pgadmin";
+    user = "pgadmin";
     group = "pgadmin";
   };
-  systemd.services.pgadmin = {
-    environmentFile = config.sops.secrets.pgadmin.path;
+  systemd.services.pgadmin.serviceConfig = {
+    EnvironmentFile = config.sops.secrets.pgadmin.path;
   };
 }
