@@ -18,6 +18,7 @@
       NEXT_PUBLIC_EMAIL_PROVIDER = "true";
       NEXT_PUBLIC_AUTHENTIK_ENABLED = "true";
       AUTHENTIK_ISSUER = "https://authentik.${config.networking.baseDomain}/application/o/linkwarden";
+      NEXTAUTH_URL = "https://linkwarden.${config.networking.baseDomain}/api/v1/auth";
     };
     environmentFile = config.sops.templates.linkwarden.path;
   };
