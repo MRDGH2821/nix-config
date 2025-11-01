@@ -4,8 +4,6 @@
     openFirewall = true;
     settings = {
       SERVER_MODE = true;
-      AUTHENTICATION_SOURCES = ["oauth2" "internal"];
-      OAUTH2_AUTO_CREATE_USER = true;
     };
     initialEmail = config.networking.email;
     initialPasswordFile = config.sops.secrets.dummyPassword.path;
@@ -17,14 +15,5 @@
       passwordFile = config.sops.secrets.smtpPassword.path;
       sender = config.networking.smtp.email;
     };
-  };
-  environment.etc."pgadmin/config_local.py" = {
-    source = ./config_local.py;
-    mode = "0640";
-    user = "pgadmin";
-    group = "pgadmin";
-  };
-  systemd.services.pgadmin.serviceConfig = {
-    EnvironmentFile = config.sops.secrets.pgadmin.path;
   };
 }
