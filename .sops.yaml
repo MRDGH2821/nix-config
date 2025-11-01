@@ -3,7 +3,7 @@ keys:
   - &server_home_lab age1t6v85ppu92lhfclws5e2wqng3v3a2yjmzyuaamv6tt0v3zsdxa9s3vxwu6
 
 creation_rules:
-  - path_regex: (.*/)?secrets/.*\.(yaml|json|env|ini)$
+  - path_regex: (.*/)?secrets/.*\.(yaml|json|env|ini|py)$
     key_groups:
       - age:
           - *bose_game_user
