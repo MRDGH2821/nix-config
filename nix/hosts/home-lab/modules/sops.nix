@@ -48,12 +48,6 @@
     key = "";
   };
 
-  sops.secrets.portnote = {
-    sopsFile = ../secrets/portnote.env;
-    format = "dotenv";
-    key = "";
-  };
-
   sops.secrets.linkwarden = {
     sopsFile = ../secrets/linkwarden.env;
     format = "dotenv";
