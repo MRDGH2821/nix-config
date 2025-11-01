@@ -56,7 +56,7 @@
 
   sops.secrets.pgadmin = {
     sopsFile = ../secrets/pgadmin.env;
-    format = "env";
+    format = "dotenv";
     key = "";
     restartUnits = ["pgadmin.service"];
     owner = "pgadmin";
