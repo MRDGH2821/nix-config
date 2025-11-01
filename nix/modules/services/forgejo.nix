@@ -43,6 +43,9 @@
         USER = config.networking.smtp.email;
         FROM = config.networking.smtp.email;
       };
+      log = {
+        LEVEL = "Trace";
+      };
     };
     secrets = {
       mailer.PASSWD = config.sops.secrets.smtpPassword.path;
