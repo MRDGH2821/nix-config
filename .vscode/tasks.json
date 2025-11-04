@@ -52,7 +52,7 @@
     {
       "label": "Format Just file",
       "type": "shell",
-      "command": "cat ${workspaceFolder}/justfile | just-formatter | tee ${workspaceFolder}/justfile"
+      "command": "cat ${workspaceFolder}/justfile | just-formatter | sponge ${workspaceFolder}/justfile"
     }
   ]
 }
