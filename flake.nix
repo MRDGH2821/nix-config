@@ -31,6 +31,8 @@
         deno
         git-agecrypt
         just
+        just-formatter
+        just-lsp
         nixd
         nixos-rebuild-ng
         nixpkgs-fmt
