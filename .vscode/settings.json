@@ -41,7 +41,6 @@
       "path": "ssh"
     }
   },
-  "vscode-just.formatOnSave": true,
   "vscode-just.runInTerminal": true,
   "vscode-just.useSingleTerminal": true,
   "yaml.schemas": {
