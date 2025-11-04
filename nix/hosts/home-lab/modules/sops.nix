@@ -19,6 +19,7 @@
   sops.secrets.letsEncryptEmail = {};
   sops.secrets.smtpEmail = {};
   sops.secrets.smtpPassword = {};
+  sops.secrets.peertubeSecret = {};
 
   sops.secrets.acme = {
     sopsFile = ../secrets/acme.env;
