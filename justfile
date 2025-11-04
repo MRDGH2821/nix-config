@@ -38,7 +38,7 @@ gc:
 
 ############################################################################
 #
-#  Idols, Commands related to my remote distributed building cluster
+#  Commands related to my servers
 #
 ############################################################################
 
