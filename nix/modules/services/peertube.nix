@@ -56,5 +56,6 @@ in {
     };
     smtp.passwordFile = config.sops.secrets.smtpPassword.path;
     serviceEnvironmentFile = config.sops.templates."peertube.env".path;
+    secrets.secretsFile = config.sops.secrets.peertubeSecret.path;
   };
 }
