@@ -1,9 +1,11 @@
 {config, ...}: {
-  sops.templates.acme.content = ''
-    ${config.sops.placeholder.acme}
+  sops.templates.acme = {
+    content = ''
+      ${config.sops.placeholder.acme}
 
-    LEGO_EMAIL=${config.sops.placeholder.letsEncryptEmail}
-  '';
+      LEGO_EMAIL=${config.sops.placeholder.letsEncryptEmail}
+    '';
+  };
   security.acme = {
     acceptTerms = true;
     defaults = {
