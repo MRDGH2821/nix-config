@@ -27,6 +27,10 @@
   "git.followTagsWhenSync": true,
   "git.mergeEditor": true,
   "git.verboseCommit": true,
+  "justlang-lsp.enableTaskProvider": true,
+  "justlang-lsp.runInTerminal": true,
+  "justlang-lsp.server.path": "just-lsp",
+  "justlang-lsp.useSingleTerminal": true,
   "nix.enableLanguageServer": true,
   "nix.serverPath": "nixd",
   "terminal.integrated.profiles.linux": {
