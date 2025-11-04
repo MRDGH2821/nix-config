@@ -13,7 +13,7 @@
       dnsResolver = "1.1.1.1:53";
       dnsPropagationCheck = true;
       environmentFile = config.sops.templates.acme.path;
-      group = config.services.caddy.group;
+      group = config.services.traefik.group;
     };
     certs."${config.networking.baseDomain}" = {
       domain = "${config.networking.baseDomain}";
