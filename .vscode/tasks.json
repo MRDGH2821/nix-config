@@ -48,6 +48,11 @@
       "args": ["${workspaceFolder}/nix-cmds.sh"],
       "group": "build",
       "dependsOn": ["Nix flake check"]
+    },
+    {
+      "label": "Format Just file",
+      "type": "shell",
+      "command": "cat ${workspaceFolder}/justfile | just-formatter | tee ${workspaceFolder}/justfile"
     }
   ]
 }
