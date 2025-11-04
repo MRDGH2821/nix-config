@@ -43,7 +43,7 @@ gc:
 ############################################################################
 
 home-lab:
-    nixos-rebuild-ng --flake .#home-lab --target-host mr-nix@home-lab --build-host mr-nix@home-lab switch --use-remote-sudo
+    nixos-rebuild-ng --flake .#home-lab --target-host mr-nix@home-lab --build-host mr-nix@home-lab switch --use-remote-sudo --ask-sudo-password
 
 home-lab-debug:
-    nixos-rebuild-ng --flake .#home-lab --target-host mr-nix@home-lab --build-host mr-nix@home-lab switch --use-remote-sudo --show-trace --verbose
+    nixos-rebuild-ng --flake .#home-lab --target-host mr-nix@home-lab --build-host mr-nix@home-lab switch --use-remote-sudo --ask-sudo-password --show-trace --verbose
