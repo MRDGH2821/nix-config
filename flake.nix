@@ -30,6 +30,7 @@
         compose2nix.packages.${system}.default
         deno
         git-agecrypt
+        just
         nixd
         nixos-rebuild-ng
         nixpkgs-fmt

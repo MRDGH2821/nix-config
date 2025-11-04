@@ -41,6 +41,9 @@
       "path": "ssh"
     }
   },
+  "vscode-just.formatOnSave": true,
+  "vscode-just.runInTerminal": true,
+  "vscode-just.useSingleTerminal": true,
   "yaml.schemas": {
     "https://raw.githubusercontent.com/chri11g6/sops-schema/refs/heads/master/sops.schema.json": [
       ".sops.yaml"
