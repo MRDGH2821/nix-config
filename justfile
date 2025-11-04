@@ -15,6 +15,9 @@ debug:
 up:
     nix flake update
 
+check:
+    nix flake check
+
 # Update specific input
 
 # usage: make upp i=home-manager
@@ -42,7 +45,7 @@ gc:
 ############################################################################
 
 home-lab:
-    nixos-rebuild --flake .#home-lab --target-host home-lab --build-host home-lab switch --use-remote-sudo
+    nixos-rebuild-ng --flake .#home-lab --target-host mr-nix@home-lab --build-host mr-nix@home-lab switch --use-remote-sudo
 
 home-lab-debug:
-    nixos-rebuild --flake .#home-lab --target-host home-lab --build-host home-lab switch --use-remote-sudo --show-trace --verbose
+    nixos-rebuild-ng --flake .#home-lab --target-host mr-nix@home-lab --build-host mr-nix@home-lab switch --use-remote-sudo --show-trace --verbose
