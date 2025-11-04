@@ -1,0 +1,20 @@
+{
+  "recommendations": [
+    "denoland.vscode-deno",
+    "docker.docker",
+    "eamodio.gitlens",
+    "evondev.indent-rainbow-palettes",
+    "jnoortheen.nix-ide",
+    "kamadorueda.alejandra",
+    "mkhl.direnv",
+    "ms-azuretools.vscode-containers",
+    "nefrob.vscode-just-syntax",
+    "oderwat.indent-rainbow",
+    "promptexecution.justlang-lsp",
+    "redhat.vscode-yaml",
+    "spmeesseman.vscode-taskexplorer",
+    "streetsidesoftware.code-spell-checker",
+    "usernamehw.errorlens",
+    "vivaxy.vscode-conventional-commits"
+  ]
+}
