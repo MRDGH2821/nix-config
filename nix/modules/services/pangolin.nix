@@ -6,11 +6,13 @@
   environment.systemPackages = with pkgs; [fosrl-pangolin];
   boot.kernelModules = ["wireguard"];
 
-  sops.templates.pangolin.content = ''
-    ${config.sops.placeholder.pangolin}
+  sops.templates.pangolin = {
+    content = ''
+      ${config.sops.placeholder.pangolin}
 
-    EMAIL_SMTP_PASS=${config.sops.placeholder.smtpPassword}
-  '';
+      EMAIL_SMTP_PASS=${config.sops.placeholder.smtpPassword}
+    '';
+  };
 
   services.pangolin = {
     enable = true;
