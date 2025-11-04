@@ -33,6 +33,7 @@
         just
         just-formatter
         just-lsp
+        moreutils
         nixd
         nixos-rebuild-ng
         nixpkgs-fmt
