@@ -3,8 +3,8 @@
     enable = true;
     openFirewall = true;
     settings = {
-      MusicFolder = "/home/mr-nix/Music";
-      BaseUrl = "navidrome.${config.networking.baseDomain}";
+      MusicFolder = "${config.persistent_storage}/Music/";
+      BaseUrl = "https://navidrome.${config.networking.baseDomain}";
       ReverseProxyUserHeader = "X-authentik-username";
     };
   };
