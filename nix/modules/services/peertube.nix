@@ -37,6 +37,7 @@ in {
     redis.createLocally = true;
     database.createLocally = true;
     localDomain = "peertube.${config.networking.baseDomain}";
+    listenWeb = 9050;
     settings = {
       video_transcription.enabled = true;
       smtp = {
