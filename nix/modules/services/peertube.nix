@@ -38,6 +38,7 @@ in {
     database.createLocally = true;
     localDomain = "peertube.${config.networking.baseDomain}";
     listenWeb = 9050;
+    listenHttp = 9050;
     settings = {
       video_transcription.enabled = true;
       smtp = {
@@ -47,6 +48,7 @@ in {
         username = config.networking.smtp.email;
         password = config.sops.placeholder.peertubeSmtpPassword;
         tls = true;
+        disable_starttls = false;
         from_address = config.networking.smtp.email;
       };
       # storage = {
