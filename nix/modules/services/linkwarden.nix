@@ -14,7 +14,7 @@
     openFirewall = true;
     environment = {
       NEXT_PUBLIC_OLLAMA_ENDPOINT_URL = "http://localhost:11434";
-      OLLAMA_MODEL = "phi3:mini-4k";
+      OLLAMA_MODEL = "phi4-mini:latest";
       NEXT_PUBLIC_EMAIL_PROVIDER = "true";
       NEXT_PUBLIC_AUTHENTIK_ENABLED = "true";
       AUTHENTIK_ISSUER = "https://authentik.${config.networking.baseDomain}/application/o/linkwarden";
