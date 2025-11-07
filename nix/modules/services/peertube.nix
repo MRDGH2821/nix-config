@@ -78,7 +78,7 @@ in {
       #   client_overrides = "${peertube-dir}/client-overrides/";
       # };
     };
-    smtp.passwordFile = config.sops.secrets.smtpPassword.path;
+    smtp.passwordFile = config.sops.secrets.peertubeSmtpPassword.path;
     serviceEnvironmentFile = config.sops.templates."peertube.env".path;
     secrets.secretsFile = config.sops.secrets.peertubeSecret.path;
   };
