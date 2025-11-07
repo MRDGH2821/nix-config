@@ -19,7 +19,11 @@
   sops.secrets.letsEncryptEmail = {};
   sops.secrets.smtpEmail = {};
   sops.secrets.smtpPassword = {};
-  sops.secrets.peertubeSecret = {};
+  sops.secrets.peertubeSecret = {
+    owner = "peertube";
+    group = "peertube";
+    restartUnits = ["peertube.service"];
+  };
 
   sops.secrets.acme = {
     sopsFile = ../secrets/acme.env;

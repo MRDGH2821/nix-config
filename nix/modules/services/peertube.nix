@@ -9,7 +9,7 @@ in {
     '';
   };
   services.peertube = {
-    enable = false;
+    enable = true;
     redis.createLocally = true;
     database.createLocally = true;
     localDomain = "peertube.${config.networking.baseDomain}";
