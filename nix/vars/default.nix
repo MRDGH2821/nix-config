@@ -4,7 +4,7 @@ in {
   imports = autoImportLib.autoImportModules ./.;
   options.persistent_storage = lib.mkOption {
     type = lib.types.str;
-    default = "/etc/nixos/persist/";
-    description = "Path to persistant storage";
+    default = "/etc/nixos/persist";
+    description = "Path to persistent storage";
   };
 }
