@@ -65,4 +65,10 @@
     format = "dotenv";
     key = "";
   };
+
+  sops.secrets.wireless = {
+    sopsFile = ../secrets/wireless.env;
+    format = "dotenv";
+    key = "";
+  };
 }
