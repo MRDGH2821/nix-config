@@ -1,6 +1,7 @@
 {
   modulesPath,
   pkgs,
+  config,
   ...
 }: {
   imports = [
@@ -22,6 +23,14 @@
     # configures the network interface(include wireless) via `nmcli` & `nmtui`
     networkmanager.enable = true;
     hostName = "home-lab";
+    wireless = {
+      secretsFile = config.sops.secrets.wireless.path;
+      networks = {
+        "MRTravelRouter" = {
+          pskRaw = "ext:psk_mrtravelrouter";
+        };
+      };
+    };
   };
 
   users.users.bose-game = {
