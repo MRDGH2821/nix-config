@@ -10,6 +10,7 @@
     "features",
     "hosts",
     "hosts/home-lab",
+    "hosts/test-bed",
     "packages",
     "secrets",
     "services",
