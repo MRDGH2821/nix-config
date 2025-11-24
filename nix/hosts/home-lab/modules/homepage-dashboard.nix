@@ -1,15 +1,25 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   dmb = import ../../../mylib/domain-builder.nix {inherit config;};
 in {
+  environment.systemPackages = with pkgs; [
+    iputils
+  ];
+
+  systemd.services.homepage-dashboard = {
+    serviceConfig = {
+      SupplementaryGroups = ["docker"];
+    };
+  };
+
   services.homepage-dashboard = {
     enable = true;
     settings = {
       title = "Home Lab";
       connectivityCheck = true;
-    };
-    docker = {
-      host = "localhost";
-      port = 2375;
     };
     openFirewall = true;
     listenPort = 7000;
@@ -45,14 +55,61 @@ in {
             "Omni Tools" = {
               description = "Boost your productivity with OmniTools, the ultimate toolkit for getting things done quickly! Access thousands of user-friendly utilities for editing images, text, lists, and data, all directly from your browser.";
               href = dmb.mkUrl "omni-tools" true;
-              icon = "sh-OmniTools";
+              icon = "sh-omnitools";
+              container = "omni-tools";
             };
           }
           {
             "Bento PDF" = {
               description = "The PDF Toolkit built for privacy.";
-              icon = "sh-BentoPDF";
+              icon = "sh-bentopdf";
               href = dmb.mkUrl "pdf" true;
+              container = "bentopdf";
+            };
+          }
+          {
+            Vert = {
+              description = "The file converter you'll love.";
+              icon = "sh-vert";
+              href = dmb.mkUrl "vert" true;
+              container = "vert";
+            };
+          }
+        ];
+      }
+      {
+        Media = [
+          {
+            Navidrome = {
+              description = "Your Personal Streaming Service.";
+              href = dmb.mkUrl "navidrome" true;
+              icon = "sh-navidrome";
+            };
+          }
+          {
+            Linkwarden = {
+              description = "Linkwarden helps you collect, read, annotate, and fully preserve what matters, all in one place.";
+              href = dmb.mkUrl "linkwarden" true;
+              icon = "sh-linkwarden";
+              widget = {
+                type = "linkwarden";
+                url = dmb.mkUrl "linkwarden" true;
+              };
+            };
+          }
+        ];
+      }
+      {
+        Dev = [
+          {
+            Forgejo = {
+              description = "Your Personal Streaming Service.";
+              href = dmb.mkUrl "git" true;
+              icon = "sh-forgejo";
+              widget = {
+                type = "gitea";
+                url = dmb.mkUrl "git" true;
+              };
             };
           }
         ];
