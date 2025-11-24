@@ -21,6 +21,7 @@ in {
       title = "Home Lab";
       connectivityCheck = true;
     };
+    environmentFile = config.sops.secrets.homepage-dashboard.path;
     openFirewall = true;
     listenPort = 7000;
     allowedHosts = config.networking.baseDomain;
@@ -84,6 +85,13 @@ in {
               description = "Your Personal Streaming Service.";
               href = dmb.mkUrl "navidrome" true;
               icon = "sh-navidrome";
+              widget = {
+                type = "navidrome";
+                url = dmb.mkUrl "navidrome" true;
+                user = "{{HOMEPAGE_VAR_NAVIDROME_USER}}";
+                token = "{{HOMEPAGE_VAR_NAVIDROME_TOKEN}}";
+                salt = "{{HOMEPAGE_VAR_NAVIDROME_SALT}}";
+              };
             };
           }
           {
@@ -94,7 +102,15 @@ in {
               widget = {
                 type = "linkwarden";
                 url = dmb.mkUrl "linkwarden" true;
+                key = "{{HOMEPAGE_VAR_LINKWARDEN_KEY}}";
               };
+            };
+          }
+          {
+            Peertube = {
+              description = "Videos sharing & live streaming on free open source software PeerTube! No ads, no tracking, no spam.";
+              href = dmb.mkUrl "peertube" true;
+              icon = "sh-peertube";
             };
           }
         ];
@@ -109,6 +125,7 @@ in {
               widget = {
                 type = "gitea";
                 url = dmb.mkUrl "git" true;
+                key = "{{HOMEPAGE_VAR_FORGEJO_KEY}}";
               };
             };
           }

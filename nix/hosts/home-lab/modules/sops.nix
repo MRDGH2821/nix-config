@@ -71,4 +71,10 @@
     format = "dotenv";
     key = "";
   };
+
+  sops.secrets.homepage-dashboard = {
+    sopsFile = ../secrets/homepage.env;
+    format = "dotenv";
+    key = "";
+  };
 }
