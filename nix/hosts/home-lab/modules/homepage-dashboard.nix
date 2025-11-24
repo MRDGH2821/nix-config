@@ -10,5 +10,6 @@
       port = 2375;
     };
     openFirewall = true;
+    listenPort = 7000;
   };
 }
