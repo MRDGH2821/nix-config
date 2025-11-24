@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   services.homepage-dashboard = {
     enable = true;
     settings = {
@@ -11,5 +11,6 @@
     };
     openFirewall = true;
     listenPort = 7000;
+    allowedHosts = config.networking.baseDomain;
   };
 }
