@@ -115,5 +115,38 @@ in {
         ];
       }
     ];
+    bookmarks = [
+      {
+        Server = [
+          {
+            Pangolin = [
+              {
+                href = dmb.mkUrl "pangolin" true;
+                icon = "sh-pangolin";
+                description = "Identity-Aware Tunneled Reverse Proxy Server with Dashboard UI.";
+              }
+            ];
+          }
+          {
+            Authentik = [
+              {
+                href = dmb.mkUrl "authentik" true;
+                icon = "sh-authentik";
+                description = "Take control of your identity needs with a secure, flexible solution.";
+              }
+            ];
+          }
+          {
+            pgAdmin4 = [
+              {
+                href = dmb.mkUrl "pgadmin" true;
+                icon = "sh-pgadmin";
+                description = "pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.";
+              }
+            ];
+          }
+        ];
+      }
+    ];
   };
 }
