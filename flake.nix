@@ -57,13 +57,6 @@
           authentik-nix.nixosModules.default
         ];
       };
-      test-bed = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit self;};
-        modules = [
-          ./nix/hosts/test-bed
-        ];
-      };
     };
   };
 }
