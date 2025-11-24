@@ -1,0 +1,20 @@
+name: docker-socket-proxy
+services:
+  docker-socket-proxy:
+    container_name: docker-socket-proxy
+    environment:
+      # Allow access to viewing containers
+      - CONTAINERS=1
+      # Allow access to viewing services (necessary when using Docker Swarm)
+      - SERVICES=1
+      # Allow access to viewing tasks (necessary when using Docker Swarm)
+      - TASKS=1
+      # Disallow any POST operations (effectively read-only)
+      - POST=0
+    hostname: docker-socket-proxy
+    image: ghcr.io/tecnativa/docker-socket-proxy:latest
+    ports:
+      - 127.0.0.1:2375:2375
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
