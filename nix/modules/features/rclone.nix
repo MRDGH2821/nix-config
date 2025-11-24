@@ -1,3 +1,4 @@
+# Source: https://blog.emillon.org/posts/2025-06-02-using-rclone-mount-with-systemd-on-nixos.html
 {
   pkgs,
   lib,
