@@ -77,4 +77,10 @@
     format = "dotenv";
     key = "";
   };
+
+  sops.secrets.rclone = {
+    sopsFile = ../secrets/rclone.ini;
+    format = "ini";
+    key = "";
+  };
 }
