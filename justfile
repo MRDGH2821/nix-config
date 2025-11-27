@@ -6,10 +6,10 @@
 #
 ############################################################################
 
-deploy:
+deploy: check
     nixos-rebuild switch --flake . --use-remote-sudo
 
-debug:
+debug: check
     nixos-rebuild switch --flake . --use-remote-sudo --show-trace --verbose
 
 up:
@@ -42,8 +42,8 @@ gc:
 #
 ############################################################################
 
-home-lab:
+home-lab: check
     nixos-rebuild-ng --flake .#home-lab --target-host mr-nix@home-lab --build-host mr-nix@home-lab switch --use-remote-sudo --ask-sudo-password
 
-home-lab-debug:
+home-lab-debug: check
     nixos-rebuild-ng --flake .#home-lab --target-host mr-nix@home-lab --build-host mr-nix@home-lab switch --use-remote-sudo --ask-sudo-password --show-trace --verbose
