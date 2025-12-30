@@ -39,4 +39,5 @@ scopes = [
   "sops",
   "variables",
   "vscode",
+  "zed"
 ]
