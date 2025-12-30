@@ -1,0 +1,42 @@
+from_latest_tag = false
+ignore_merge_commits = false
+ignore_fixup_commits = true
+disable_changelog = true
+disable_bump_commit = true
+branch_whitelist = []
+skip_ci = "[skip ci]"
+skip_untracked = false
+scopes = [
+  "acme",
+  "bewcloud",
+  "caddy",
+  "cog",
+  "cspell",
+  "devshell",
+  "disko",
+  "domain",
+  "features",
+  "flake",
+  "git",
+  "homepage-dashboard",
+  "hosts",
+  "hosts/home-lab",
+  "hosts/test-bed",
+  "justfile",
+  "nginx",
+  "nix-cmds",
+  "packages",
+  "pangolin",
+  "peertube",
+  "pgadmin",
+  "radicale",
+  "rclone",
+  "revert",
+  "scalpel",
+  "secrets",
+  "services",
+  "shell",
+  "sops",
+  "variables",
+  "vscode",
+]
