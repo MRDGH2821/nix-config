@@ -1,0 +1,31 @@
+[
+  {
+    "allow_concurrent_runs": false,
+    "args": [
+      "-include_env_files=true",
+      "-env_files_only=true",
+      "-runtime",
+      "docker",
+      "-inputs",
+      "$ZED_FILE",
+      "-output",
+      "docker-compose.nix",
+      "-root_path",
+      "/etc/nixos/persist/$ZED_RELATIVE"
+    ],
+    "command": "compose2nix",
+    "cwd": "$ZED_DIRNAME",
+    "hide": "on_success",
+    "label": "Generate docker-compose.nix",
+    "shell": "system"
+  },
+  {
+    "args": ["$ZED_FILE"],
+    "command": "sops",
+    "env": {
+      "EDITOR": "zed --wait"
+    },
+    "label": "Open SOPS Encrypted file",
+    "shell": "system"
+  }
+]
