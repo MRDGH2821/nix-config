@@ -34,6 +34,7 @@
         just-formatter
         just-lsp
         moreutils
+        nil
         nixd
         nixos-rebuild-ng
         nixpkgs-fmt
