@@ -2,10 +2,11 @@
   "allowCompoundWords": true,
   "caseSensitive": false,
   "ignorePaths": [
-    ".direnv",
-    ".trunk",
+    "**/bose-game-home-lab.json",
     "*.lock",
-    "**/bose-game-home-lab.json"
+    ".debug",
+    ".direnv",
+    ".trunk"
   ],
   "language": "en,en-GB,en-AU",
   "useGitignore": true,
