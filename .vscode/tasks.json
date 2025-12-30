@@ -1,10 +1,6 @@
 {
-  "version": "2.0.0",
   "tasks": [
     {
-      "label": "Generate docker-compose.nix",
-      "type": "shell",
-      "command": "compose2nix",
       "args": [
         "-include_env_files=true",
         "-env_files_only=true",
@@ -17,42 +13,51 @@
         "-root_path",
         "/etc/nixos/persist/${fileDirnameBasename}"
       ],
-      "problemMatcher": [],
-      "group": { "kind": "build", "isDefault": true },
-      "options": { "cwd": "${fileDirname}" },
+      "command": "compose2nix",
+      "detail": "Generates docker-compose.nix from docker-compose.yml using compose2nix",
+      "group": {
+        "isDefault": true,
+        "kind": "build"
+      },
+      "label": "Generate docker-compose.nix",
+      "options": {
+        "cwd": "${fileDirname}"
+      },
       "presentation": {
+        "clear": false,
         "echo": true,
-        "reveal": "always",
         "focus": false,
         "panel": "shared",
-        "showReuseMessage": true,
-        "clear": false
+        "reveal": "always",
+        "showReuseMessage": true
       },
-      "detail": "Generates docker-compose.nix from docker-compose.yml using compose2nix"
+      "problemMatcher": [],
+      "type": "shell"
     },
     {
+      "command": "EDITOR='code --wait' sops ${file}",
       "label": "Open SOPS Encrypted file",
-      "type": "shell",
-      "command": "EDITOR='code --wait' sops ${file}"
+      "type": "shell"
     },
     {
-      "label": "Nix flake check",
-      "type": "shell",
       "command": "nix flake check",
-      "group": "test"
+      "group": "test",
+      "label": "Nix flake check",
+      "type": "shell"
     },
     {
-      "label": "Deploy Flake",
-      "type": "shell",
-      "command": "bash",
       "args": ["${workspaceFolder}/nix-cmds.sh"],
+      "command": "bash",
+      "dependsOn": ["Nix flake check"],
       "group": "build",
-      "dependsOn": ["Nix flake check"]
+      "label": "Deploy Flake",
+      "type": "shell"
     },
     {
+      "command": "cat ${workspaceFolder}/justfile | just-formatter | sponge ${workspaceFolder}/justfile",
       "label": "Format Just file",
-      "type": "shell",
-      "command": "cat ${workspaceFolder}/justfile | just-formatter | sponge ${workspaceFolder}/justfile"
+      "type": "shell"
     }
-  ]
+  ],
+  "version": "2.0.0"
 }
