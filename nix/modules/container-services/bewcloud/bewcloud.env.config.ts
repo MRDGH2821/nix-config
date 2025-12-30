@@ -38,43 +38,43 @@ const config: PartialDeep<Config> = {
     allowSignups: getEnvBoolean("BEWCLOUD_AUTH_ALLOW_SIGNUPS", false),
     enableEmailVerification: getEnvBoolean(
       "BEWCLOUD_AUTH_ENABLE_EMAIL_VERIFICATION",
-      false
+      false,
     ),
     enableForeverSignup: getEnvBoolean(
       "BEWCLOUD_AUTH_ENABLE_FOREVER_SIGNUP",
-      true
+      true,
     ),
     enableMultiFactor: getEnvBoolean(
       "BEWCLOUD_AUTH_ENABLE_MULTI_FACTOR",
-      false
+      false,
     ),
     allowedCookieDomains: getEnvStringArray(
       "BEWCLOUD_AUTH_ALLOWED_COOKIE_DOMAINS",
-      []
+      [],
     ),
     skipCookieDomainSecurity: getEnvBoolean(
       "BEWCLOUD_AUTH_SKIP_COOKIE_DOMAIN_SECURITY",
-      false
+      false,
     ),
     enableSingleSignOn: getEnvBoolean(
       "BEWCLOUD_AUTH_ENABLE_SINGLE_SIGN_ON",
-      false
+      false,
     ),
     singleSignOnUrl: getEnvString("BEWCLOUD_AUTH_SINGLE_SIGN_ON_URL", ""),
     singleSignOnEmailAttribute: getEnvString(
       "BEWCLOUD_AUTH_SINGLE_SIGN_ON_EMAIL_ATTRIBUTE",
-      "email"
+      "email",
     ),
     singleSignOnScopes: getEnvStringArray(
       "BEWCLOUD_AUTH_SINGLE_SIGN_ON_SCOPES",
-      ["openid", "email"]
+      ["openid", "email"],
     ),
   },
   files: {
     rootPath: getEnvString("BEWCLOUD_FILES_ROOT_PATH", "data-files"),
     allowPublicSharing: getEnvBoolean(
       "BEWCLOUD_FILES_ALLOW_PUBLIC_SHARING",
-      false
+      false,
     ),
   },
   core: {
@@ -98,21 +98,21 @@ const config: PartialDeep<Config> = {
   contacts: {
     enableCardDavServer: getEnvBoolean(
       "BEWCLOUD_CONTACTS_ENABLE_CARDDAV_SERVER",
-      true
+      true,
     ),
     cardDavUrl: getEnvString(
       "BEWCLOUD_CONTACTS_CARDDAV_URL",
-      "http://127.0.0.1:5232"
+      "http://127.0.0.1:5232",
     ),
   },
   calendar: {
     enableCalDavServer: getEnvBoolean(
       "BEWCLOUD_CALENDAR_ENABLE_CALDAV_SERVER",
-      true
+      true,
     ),
     calDavUrl: getEnvString(
       "BEWCLOUD_CALENDAR_CALDAV_URL",
-      "http://127.0.0.1:5232"
+      "http://127.0.0.1:5232",
     ),
   },
 };
