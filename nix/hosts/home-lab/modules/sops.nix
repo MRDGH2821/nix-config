@@ -83,4 +83,10 @@
     format = "ini";
     key = "";
   };
+
+  sops.secrets.ocis = {
+    sopsFile = ../secrets/ocis.env;
+    format = "dotenv";
+    key = "";
+  };
 }
