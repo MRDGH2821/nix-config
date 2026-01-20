@@ -2,13 +2,13 @@ name: bewcloud
 services:
   website:
     image: ghcr.io/bewcloud/bewcloud:v2.7.1
-    restart: always
+    mem_limit: 256m
+    network_mode: host
     ports:
       - 8000:8000
-    mem_limit: 256m
+    restart: always
     volumes:
       - ./data-files/:/app/data-files/
       - ./data-files/.Trash:/app/data-files/.Trash
       - ./data-files/Photos:/app/data-files/Photos
       - ./data-files/Notes:/app/data-files/Notes
-    network_mode: host

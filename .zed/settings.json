@@ -1,23 +1,17 @@
 {
-  "lsp": {
-    "deno": {
-      "settings": {
-        "deno": {
-          "enable": true
-        }
-      }
-    }
+  "auto_install_extensions": {
+    "cspell": true,
+    "deno": true,
+    "docker-compose": true,
+    "env": true,
+    "ini": true,
+    "just": true,
+    "markdownlint": true,
+    "nix": true,
+    "tombi": true
   },
   "languages": {
     "JavaScript": {
-      "language_servers": [
-        "deno",
-        "!typescript-language-server",
-        "!vtsls",
-        "!eslint"
-      ]
-    },
-    "TypeScript": {
       "language_servers": [
         "deno",
         "!typescript-language-server",
@@ -32,6 +26,23 @@
         "!vtsls",
         "!eslint"
       ]
+    },
+    "TypeScript": {
+      "language_servers": [
+        "deno",
+        "!typescript-language-server",
+        "!vtsls",
+        "!eslint"
+      ]
+    }
+  },
+  "lsp": {
+    "deno": {
+      "settings": {
+        "deno": {
+          "enable": true
+        }
+      }
     }
   }
 }
