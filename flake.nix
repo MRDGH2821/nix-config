@@ -36,7 +36,6 @@
         moreutils
         nil
         nixd
-        nixos-rebuild-ng
         nixpkgs-fmt
         nixpkgs-review
         sops
