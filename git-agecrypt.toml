@@ -1,10 +1,10 @@
 [config]
 "nix/hosts/home-lab/secrets/agecrypt/freedns-domain.nix" = [
-    "age18mhd309clh6tm24nm68zu2jl5nslwre64ap7sucuquslhy94pcksdg793a",
+  "age18mhd309clh6tm24nm68zu2jl5nslwre64ap7sucuquslhy94pcksdg793a",
 ]
 "nix/hosts/home-lab/secrets/agecrypt/duckdns-domain.nix" = [
-    "age18mhd309clh6tm24nm68zu2jl5nslwre64ap7sucuquslhy94pcksdg793a",
+  "age18mhd309clh6tm24nm68zu2jl5nslwre64ap7sucuquslhy94pcksdg793a",
 ]
 "nix/hosts/home-lab/secrets/agecrypt/smtp.nix" = [
-    "age18mhd309clh6tm24nm68zu2jl5nslwre64ap7sucuquslhy94pcksdg793a",
+  "age18mhd309clh6tm24nm68zu2jl5nslwre64ap7sucuquslhy94pcksdg793a",
 ]

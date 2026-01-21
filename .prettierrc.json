@@ -8,6 +8,7 @@
       }
     }
   ],
+  "plugins": ["prettier-plugin-toml"],
   "tabWidth": 2,
   "useTabs": false
 }
