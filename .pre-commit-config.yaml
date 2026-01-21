@@ -14,7 +14,8 @@ repos:
   - hooks:
       - args:
           - --strict
-          - --scopes zed,vscode,cspell,megalinter,pre-commit
+          - --scopes
+          - acme,bewcloud,caddy,cog,cspell,devshell,disko,domain,features,flake,git,homepage-dashboard,hosts,hosts/home-lab,hosts/test-bed,justfile,megalinter,nginx,nix-cmds,packages,pangolin,peertube,pgadmin,pre-commit,radicale,rclone,revert,scalpel,secrets,services,shell,sops,variables,vscode,zed
           - --force-scope
           - build
           - chore
