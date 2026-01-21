@@ -2,5 +2,19 @@ APPLY_FIXES: all
 CLEAR_REPORT_FOLDER: true
 DISABLE_LINTERS:
   - REPOSITORY_KICS
+  - REPOSITORY_DEVSKIM
+  - TYPESCRIPT_STANDARD
 IGNORE_GITIGNORED_FILES: true
+JSON_PRETTIER_PRE_COMMANDS:
+  - command: npm i prettier-plugin-toml
+    continue_if_failed: true
+    cwd: root
+    secured_env: true
+    tag: default
 SHOW_ELAPSED_TIME: true
+YAML_PRETTIER_PRE_COMMANDS:
+  - command: npm i prettier-plugin-toml
+    continue_if_failed: true
+    cwd: root
+    secured_env: true
+    tag: default

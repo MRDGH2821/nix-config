@@ -8,6 +8,8 @@
     "**/node_modules/**",
     "**/vscode-extension/**",
     "*.lock",
+    "./nix/hosts/home-lab/secrets/*.env",
+    "./nix/hosts/home-lab/secrets/agecrypt/*.nix",
     ".debug",
     ".direnv",
     ".trunk",
