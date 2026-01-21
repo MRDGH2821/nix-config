@@ -6,6 +6,14 @@
         "parser": "json",
         "trailingComma": "none"
       }
+    },
+    {
+      "files": ["*.toml"],
+      "options": {
+        "parser": "toml",
+        "reorderKeys": true,
+        "trailingComma": "none"
+      }
     }
   ],
   "plugins": ["prettier-plugin-toml"],

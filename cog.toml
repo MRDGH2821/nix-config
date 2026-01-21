@@ -1,11 +1,9 @@
-from_latest_tag = false
-ignore_merge_commits = false
-ignore_fixup_commits = true
-disable_changelog = true
-disable_bump_commit = true
 branch_whitelist = []
-skip_ci = "[skip ci]"
-skip_untracked = false
+disable_bump_commit = true
+disable_changelog = true
+from_latest_tag = false
+ignore_fixup_commits = true
+ignore_merge_commits = false
 scopes = [
   "acme",
   "bewcloud",
@@ -43,3 +41,5 @@ scopes = [
   "vscode",
   "zed"
 ]
+skip_ci = "[skip ci]"
+skip_untracked = false
