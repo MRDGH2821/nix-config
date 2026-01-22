@@ -83,18 +83,4 @@
     format = "ini";
     key = "";
   };
-
-  sops.secrets.ocis = {
-    sopsFile = ../secrets/ocis.env;
-    format = "dotenv";
-    key = "";
-  };
-
-  sops.secrets."ocis.yaml" = {
-    sopsFile = ../secrets/ocis.yaml;
-    format = "yaml";
-    key = "";
-    path = "/var/lib/ocis/config/ocis.yaml";
-    owner = "ocis";
-  };
 }
