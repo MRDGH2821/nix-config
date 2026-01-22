@@ -89,4 +89,12 @@
     format = "dotenv";
     key = "";
   };
+
+  sops.secrets."ocis.yaml" = {
+    sopsFile = ../secrets/ocis.yaml;
+    format = "yaml";
+    key = "";
+    path = "/var/lib/ocis/config/ocis.yaml";
+    user = "ocis";
+  };
 }
