@@ -48,12 +48,6 @@
     group = "fossorial";
   };
 
-  sops.secrets.bewcloud = {
-    sopsFile = ../secrets/bewcloud.env;
-    format = "dotenv";
-    key = "";
-  };
-
   sops.secrets.authentik = {
     sopsFile = ../secrets/authentik.env;
     format = "dotenv";
