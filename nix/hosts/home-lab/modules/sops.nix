@@ -95,6 +95,6 @@
     format = "yaml";
     key = "";
     path = "/var/lib/ocis/config/ocis.yaml";
-    user = "ocis";
+    owner = "ocis";
   };
 }
