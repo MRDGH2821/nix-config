@@ -8,6 +8,7 @@
     isNormalUser = true;
     extraGroups = [
       "docker"
+      "podman"
       "networkmanager"
       "wheel"
     ];

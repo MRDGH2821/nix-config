@@ -11,7 +11,7 @@ in {
 
   systemd.services.homepage-dashboard = {
     serviceConfig = {
-      SupplementaryGroups = ["docker"];
+      SupplementaryGroups = ["docker" "podman"];
     };
   };
 
