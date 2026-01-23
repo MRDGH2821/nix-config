@@ -19,6 +19,35 @@
         "!eslint"
       ]
     },
+    "Nix": {
+      "formatter": [
+        {
+          "language_server": {
+            "name": "nil"
+          }
+        },
+        {
+          "language_server": {
+            "name": "nixd"
+          }
+        },
+        {
+          "external": {
+            "command": "alejandra"
+          }
+        },
+        {
+          "external": {
+            "command": "nixpkg-fmt"
+          }
+        },
+        {
+          "external": {
+            "command": "nixfmt"
+          }
+        }
+      ]
+    },
     "TSX": {
       "language_servers": [
         "deno",
