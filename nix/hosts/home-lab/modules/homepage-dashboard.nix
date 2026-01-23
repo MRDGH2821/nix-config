@@ -41,7 +41,6 @@ in {
           memory = true;
         };
       }
-
       {
         search = {
           provider = "duckduckgo";
@@ -127,6 +126,17 @@ in {
                 url = dmb.mkUrl "git" true;
                 key = "{{HOMEPAGE_VAR_FORGEJO_KEY}}";
               };
+            };
+          }
+        ];
+      }
+      {
+        Office = [
+          {
+            Nextcloud = {
+              description = "Nextcloud is a safe home for all your data. Access and share your files, calendars, contacts, mail & more from any device, on your terms.";
+              href = dmb.mkUrl "nc" true;
+              icon = "sh-nextcloud";
             };
           }
         ];
