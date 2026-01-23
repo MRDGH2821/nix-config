@@ -51,7 +51,10 @@ in {
 
     syntaxHighlighting = {
       enable = true;
-      highlighters = ["main" "brackets"];
+      highlighters = [
+        "main"
+        "brackets"
+      ];
     };
   };
 }

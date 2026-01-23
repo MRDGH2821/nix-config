@@ -20,7 +20,10 @@
     hostName = "nextcloud";
     package = pkgs.nextcloud32;
     settings = {
-      trusted_proxies = ["127.0.0.1" "192.168.1.150"];
+      trusted_proxies = [
+        "127.0.0.1"
+        "192.168.1.150"
+      ];
       trusted_domains = ["*.${config.networking.baseDomain}"];
       mail_domain = config.networking.smtp.email;
       mail_smtpauth = true;

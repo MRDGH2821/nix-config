@@ -69,6 +69,7 @@
     "networkd",
     "nftables",
     "nixd",
+    "nixfmt",
     "nixos",
     "nixpkgs",
     "nmcli",

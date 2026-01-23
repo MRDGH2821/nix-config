@@ -20,7 +20,10 @@
     options = mount-options;
   };
 in {
-  imports = [music-folder kirtan-folder];
+  imports = [
+    music-folder
+    kirtan-folder
+  ];
   services.navidrome = {
     enable = true;
     openFirewall = true;

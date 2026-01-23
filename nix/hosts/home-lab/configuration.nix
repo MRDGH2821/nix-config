@@ -35,6 +35,9 @@
     ];
   };
   services.automatic-timezoned.enable = true;
-  nix.settings.allowed-users = ["@wheel" "bose-game"];
+  nix.settings.allowed-users = [
+    "@wheel"
+    "bose-game"
+  ];
   system.stateVersion = "25.05";
 }

@@ -36,6 +36,7 @@
         moreutils
         nil
         nixd
+        nixfmt-rfc-style
         nixpkgs-fmt
         nixpkgs-review
         sops

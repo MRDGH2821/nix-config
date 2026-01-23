@@ -34,7 +34,11 @@
             default = "user@example.com";
           };
           security = lib.mkOption {
-            type = lib.types.enum ["starttls" "tls" "none"];
+            type = lib.types.enum [
+              "starttls"
+              "tls"
+              "none"
+            ];
             default = "starttls";
             description = "SMTP security mode: starttls, tls, or none";
           };

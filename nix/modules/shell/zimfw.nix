@@ -98,10 +98,9 @@
   '';
 
   # Get all regular users (non-system users)
-  regularUsers =
-    builtins.filter
-    (name: config.users.users.${name}.isNormalUser)
-    (builtins.attrNames config.users.users);
+  regularUsers = builtins.filter (name: config.users.users.${name}.isNormalUser) (
+    builtins.attrNames config.users.users
+  );
 
   # Create tmpfiles rules for each user
   mkZimrcRule = username: let

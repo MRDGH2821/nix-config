@@ -51,6 +51,9 @@
   };
 
   users.users.traefik = {
-    extraGroups = ["docker" "podman"];
+    extraGroups = [
+      "docker"
+      "podman"
+    ];
   };
 }

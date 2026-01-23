@@ -20,5 +20,8 @@
   environment.systemPackages = with pkgs; [
     openssh
   ];
-  nix.settings.allowed-users = ["@wheel" "system-recovery"];
+  nix.settings.allowed-users = [
+    "@wheel"
+    "system-recovery"
+  ];
 }
