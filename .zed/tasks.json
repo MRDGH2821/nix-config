@@ -4,19 +4,17 @@
     "args": [
       "-include_env_files=true",
       "-env_files_only=true",
-      "-runtime",
-      "docker",
       "-inputs",
       "$ZED_FILE",
       "-output",
-      "docker-compose.nix",
+      "podman-compose.nix",
       "-root_path",
-      "/etc/nixos/persist/$ZED_RELATIVE"
+      "/etc/nixos/persist/$ZED_RELATIVE_DIR"
     ],
     "command": "compose2nix",
     "cwd": "$ZED_DIRNAME",
     "hide": "on_success",
-    "label": "Generate docker-compose.nix",
+    "label": "Generate podman-compose.nix",
     "shell": "system"
   },
   {
