@@ -20,6 +20,14 @@ in {
     settings = {
       title = "Home Lab";
       connectivityCheck = true;
+      layout = {
+        Tools = {
+          columns = 3;
+        };
+        Media = {
+          columns = 3;
+        };
+      };
     };
     environmentFile = config.sops.secrets.homepage-dashboard.path;
     openFirewall = true;
