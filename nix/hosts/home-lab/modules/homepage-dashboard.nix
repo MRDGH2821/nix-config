@@ -9,11 +9,11 @@ in {
     iputils
   ];
 
-  systemd.services.homepage-dashboard = {
-    serviceConfig = {
-      SupplementaryGroups = ["docker" "podman"];
-    };
-  };
+  # systemd.services.homepage-dashboard = {
+  #   serviceConfig = {
+  #     SupplementaryGroups = ["docker" "podman"];
+  #   };
+  # };
 
   services.homepage-dashboard = {
     enable = true;
