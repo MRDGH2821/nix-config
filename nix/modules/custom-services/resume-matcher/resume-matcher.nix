@@ -134,6 +134,12 @@ in
       after = [ "network-online.target" ];
       wants = [ "network-online.target" ];
       wantedBy = [ "multi-user.target" ];
+      preStart = ''
+        # Run as root to clean up any leftover directories
+        if [ -d "${cfg.dataDir}" ] && [ ! -d "${cfg.dataDir}/.git" ]; then
+          rm -rf "${cfg.dataDir}"
+        fi
+      '';
       serviceConfig = {
         Type = "oneshot";
         User = cfg.user;
@@ -153,11 +159,12 @@ in
       script = ''
         set -euo pipefail
 
+        # Ensure directory exists
+        if [ ! -d "${cfg.dataDir}" ]; then
+          mkdir -p "${cfg.dataDir}"
+        fi
+
         if [ ! -d "${cfg.dataDir}/.git" ]; then
-        	# If directory exists but is not a git repo, remove it first
-        	if [ -d "${cfg.dataDir}" ]; then
-        		rm -rf "${cfg.dataDir}"
-        	fi
         	git clone ${cfg.repositoryUrl} "${cfg.dataDir}"
         fi
 
