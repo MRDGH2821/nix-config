@@ -154,6 +154,10 @@ in
         set -euo pipefail
 
         if [ ! -d "${cfg.dataDir}/.git" ]; then
+        	# If directory exists but is not a git repo, remove it first
+        	if [ -d "${cfg.dataDir}" ]; then
+        		rm -rf "${cfg.dataDir}"
+        	fi
         	git clone ${cfg.repositoryUrl} "${cfg.dataDir}"
         fi
 
