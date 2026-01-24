@@ -5,11 +5,11 @@ in {
 
   services.resume-matcher = {
     enable = true;
-    backend.environmentFile = "/run/secrets/resume-matcher-backend.env";
-    frontend.environmentFile = "/run/secrets/resume-matcher-frontend.env";
-    backend.extraEnv = {
-      LLM_PROVIDER = "openai";
-      LLM_MODEL = "gpt-4o-mini";
-    };
+    # backend.environmentFile = "/run/secrets/resume-matcher-backend.env";
+    # frontend.environmentFile = "/run/secrets/resume-matcher-frontend.env";
+    # backend.extraEnv = {
+    #   LLM_PROVIDER = "openai";
+    #   LLM_MODEL = "gpt-4o-mini";
+    # };
   };
 }
