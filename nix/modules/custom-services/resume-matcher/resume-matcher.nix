@@ -3,11 +3,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.services.resume-matcher;
 
   envList = env: lib.mapAttrsToList (name: value: "${name}=${value}") env;
-in {
+in
+{
   options.services.resume-matcher = {
     enable = lib.mkEnableOption "Resume Matcher (FastAPI + Next.js)";
 
@@ -68,7 +70,7 @@ in {
 
       extraEnv = lib.mkOption {
         type = lib.types.attrsOf lib.types.str;
-        default = {};
+        default = { };
         description = "Additional backend environment variables.";
       };
     };
@@ -94,7 +96,7 @@ in {
 
       extraEnv = lib.mkOption {
         type = lib.types.attrsOf lib.types.str;
-        default = {};
+        default = { };
         description = "Additional frontend environment variables.";
       };
 
@@ -107,7 +109,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    users.groups.${cfg.group} = {};
+    users.groups.${cfg.group} = { };
 
     users.users.${cfg.user} = {
       isSystemUser = true;
@@ -125,14 +127,13 @@ in {
 
     systemd.tmpfiles.rules = [
       "d ${cfg.dataDir} 0750 ${cfg.user} ${cfg.group} - -"
-      "d ${cfg.dataDir}/apps/backend/data 0750 ${cfg.user} ${cfg.group} - -"
     ];
 
     systemd.services.resume-matcher-setup = {
       description = "Prepare Resume Matcher checkout and dependencies";
-      after = ["network-online.target"];
-      wants = ["network-online.target"];
-      wantedBy = ["multi-user.target"];
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
+      wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         Type = "oneshot";
         User = cfg.user;
@@ -185,28 +186,34 @@ in {
         "resume-matcher-setup.service"
         "network-online.target"
       ];
-      requires = ["resume-matcher-setup.service"];
-      wantedBy = ["multi-user.target"];
-      path = with pkgs; [uv python313];
-      environmentFiles = lib.optional (cfg.backend.environmentFile != null) cfg.backend.environmentFile;
+      wants = [ "network-online.target" ];
+      requires = [ "resume-matcher-setup.service" ];
+      wantedBy = [ "multi-user.target" ];
+      path = with pkgs; [
+        uv
+        python313
+      ];
       serviceConfig = {
         User = cfg.user;
         Group = cfg.group;
         WorkingDirectory = "${cfg.dataDir}/apps/backend";
         Restart = "on-failure";
         RestartSec = 5;
+        EnvironmentFiles = lib.optional (cfg.backend.environmentFile != null) cfg.backend.environmentFile;
         ExecStart = ''
           ${pkgs.uv}/bin/uv run uvicorn app.main:app \
           	--host ${cfg.backend.host} \
           	--port ${toString cfg.backend.port}
         '';
-        Environment = envList ({
+        Environment = envList (
+          {
             HOST = cfg.backend.host;
             PORT = toString cfg.backend.port;
             FRONTEND_BASE_URL = "http://${cfg.frontend.host}:${toString cfg.frontend.port}";
             CORS_ORIGINS = "[\"http://${cfg.frontend.host}:${toString cfg.frontend.port}\", \"http://127.0.0.1:${toString cfg.frontend.port}\"]";
           }
-          // cfg.backend.extraEnv);
+          // cfg.backend.extraEnv
+        );
       };
     };
 
@@ -217,29 +224,32 @@ in {
         "resume-matcher-setup.service"
         "network-online.target"
       ];
-      requires = ["resume-matcher-setup.service"];
-      wantedBy = ["multi-user.target"];
-      path = [pkgs.nodejs_22];
-      environmentFiles = lib.optional (cfg.frontend.environmentFile != null) cfg.frontend.environmentFile;
+      wants = [ "network-online.target" ];
+      requires = [ "resume-matcher-setup.service" ];
+      wantedBy = [ "multi-user.target" ];
+      path = [ pkgs.nodejs_22 ];
       serviceConfig = {
         User = cfg.user;
         Group = cfg.group;
         WorkingDirectory = "${cfg.dataDir}/apps/frontend";
         Restart = "on-failure";
         RestartSec = 5;
+        EnvironmentFiles = lib.optional (cfg.frontend.environmentFile != null) cfg.frontend.environmentFile;
         ExecStart = ''
           ${pkgs.nodejs_22}/bin/npm run start -- \
           	--hostname ${cfg.frontend.host} \
           	--port ${toString cfg.frontend.port}
         '';
-        Environment = envList ({
+        Environment = envList (
+          {
             PORT = toString cfg.frontend.port;
             HOST = cfg.frontend.host;
             NODE_ENV = "production";
             BACKEND_URL = "http://${cfg.backend.host}:${toString cfg.backend.port}";
             NEXT_PUBLIC_BACKEND_URL = "http://${cfg.backend.host}:${toString cfg.backend.port}";
           }
-          // cfg.frontend.extraEnv);
+          // cfg.frontend.extraEnv
+        );
       };
     };
 
