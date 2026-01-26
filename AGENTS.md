@@ -133,11 +133,13 @@ Note: Scope can be omitted for documentation-only changes: `docs: update README`
 ### Zed (Primary Editor)
 
 **Auto-Installed Extensions** (`.zed/settings.json`):
+
 - `cspell`, `nix`, `just`, `deno`, `markdownlint`
 
 **Nix Formatter**: Primary `alejandra` (fallbacks: `nil`, `nixd`)
 
 **Custom Tasks** (`.zed/tasks.json`):
+
 - `compose2nix` - Convert docker-compose.yml to podman-compose.nix
 - `sops` - Edit encrypted SOPS files
 
@@ -148,6 +150,7 @@ Configuration in `.vscode/` for cross-editor support (Zed recommended)
 ## File Structure & Key Locations
 
 ### Nix Modules (`nix/`)
+
 - `nix/hosts/home-lab/` - Primary homelab configuration
 - `nix/hosts/test-bed/` - Test environment
 - `nix/modules/services/` - NixOS service configurations
@@ -157,6 +160,7 @@ Configuration in `.vscode/` for cross-editor support (Zed recommended)
 - `nix/mylib/` - Custom library functions
 
 ### Root Configuration
+
 - `flake.nix` - Flake definition and inputs
 - `justfile` - Management commands
 - `.pre-commit-config.yaml` - Pre-commit hooks
@@ -165,5 +169,6 @@ Configuration in `.vscode/` for cross-editor support (Zed recommended)
 - `.mega-linter.yml` - MegaLinter configuration
 
 ### Documentation
+
 - `.ai/AGENTS_GLOBAL.md` - Global agent guidelines
 - `.ai/logs/` - AI work logs (create daily files as needed)
