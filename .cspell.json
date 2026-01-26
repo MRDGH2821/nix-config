@@ -101,6 +101,7 @@
     "tombi",
     "totp",
     "ulimits",
+    "uvicorn",
     "vdir",
     "venv",
     "vfat",
