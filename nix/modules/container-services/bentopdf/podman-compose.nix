@@ -26,7 +26,7 @@
 
   # Containers
   virtualisation.oci-containers.containers."bentopdf" = {
-    image = "bentopdf/bentopdf:latest";
+    image = "ghcr.io/alam00000/bentopdf:latest";
     ports = [
       "8090:8080/tcp"
     ];
