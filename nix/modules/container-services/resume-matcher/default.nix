@@ -17,4 +17,12 @@ in {
     "d ${baseDir}/app/backend/data 0755 mr-nix users -"
     "d ${baseDir}/app/backend/data/tmp 0755 mr-nix users -"
   ];
+
+  virtualisation.oci-containers.containers."resume-matcher" = {
+    environment = {
+      NEXT_PUBLIC_API_URL = "http://resmapi.${config.networking.baseDomain}";
+      CORS_ORIGINS = ''["http://localhost:3000","http://127.0.0.1:3000", "http://${serviceName}.${config.networking.baseDomain}", "http://resmapi.${config.networking.baseDomain}"]'';
+      FRONTEND_BASE_URL = "http://${serviceName}.${config.networking.baseDomain}";
+    };
+  };
 }
