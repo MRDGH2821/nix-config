@@ -9,7 +9,7 @@
       "-output",
       "podman-compose.nix",
       "-root_path",
-      "/etc/nixos/persist/$ZED_RELATIVE_DIR"
+      "/etc/nixos/persist/"
     ],
     "command": "compose2nix",
     "cwd": "$ZED_DIRNAME",
