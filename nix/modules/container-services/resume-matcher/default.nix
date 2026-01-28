@@ -18,9 +18,9 @@ in {
     "d ${baseDir}/app/backend/data/tmp 0755 mr-nix users -"
   ];
 
-  # Ensure tmpfiles creates directory before container starts
+  # Ensure tmpfiles creates directory before container starts (append to existing dependencies)
   systemd.services."podman-${serviceName}" = {
-    after = ["systemd-tmpfiles-setup.service"];
-    requires = ["systemd-tmpfiles-setup.service"];
+    after = lib.mkAfter ["systemd-tmpfiles-setup.service"];
+    requires = lib.mkAfter ["systemd-tmpfiles-setup.service"];
   };
 }
