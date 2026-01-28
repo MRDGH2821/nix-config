@@ -22,4 +22,4 @@ services:
       - 8000:8000 # Backend API
     restart: unless-stopped
     volumes:
-      - ./app/backend/data:/app/backend/data
+      - ./resume-matcher/app/backend/data:/app/backend/data

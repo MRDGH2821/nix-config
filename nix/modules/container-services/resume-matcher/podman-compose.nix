@@ -28,7 +28,7 @@
   virtualisation.oci-containers.containers."resume-matcher" = {
     image = "ghcr.io/mrdgh2821/resume-matcher:latest";
     volumes = [
-      "/etc/nixos/persist/nix/modules/container-services/resume-matcher/app/backend/data:/app/backend/data:rw"
+      "/etc/nixos/persist/resume-matcher/app/backend/data:/app/backend/data:rw"
     ];
     ports = [
       "3100:3000/tcp"
