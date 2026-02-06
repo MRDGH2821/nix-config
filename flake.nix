@@ -4,7 +4,7 @@
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
     alejandra.url = "github:kamadorueda/alejandra/4.0.0";
     authentik-nix.inputs.nixpkgs.follows = "nixpkgs";
-    authentik-nix.url = "github:nix-community/authentik-nix/authentik-2025.12";
+    authentik-nix.url = "github:nix-community/authentik-nix";
     compose2nix.inputs.nixpkgs.follows = "nixpkgs";
     compose2nix.url = "github:aksiksi/compose2nix";
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
