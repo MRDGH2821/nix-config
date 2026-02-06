@@ -37,6 +37,7 @@
     "cafile",
     "CALDAV",
     "CARDDAV",
+    "cocogitto",
     "dbname",
     "dbtype",
     "direnv",

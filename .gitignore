@@ -21,4 +21,6 @@ config
 
 .debug/
 .new
+.venv/
 megalinter-reports/
+node_modules/
