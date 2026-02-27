@@ -10,6 +10,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
+    nixos-cli.url = "github:nix-community/nixos-cli";
   };
 
   outputs = {
@@ -18,6 +19,7 @@
     alejandra,
     authentik-nix,
     compose2nix,
+    nixos-cli,
     sops-nix,
   }: let
     system = "x86_64-linux";
@@ -37,6 +39,7 @@
         nil
         nixd
         nixfmt
+        nixos-cli.packages.${system}.default
         nixos-rebuild
         nixpkgs-fmt
         nixpkgs-review

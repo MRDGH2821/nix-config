@@ -7,10 +7,10 @@
 ############################################################################
 
 deploy: check
-    nixos-rebuild switch --flake . --use-remote-sudo
+    nixos apply . --remote-root
 
 debug: check
-    nixos-rebuild switch --flake . --use-remote-sudo --show-trace --verbose
+    nixos apply . --remote-root --show-trace --verbose
 
 up:
     nix flake update
@@ -45,7 +45,7 @@ gc:
 home-lab-target := "mr-nix@${TARGET_HOST:-home-lab}"
 
 home-lab: check
-    nixos-rebuild --flake .#home-lab --target-host {{ home-lab-target }} --build-host {{ home-lab-target }} switch --use-remote-sudo --ask-sudo-password
+    nixos apply ".#home-lab" --target-host {{ home-lab-target }} --build-host {{ home-lab-target }} --remote-root
 
 home-lab-debug: check
-    nixos-rebuild --flake .#home-lab --target-host {{ home-lab-target }} --build-host {{ home-lab-target }} switch --use-remote-sudo --ask-sudo-password --show-trace --verbose
+    nixos apply ".#home-lab" --target-host {{ home-lab-target }} --build-host {{ home-lab-target }} --remote-root --show-trace --verbose
