@@ -18,7 +18,7 @@
     };
     enable = true;
     hostName = "nextcloud";
-    package = pkgs.nextcloud32;
+    package = pkgs.nextcloud33;
     settings = {
       trusted_proxies = [
         "127.0.0.1"
