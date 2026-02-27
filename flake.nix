@@ -37,6 +37,7 @@
         nil
         nixd
         nixfmt
+        nixos-rebuild
         nixpkgs-fmt
         nixpkgs-review
         sops
