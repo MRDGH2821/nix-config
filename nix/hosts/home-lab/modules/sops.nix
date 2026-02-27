@@ -20,17 +20,17 @@
   sops.secrets.smtpEmail = {};
   sops.secrets.smtpPassword = {};
 
-  sops.secrets.peertubeSmtpPassword = {
-    owner = "peertube";
-    group = "peertube";
-    restartUnits = ["peertube.service"];
-    key = "smtpPassword";
-  };
-  sops.secrets.peertubeSecret = {
-    owner = "peertube";
-    group = "peertube";
-    restartUnits = ["peertube.service"];
-  };
+  # sops.secrets.peertubeSmtpPassword = {
+  #   owner = "peertube";
+  #   group = "peertube";
+  #   restartUnits = ["peertube.service"];
+  #   key = "smtpPassword";
+  # };
+  # sops.secrets.peertubeSecret = {
+  #   owner = "peertube";
+  #   group = "peertube";
+  #   restartUnits = ["peertube.service"];
+  # };
 
   sops.secrets.acme = {
     sopsFile = ../secrets/acme.env;

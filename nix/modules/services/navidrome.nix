@@ -25,7 +25,7 @@ in {
     kirtan-folder
   ];
   services.navidrome = {
-    enable = true;
+    enable = false;
     openFirewall = true;
     settings = {
       MusicFolder = rclone-navidrome;

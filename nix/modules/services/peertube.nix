@@ -33,7 +33,7 @@ in {
     '';
   };
   services.peertube = {
-    enable = true;
+    enable = false;
     redis.createLocally = true;
     database.createLocally = true;
     localDomain = "peertube.${config.networking.baseDomain}";
