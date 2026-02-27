@@ -58,7 +58,7 @@ scopes = [
   "variables",
   "version",
   "vscode",
-  "zed",
+  "zed"
 ]
 skip_ci = "[skip ci]"
 skip_untracked = false
