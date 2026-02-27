@@ -42,8 +42,10 @@ gc:
 #
 ############################################################################
 
+home-lab-target := "mr-nix@${TARGET_HOST:-home-lab}"
+
 home-lab: check
-    nixos-rebuild --flake .#home-lab --target-host mr-nix@home-lab --build-host mr-nix@home-lab switch --use-remote-sudo --ask-sudo-password
+    nixos-rebuild --flake .#home-lab --target-host {{ home-lab-target }} --build-host {{ home-lab-target }} switch --use-remote-sudo --ask-sudo-password
 
 home-lab-debug: check
-    nixos-rebuild --flake .#home-lab --target-host mr-nix@home-lab --build-host mr-nix@home-lab switch --use-remote-sudo --ask-sudo-password --show-trace --verbose
+    nixos-rebuild --flake .#home-lab --target-host {{ home-lab-target }} --build-host {{ home-lab-target }} switch --use-remote-sudo --ask-sudo-password --show-trace --verbose
