@@ -29,7 +29,7 @@ in {
         };
       };
     };
-    environmentFile = config.sops.secrets.homepage-dashboard.path;
+    environmentFiles = [config.sops.secrets.homepage-dashboard.path];
     openFirewall = true;
     listenPort = 7000;
     allowedHosts = config.networking.baseDomain;
