@@ -1,5 +1,5 @@
 branch_whitelist = []
-disable_bump_commit = true
+disable_bump_commit = false
 disable_changelog = true
 from_latest_tag = false
 generate_mono_repository_global_tag = true
@@ -9,8 +9,13 @@ ignore_merge_commits = false
 post_bump_hooks = []
 post_package_bump_hooks = []
 pre = "alpha.*"
-pre_bump_hooks = []
+pre_bump_hooks = [
+  "echo 'bumping from {{latest_tag|0.0.0}} to {{version_tag|0.0.1}}'",
+  "bunx git-cliff -o CHANGELOG.md -c cocogitto --tag {{version_tag}}",
+  "treefmt -v"
+]
 pre_package_bump_hooks = []
+# tombi: format.rules.array-values-order = "ascending"
 scopes = [
   "acme",
   "bewcloud",
@@ -40,6 +45,7 @@ scopes = [
   "peertube",
   "pgadmin",
   "pre-commit",
+  "prettier",
   "radicale",
   "rclone",
   "revert",
@@ -48,18 +54,23 @@ scopes = [
   "services",
   "shell",
   "sops",
+  "treefmt",
   "variables",
+  "version",
   "vscode",
-  "zed"
+  "zed",
 ]
 skip_ci = "[skip ci]"
 skip_untracked = false
+tag_prefix = "v"
 
 [bump_profiles]
 
 [changelog]
-authors = []
+authors = [{ signature = "ask.mrdgh2821@outlook.com", username = "MRDGH2821" }]
+owner = "MRDGH2821"
 path = "CHANGELOG.md"
+template = "remote"
 
 [commit_types]
 
