@@ -8,19 +8,17 @@ result-*
 .direnv
 
 # Ignore local configuration files containing sensitive information
-config.local.sh
 *.local
-
 .env
+config.local.sh
 
 # Ignore pangolin dirs
-public
-node_modules
-.next
-config
-
 .debug/
 .new
+.next
 .venv/
+config
 megalinter-reports/
+node_modules
 node_modules/
+public

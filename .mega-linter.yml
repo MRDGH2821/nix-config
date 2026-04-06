@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/megalinter/megalinter/main/megalinter/descriptors/schemas/megalinter-configuration.jsonschema.json
 APPLY_FIXES: all
 CLEAR_REPORT_FOLDER: true
 DISABLE_LINTERS:
@@ -7,7 +8,7 @@ DISABLE_LINTERS:
   - TYPESCRIPT_STANDARD
 IGNORE_GITIGNORED_FILES: true
 JSON_PRETTIER_PRE_COMMANDS:
-  - command: npm i prettier-plugin-toml
+  - command: npm i -g prettier-plugin-toml
     continue_if_failed: true
     cwd: root
     secured_env: true

@@ -25,16 +25,20 @@
     system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
   in {
+    formatter.${system} = pkgs.treefmt;
     devShells.${system}.default = pkgs.mkShell {
       packages = with pkgs; [
         age
+        alejandra
         alejandra.packages.${system}.default
+        bun
         compose2nix.packages.${system}.default
         deno
         git-agecrypt
         just
         just-formatter
         just-lsp
+        libxml2
         moreutils
         nil
         nixd
@@ -43,8 +47,13 @@
         nixos-rebuild
         nixpkgs-fmt
         nixpkgs-review
+        prettypst
+        shfmt
         sops
         ssh-to-age
+        treefmt
+        uv
+        yq-go
       ];
       shellHook = ''
         echo "Welcome to the nix-config development environment!"

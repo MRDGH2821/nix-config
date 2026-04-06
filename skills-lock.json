@@ -1,0 +1,15 @@
+{
+  "skills": {
+    "find-skills": {
+      "computedHash": "d31e234f0c90694a670222cdd1dafa853e051d7066beda389f1097c22dadd461",
+      "source": "vercel-labs/skills",
+      "sourceType": "github"
+    },
+    "git-commit": {
+      "computedHash": "2607fc60629b82b257136dd2a7a373f0a4466c0b49df7746d845d59313c99b21",
+      "source": "github/awesome-copilot",
+      "sourceType": "github"
+    }
+  },
+  "version": 1
+}
