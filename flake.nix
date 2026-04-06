@@ -29,7 +29,6 @@
     devShells.${system}.default = pkgs.mkShell {
       packages = with pkgs; [
         age
-        alejandra
         alejandra.packages.${system}.default
         bun
         compose2nix.packages.${system}.default
