@@ -1,4 +1,4 @@
-# :schema https://gist.githubusercontent.com/MRDGH2821/d61a45f6d91c94d1c9d3d1307036d361/raw/48ecf6440582706aa85b856f2c4c3539bc5d03a5/treefmt-schma.json
+# :schema https://gist.githubusercontent.com/MRDGH2821/d61a45f6d91c94d1c9d3d1307036d361/raw/fe5c99a3237fa12ee6e0c247999832857d97d353/treefmt-schema.json
 
 allow-missing-formatter = true
 
@@ -9,7 +9,7 @@ options = ["-q"]
 priority = 10
 
 [formatter.cspell-sort]
-command = "bash"
+command = "yq"
 # tombi: format.rules.array-values-order = "ascending"
 includes = [
   "**/.cSpell*",
@@ -21,11 +21,8 @@ includes = [
   "cSpell*",
   "cspell*"
 ]
-options = [
-  "-c",
-  "for file in \"$@\"; do yq -i '.words |= sort_by(downcase) | .ignorePaths |= sort_by(downcase)' \"$file\"; done",
-  "--"
-]
+no-positional-arg-support = true
+options = ["-i", ".words|= sort_by(downcase)|.ignorePaths|=sort_by(downcase)"]
 priority = 9
 
 [formatter.ignore-files-formatter]
@@ -45,12 +42,18 @@ command = "bunx"
 excludes = []
 # tombi: format.rules.array-values-order = "ascending"
 includes = [
+  "*.cjs",
+  "*.cts",
   "*.js",
   "*.json",
   "*.jsonc",
+  "*.jsx",
   "*.md",
+  "*.mjs",
+  "*.mts",
   "*.toml",
   "*.ts",
+  "*.tsx",
   "*.yaml",
   "*.yml"
 ]
@@ -134,12 +137,9 @@ options = ["yamlfix"]
 priority = 8
 
 [formatter.yq-key-sort]
-command = "bash"
+command = "yq"
 # tombi: format.rules.array-values-order = "ascending"
 includes = ["*.json", "*.yaml", "*.yml"]
-options = [
-  "-c",
-  "for file in \"$@\"; do yq -i -P 'sort_keys(..)' \"$file\"; done",
-  "--"
-]
+no-positional-arg-support = true
+options = ["-i", "-P", "sort_keys(..)"]
 priority = 0
