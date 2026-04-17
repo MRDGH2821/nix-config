@@ -63,12 +63,14 @@ priority = 100
 [formatter.prettypst-default]
 command = "prettypst"
 includes = ["*.typ"]
+no-positional-arg-support = true
 options = ["-s", "default"]
 priority = 2
 
 [formatter.prettypst-otbs]
 command = "prettypst"
 includes = ["*.typ"]
+no-positional-arg-support = true
 options = ["-s", "otbs"]
 priority = 3
 
