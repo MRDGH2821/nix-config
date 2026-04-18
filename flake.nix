@@ -11,6 +11,9 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
     nixos-cli.url = "github:nix-community/nixos-cli";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-openclaw.url = "github:openclaw/nix-openclaw";
   };
 
   outputs = {
@@ -21,6 +24,8 @@
     compose2nix,
     nixos-cli,
     sops-nix,
+    home-manager,
+    nix-openclaw,
   }: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
@@ -68,8 +73,16 @@
           ./nix/hosts/home-lab
           sops-nix.nixosModules.sops
           authentik-nix.nixosModules.default
+          home-manager.nixosModules.home-manager
         ];
       };
+    };
+    homeConfigurations.bose-game = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      specialArgs = {inherit nix-openclaw;};
+      modules = [
+        ./home/users/home-lab.nix
+      ];
     };
   };
 }
