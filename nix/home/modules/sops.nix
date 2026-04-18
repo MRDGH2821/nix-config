@@ -13,8 +13,5 @@
   # This will generate a new key if the key specified above does not exist
   sops.age.generateKey = true;
 
-  sops.secrets.openclawGatewayToken = {
-    owner = "bose-game";
-    group = "bose-game";
-  };
+  sops.secrets.openclawGatewayToken = {};
 }

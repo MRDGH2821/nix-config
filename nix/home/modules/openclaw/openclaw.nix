@@ -7,18 +7,16 @@
       gateway = {
         mode = "local";
         auth = {
-          token = config.secrets.openclawGatewayToken.path;
+          token = config.sops.secrets.openclawGatewayToken.path;
         };
       };
-      agents.defaults.model = {
-        primary = "ollama/llama3.21:b";
+      agents.defaults = {
+        model.primary = "ollama/llama3.21:b";
       };
-      agents.defaults.provider = "ollama";
-      memorySearch.local.modelPath = "llama3.21:b";
     };
     bundledPlugins = {
       summarize.enable = true;
-      peekaboo.enable = true;
+      peekaboo.enable = false;
     };
   };
 }

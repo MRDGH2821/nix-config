@@ -68,18 +68,21 @@
     nixosConfigurations = {
       home-lab = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit self;};
+        specialArgs = {inherit self nix-openclaw sops-nix;};
         modules = [
           ./nix/hosts/home-lab
           sops-nix.nixosModules.sops
           authentik-nix.nixosModules.default
           home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = {inherit nix-openclaw sops-nix;};
+          }
         ];
       };
     };
     homeConfigurations.bose-game = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      specialArgs = {inherit nix-openclaw;};
+      specialArgs = {inherit nix-openclaw sops-nix;};
       modules = [
         ./nix/home/users/home-lab.nix
       ];
