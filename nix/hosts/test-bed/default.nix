@@ -1,7 +1,7 @@
 {
   imports = [
-    ../../modules/features
-    ../../modules/shell
+    ../../system-modules/features
+    ../../system-modules/shell
     ../../vars
     ./configuration.nix
     ./hardware-configuration.nix

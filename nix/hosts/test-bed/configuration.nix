@@ -1,6 +1,6 @@
 {pkgs}: {
   imports = [
-    ../../modules/features/system-packages.nix
+    ../../system-modules/features/system-packages.nix
   ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

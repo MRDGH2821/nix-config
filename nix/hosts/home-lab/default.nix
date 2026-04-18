@@ -1,10 +1,10 @@
 {
   imports = [
-    ../../modules/container-services
-    ../../modules/features
-    ../../modules/fixes
-    ../../modules/services
-    ../../modules/shell
+    ../../system-modules/container-services
+    ../../system-modules/features
+    ../../system-modules/fixes
+    ../../system-modules/services
+    ../../system-modules/shell
     ../../vars
     ./configuration.nix
     ./hardware-configuration.nix

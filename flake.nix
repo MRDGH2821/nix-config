@@ -81,7 +81,7 @@
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       specialArgs = {inherit nix-openclaw;};
       modules = [
-        ./home/users/home-lab.nix
+        ./nix/home/users/home-lab.nix
       ];
     };
   };
