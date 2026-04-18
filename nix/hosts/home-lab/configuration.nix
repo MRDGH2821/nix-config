@@ -19,7 +19,7 @@
   };
 
   nixpkgs.config.permittedInsecurePackages = [
-    "openclaw-2026.4.2"
+    "openclaw-2026.4.11"
   ];
 
   boot.loader.systemd-boot.enable = true;
