@@ -7,6 +7,8 @@
     authentik-nix.url = "github:nix-community/authentik-nix";
     compose2nix.inputs.nixpkgs.follows = "nixpkgs";
     compose2nix.url = "github:aksiksi/compose2nix";
+    hermes-agent.inputs.nixpkgs.follows = "nixpkgs";
+    hermes-agent.url = "github:NousResearch/hermes-agent";
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
@@ -19,6 +21,7 @@
     alejandra,
     authentik-nix,
     compose2nix,
+    hermes-agent,
     nixos-cli,
     sops-nix,
   }: let
@@ -63,7 +66,7 @@
     nixosConfigurations = {
       home-lab = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit self sops-nix;};
+        specialArgs = {inherit self sops-nix hermes-agent;};
         modules = [
           ./nix/hosts/home-lab
           sops-nix.nixosModules.sops

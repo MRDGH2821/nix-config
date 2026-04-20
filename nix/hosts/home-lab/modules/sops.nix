@@ -77,4 +77,11 @@
     format = "ini";
     key = "";
   };
+
+  sops.secrets.hermes-env = {
+    sopsFile = ../secrets/hermes.env;
+    format = "dotenv";
+    key = "";
+    restartUnits = ["container@hermes-agent.service"];
+  };
 }
