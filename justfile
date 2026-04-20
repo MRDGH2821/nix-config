@@ -18,7 +18,7 @@ up:
 check:
     nix flake check
 
-# Update specific input, usage: make upp i=home-manager
+# Update specific input, usage: make upp i=nixpkgs
 upp:
     nix flake update $(i)
 

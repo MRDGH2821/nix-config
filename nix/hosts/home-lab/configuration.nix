@@ -10,18 +10,6 @@
     ../../system-modules/features/system-packages.nix
   ];
 
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.bose-game = {
-      imports = [../../home/users/home-lab.nix];
-    };
-  };
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "openclaw-2026.4.11"
-  ];
-
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
