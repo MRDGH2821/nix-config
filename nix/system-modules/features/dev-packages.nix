@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     age
+    cachix
     compose2nix
     git-agecrypt
     nixd

@@ -34,6 +34,7 @@
         age
         alejandra.packages.${system}.default
         bun
+        cachix
         compose2nix.packages.${system}.default
         deno
         git-agecrypt
