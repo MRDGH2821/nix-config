@@ -3,7 +3,6 @@
   inputs = {
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
     alejandra.url = "github:kamadorueda/alejandra/4.0.0";
-    authentik-nix.inputs.nixpkgs.follows = "nixpkgs";
     authentik-nix.url = "github:nix-community/authentik-nix";
     compose2nix.inputs.nixpkgs.follows = "nixpkgs";
     compose2nix.url = "github:aksiksi/compose2nix";
@@ -26,11 +25,8 @@
     sops-nix,
   }: let
     system = "x86_64-linux";
-    overlays = [
-      (import ./nix/overlays/authentik.nix)
-    ];
     pkgs = import nixpkgs {
-      inherit system overlays;
+      inherit system;
     };
   in {
     formatter.${system} = pkgs.treefmt;
