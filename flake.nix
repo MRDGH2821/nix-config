@@ -26,7 +26,12 @@
     sops-nix,
   }: let
     system = "x86_64-linux";
-    pkgs = import nixpkgs {inherit system;};
+    overlays = [
+      (import ./nix/overlays/authentik.nix)
+    ];
+    pkgs = import nixpkgs {
+      inherit system overlays;
+    };
   in {
     formatter.${system} = pkgs.treefmt;
     devShells.${system}.default = pkgs.mkShell {
