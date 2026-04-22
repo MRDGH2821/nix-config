@@ -82,6 +82,6 @@
     sopsFile = ../secrets/hermes.env;
     format = "dotenv";
     key = "";
-    restartUnits = ["container@hermes-agent.service"];
+    restartUnits = ["hermes-agent.service"];
   };
 }
