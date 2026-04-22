@@ -10,5 +10,6 @@
     nixpkgs-review
     sops
     ssh-to-age
+    uv
   ];
 }
