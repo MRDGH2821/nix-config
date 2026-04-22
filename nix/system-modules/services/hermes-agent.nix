@@ -24,6 +24,6 @@ in {
     };
     stateDir = hermesStateDir;
     environmentFiles = [hermesEnvFile];
-    settings.model.default = "anthropic/claude-sonnet-4";
+    settings.model.default = "google/gemma-4-31b-it:free";
   };
 }
