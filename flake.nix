@@ -68,11 +68,19 @@
     nixosConfigurations = {
       home-lab = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit self sops-nix hermes-agent;};
+        specialArgs = {
+          inherit
+            self
+            authentik-nix
+            hermes-agent
+            sops-nix
+            ;
+        };
         modules = [
           ./nix/hosts/home-lab
-          sops-nix.nixosModules.sops
           authentik-nix.nixosModules.default
+          hermes-agent.nixosModules.default
+          sops-nix.nixosModules.sops
         ];
       };
     };
