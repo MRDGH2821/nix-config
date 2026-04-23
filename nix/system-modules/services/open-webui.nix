@@ -8,12 +8,13 @@
     openFirewall = true;
     port = 8181;
     environment = {
-      OAUTH_PROVIDER_NAME = "authentik";
-      OPENID_REDIRECT_URI = "https://owu.${config.networking.baseDomain}/auth/oidc/callback";
-      OPENID_PROVIDER_URL = "https://authentik.${config.networking.baseDomain}/application/o/open-web-ui/.well-known/openid-configuration";
-      WEBUI_URL = "https://owu.${config.networking.baseDomain}";
       ENABLE_OAUTH_SIGNUP = "true";
       OAUTH_MERGE_ACCOUNTS_BY_EMAIL = "true";
+      OAUTH_PROVIDER_NAME = "Authentik";
+      OPENID_PROVIDER_URL = "https://authentik.${config.networking.baseDomain}/application/o/open-web-ui/.well-known/openid-configuration";
+      OPENID_REDIRECT_URI = "https://owu.${config.networking.baseDomain}/auth/oidc/callback";
+      WEBUI_URL = "https://owu.${config.networking.baseDomain}";
+      OAUTH_SCOPES = "openid email profile";
     };
     environmentFile = config.sops.secrets.open-webui.path;
   };
