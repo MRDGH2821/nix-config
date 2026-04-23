@@ -12,8 +12,8 @@
       OPENID_REDIRECT_URI = "https://owu.${config.networking.baseDomain}/auth/oidc/callback";
       OPENID_PROVIDER_URL = "https://authentik.${config.networking.baseDomain}/application/o/open-web-ui/.well-known/openid-configuration";
       WEBUI_URL = "https://owu.${config.networking.baseDomain}";
-      ENABLE_OAUTH_SIGNUP = true;
-      OAUTH_MERGE_ACCOUNTS_BY_EMAIL = true;
+      ENABLE_OAUTH_SIGNUP = "true";
+      OAUTH_MERGE_ACCOUNTS_BY_EMAIL = "true";
     };
     environmentFile = config.sops.secrets.open-webui.path;
   };
