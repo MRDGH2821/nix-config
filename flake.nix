@@ -27,6 +27,9 @@
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
+      overlays = [
+        (import ./nix/overlay/open-webui.nix)
+      ];
     };
   in {
     formatter.${system} = pkgs.treefmt;
@@ -77,6 +80,11 @@
             ;
         };
         modules = [
+          {
+            nixpkgs.overlays = [
+              (import ./nix/overlay/open-webui.nix)
+            ];
+          }
           ./nix/hosts/home-lab
           authentik-nix.nixosModules.default
           hermes-agent.nixosModules.default
