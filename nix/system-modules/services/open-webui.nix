@@ -12,7 +12,7 @@
       OAUTH_MERGE_ACCOUNTS_BY_EMAIL = "true";
       OAUTH_PROVIDER_NAME = "Authentik";
       OPENID_PROVIDER_URL = "https://authentik.${config.networking.baseDomain}/application/o/open-web-ui/.well-known/openid-configuration";
-      OPENID_REDIRECT_URI = "https://owu.${config.networking.baseDomain}/auth/oidc/callback";
+      OPENID_REDIRECT_URI = "https://owu.${config.networking.baseDomain}/oauth/oidc/callback";
       WEBUI_URL = "https://owu.${config.networking.baseDomain}";
       OAUTH_SCOPES = "openid email profile";
     };
