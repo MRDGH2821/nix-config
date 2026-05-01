@@ -41,6 +41,7 @@
         just
         just-formatter
         just-lsp
+        lazygit
         libxml2
         moreutils
         nil

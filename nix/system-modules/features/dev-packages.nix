@@ -4,6 +4,7 @@
     cachix
     compose2nix
     git-agecrypt
+    lazygit
     nixd
     nixos-rebuild-ng
     nixpkgs-fmt
