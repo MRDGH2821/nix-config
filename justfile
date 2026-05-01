@@ -7,10 +7,10 @@
 ############################################################################
 
 deploy: check
-    nixos apply . --remote-root
+    nixos apply . --local-root
 
 debug: check
-    nixos apply . --remote-root --show-trace --verbose
+    nixos apply . --local-root --show-trace --verbose
 
 up:
     nix flake update
