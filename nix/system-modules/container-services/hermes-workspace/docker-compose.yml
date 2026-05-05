@@ -2,6 +2,8 @@
 name: hermes-workspace
 services:
   hermes-workspace:
+    environment:
+      HERMES_API_URL: http://host.containers.internal:8642
     image: ghcr.io/outsourc-e/hermes-workspace:latest
     ports:
       - 3100:3000
