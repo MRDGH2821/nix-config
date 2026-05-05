@@ -91,4 +91,10 @@
     key = "";
     restartUnits = ["open-webui.service"];
   };
+
+  sops.secrets.hermes-workspace = {
+    sopsFile = ../secrets/hermes-workspace.env;
+    format = "dotenv";
+    key = "";
+  };
 }

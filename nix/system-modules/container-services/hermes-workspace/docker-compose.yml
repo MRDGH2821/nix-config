@@ -1,0 +1,7 @@
+---
+name: hermes-workspace
+services:
+  hermes-workspace:
+    image: ghcr.io/outsourc-e/hermes-workspace:latest
+    ports:
+      - 127.0.0.1:3100:3100
