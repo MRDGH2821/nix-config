@@ -7,6 +7,6 @@
 in {
   imports = autoImportLib.autoImportModules ./.;
   virtualisation.oci-containers.containers."hermes-workspace-hermes-workspace" = {
-    environmentFile = config.sops.secrets.hermes-workspace.path;
+    environmentFiles = [config.sops.secrets.hermes-workspace.path];
   };
 }
