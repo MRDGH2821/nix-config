@@ -28,7 +28,7 @@
   virtualisation.oci-containers.containers."hermes-workspace-hermes-workspace" = {
     image = "ghcr.io/outsourc-e/hermes-workspace:latest";
     ports = [
-      "127.0.0.1:3100:3100/tcp"
+      "3100:3000/tcp"
     ];
     log-driver = "journald";
     extraOptions = [
