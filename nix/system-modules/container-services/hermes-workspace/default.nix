@@ -9,8 +9,9 @@ in {
   virtualisation.oci-containers.containers."hermes-workspace-hermes-workspace" = {
     environmentFiles = [config.sops.secrets.hermes-workspace.path];
     environment = {
-      HERMES_API_URL = "http://host.containers.internal:8642";
-      HERMES_DASHBOARD_URL = "http://host.containers.internal:9119";
+      HERMES_API_URL = "http://127.0.0.1:8642";
+      # HERMES_DASHBOARD_URL = "http://127.0.0.1:9119";
+      PORT = "3100";
     };
   };
 

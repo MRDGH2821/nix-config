@@ -27,46 +27,21 @@
   # Containers
   virtualisation.oci-containers.containers."hermes-workspace-hermes-workspace" = {
     image = "ghcr.io/outsourc-e/hermes-workspace:latest";
-    ports = [
-      "3100:3000/tcp"
-    ];
     log-driver = "journald";
     extraOptions = [
-      "--network-alias=hermes-workspace"
-      "--network=hermes-workspace_default"
+      "--network=host"
     ];
   };
   systemd.services."podman-hermes-workspace-hermes-workspace" = {
     serviceConfig = {
       Restart = lib.mkOverride 90 "no";
     };
-    after = [
-      "podman-network-hermes-workspace_default.service"
-    ];
-    requires = [
-      "podman-network-hermes-workspace_default.service"
-    ];
     partOf = [
       "podman-compose-hermes-workspace-root.target"
     ];
     wantedBy = [
       "podman-compose-hermes-workspace-root.target"
     ];
-  };
-
-  # Networks
-  systemd.services."podman-network-hermes-workspace_default" = {
-    path = [pkgs.podman];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      ExecStop = "podman network rm -f hermes-workspace_default";
-    };
-    script = ''
-      podman network inspect hermes-workspace_default || podman network create hermes-workspace_default
-    '';
-    partOf = ["podman-compose-hermes-workspace-root.target"];
-    wantedBy = ["podman-compose-hermes-workspace-root.target"];
   };
 
   # Root service

@@ -14,7 +14,7 @@ Provider keys live in `hermes.env` (dotenv, encrypted with SOPS like the other `
 
 ### Hermes Workspace
 
-`hermes-workspace.env` (see `sops.secrets.hermes-workspace`) holds optional overrides such as `HERMES_PASSWORD` and `HERMES_API_TOKEN`. Nix injects `HERMES_API_URL` and `HERMES_DASHBOARD_URL` to `host.containers.internal` for the gateway (`:8642`) and dashboard (`:9119`). After editing secrets, `podman-hermes-workspace-hermes-workspace.service` restarts via `sops.secrets.hermes-workspace.restartUnits`.
+`hermes-workspace.env` (see `sops.secrets.hermes-workspace`) holds optional overrides such as `HERMES_PASSWORD` and `HERMES_API_TOKEN`. The workspace container runs with **host networking**, so Nix injects `HERMES_API_URL`/`HERMES_DASHBOARD_URL` as `http://127.0.0.1:8642` and `http://127.0.0.1:9119` plus `PORT=3100`. After editing secrets, `podman-hermes-workspace-hermes-workspace.service` restarts via `sops.secrets.hermes-workspace.restartUnits`.
 
 ## git-agecrypt
 

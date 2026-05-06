@@ -3,8 +3,8 @@ name: hermes-workspace
 services:
   hermes-workspace:
     environment:
-      HERMES_API_URL: http://host.containers.internal:8642
-      HERMES_DASHBOARD_URL: http://host.containers.internal:9119
+      HERMES_API_URL: http://127.0.0.1:8642
+      HERMES_DASHBOARD_URL: http://127.0.0.1:9119
+      PORT: "3100"
     image: ghcr.io/outsourc-e/hermes-workspace:latest
-    ports:
-      - 3100:3000
+    network_mode: host
