@@ -10,6 +10,7 @@ in {
     environmentFiles = [config.sops.secrets.hermes-workspace.path];
     environment = {
       HERMES_API_URL = "http://host.containers.internal:8642";
+      HERMES_DASHBOARD_URL = "http://host.containers.internal:9119";
     };
   };
 
