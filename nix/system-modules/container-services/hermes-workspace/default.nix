@@ -12,4 +12,9 @@ in {
       HERMES_API_URL = "http://host.containers.internal:8642";
     };
   };
+
+  systemd.services."podman-hermes-workspace-hermes-workspace" = {
+    after = lib.mkAfter ["hermes-agent.service"];
+    requires = lib.mkAfter ["hermes-agent.service"];
+  };
 }

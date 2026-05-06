@@ -96,5 +96,6 @@
     sopsFile = ../secrets/hermes-workspace.env;
     format = "dotenv";
     key = "";
+    restartUnits = ["podman-hermes-workspace-hermes-workspace.service"];
   };
 }
