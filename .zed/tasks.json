@@ -25,5 +25,10 @@
     },
     "label": "Open SOPS Encrypted file",
     "shell": "system"
+  },
+  {
+    "command": "nix flake update && cog commit -a flake.lock build 'update flake.lock'",
+    "hide": "on_success",
+    "label": "Update flake.lock"
   }
 ]
