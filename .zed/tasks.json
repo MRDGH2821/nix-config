@@ -27,7 +27,7 @@
     "shell": "system"
   },
   {
-    "command": "nix flake update && cog commit -a flake.lock build 'update flake.lock'",
+    "command": ".zed/update-flake.lock.sh",
     "hide": "on_success",
     "label": "Update flake.lock"
   }
