@@ -18,9 +18,9 @@ up:
 check:
     nix flake check
 
-# Update specific input, usage: make upp i=nixpkgs
-upp:
-    nix flake update $(i)
+# Update specific input, usage: just upp nixpkgs
+upp i="nixpkgs":
+    nix flake update {{i}}
 
 history:
     nix profile history --profile /nix/var/nix/profiles/system
