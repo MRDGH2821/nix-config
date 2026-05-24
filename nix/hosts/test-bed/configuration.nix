@@ -1,4 +1,4 @@
-{pkgs}: {
+{pkgs, ...}: {
   imports = [
     ../../system-modules/features/system-packages.nix
   ];
@@ -16,4 +16,5 @@
     hostName = "test-bed";
   };
   services.automatic-timezoned.enable = true;
+  system.stateVersion = "25.05";
 }

@@ -83,6 +83,16 @@
           sops-nix.nixosModules.sops
         ];
       };
+      test-bed = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit self sops-nix;
+        };
+        modules = [
+          ./nix/hosts/test-bed
+          sops-nix.nixosModules.sops
+        ];
+      };
     };
   };
 }
