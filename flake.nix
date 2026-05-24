@@ -47,6 +47,7 @@
         nil
         nixd
         nixfmt
+        nixos-anywhere
         nixos-cli.packages.${system}.default
         nixos-rebuild
         nixpkgs-fmt

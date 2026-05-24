@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+#
+# DEPRECATED — use `just provision` (nixos-anywhere) or `just home-lab` (remote deploy) instead.
+# Kept for reference; will be removed in a future commit.
+#
 
 # NixOS Anywhere deployment script
 # Set environment variables before running this script:
