@@ -13,8 +13,8 @@ Before running the deployment script, you need to set your target host IP addres
 #### Option 1: Environment Variables
 
 ```bash
-export TARGET_HOST=192.168.1.150  # Replace with your target server IP
-export TARGET_USER=root           # Optional, defaults to root
+export TARGET_HOST=192.168.1.150 # Replace with your target server IP
+export TARGET_USER=root          # Optional, defaults to root
 ```
 
 #### Option 2: Local Configuration File

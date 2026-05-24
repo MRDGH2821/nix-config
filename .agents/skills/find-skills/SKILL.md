@@ -29,7 +29,7 @@ The Skills CLI (`npx skills`) is the package manager for the open agent skills e
 - `npx skills check` - Check for skill updates
 - `npx skills update` - Update all installed skills
 
-**Browse skills at:** <https://skills.sh/>
+**Browse skills at:** https://skills.sh/
 
 ## How to Help Users Find Skills
 
@@ -83,7 +83,7 @@ When you find relevant skills, present them to the user with:
 
 Example response:
 
-```txt
+```
 I found a skill that might help! The "react-best-practices" skill provides
 React and Next.js performance optimization guidelines from Vercel Engineering.
 (185K installs)
@@ -99,7 +99,7 @@ Learn more: https://skills.sh/vercel-labs/agent-skills/react-best-practices
 If the user wants to proceed, you can install the skill for them:
 
 ```bash
-npx skills add <owner/repo@skill> -g -y
+npx skills add -y < owner/repo@skill > -g
 ```
 
 The `-g` flag installs globally (user-level) and `-y` skips confirmation prompts.
@@ -134,7 +134,7 @@ If no relevant skills exist:
 
 Example:
 
-```txt
+```
 I searched for skills related to "xyz" but didn't find any matches.
 I can still help you with this task directly! Would you like me to proceed?
 

@@ -39,25 +39,18 @@ priority = 1
 
 [formatter.prettier]
 command = "bunx"
-excludes = []
 # tombi: format.rules.array-values-order = "ascending"
-includes = [
-  "*.cjs",
-  "*.cts",
-  "*.js",
-  "*.json",
-  "*.jsonc",
-  "*.jsx",
-  "*.md",
-  "*.mjs",
-  "*.mts",
-  "*.toml",
-  "*.ts",
-  "*.tsx",
-  "*.yaml",
-  "*.yml"
+excludes = [
+  "*.*ignore",
+  "*.jinja",
+  "*.lock",
+  "*.nix",
+  "*.py",
+  "*txt",
+  "justfile"
 ]
-options = ["prettier", "--log-level", "debug", "--write"]
+includes = ["*"]
+options = ["prettier", "--log-level", "error", "--write"]
 priority = 100
 
 [formatter.prettypst-default]
@@ -88,13 +81,6 @@ includes = ["*.py"]
 options = ["ruff", "check", "--fix"]
 priority = 8
 
-[formatter.shfmt]
-command = "shfmt"
-# tombi: format.rules.array-values-order = "ascending"
-includes = ["*.sh", ".envrc"]
-options = ["--indent", "2"]
-priority = 1
-
 [formatter.sort-markdown-tables]
 command = "smt"
 includes = ["*.md"]
@@ -124,12 +110,6 @@ command = "typstyle"
 includes = ["*.typ"]
 options = ["-i"]
 priority = 1
-
-[formatter.xmllint]
-command = "xmllint"
-includes = ["*.xml"]
-options = ["--format"]
-priority = 0
 
 [formatter.yamlfix]
 command = "uvx"

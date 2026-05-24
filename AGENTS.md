@@ -14,7 +14,7 @@ Every AI session MUST produce a log entry in `.agents/logs/YYYY-MM-DD.md`. This 
 
 ```bash
 # Get today's filename
-date '+%Y-%m-%d'   # e.g. 2026-03-16
+date '+%Y-%m-%d' # e.g. 2026-03-16
 ```
 
 - If `.agents/logs/YYYY-MM-DD.md` does not exist → create it with the header:

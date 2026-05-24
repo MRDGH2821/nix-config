@@ -13,7 +13,7 @@ Create standardized, semantic git commits using the Conventional Commits specifi
 
 ## Conventional Commit Format
 
-```txt
+```
 <type>[optional scope]: <description>
 
 [optional body]
@@ -39,7 +39,7 @@ Create standardized, semantic git commits using the Conventional Commits specifi
 
 ## Breaking Changes
 
-```txt
+```
 # Exclamation mark after type/scope
 feat!: remove deprecated endpoint
 
@@ -97,7 +97,8 @@ Analyze the diff to determine:
 git commit -m "<type>[scope]: <description>"
 
 # Multi-line with body/footer
-git commit -m "$(cat <<'EOF'
+git commit -m "$(
+  cat << 'EOF'
 <type>[scope]: <description>
 
 <optional body>

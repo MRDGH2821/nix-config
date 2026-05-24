@@ -14,9 +14,28 @@
         "reorderKeys": true,
         "trailingComma": "none"
       }
+    },
+    {
+      "files": ["*.sh", "**/.envrc", "**/.envrc.**"],
+      "options": {
+        "parser": "sh",
+        "trailingComma": "none"
+      }
+    },
+    {
+      "files": ["*.ini"],
+      "options": {
+        "parser": "ini",
+        "trailingComma": "none"
+      }
     }
   ],
-  "plugins": ["prettier-plugin-toml"],
+  "plugins": [
+    "prettier-plugin-toml",
+    "@prettier/plugin-xml",
+    "prettier-plugin-sh",
+    "prettier-plugin-ini"
+  ],
   "tabWidth": 2,
   "trailingComma": "none",
   "useTabs": false
