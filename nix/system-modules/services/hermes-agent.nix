@@ -30,7 +30,16 @@ in {
     };
     stateDir = hermesStateDir;
     environmentFiles = [hermesEnvFile];
-    settings.model.default = "nvidia/nemotron-3-super-120b-a12b:free";
+    settings = {
+      custom_providers = [
+        {
+          name = "Aperture";
+          base_url = "http://remr-ai.tail1516fd.ts.net/v1";
+          model = "cursor/default";
+        }
+      ];
+      model.default = "cursor/default";
+    };
     extraPackages = with pkgs; [
       python313Packages.mautrix
       python313Packages.python-olm
