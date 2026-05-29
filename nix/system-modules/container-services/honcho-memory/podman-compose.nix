@@ -27,11 +27,8 @@
   # Containers
   virtualisation.oci-containers.containers."honcho-memory-api" = {
     image = "ghcr.io/plastic-labs/honcho:latest";
-    environmentFiles = [
-      "/etc/nixos/persist/.env"
-    ];
     ports = [
-      "127.0.0.1:8000:8000/tcp"
+      "8000:8000/tcp"
     ];
     log-driver = "journald";
     extraOptions = [
@@ -63,9 +60,6 @@
   };
   virtualisation.oci-containers.containers."honcho-memory-deriver" = {
     image = "ghcr.io/plastic-labs/honcho:latest";
-    environmentFiles = [
-      "/etc/nixos/persist/.env"
-    ];
     dependsOn = [
       "honcho-memory-api"
     ];

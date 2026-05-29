@@ -30,9 +30,7 @@ in {
   };
 
   systemd.services."podman-honcho-memory-deriver" = {
-    after = lib.mkAfter ["podman-honcho-memory-api.service"];
     requires = lib.mkAfter [
-      "podman-honcho-memory-api.service"
       "postgresql.service"
       "redis-honcho.service"
     ];
