@@ -18,8 +18,12 @@ config.local.sh
 .new
 .next
 .venv/
+/.cache_ggshield
 config
 megalinter-reports/
 node_modules
 node_modules/
 public
+
+# Added by ggshield
+.cache_ggshield
