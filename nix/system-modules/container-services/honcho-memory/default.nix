@@ -6,19 +6,33 @@
   autoImportLib = import ../../../mylib/auto-import.nix {inherit lib;};
 in {
   imports = autoImportLib.autoImportModules ./.;
-  virtualisation.oci-containers.containers."honcho-memory-api" = {
-    environmentFiles = [config.sops.secrets.honcho-memory.path];
-    environment = {
-      DB_CONNECTION_URI = "postgresql+psycopg://postgres:postgres@localhost:5432/postgres";
-      AUTH_USE_AUTH = true;
-      PORT = "3100";
-      CACHE_ENABLED = true;
-      CACHE_URL = "redis://localhost:6379/0?suppress=true";
-      VECTOR_STORE_TYPE = "pgvector";
-      LOG_LEVEL = "INFO";
+
+  sops.templates.honcho = {
+    content = ''
+      DB_CONNECTION_URI=postgresql+psycopg://postgres:postgres@localhost:5432/postgres
+      AUTH_USE_AUTH=true
+      # PORT=8000
+      CACHE_ENABLED=true
+      CACHE_URL=redis://localhost:6381/0?suppress=true
+      VECTOR_STORE_TYPE=pgvector
+      LOG_LEVEL=INFO
       # Migration flag: set to true when migration from pgvector is complete
-      VECTOR_STORE_MIGRATED = false;
-    };
+      VECTOR_STORE_MIGRATED=false
+    '';
+  };
+
+  virtualisation.oci-containers.containers."honcho-memory-api" = {
+    environmentFiles = [
+      config.sops.secrets.honcho-memory.path
+      config.sops.templates.honcho.path
+    ];
+  };
+
+  virtualisation.oci-containers.containers."honcho-memory-deriver" = {
+    environmentFiles = [
+      config.sops.secrets.honcho-memory.path
+      config.sops.templates.linkwarden.path
+    ];
   };
 
   systemd.services."podman-honcho-memory-api" = {
