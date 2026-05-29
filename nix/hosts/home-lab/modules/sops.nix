@@ -98,4 +98,14 @@
     key = "";
     restartUnits = ["podman-hermes-workspace-hermes-workspace.service"];
   };
+
+  sops.secrets.honcho-memory = {
+    sopsFile = ../secrets/honcho-memory.env;
+    format = "dotenv";
+    key = "";
+    restartUnits = [
+      "podman-honcho-memory-api.service"
+      "podman-honcho-memory-deriver.service"
+    ];
+  };
 }

@@ -1,0 +1,64 @@
+---
+name: honcho-memory
+# Honcho Docker Compose
+#
+# Usage:
+#   cp docker-compose.yml.example docker-compose.yml
+#   cp .env.template .env  # edit with your provider config
+#   docker compose up -d --build
+#
+# By default, ports are bound to 127.0.0.1 (localhost only).
+# For development, uncomment the source mounts and monitoring services below.
+services:
+  api:
+    # depends_on:
+    #   database:
+    #     condition: service_healthy
+    #   redis:
+    #     condition: service_healthy
+    env_file:
+      - path: .env
+        required: false
+    # -- Development: mount source for live reload --
+    # volumes:
+    #   - .:/app
+    #   - venv:/app/.venv
+    environment:
+      - DB_CONNECTION_URI=postgresql+psycopg://postgres:postgres@database:5432/postgres
+      - CACHE_URL=redis://redis:6379/0?suppress=true
+      - CACHE_ENABLED=true
+    healthcheck:
+      interval: 5s
+      retries: 5
+      start_period: 10s
+      test:
+        - CMD
+        - /app/.venv/bin/python
+        - -c
+        - import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2).read()
+      timeout: 5s
+    image: ghcr.io/plastic-labs/honcho:latest
+    ports:
+      - 8000:8000
+    restart: unless-stopped
+  deriver:
+    depends_on:
+      api:
+        condition: service_healthy
+    entrypoint:
+      - /app/.venv/bin/python
+      - -m
+      - src.deriver
+    env_file:
+      - path: .env
+        required: false
+    # -- Development: mount source for live reload --
+    # volumes:
+    #   - .:/app
+    #   - venv:/app/.venv
+    environment:
+      - DB_CONNECTION_URI=postgresql+psycopg://postgres:postgres@database:5432/postgres
+      - CACHE_URL=redis://redis:6379/0?suppress=true
+      - CACHE_ENABLED=true
+    image: ghcr.io/plastic-labs/honcho:latest
+    restart: unless-stopped
