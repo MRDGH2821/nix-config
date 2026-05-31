@@ -1,7 +1,7 @@
 {
+  pkgs,
   lib,
   config,
-  pkgs,
   ...
 }: let
   autoImportLib = import ../../../mylib/auto-import.nix {inherit lib;};
@@ -10,11 +10,11 @@ in {
 
   sops.templates.honcho = {
     content = ''
-      DB_CONNECTION_URI=postgresql+psycopg://honcho@host.containers.internal:5432/honcho
+      DB_CONNECTION_URI=postgresql+psycopg://honcho@localhost:5432/honcho
       AUTH_USE_AUTH=true
       # PORT=8000
       CACHE_ENABLED=true
-      CACHE_URL=redis://host.containers.internal:6381/0?suppress=true
+      CACHE_URL=redis://localhost:6381/0?suppress=true
       VECTOR_STORE_TYPE=pgvector
       LOG_LEVEL=INFO
       # Migration flag: set to true when migration from pgvector is complete
@@ -27,12 +27,6 @@ in {
       config.sops.secrets.honcho-memory.path
       config.sops.templates.honcho.path
     ];
-    extraOptions = [
-      # Resolve host.containers.internal to the gateway IP of the
-      # honcho-memory_default podman network, so containers can
-      # reach host services (PostgreSQL, Redis).
-      "--add-host=host.containers.internal:host-gateway"
-    ];
   };
 
   virtualisation.oci-containers.containers."honcho-memory-deriver" = {
@@ -40,21 +34,18 @@ in {
       config.sops.secrets.honcho-memory.path
       config.sops.templates.honcho.path
     ];
-    extraOptions = [
-      "--add-host=host.containers.internal:host-gateway"
-    ];
   };
 
   systemd.services."podman-honcho-memory-api" = {
-    before = lib.mkAfter ["hermes-agent.service"];
-    requires = lib.mkAfter [
+    requires = [
       "postgresql.service"
       "redis-honcho.service"
     ];
-    after = lib.mkAfter [
+    after = [
       "postgresql.service"
       "redis-honcho.service"
     ];
+
     serviceConfig = {
       Restart = "always";
       RestartSec = 5;
@@ -64,16 +55,8 @@ in {
   };
 
   systemd.services."podman-honcho-memory-deriver" = {
-    requires = lib.mkAfter [
-      "podman-honcho-memory-api.service"
-      "postgresql.service"
-      "redis-honcho.service"
-    ];
-    after = lib.mkAfter [
-      "podman-honcho-memory-api.service"
-      "postgresql.service"
-      "redis-honcho.service"
-    ];
+    requires = ["podman-honcho-memory-api.service"];
+    after = ["podman-honcho-memory-api.service"];
     serviceConfig = {
       Restart = "always";
       RestartSec = 5;
@@ -84,15 +67,12 @@ in {
 
   services.postgresql = {
     enable = true;
-    # Listen on all TCP interfaces so containers on the dynamically-created
-    # honcho-memory_default podman network can reach the host.
     enableTCPIP = true;
     extensions = [pkgs.postgresqlPackages.pgvector];
-    # Trust connections from any network for the honcho user — the
-    # honcho-memory_default podman network uses a dynamically allocated
-    # subnet, so we can't pin a specific CIDR in advance.
-    authentication = lib.mkOrder 400 ''
-      host honcho honcho 0.0.0.0/0 trust
+    authentication = ''
+      local all all trust
+      host all all 0.0.0.0/0 scram-sha-256
+      host all all ::/0 scram-sha-256
     '';
     ensureDatabases = ["honcho"];
     ensureUsers = [
@@ -105,9 +85,6 @@ in {
 
   services.redis.servers.honcho = {
     enable = true;
-    # Listen on all interfaces so containers on the dynamically-created
-    # honcho-memory_default podman network can reach the host.
-    # Default is 127.0.0.1 ::1 only, which the network can't reach.
     bind = null;
     openFirewall = true;
     port = 6381;
