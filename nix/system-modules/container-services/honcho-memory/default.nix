@@ -82,19 +82,6 @@ in {
     };
   };
 
-  systemd.services."podman-network-honcho-memory_default" = {
-    path = [pkgs.podman];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = "yes";
-      ExecStop = "podman network rm -f honcho-memory_default";
-    };
-    script = ''
-      podman network inspect honcho-memory_default || podman network create honcho-memory_default
-    '';
-    wantedBy = ["podman-honcho-memory-api.service"];
-  };
-
   services.postgresql = {
     enable = true;
     # Listen on all TCP interfaces so containers on the dynamically-created
