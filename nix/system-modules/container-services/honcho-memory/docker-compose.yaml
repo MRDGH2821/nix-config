@@ -13,8 +13,7 @@ services:
         - import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2).read()
       timeout: 5s
     image: ghcr.io/plastic-labs/honcho:latest
-    ports:
-      - 8000:8000
+    network_mode: host
     restart: unless-stopped
   deriver:
     depends_on:
@@ -25,4 +24,5 @@ services:
       - -m
       - src.deriver
     image: ghcr.io/plastic-labs/honcho:latest
+    network_mode: host
     restart: unless-stopped

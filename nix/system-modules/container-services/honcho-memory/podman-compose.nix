@@ -27,9 +27,6 @@
   # Containers
   virtualisation.oci-containers.containers."honcho-memory-api" = {
     image = "ghcr.io/plastic-labs/honcho:latest";
-    ports = [
-      "8000:8000/tcp"
-    ];
     log-driver = "journald";
     extraOptions = [
       "--health-cmd=[\"/app/.venv/bin/python\", \"-c\", \"import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2).read()\"]"
@@ -37,20 +34,13 @@
       "--health-retries=5"
       "--health-start-period=10s"
       "--health-timeout=5s"
-      "--network-alias=api"
-      "--network=honcho-memory_default"
+      "--network=host"
     ];
   };
   systemd.services."podman-honcho-memory-api" = {
     serviceConfig = {
       Restart = lib.mkOverride 90 "always";
     };
-    after = [
-      "podman-network-honcho-memory_default.service"
-    ];
-    requires = [
-      "podman-network-honcho-memory_default.service"
-    ];
     partOf = [
       "podman-compose-honcho-memory-root.target"
     ];
@@ -66,41 +56,19 @@
     log-driver = "journald";
     extraOptions = [
       "--entrypoint=[\"/app/.venv/bin/python\", \"-m\", \"src.deriver\"]"
-      "--network-alias=deriver"
-      "--network=honcho-memory_default"
+      "--network=host"
     ];
   };
   systemd.services."podman-honcho-memory-deriver" = {
     serviceConfig = {
       Restart = lib.mkOverride 90 "always";
     };
-    after = [
-      "podman-network-honcho-memory_default.service"
-    ];
-    requires = [
-      "podman-network-honcho-memory_default.service"
-    ];
     partOf = [
       "podman-compose-honcho-memory-root.target"
     ];
     wantedBy = [
       "podman-compose-honcho-memory-root.target"
     ];
-  };
-
-  # Networks
-  systemd.services."podman-network-honcho-memory_default" = {
-    path = [pkgs.podman];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      ExecStop = "podman network rm -f honcho-memory_default";
-    };
-    script = ''
-      podman network inspect honcho-memory_default || podman network create honcho-memory_default
-    '';
-    partOf = ["podman-compose-honcho-memory-root.target"];
-    wantedBy = ["podman-compose-honcho-memory-root.target"];
   };
 
   # Root service
