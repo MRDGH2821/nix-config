@@ -51,13 +51,48 @@ in {
       "postgresql.service"
       "redis-honcho.service"
     ];
+    after = lib.mkAfter [
+      "postgresql.service"
+      "redis-honcho.service"
+    ];
+    serviceConfig = {
+      Restart = "always";
+      RestartSec = 5;
+      StartLimitIntervalSec = 60;
+      StartLimitBurst = 3;
+    };
   };
 
   systemd.services."podman-honcho-memory-deriver" = {
     requires = lib.mkAfter [
+      "podman-honcho-memory-api.service"
       "postgresql.service"
       "redis-honcho.service"
     ];
+    after = lib.mkAfter [
+      "podman-honcho-memory-api.service"
+      "postgresql.service"
+      "redis-honcho.service"
+    ];
+    serviceConfig = {
+      Restart = "always";
+      RestartSec = 5;
+      StartLimitIntervalSec = 60;
+      StartLimitBurst = 3;
+    };
+  };
+
+  systemd.services."podman-network-honcho-memory_default" = {
+    path = [pkgs.podman];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = "yes";
+      ExecStop = "podman network rm -f honcho-memory_default";
+    };
+    script = ''
+      podman network inspect honcho-memory_default || podman network create honcho-memory_default
+    '';
+    wantedBy = ["podman-honcho-memory-api.service"];
   };
 
   services.postgresql = {
