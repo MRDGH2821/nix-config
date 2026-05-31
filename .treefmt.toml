@@ -42,9 +42,20 @@ command = "bunx"
 # tombi: format.rules.array-values-order = "ascending"
 excludes = [
   "*.*ignore",
+  "*.aac",
+  "*.docx",
   "*.jinja",
+  "*.jinja",
+  "*.jpg",
   "*.lock",
+  "*.lock",
+  "*.mp4",
   "*.nix",
+  "*.nix",
+  "*.pdf",
+  "*.png",
+  "*.pptx",
+  "*.py",
   "*.py",
   "*txt",
   "justfile"
