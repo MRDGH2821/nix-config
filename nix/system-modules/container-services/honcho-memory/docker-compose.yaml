@@ -2,23 +2,22 @@
 name: honcho-memory
 services:
   api:
-    healthcheck:
-      interval: 5s
-      retries: 5
-      start_period: 300s
-      test:
-        - CMD
-        - /app/.venv/bin/python
-        - -c
-        - import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2).read()
-      timeout: 5s
+    # healthcheck:
+    #   interval: 5s
+    #   retries: 5
+    #   start_period: 10s
+    #   test:
+    #     - CMD
+    #     - /app/.venv/bin/python
+    #     - -c
+    #     - import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2).read()
+    #   timeout: 5s
     image: ghcr.io/plastic-labs/honcho:latest
     network_mode: host
     restart: unless-stopped
   deriver:
     depends_on:
-      api:
-        condition: service_healthy
+      - api
     entrypoint:
       - /app/.venv/bin/python
       - -m

@@ -29,11 +29,6 @@
     image = "ghcr.io/plastic-labs/honcho:latest";
     log-driver = "journald";
     extraOptions = [
-      "--health-cmd=[\"/app/.venv/bin/python\", \"-c\", \"import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2).read()\"]"
-      "--health-interval=5s"
-      "--health-retries=5"
-      "--health-start-period=5m0s"
-      "--health-timeout=5s"
       "--network=host"
     ];
   };
