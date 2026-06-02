@@ -36,14 +36,32 @@ in {
     ];
   };
 
+  virtualisation.oci-containers.containers."honcho-memory-migrate" = {
+    environmentFiles = [
+      config.sops.secrets.honcho-memory.path
+      config.sops.templates.honcho.path
+    ];
+  };
+
+  systemd.services."podman-honcho-memory-migrate" = {
+    requires = [
+      "postgresql.service"
+    ];
+    after = [
+      "postgresql.service"
+    ];
+  };
+
   systemd.services."podman-honcho-memory-api" = {
     requires = [
       "postgresql.service"
       "redis-honcho.service"
+      "podman-honcho-memory-migrate.service"
     ];
     after = [
       "postgresql.service"
       "redis-honcho.service"
+      "podman-honcho-memory-migrate.service"
     ];
 
     serviceConfig = {
@@ -65,10 +83,18 @@ in {
     };
   };
 
+  # might need to create the extension manually
+  # systemd.services.postgresql.postStart = lib.mkAfter ''
+  #   psql -d honcho -c "CREATE EXTENSION IF NOT EXISTS vector;"
+  # '';
+
   services.postgresql = {
     enable = true;
     enableTCPIP = true;
     extensions = [pkgs.postgresqlPackages.pgvector];
+    initialScript = pkgs.writeText "init-honcho.sql" ''
+      CREATE EXTENSION IF NOT EXISTS vector;
+    '';
     authentication = ''
       local all all trust
       host all all 127.0.0.1/32 trust

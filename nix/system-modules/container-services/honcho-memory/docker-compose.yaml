@@ -5,7 +5,7 @@ services:
     healthcheck:
       interval: 5s
       retries: 5
-      start_period: 10s
+      start_period: 300s
       test:
         - CMD
         - /app/.venv/bin/python
@@ -26,3 +26,11 @@ services:
     image: ghcr.io/plastic-labs/honcho:latest
     network_mode: host
     restart: unless-stopped
+  migrate:
+    entrypoint:
+      - /app/.venv/bin/alembic
+      - upgrade
+      - head
+    image: ghcr.io/plastic-labs/honcho:latest
+    network_mode: host
+    restart: "no"

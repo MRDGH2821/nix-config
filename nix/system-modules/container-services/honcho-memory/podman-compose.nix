@@ -32,7 +32,7 @@
       "--health-cmd=[\"/app/.venv/bin/python\", \"-c\", \"import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2).read()\"]"
       "--health-interval=5s"
       "--health-retries=5"
-      "--health-start-period=10s"
+      "--health-start-period=5m0s"
       "--health-timeout=5s"
       "--network=host"
     ];
@@ -62,6 +62,25 @@
   systemd.services."podman-honcho-memory-deriver" = {
     serviceConfig = {
       Restart = lib.mkOverride 90 "always";
+    };
+    partOf = [
+      "podman-compose-honcho-memory-root.target"
+    ];
+    wantedBy = [
+      "podman-compose-honcho-memory-root.target"
+    ];
+  };
+  virtualisation.oci-containers.containers."honcho-memory-migrate" = {
+    image = "ghcr.io/plastic-labs/honcho:latest";
+    log-driver = "journald";
+    extraOptions = [
+      "--entrypoint=[\"/app/.venv/bin/alembic\", \"upgrade\", \"head\"]"
+      "--network=host"
+    ];
+  };
+  systemd.services."podman-honcho-memory-migrate" = {
+    serviceConfig = {
+      Restart = lib.mkOverride 90 "no";
     };
     partOf = [
       "podman-compose-honcho-memory-root.target"
