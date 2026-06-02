@@ -10,7 +10,7 @@ in {
 
   sops.templates.honcho = {
     content = ''
-      DB_CONNECTION_URI=postgresql+psycopg://honcho@localhost:5432/honcho
+      DB_CONNECTION_URI=postgresql+psycopg://honcho@/honcho?host=/run/postgresql
       AUTH_USE_AUTH=true
       # PORT=8000
       CACHE_ENABLED=true
@@ -27,6 +27,9 @@ in {
       config.sops.secrets.honcho-memory.path
       config.sops.templates.honcho.path
     ];
+    volumes = [
+      "/run/postgresql:/run/postgresql"
+    ];
   };
 
   virtualisation.oci-containers.containers."honcho-memory-deriver" = {
@@ -34,12 +37,18 @@ in {
       config.sops.secrets.honcho-memory.path
       config.sops.templates.honcho.path
     ];
+    volumes = [
+      "/run/postgresql:/run/postgresql"
+    ];
   };
 
   virtualisation.oci-containers.containers."honcho-memory-migrate" = {
     environmentFiles = [
       config.sops.secrets.honcho-memory.path
       config.sops.templates.honcho.path
+    ];
+    volumes = [
+      "/run/postgresql:/run/postgresql"
     ];
   };
 
@@ -94,13 +103,6 @@ in {
     extensions = [pkgs.postgresqlPackages.pgvector];
     initialScript = pkgs.writeText "init-honcho.sql" ''
       CREATE EXTENSION IF NOT EXISTS vector;
-    '';
-    authentication = ''
-      local all all trust
-      host all all 127.0.0.1/32 trust
-      host all all ::1/128 trust
-      host all all 0.0.0.0/0 scram-sha-256
-      host all all ::/0 scram-sha-256
     '';
     ensureDatabases = ["honcho"];
     ensureUsers = [
