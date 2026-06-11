@@ -36,11 +36,7 @@
     ];
     log-driver = "journald";
     extraOptions = [
-      "--health-cmd=[\"node\", \"healthcheck.mjs\"]"
-      "--health-interval=30s"
-      "--health-retries=3"
-      "--health-start-period=15s"
-      "--health-timeout=5s"
+      "--hostname=omniroute-web"
       "--network=host"
     ];
   };
