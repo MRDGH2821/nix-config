@@ -53,8 +53,8 @@ excludes = [
   "*.png",
   "*.pptx",
   "*.py",
+  "*.txt",
   "*.typ",
-  "*txt",
   "justfile"
 ]
 includes = ["*"]

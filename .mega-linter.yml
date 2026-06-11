@@ -1,22 +1,11 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/megalinter/megalinter/main/megalinter/descriptors/schemas/megalinter-configuration.jsonschema.json
+# all, none, or list of linter keys
+ACTION_ZIZMOR_UNSECURED_ENV_VARIABLES:
+  - GITHUB_TOKEN
 APPLY_FIXES: all
 CLEAR_REPORT_FOLDER: true
 DISABLE_LINTERS:
-  - REPOSITORY_KICS
   - REPOSITORY_DEVSKIM
   - TYPESCRIPT_STANDARD
 IGNORE_GITIGNORED_FILES: true
-JSON_PRETTIER_PRE_COMMANDS:
-  - command: npm i -g prettier-plugin-toml
-    continue_if_failed: true
-    cwd: root
-    secured_env: true
-    tag: default
 SHOW_ELAPSED_TIME: true
-YAML_PRETTIER_PRE_COMMANDS:
-  - command: npm i prettier-plugin-toml
-    continue_if_failed: true
-    cwd: root
-    secured_env: true
-    tag: default

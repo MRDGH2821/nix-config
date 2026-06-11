@@ -13,13 +13,21 @@ result-*
 config.local.sh
 
 # Ignore pangolin dirs
+.DS_Store
 .debug/
 .devenv
+.env.*
+!.env.sample
+.git
 .new
 .next
+.svn
 .venv/
 /.cache_ggshield
+__MACOSX
+__pycache__
 config
+dist/
 megalinter-reports/
 node_modules
 node_modules/
@@ -27,3 +35,4 @@ public
 
 # Added by ggshield
 .cache_ggshield
+target/

@@ -19,10 +19,14 @@
     ".vscode",
     ".zed",
     "git-agecrypt.toml",
+    "megalinter",
     "megalinter-reports",
-    "package-lock.json"
+    "package-lock.json",
+    "report"
   ],
-  "language": "en,en-GB,en-AU",
+  "language": "en,en-GB",
+  "language": "en,en-GB",
+  "noConfigSearch": true,
   "useGitignore": true,
   "version": "0.2",
   "words": [
@@ -30,6 +34,7 @@
     "aksiksi",
     "alam",
     "anthropics",
+    "artipacked",
     "authentik",
     "avahi",
     "bewcloud",
@@ -71,6 +76,7 @@
     "kiesman",
     "kirtan",
     "Kirtans",
+    "megalinter",
     "moreutils",
     "mrdgh",
     "mrtravelrouter",
@@ -92,6 +98,7 @@
     "ocis",
     "ollama",
     "otbs",
+    "oxsecurity",
     "pcloud",
     "pgadmin",
     "pgsql",
@@ -122,9 +129,11 @@
     "webui",
     "xhci",
     "yamlfix",
+    "yamlfix",
     "ZDOTDIR",
     "zimfw",
     "zimrc",
+    "zizmor",
     "zmodload",
     "zmodule"
   ]
