@@ -1,0 +1,23 @@
+---
+name: omniroute
+services:
+  omniroute-web:
+    container_name: omniroute-web
+    healthcheck:
+      interval: 30s
+      retries: 3
+      start_period: 15s
+      test:
+        - CMD
+        - node
+        - healthcheck.mjs
+      timeout: 5s
+    image: ghcr.io/diegosouzapw/omniroute:latest-web
+    network_mode: host
+    ports:
+      - 20128:20128
+      - 20129:20129
+    restart: unless-stopped
+    stop_grace_period: 40s
+    volumes:
+      - ./omniroute/app/data:/app/data

@@ -108,4 +108,13 @@
       "podman-honcho-memory-deriver.service"
     ];
   };
+
+  sops.secrets.omniroute = {
+    sopsFile = ../secrets/omniroute.env;
+    format = "dotenv";
+    key = "";
+    restartUnits = [
+      "podman-omniroute-web.service"
+    ];
+  };
 }
