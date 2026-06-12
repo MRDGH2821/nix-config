@@ -21,4 +21,6 @@ services:
     restart: unless-stopped
     stop_grace_period: 40s
     volumes:
-      - ./omniroute/app/data:/app/data
+      - omniroute:/app/data
+volumes:
+  omniroute:

@@ -28,7 +28,7 @@
   virtualisation.oci-containers.containers."omniroute-web" = {
     image = "ghcr.io/diegosouzapw/omniroute:latest-web";
     volumes = [
-      "/etc/nixos/persist/omniroute/app/data:/app/data:rw"
+      "omniroute_omniroute:/app/data:rw"
     ];
     ports = [
       "20128:20128/tcp"
@@ -44,12 +44,32 @@
     serviceConfig = {
       Restart = lib.mkOverride 90 "always";
     };
+    after = [
+      "podman-volume-omniroute_omniroute.service"
+    ];
+    requires = [
+      "podman-volume-omniroute_omniroute.service"
+    ];
     partOf = [
       "podman-compose-omniroute-root.target"
     ];
     wantedBy = [
       "podman-compose-omniroute-root.target"
     ];
+  };
+
+  # Volumes
+  systemd.services."podman-volume-omniroute_omniroute" = {
+    path = [pkgs.podman];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      podman volume inspect omniroute_omniroute || podman volume create omniroute_omniroute
+    '';
+    partOf = ["podman-compose-omniroute-root.target"];
+    wantedBy = ["podman-compose-omniroute-root.target"];
   };
 
   # Root service
