@@ -21,6 +21,7 @@ in {
         "${hermesStateDir}/current-package:/home/hermeswebui/.hermes/hermes-agent:ro"
         "${hermesStateDir}/workspace:/workspace:rw"
       ];
+      environmentFiles = [config.sops.secrets.hermes-webui.path];
     };
 
     systemd.services."podman-hermes-webui" = {

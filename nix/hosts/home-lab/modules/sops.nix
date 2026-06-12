@@ -103,4 +103,13 @@
       "podman-omniroute-web.service"
     ];
   };
+
+  sops.secrets.hermes-webui = {
+    sopsFile = ../secrets/hermes-webui.env;
+    format = "dotenv";
+    key = "";
+    restartUnits = [
+      "podman-hermes-webui.service"
+    ];
+  };
 }
