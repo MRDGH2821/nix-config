@@ -85,13 +85,6 @@
     restartUnits = ["hermes-agent.service"];
   };
 
-  sops.secrets.open-webui = {
-    sopsFile = ../secrets/open-webui.env;
-    format = "dotenv";
-    key = "";
-    restartUnits = ["open-webui.service"];
-  };
-
   sops.secrets.hermes-workspace = {
     sopsFile = ../secrets/hermes-workspace.env;
     format = "dotenv";
