@@ -10,11 +10,11 @@ sops file.yaml
 
 ### Hermes Agent
 
-Provider keys live in `hermes.env` (dotenv, encrypted with SOPS like the other `*.env` files). Enable the gateway API with `API_SERVER_ENABLED=true`; if you protect it with `API_SERVER_KEY`, the workspace cannot use `API_SERVER_KEY` as-is — Hermes Workspace reads `HERMES_API_TOKEN`. Set `HERMES_API_TOKEN` to the same value as `API_SERVER_KEY` in `hermes-workspace.env`. After editing `hermes.env`, `hermes-agent.service` is restarted via `sops.secrets.hermes-env.restartUnits`.
+Provider keys live in `hermes.env` (dotenv, encrypted with SOPS like the other `*.env` files). Enable the gateway API with `API_SERVER_ENABLED=true` so the WebUI can reach scheduled jobs and gateway health endpoints. After editing `hermes.env`, `hermes-agent.service` is restarted via `sops.secrets.hermes-env.restartUnits`.
 
-### Hermes Workspace
+### Hermes WebUI
 
-`hermes-workspace.env` (see `sops.secrets.hermes-workspace`) holds optional overrides such as `HERMES_PASSWORD` and `HERMES_API_TOKEN`. The workspace container runs with **host networking**, so Nix injects `HERMES_API_URL`/`HERMES_DASHBOARD_URL` as `http://127.0.0.1:8642` and `http://127.0.0.1:9119` plus `PORT=3100`. After editing secrets, `podman-hermes-workspace-hermes-workspace.service` restarts via `sops.secrets.hermes-workspace.restartUnits`.
+The WebUI container (`podman-hermes-webui.service`) shares the agent's `HERMES_HOME` at `${persistent_storage}/hermes-agent/.hermes`, mounts the Nix-built agent package at `current-package` for dependency install, and uses **host networking** so `HERMES_WEBUI_GATEWAY_BASE_URL` reaches the gateway on `http://127.0.0.1:8642`. The agent serves the dashboard on port `9119` via `HERMES_DASHBOARD_HOST` / `HERMES_DASHBOARD_PORT` in `hermes-agent.nix`. Chat UI listens on port `8787`. Optional remote access password: set `HERMES_WEBUI_PASSWORD` in the container `environment` block in `hermes-webui/default.nix` or add a SOPS-backed `environmentFiles` entry.
 
 ## git-agecrypt
 

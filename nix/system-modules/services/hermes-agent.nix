@@ -30,6 +30,10 @@ in {
     };
     stateDir = hermesStateDir;
     environmentFiles = [hermesEnvFile];
+    environment = {
+      HERMES_DASHBOARD_HOST = "0.0.0.0";
+      HERMES_DASHBOARD_PORT = "9119";
+    };
     settings = {
       custom_providers = [
         {
