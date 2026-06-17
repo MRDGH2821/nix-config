@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  # lib,
-  ...
-}: let
+{config, ...}: let
   hermesStateDir = "${config.persistent_storage}/hermes-agent";
   hermesEnvFile = config.sops.secrets.hermes-env.path;
 in {
@@ -30,36 +25,5 @@ in {
     };
     stateDir = hermesStateDir;
     environmentFiles = [hermesEnvFile];
-    environment = {
-      HERMES_DASHBOARD_HOST = "0.0.0.0";
-      HERMES_DASHBOARD_PORT = "9119";
-    };
-    settings = {
-      custom_providers = [
-        {
-          name = "Aperture";
-          base_url = "http://remr-ai.tail1516fd.ts.net/v1";
-          model = "cursor/default";
-        }
-      ];
-      model.default = "cursor/default";
-    };
-    extraPackages = with pkgs; [
-      python313Packages.mautrix
-      python313Packages.python-olm
-      olm
-    ];
   };
-  # environment.systemPackages = with pkgs; [
-  # ];
-  # systemd.services.hermes-dashboard = {
-  #   after = ["hermes-agent.service"];
-  #   serviceConfig = {
-  #     EnvironmentFiles = [hermesEnvFile];
-  #     ExecStart = "${lib.getExe config.services.hermes-agent.package} dashboard";
-  #   };
-  # };
-  nixpkgs.config.permittedInsecurePackages = [
-    "olm-3.2.16"
-  ];
 }
