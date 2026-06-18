@@ -26,7 +26,7 @@
 
   # Containers
   virtualisation.oci-containers.containers."honcho-memory-api" = {
-    image = "ghcr.io/plastic-labs/honcho:latest";
+    image = "ghcr.io/plastic-labs/honcho:v3.0.10";
     log-driver = "journald";
     extraOptions = [
       "--network=host"
@@ -44,7 +44,7 @@
     ];
   };
   virtualisation.oci-containers.containers."honcho-memory-deriver" = {
-    image = "ghcr.io/plastic-labs/honcho:latest";
+    image = "ghcr.io/plastic-labs/honcho:v3.0.10";
     dependsOn = [
       "honcho-memory-api"
     ];
@@ -66,7 +66,7 @@
     ];
   };
   virtualisation.oci-containers.containers."honcho-memory-migrate" = {
-    image = "ghcr.io/plastic-labs/honcho:latest";
+    image = "ghcr.io/plastic-labs/honcho:v3.0.10";
     log-driver = "journald";
     extraOptions = [
       "--entrypoint=[\"/app/.venv/bin/alembic\", \"upgrade\", \"head\"]"

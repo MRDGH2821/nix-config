@@ -26,7 +26,7 @@
 
   # Containers
   virtualisation.oci-containers.containers."omni-tools" = {
-    image = "iib0011/omni-tools:latest";
+    image = "iib0011/omni-tools:0.6.0";
     ports = [
       "3081:80/tcp"
     ];

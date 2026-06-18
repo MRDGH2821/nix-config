@@ -26,7 +26,7 @@
 
   # Containers
   virtualisation.oci-containers.containers."omniroute-web" = {
-    image = "ghcr.io/diegosouzapw/omniroute:latest-web";
+    image = "ghcr.io/diegosouzapw/omniroute:3.8.28-web";
     volumes = [
       "omniroute_omniroute:/app/data:rw"
     ];
