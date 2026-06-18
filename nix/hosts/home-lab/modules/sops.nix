@@ -19,6 +19,7 @@
   sops.secrets.letsEncryptEmail = {};
   sops.secrets.smtpEmail = {};
   sops.secrets.smtpPassword = {};
+  sops.secrets.searxngSecret = {};
 
   # sops.secrets.peertubeSmtpPassword = {
   #   owner = "peertube";
