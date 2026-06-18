@@ -10,7 +10,7 @@ repos:
         stages:
           - pre-commit
     repo: https://github.com/gitguardian/ggshield
-    rev: v1.51.0
+    rev: v1.52.2
   - hooks:
       - args:
           - --fail-on-change
@@ -39,7 +39,7 @@ repos:
         stages:
           - commit-msg
     repo: https://github.com/streetsidesoftware/cspell-cli
-    rev: v10.0.0
+    rev: v10.0.1
   - hooks:
       # Prevent committing inline conflict markers
       - args:

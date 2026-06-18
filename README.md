@@ -33,3 +33,7 @@ Once configured, you can run the deployment commands:
 # Run the deployment script
 ./nix-cmds.sh
 ```
+
+## Licence
+
+See [LICENCE](./LICENCE.txt)
