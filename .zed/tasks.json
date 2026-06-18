@@ -1,20 +1,20 @@
 [
   {
     "allow_concurrent_runs": false,
-    "args": [
-      "-include_env_files=true",
-      "-env_files_only=true",
-      "-inputs",
-      "$ZED_FILE",
-      "-output",
-      "podman-compose.nix",
-      "-root_path",
-      "/etc/nixos/persist/"
-    ],
-    "command": "compose2nix",
-    "cwd": "$ZED_DIRNAME",
+    "args": ["$ZED_FILE"],
+    "command": ".zed/c2n.sh",
+    "cwd": "$ZED_WORKTREE_ROOT",
     "hide": "on_success",
     "label": "Generate podman-compose.nix",
+    "shell": "system"
+  },
+  {
+    "allow_concurrent_runs": false,
+    "args": ["$ZED_WORKTREE_ROOT"],
+    "command": ".zed/c2n.sh",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "hide": "never",
+    "label": "Generate all podman-compose.nix",
     "shell": "system"
   },
   {
