@@ -1,7 +1,7 @@
 {config, ...}: {
   sops.templates."searxng.env" = {
     content = ''
-      SEARX_SECRET_KEY=${config.sops.placeholder.searxngSecret}
+      SEARXNG_SECRET=${config.sops.placeholder.searxngSecret}
     '';
   };
   services.searx = {
@@ -13,7 +13,7 @@
     settings = {
       server = {
         port = 7000;
-        secret_key = "$SEARX_SECRET_KEY";
+        secret_key = "$SEARXNG_SECRET";
       };
     };
   };
