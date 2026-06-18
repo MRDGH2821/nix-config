@@ -19,7 +19,6 @@
   sops.secrets.letsEncryptEmail = {};
   sops.secrets.smtpEmail = {};
   sops.secrets.smtpPassword = {};
-  sops.secrets.searxngSecret = {};
 
   # sops.secrets.peertubeSmtpPassword = {
   #   owner = "peertube";
@@ -103,5 +102,11 @@
     restartUnits = [
       "podman-omniroute-web.service"
     ];
+  };
+
+  sops.secrets.searxng = {
+    sopsFile = ../secrets/searxng.env;
+    format = "dotenv";
+    key = "";
   };
 }
