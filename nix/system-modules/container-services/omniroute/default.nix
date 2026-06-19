@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -33,6 +34,11 @@ in {
       # HOSTNAME = "0.0.0.0";
       DATA_DIR = "/app/data";
     };
+    volumes = lib.mkAfter [
+      "${pkgs.tailscale}:${pkgs.tailscale}:ro"
+      "${pkgs.tailscale}/bin/tailscale:/usr/local/bin/tailscale:ro"
+      "${pkgs.tailscale}/bin/tailscaled:/usr/local/bin/tailscaled:ro"
+    ];
   };
 
   services.redis.servers.omniroute = {
