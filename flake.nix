@@ -2,20 +2,22 @@
   description = "NixOS Homelab Configuration with Development Environment";
   inputs = {
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
-    alejandra.url = "github:kamadorueda/alejandra/4.0.0";
+    alejandra.url = "github:kamadorueda/alejandra";
     authentik-nix.url = "github:nix-community/authentik-nix";
     compose2nix.inputs.nixpkgs.follows = "nixpkgs";
     compose2nix.url = "github:aksiksi/compose2nix";
     hermes-agent.inputs.nixpkgs.follows = "nixpkgs";
     hermes-agent.url = "github:NousResearch/hermes-agent";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
+    hyprland.url = "github:hyprwm/Hyprland";
     nixos-cli.url = "github:nix-community/nixos-cli";
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = inputs@{
+  outputs = inputs @ {
     self,
     nixpkgs,
     alejandra,
@@ -23,6 +25,7 @@
     compose2nix,
     hermes-agent,
     home-manager,
+    hyprland,
     nixos-cli,
     sops-nix,
   }: let
