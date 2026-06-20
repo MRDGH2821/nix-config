@@ -21,7 +21,7 @@
   sops.secrets.smtpPassword = {};
   sops.secrets.forgejo-runner-default = {
     sopsFile = ../secrets/forgejo-runner.yaml;
-    key = "forgejo.default";
+    key = "default";
     restartUnits = ["gitea-runner-default.service"];
   };
 
