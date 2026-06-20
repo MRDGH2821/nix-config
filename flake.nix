@@ -8,19 +8,21 @@
     compose2nix.url = "github:aksiksi/compose2nix";
     hermes-agent.inputs.nixpkgs.follows = "nixpkgs";
     hermes-agent.url = "github:NousResearch/hermes-agent";
+    home-manager.url = "github:nix-community/home-manager";
+    nixos-cli.url = "github:nix-community/nixos-cli";
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
-    nixos-cli.url = "github:nix-community/nixos-cli";
   };
 
-  outputs = {
+  outputs = inputs@{
     self,
     nixpkgs,
     alejandra,
     authentik-nix,
     compose2nix,
     hermes-agent,
+    home-manager,
     nixos-cli,
     sops-nix,
   }: let
@@ -82,6 +84,13 @@
           authentik-nix.nixosModules.default
           hermes-agent.nixosModules.default
           sops-nix.nixosModules.sops
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.users.mr-nix = ./nix/hosts/home-lab/home;
+          }
         ];
       };
       test-bed = nixpkgs.lib.nixosSystem {
