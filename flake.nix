@@ -41,7 +41,6 @@
         compose2nix.packages.${system}.default
         git-agecrypt
         just
-        just-formatter
         just-lsp
         lazygit
         libxml2
