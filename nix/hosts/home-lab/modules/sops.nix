@@ -19,11 +19,6 @@
   sops.secrets.letsEncryptEmail = {};
   sops.secrets.smtpEmail = {};
   sops.secrets.smtpPassword = {};
-  sops.secrets.forgejo-runner-default = {
-    sopsFile = ../secrets/forgejo-runner.yaml;
-    key = "default";
-    restartUnits = ["gitea-runner-default.service"];
-  };
 
   # sops.secrets.peertubeSmtpPassword = {
   #   owner = "peertube";
@@ -111,6 +106,12 @@
 
   sops.secrets.searxng = {
     sopsFile = ../secrets/searxng.env;
+    format = "dotenv";
+    key = "";
+  };
+
+  sops.secrets.fjr-default = {
+    sopsFile = ../secrets/fjr-default.env;
     format = "dotenv";
     key = "";
   };
