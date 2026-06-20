@@ -1,12 +1,19 @@
-{inputs, pkgs, ...}:{
+{
+  inputs,
+  pkgs,
+  ...
+}: let
+  hypr-pkgs = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
+  hypr-plugins = inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system};
+in {
   wayland.windowManager.hyprland = {
     enable = true;
     # set the flake package
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package = hypr-pkgs.hyprland;
     portalPackage =
-      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      hypr-pkgs.xdg-desktop-portal-hyprland;
     plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars
+      hypr-plugins.hyprbars
     ];
   };
 }
