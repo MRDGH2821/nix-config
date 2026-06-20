@@ -17,6 +17,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
+    hyprnix.url = "github:hyprland-community/hyprnix";
   };
 
   outputs = inputs @ {
@@ -29,6 +30,7 @@
     home-manager,
     hyprland,
     hyprland-plugins,
+    hyprnix,
     nixos-cli,
     sops-nix,
   }: let
@@ -93,6 +95,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "hm-backup";
             home-manager.extraSpecialArgs = {inherit inputs;};
             home-manager.users.mr-nix = ./nix/hosts/home-lab/home;
           }

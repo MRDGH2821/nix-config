@@ -10,10 +10,13 @@ in {
     enable = true;
     # set the flake package
     package = hypr-pkgs.hyprland;
-    portalPackage =
-      hypr-pkgs.xdg-desktop-portal-hyprland;
+    portalPackage = hypr-pkgs.xdg-desktop-portal-hyprland;
     plugins = [
       hypr-plugins.hyprbars
     ];
+
+    systemd.variables = ["--all"];
+    reloadConfig = true;
+    systemdIntegration = true;
   };
 }
