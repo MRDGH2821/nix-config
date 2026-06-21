@@ -90,7 +90,7 @@
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "hm-backup";
             home-manager.extraSpecialArgs = {inherit inputs;};
-            home-manager.users.mr-nix = ./nix/hosts/home-lab/home;
+            home-manager.users.mr-nix = ./nix/home-modules;
           }
         ];
       };
