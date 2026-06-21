@@ -1,7 +1,5 @@
-{lib, ...}: let
-  autoImportLib = import ../../mylib/auto-import.nix {inherit lib;};
-in {
-  imports = autoImportLib.autoImportFolders ./.;
+{mylib, ...}: {
+  imports = mylib.autoImportFolders ./.;
   networking.firewall = {
     extraCommands = "
       iptables -I nixos-fw 1 -i br+ -j ACCEPT

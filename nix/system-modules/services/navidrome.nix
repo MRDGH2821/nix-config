@@ -2,9 +2,10 @@
   config,
   lib,
   pkgs,
+  mylibFor,
   ...
 }: let
-  mylib = import ../../mylib/rclone-mounts.nix {inherit pkgs lib config;};
+  mylib = mylibFor {inherit pkgs lib config;};
   rclone-navidrome = "/mnt/rclone/navidrome";
   mount-options = "ro";
   music-folder = mylib.rcloneMount {

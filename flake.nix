@@ -28,6 +28,9 @@
     sops-nix,
   }: let
     system = "x86_64-linux";
+    mylibPath = ./nix/mylib;
+    mylibFor = args: import mylibPath args;
+    mylib = import (mylibPath + "/auto-import.nix") {lib = nixpkgs.lib;};
     pkgs = import nixpkgs {
       inherit system;
     };
@@ -77,6 +80,9 @@
             authentik-nix
             hermes-agent
             sops-nix
+            mylib
+            mylibPath
+            mylibFor
             ;
         };
         modules = [
@@ -89,7 +95,14 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "hm-backup";
-            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.extraSpecialArgs = {
+              inherit
+                inputs
+                mylib
+                mylibPath
+                mylibFor
+                ;
+            };
             home-manager.users.mr-nix = ./nix/home-modules;
           }
         ];
@@ -97,7 +110,13 @@
       test-bed = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
-          inherit self sops-nix;
+          inherit
+            self
+            sops-nix
+            mylib
+            mylibPath
+            mylibFor
+            ;
         };
         modules = [
           ./nix/hosts/test-bed
