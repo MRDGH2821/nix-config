@@ -10,14 +10,10 @@
     hermes-agent.url = "github:NousResearch/hermes-agent";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
-    hyprland-plugins.inputs.hyprland.follows = "hyprland";
-    hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
-    hyprland.url = "github:hyprwm/Hyprland";
     nixos-cli.url = "github:nix-community/nixos-cli";
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
-    hyprnix.url = "github:hyprland-community/hyprnix";
   };
 
   outputs = inputs @ {
@@ -28,9 +24,6 @@
     compose2nix,
     hermes-agent,
     home-manager,
-    hyprland,
-    hyprland-plugins,
-    hyprnix,
     nixos-cli,
     sops-nix,
   }: let
