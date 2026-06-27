@@ -34,6 +34,21 @@ Once configured, you can run the deployment commands:
 ./nix-cmds.sh
 ```
 
+### Secrets
+
+Sensitive values are managed with [SOPS](https://github.com/getsops/sops) and
+[git-agecrypt](https://github.com/bartei/git-agecrypt). After cloning, register
+your age or SSH identity and re-checkout encrypted files:
+
+```bash
+direnv allow
+git-agecrypt config add -i ~/.config/age/your-key.txt
+git checkout -- nix/hosts/home-lab/secrets/agecrypt/
+```
+
+See [nix/hosts/home-lab/secrets/README.md](./nix/hosts/home-lab/secrets/README.md)
+for full setup, viewing commands, and troubleshooting.
+
 ## Licence
 
 See [LICENCE](./LICENCE.txt)
