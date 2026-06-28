@@ -13,7 +13,7 @@ services:
     #     - node
     #     - healthcheck.mjs
     #   timeout: 5s
-    image: ghcr.io/diegosouzapw/omniroute:3.8.29-web
+    image: ghcr.io/diegosouzapw/omniroute:3.8.39-web
     network_mode: host
     ports:
       - 20128:20128
