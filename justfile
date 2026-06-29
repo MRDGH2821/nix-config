@@ -20,7 +20,7 @@ check:
 
 # Update specific input, usage: just upp nixpkgs
 upp i="nixpkgs":
-    nix flake update {{i}}
+    nix flake update {{ i }}
 
 history:
     nix profile history --profile /nix/var/nix/profiles/system

@@ -359,8 +359,9 @@ Available Zed tasks: `compose2nix` (generate podman-compose.nix), `sops` (edit e
 - List all imports at the top of modules
 - Use relative paths for local imports: `./related-module.nix`
 - Reference `config`, `pkgs`, `lib` via module parameters
-- Access custom library functions from `nix/mylib/` (auto-imported via flake)
-- Import library functions in `let` bindings: `let dmb = config.mylib; in`
+- Access custom library functions from `nix/mylib/` via flake `specialArgs`:
+  - `mylib` — auto-import helpers (`autoImportModules`, `autoImportFolders`)
+  - `mylibFor { inherit pkgs lib config; }` — full library including `rcloneMount`, `mkSubdomain`, `mkUrl`
 
 ### Type Definitions & Options
 
@@ -455,10 +456,10 @@ Configuration in `.vscode/` for cross-editor support (Zed recommended)
 
 - `nix/hosts/home-lab/` - Primary homelab configuration
 - `nix/hosts/test-bed/` - Test environment
-- `nix/modules/services/` - NixOS service configurations
-- `nix/modules/container-services/` - Podman/Docker definitions
-- `nix/modules/features/` - Feature toggles (SSH, git, direnv, etc.)
-- `nix/modules/shell/` - Shell setup (zsh, zimfw, aliases)
+- `nix/system-modules/services/` - NixOS service configurations
+- `nix/system-modules/container-services/` - Podman/Docker definitions
+- `nix/system-modules/features/` - Feature toggles (SSH, git, direnv, etc.)
+- `nix/system-modules/shell/` - Shell setup (zsh, zimfw, aliases)
 - `nix/mylib/` - Custom library functions
 
 ### Root Configuration

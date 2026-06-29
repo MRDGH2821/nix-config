@@ -37,6 +37,11 @@ command = "nixfmt"
 includes = ["*.nix"]
 priority = 1
 
+[formatter.nixpkgs-fmt]
+command = "nixpkgs-fmt"
+includes = ["*.nix"]
+priority = 5
+
 [formatter.prettier]
 command = "bunx"
 # tombi: format.rules.array-values-order = "ascending"

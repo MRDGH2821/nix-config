@@ -7,7 +7,7 @@
     package = pkgs.forgejo-runner;
     instances = {
       default = {
-        enable = true;
+        enable = false;
         name = "default";
         url = "https://git.${config.networking.baseDomain}";
         tokenFile = config.sops.secrets.fjr-default.path;

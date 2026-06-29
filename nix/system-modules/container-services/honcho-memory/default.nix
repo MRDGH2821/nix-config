@@ -2,11 +2,10 @@
   pkgs,
   lib,
   config,
+  mylib,
   ...
-}: let
-  autoImportLib = import ../../../mylib/auto-import.nix {inherit lib;};
-in {
-  imports = autoImportLib.autoImportModules ./.;
+}: {
+  imports = mylib.autoImportModules ./.;
 
   sops.templates.honcho = {
     content = ''
