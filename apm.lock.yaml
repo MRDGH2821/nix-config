@@ -1,0 +1,24 @@
+---
+apm_version: 0.24.1
+dependencies:
+  - content_hash: sha256:0eb0fe4d0dd8b4d1e5c99e2a6103bb679e6ba54d90886b8423b93091014a8d88
+    host: github.com
+    name: awesome-copilot
+    package_type: skill_bundle
+    repo_url: github/awesome-copilot
+    resolved_commit: 30472ecf0fe34cc561df958c08501ecc5ca80ea4
+    skill_subset:
+      - git-commit
+    version: unknown
+  - content_hash: sha256:da9027bce1018aab91d6f4582683107511774979a6db8b80435d03d9e9de334b
+    host: github.com
+    name: skills
+    package_type: skill_bundle
+    repo_url: vercel-labs/skills
+    resolved_commit: 2adcfe5a4cce0ce5f4d5547a997b2a161ec5d127
+    resolved_ref: v1.5.14
+    skill_subset:
+      - find-skills
+    version: unknown
+generated_at: "2026-07-11T08:59:42.026134+00:00"
+lockfile_version: "1"

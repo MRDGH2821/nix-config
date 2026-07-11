@@ -4,7 +4,8 @@
 result
 result-*
 
-# Ignore automatically generated direnv output
+# Ignore automatically generated files & folders
+*.ccu
 .direnv
 
 # Ignore local configuration files containing sensitive information
@@ -36,3 +37,6 @@ public
 # Added by ggshield
 .cache_ggshield
 target/
+
+# APM dependencies
+apm_modules/

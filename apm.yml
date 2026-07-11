@@ -1,0 +1,19 @@
+---
+author: MRDGH2821
+dependencies:
+  apm:
+    - git: vercel-labs/skills
+      ref: v1.5.14
+      skills:
+        - find-skills
+    - git: github/awesome-copilot
+      skills:
+        - git-commit
+  mcp: []
+includes: auto
+name: nix-config
+scripts: {}
+targets:
+  - cursor
+  - opencode
+version: 0.27.1
