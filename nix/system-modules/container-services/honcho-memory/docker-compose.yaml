@@ -12,7 +12,7 @@ services:
     #     - -c
     #     - import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2).read()
     #   timeout: 5s
-    image: ghcr.io/plastic-labs/honcho:v3.0.11
+    image: ghcr.io/plastic-labs/honcho:v3.0.12
     network_mode: host
     restart: unless-stopped
   deriver:
@@ -22,7 +22,7 @@ services:
       - /app/.venv/bin/python
       - -m
       - src.deriver
-    image: ghcr.io/plastic-labs/honcho:v3.0.11
+    image: ghcr.io/plastic-labs/honcho:v3.0.12
     network_mode: host
     restart: unless-stopped
   migrate:
@@ -30,6 +30,6 @@ services:
       - /app/.venv/bin/alembic
       - upgrade
       - head
-    image: ghcr.io/plastic-labs/honcho:v3.0.11
+    image: ghcr.io/plastic-labs/honcho:v3.0.12
     network_mode: host
     restart: "no"
