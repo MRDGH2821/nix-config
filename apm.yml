@@ -22,4 +22,5 @@ scripts: {}
 targets:
   - cursor
   - opencode
+  - claude
 version: 0.27.1

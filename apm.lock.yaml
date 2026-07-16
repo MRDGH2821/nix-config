@@ -1,7 +1,15 @@
 ---
-apm_version: 0.24.1
+apm_version: 0.25.0
 dependencies:
   - content_hash: sha256:0eb0fe4d0dd8b4d1e5c99e2a6103bb679e6ba54d90886b8423b93091014a8d88
+    deployed_file_hashes:
+      .agents/skills/git-commit/SKILL.md: sha256:554d1a3c6d95f15bc1170160659ecdc9a9958b64f377f3988941b672c249b13f
+      .claude/skills/git-commit/SKILL.md: sha256:554d1a3c6d95f15bc1170160659ecdc9a9958b64f377f3988941b672c249b13f
+    deployed_files:
+      - .agents/skills/git-commit
+      - .agents/skills/git-commit/SKILL.md
+      - .claude/skills/git-commit
+      - .claude/skills/git-commit/SKILL.md
     host: github.com
     name: awesome-copilot
     package_type: skill_bundle
@@ -11,6 +19,14 @@ dependencies:
       - git-commit
     version: unknown
   - content_hash: sha256:da9027bce1018aab91d6f4582683107511774979a6db8b80435d03d9e9de334b
+    deployed_file_hashes:
+      .agents/skills/find-skills/SKILL.md: sha256:deddc03b4b5f50755b97fcdb737a786676992ef7e9be614d2cd2c71e0320bebf
+      .claude/skills/find-skills/SKILL.md: sha256:deddc03b4b5f50755b97fcdb737a786676992ef7e9be614d2cd2c71e0320bebf
+    deployed_files:
+      - .agents/skills/find-skills
+      - .agents/skills/find-skills/SKILL.md
+      - .claude/skills/find-skills
+      - .claude/skills/find-skills/SKILL.md
     host: github.com
     name: skills
     package_type: skill_bundle
@@ -21,6 +37,87 @@ dependencies:
       - find-skills
     version: unknown
 deployments:
+  - active_owner: vercel-labs/skills
+    content_hash:
+    kind: project-relative
+    owners:
+      - vercel-labs/skills
+    runtime:
+    scope: project
+    target: agents
+    value: .agents/skills/find-skills
+  - active_owner: vercel-labs/skills
+    content_hash: sha256:deddc03b4b5f50755b97fcdb737a786676992ef7e9be614d2cd2c71e0320bebf
+    kind: project-relative
+    owners:
+      - vercel-labs/skills
+    runtime:
+    scope: project
+    target: agents
+    value: .agents/skills/find-skills/SKILL.md
+  - active_owner: github/awesome-copilot
+    content_hash:
+    kind: project-relative
+    owners:
+      - github/awesome-copilot
+    runtime:
+    scope: project
+    target: agents
+    value: .agents/skills/git-commit
+  - active_owner: github/awesome-copilot
+    content_hash: sha256:554d1a3c6d95f15bc1170160659ecdc9a9958b64f377f3988941b672c249b13f
+    kind: project-relative
+    owners:
+      - github/awesome-copilot
+    runtime:
+    scope: project
+    target: agents
+    value: .agents/skills/git-commit/SKILL.md
+  - active_owner: vercel-labs/skills
+    content_hash:
+    kind: project-relative
+    owners:
+      - vercel-labs/skills
+    runtime:
+    scope: project
+    target: claude
+    value: .claude/skills/find-skills
+  - active_owner: vercel-labs/skills
+    content_hash: sha256:deddc03b4b5f50755b97fcdb737a786676992ef7e9be614d2cd2c71e0320bebf
+    kind: project-relative
+    owners:
+      - vercel-labs/skills
+    runtime:
+    scope: project
+    target: claude
+    value: .claude/skills/find-skills/SKILL.md
+  - active_owner: github/awesome-copilot
+    content_hash:
+    kind: project-relative
+    owners:
+      - github/awesome-copilot
+    runtime:
+    scope: project
+    target: claude
+    value: .claude/skills/git-commit
+  - active_owner: github/awesome-copilot
+    content_hash: sha256:554d1a3c6d95f15bc1170160659ecdc9a9958b64f377f3988941b672c249b13f
+    kind: project-relative
+    owners:
+      - github/awesome-copilot
+    runtime:
+    scope: project
+    target: claude
+    value: .claude/skills/git-commit/SKILL.md
+  - active_owner: .
+    content_hash:
+    kind: uri
+    owners:
+      - .
+    runtime: claude
+    scope: project
+    target: mcp
+    value: nixos
   - active_owner: .
     content_hash:
     kind: uri
@@ -39,7 +136,7 @@ deployments:
     scope: project
     target: mcp
     value: nixos
-generated_at: "2026-07-16T11:11:13.453071+00:00"
+generated_at: "2026-07-16T22:19:04.970629+00:00"
 lockfile_version: "1"
 mcp_configs:
   nixos:
@@ -52,6 +149,8 @@ mcp_configs:
 mcp_servers:
   - nixos
 mcp_target_servers:
+  claude:
+    - nixos
   cursor:
     - nixos
   opencode:
