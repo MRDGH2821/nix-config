@@ -115,4 +115,11 @@
     format = "dotenv";
     key = "";
   };
+
+  sops.secrets.glr-an = {
+    sopsFile = ../secrets/glr-an.env;
+    format = "dotenv";
+    key = "";
+    restartUnits = ["gitlab-runner.service"];
+  };
 }
