@@ -9,7 +9,13 @@ dependencies:
     - git: github/awesome-copilot
       skills:
         - git-commit
-  mcp: []
+  mcp:
+    - args:
+        - mcp-nixos
+      command: uvx
+      name: nixos
+      registry: false
+      transport: stdio
 includes: auto
 name: nix-config
 scripts: {}

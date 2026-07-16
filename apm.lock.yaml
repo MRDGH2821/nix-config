@@ -20,5 +20,39 @@ dependencies:
     skill_subset:
       - find-skills
     version: unknown
-generated_at: "2026-07-11T08:59:42.026134+00:00"
+deployments:
+  - active_owner: .
+    content_hash:
+    kind: uri
+    owners:
+      - .
+    runtime: cursor
+    scope: project
+    target: mcp
+    value: nixos
+  - active_owner: .
+    content_hash:
+    kind: uri
+    owners:
+      - .
+    runtime: opencode
+    scope: project
+    target: mcp
+    value: nixos
+generated_at: "2026-07-16T11:11:13.453071+00:00"
 lockfile_version: "1"
+mcp_configs:
+  nixos:
+    args:
+      - mcp-nixos
+    command: uvx
+    name: nixos
+    registry: false
+    transport: stdio
+mcp_servers:
+  - nixos
+mcp_target_servers:
+  cursor:
+    - nixos
+  opencode:
+    - nixos
