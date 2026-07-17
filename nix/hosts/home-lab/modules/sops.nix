@@ -110,10 +110,11 @@
     key = "";
   };
 
-  sops.secrets.fjr-default = {
+  sops.secrets.fjr-runner-token = {
     sopsFile = ../secrets/fjr-default.env;
     format = "dotenv";
-    key = "";
+    key = "TOKEN";
+    restartUnits = ["forgejo-runner.service"];
   };
 
   sops.secrets.glr-an = {
