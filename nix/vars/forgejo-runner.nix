@@ -99,8 +99,10 @@ in {
         Extra forgejo-runner settings (log, runner, cache, host, container
         sections) merged into the generated config.yaml. See
         `forgejo-runner generate-config` for the full schema.
-        `server.connections` is always overridden by
-        `services.forgejo-runner.connections`.
+        The `server.connections.<name>` entries produced from
+        `services.forgejo-runner.connections` take precedence over any
+        matching keys set here (via `lib.recursiveUpdate`) -- do not set
+        `settings.server.connections` directly.
       '';
     };
   };
