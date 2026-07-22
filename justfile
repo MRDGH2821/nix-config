@@ -45,10 +45,10 @@ gc:
 home-lab-target := "mr-nix@${TARGET_HOST:-home-lab}"
 
 home-lab: check
-    nixos apply ".#home-lab" --target-host {{ home-lab-target }} --build-host {{ home-lab-target }} --remote-root
+    nixos apply ".#home-lab" --target-host {{ home-lab-target }} --build-host {{ home-lab-target }} --remote-root --yes
 
 home-lab-debug: check
-    nixos apply ".#home-lab" --target-host {{ home-lab-target }} --build-host {{ home-lab-target }} --remote-root --show-trace --verbose
+    nixos apply ".#home-lab" --target-host {{ home-lab-target }} --build-host {{ home-lab-target }} --remote-root --show-trace --verbose --yes
 
 ############################################################################
 #

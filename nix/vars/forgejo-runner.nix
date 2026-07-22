@@ -22,7 +22,7 @@
     lib.mapAttrs
     (name: conn: {
       inherit (conn) url uuid labels;
-      token_url = "file:$CREDENTIALS_DIRECTORY/token-${name}";
+      token_url = "file:/var/lib/forgejo-runner/token-${name}";
     })
     cfg.connections;
 
@@ -31,6 +31,25 @@
   };
 
   configFile = yamlFormat.generate "forgejo-runner-config.yaml" mergedSettings;
+
+  normalizeTokensScript = pkgs.writeShellScript "forgejo-runner-normalize-tokens" ''
+    set -euo pipefail
+    ${lib.concatStringsSep "\n" (
+      lib.mapAttrsToList (name: _: ''
+        src="$CREDENTIALS_DIRECTORY/token-${name}"
+        dst="/var/lib/forgejo-runner/token-${name}"
+
+        if grep -q '^TOKEN=' "$src"; then
+          sed -n 's/^TOKEN=//p' "$src" | head -n1 | tr -d '\r\n' > "$dst"
+        else
+          tr -d '\r\n' < "$src" > "$dst"
+        fi
+
+        chmod 0600 "$dst"
+      '')
+      cfg.connections
+    )}
+  '';
 in {
   options.services.forgejo-runner = {
     enable = lib.mkEnableOption "the Forgejo Actions runner daemon";
@@ -76,8 +95,10 @@ in {
               type = lib.types.nonEmptyStr;
               description = ''
                 Path to a runtime-only file (e.g. a sops-nix secret path)
-                containing just the runner token. Loaded via systemd's
-                LoadCredential=, never copied into the Nix store.
+                containing either the runner token directly or dotenv
+                content with a TOKEN=... line. Loaded via systemd's
+                LoadCredential= and normalized at runtime, never copied
+                into the Nix store.
               '';
               example = "/run/secrets/forgejo-runner-token";
             };
@@ -155,6 +176,7 @@ in {
         StateDirectoryMode = "0700";
         WorkingDirectory = "/var/lib/forgejo-runner";
         LoadCredential = lib.mapAttrsToList (name: conn: "token-${name}:${conn.tokenFile}") cfg.connections;
+        ExecStartPre = normalizeTokensScript;
         ExecStart = "${lib.getExe cfg.package} daemon --config ${configFile}";
         Restart = "on-failure";
         RestartSec = 2;
