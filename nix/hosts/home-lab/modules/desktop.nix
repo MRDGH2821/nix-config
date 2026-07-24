@@ -15,11 +15,9 @@
     options = mount-options;
   };
 in {
-  imports = [
-    keepassxc-folder
-  ];
-  services.desktopManager.plasma6.enable = true;
+  imports = [keepassxc-folder];
 
+  services.desktopManager.plasma6.enable = true;
   services.openssh.enable = true;
   hardware.graphics.enable = true;
 

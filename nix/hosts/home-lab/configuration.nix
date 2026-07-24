@@ -4,8 +4,8 @@
   ...
 }: {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-    (modulesPath + "/profiles/qemu-guest.nix")
+    "${modulesPath}/installer/scan/not-detected.nix"
+    "${modulesPath}/profiles/qemu-guest.nix"
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -13,14 +13,12 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   services.openssh.enable = true;
+  services.automatic-timezoned.enable = true;
 
   programs.ssh.startAgent = true;
 
-  networking = {
-    # configures the network interface(include wireless) via `nmcli` & `nmtui`
-    networkmanager.enable = true;
-    hostName = "home-lab";
-  };
+  networking.networkmanager.enable = true;
+  networking.hostName = "home-lab";
 
   users.users.bose-game = {
     isNormalUser = true;
@@ -32,10 +30,11 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF5wVbxASqs1YeVPFBzUoyNCABQFDOF0/JXxGrz2u215 Bose Game Mini PC"
     ];
   };
-  services.automatic-timezoned.enable = true;
+
   nix.settings.allowed-users = [
     "@wheel"
     "bose-game"
   ];
+
   system.stateVersion = "25.05";
 }

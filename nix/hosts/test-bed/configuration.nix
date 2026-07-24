@@ -6,14 +6,12 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   services.openssh.enable = true;
+  services.automatic-timezoned.enable = true;
 
   programs.ssh.startAgent = true;
 
-  networking = {
-    # configures the network interface(include wireless) via `nmcli` & `nmtui`
-    networkmanager.enable = true;
-    hostName = "test-bed";
-  };
-  services.automatic-timezoned.enable = true;
+  networking.networkmanager.enable = true;
+  networking.hostName = "test-bed";
+
   system.stateVersion = "25.05";
 }
