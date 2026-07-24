@@ -26,14 +26,7 @@
       enable = true;
       priority = 80;
     };
-    pedantix = {
-      enable = true;
-      settings.attrs = {
-        blank-lines = 0;
-        flatten = true;
-        merge = true;
-      };
-    };
+
     prettier = {
       enable = true;
       excludes = [
