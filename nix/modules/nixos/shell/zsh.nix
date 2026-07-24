@@ -1,30 +1,19 @@
 {pkgs, ...}: let
   promptInitScript = pkgs.writeShellScript "zsh-prompt-init" ''
-    # Provide path to oh-my-posh installed themes
     omp_themes_dir="${pkgs.oh-my-posh}/share/oh-my-posh/themes"
-
-    # Get a list of all JSON theme files in the directory
-    omp_themes=($(ls $omp_themes_dir/*.json))
-
-    # Get the number of JSON theme files
+    omp_themes=($omp_themes_dir/*.json)
     num_files=''${#omp_themes[@]}
-
-    # Generate a random index
     random_index=$((RANDOM % num_files))
-
-    # Select a random theme
     random_omp_theme=''${omp_themes[$random_index]}
-
-    # Initialize oh-my-posh with the random theme
     eval "$(oh-my-posh init zsh --config $random_omp_theme)"
-
     SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
   '';
 in {
-  environment.systemPackages = [
-    pkgs.zimfw
-    pkgs.oh-my-posh
+  environment.systemPackages = with pkgs; [
+    zimfw
+    oh-my-posh
   ];
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -41,14 +30,10 @@ in {
       bindkey -e
       zmodload -F zsh/terminfo +p:terminfo
     '';
-
     autosuggestions = {
       enable = true;
-      extraConfig = {
-        "ZSH_AUTOSUGGEST_MANUAL_REBIND" = "1";
-      };
+      extraConfig."ZSH_AUTOSUGGEST_MANUAL_REBIND" = "1";
     };
-
     syntaxHighlighting = {
       enable = true;
       highlighters = [

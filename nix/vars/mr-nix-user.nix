@@ -1,29 +1,30 @@
 {pkgs, ...}: let
   sshKeys = import ../keys/ssh-keys.nix;
 in {
-  # username = "mr-nix";
   programs.zsh.enable = true;
+
   users.users.mr-nix = {
-    openssh.authorizedKeys.keys = [
-      sshKeys.sharedKey
-    ];
     isNormalUser = true;
+    shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [sshKeys.sharedKey];
     extraGroups = [
       "docker"
       "podman"
       "networkmanager"
       "wheel"
     ];
-    shell = pkgs.zsh;
   };
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-  nix.settings.allowed-users = [
-    "@wheel"
-    "mr-nix"
-  ];
+
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    allowed-users = [
+      "@wheel"
+      "mr-nix"
+    ];
+  };
 
   security.pam.services = {
     login.u2fAuth = true;
