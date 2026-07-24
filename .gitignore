@@ -1,27 +1,11 @@
-# Ignore build outputs from performing a nix-build or `nix build` command
-
-# nix
-result
-result-*
-
-# Ignore automatically generated files & folders
-*.ccu
-.direnv
-
-# Ignore local configuration files containing sensitive information
-*.local
-.env
-config.local.sh
-
-# Ignore pangolin dirs
 .DS_Store
 .debug/
 .devenv
-.env.*
-!.env.sample
+.direnv
 .git
 .new
 .next
+.pre-commit-config.yaml
 .svn
 .venv/
 /.cache_ggshield
@@ -34,9 +18,37 @@ node_modules
 node_modules/
 public
 
+# Ignore build outputs from performing a nix-build or `nix build` command
+
+# nix
+result
+result-*
+
+# Ignore automatically generated files & folders
+*.ccu
+
+# Ignore local configuration files containing sensitive information
+*.local
+.env
+.env.*
+!.env.sample
+config.local.sh
+
 # Added by ggshield
 .cache_ggshield
 target/
 
 # APM dependencies
 apm_modules/
+report/
+
+# agents
+.agent/skills
+.agents/skills
+.cursor/skills
+.github/skills
+.mcp.json
+.opencode/skills
+.vscode/mcp.json
+/.agents/skills
+opencode.json

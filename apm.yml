@@ -3,12 +3,16 @@ author: MRDGH2821
 dependencies:
   apm:
     - git: vercel-labs/skills
-      ref: v1.5.14
+      ref: v1.5.20
       skills:
         - find-skills
     - git: github/awesome-copilot
       skills:
         - git-commit
+    - git: kucherenko/jscpd
+      ref: v5.0.12
+      skills:
+        - dry-refactoring
   mcp:
     - args:
         - mcp-nixos
@@ -20,7 +24,9 @@ includes: auto
 name: nix-config
 scripts: {}
 targets:
+  - agent-skills
+  - antigravity
+  - copilot
   - cursor
   - opencode
-  - claude
-version: 0.27.1
+version: 0.0.0
