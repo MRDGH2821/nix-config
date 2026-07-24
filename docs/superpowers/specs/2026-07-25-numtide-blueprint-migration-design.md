@@ -6,7 +6,7 @@
 
 ## 1. Overview
 
-This document specifies the migration of the `nix-config` homelab repository from a traditional `flake.nix` output structure to Numtide Blueprint (`blueprint.lib.flake`) with `prefix = "nix"`. 
+This document specifies the migration of the `nix-config` homelab repository from a traditional `flake.nix` output structure to Numtide Blueprint (`blueprint.lib.flake`) with `prefix = "nix"`.
 
 The objective is to eliminate flake boilerplate, automate host and module discovery, and ensure `just check` (`nix flake check`) cleanly passes.
 
@@ -59,7 +59,9 @@ The objective is to eliminate flake boilerplate, automate host and module discov
 Blueprint scans subdirectories under `nix/hosts/` and generates `nixosConfigurations.<hostname>`.
 
 ### 3.1 `nix/hosts/home-lab/default.nix`
+
 The entry point for `home-lab` host configuration:
+
 - Accepts `{ inputs, pkgs, lib, config, ... }`.
 - Imports:
   - `./configuration.nix`
@@ -71,6 +73,7 @@ The entry point for `home-lab` host configuration:
   - All shared NixOS system modules from `nix/modules/nixos/`
 
 ### 3.2 `nix/hosts/test-bed/default.nix`
+
 The entry point for `test-bed` host configuration, following the same module pattern.
 
 ---

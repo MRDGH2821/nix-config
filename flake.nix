@@ -25,9 +25,10 @@
   };
 
   outputs = inputs:
-    inputs.blueprint.lib.flake {
+    inputs.blueprint {
       inherit inputs;
       prefix = "nix";
+      systems = ["x86_64-linux"];
       nixpkgs.config.allowUnfree = true;
     };
 }

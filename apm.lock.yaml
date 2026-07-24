@@ -44,7 +44,7 @@ dependencies:
     resolved_ref: v1.5.20
     skill_subset:
       - find-skills
-    version: 0.0.0
+    version: unknown
 deployments:
   - active_owner: kucherenko/jscpd
     content_hash:
@@ -127,7 +127,7 @@ deployments:
     scope: project
     target: mcp
     value: nixos
-generated_at: "2026-07-24T14:07:13.940641+00:00"
+generated_at: "2026-07-24T14:31:49.143052+00:00"
 lockfile_version: "1"
 mcp_configs:
   nixos:

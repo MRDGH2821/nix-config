@@ -4,12 +4,20 @@
   ...
 }: let
   mylib = import ../../lib {inherit (inputs.nixpkgs) lib;};
-  mylibFor = args: mylib // (import ../../lib/rclone-mounts.nix args) // (import ../../lib/domain-builder.nix {config = args.config;});
+  mylibFor = args:
+    mylib
+    // (import ../../lib/rclone-mounts.nix args)
+    // (import ../../lib/domain-builder.nix {config = args.config;});
 in {
   class = "nixos";
   value = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {
-      inherit inputs hostName mylib mylibFor;
+      inherit
+        inputs
+        hostName
+        mylib
+        mylibFor
+        ;
     };
     modules = [
       ./configuration.nix
