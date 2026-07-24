@@ -32,29 +32,34 @@
     prettier = {
       enable = true;
       excludes = [
-            # keep-sorted start
-            "*.*ignore"
-            "*.aac"
-            "*.docx"
-            "*.envrc"
-            "*.jinja"
-            "*.jpg"
-            "*.lock"
-            "*.mp4"
-            "*.nix"
-            "*.pdf"
-            "*.png"
-            "*.pptx"
-            "*.py"
-            "*.toml"
-            "*.txt"
-            "*.typ"
-            ".envrc"
-            "LICENCE"
-            "LICENSE"
-            "justfile"
-            # keep-sorted end
-            ];
+        # keep-sorted start
+        "*.*ignore"
+        "*.aac"
+        "*.docx"
+        "*.env"
+        "*.envrc"
+        "*.ini"
+        "*.jinja"
+        "*.jpg"
+        "*.lock"
+        "*.mp4"
+        "*.nix"
+        "*.pdf"
+        "*.png"
+        "*.pptx"
+        "*.py"
+        "*.sh"
+        "*.toml"
+        "*.txt"
+        "*.typ"
+        ".envrc"
+        ".editorconfig"
+        ".envrc.*"
+        "LICENCE"
+        "LICENSE"
+        "justfile"
+        # keep-sorted end
+      ];
       includes = ["*"];
       priority = 100;
     };
@@ -81,12 +86,12 @@
       excludes = [
         # keep-sorted start
         "**/.cspell.json"
+        "**/hosts/**/*.json"
         "**/secrets.yaml"
         "**/secrets/*"
+        "**q/secrets/**"
         ".cspell.json"
         "CHANGELOG.md"
-        "**/hosts/**/*.json"
-        "**/secrets/**"
         # keep-sorted end
       ];
     };
