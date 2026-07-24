@@ -4,10 +4,8 @@
   ...
 }: {
   imports = [
-    ./modules/sops.nix
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
-    ../../system-modules/features/system-packages.nix
   ];
 
   boot.loader.systemd-boot.enable = true;

@@ -1,15 +1,27 @@
 {
-  imports = [
-    ./secrets/agecrypt/smtp.nix
-    ./secrets/agecrypt/duckdns-domain.nix
-    ./modules
-    ./hardware-configuration.nix
-    ./configuration.nix
-    ../../vars
-    ../../system-modules/shell
-    ../../system-modules/services
-    ../../system-modules/fixes
-    ../../system-modules/features
-    ../../system-modules/container-services
-  ];
+  inputs,
+  hostName ? "home-lab",
+  ...
+}: let
+  mylib = import ../../lib {inherit (inputs.nixpkgs) lib;};
+  mylibFor = args: mylib // (import ../../lib/rclone-mounts.nix args) // (import ../../lib/domain-builder.nix {config = args.config;});
+in {
+  class = "nixos";
+  value = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = {
+      inherit inputs hostName mylib mylibFor;
+    };
+    modules = [
+      ./configuration.nix
+      ./hardware-configuration.nix
+      ./secrets/agecrypt/smtp.nix
+      ./secrets/agecrypt/duckdns-domain.nix
+      ./modules
+      ../../vars
+      ../../modules/nixos
+      inputs.sops-nix.nixosModules.sops
+      inputs.authentik-nix.nixosModules.default
+      inputs.hermes-agent.nixosModules.default
+    ];
+  };
 }

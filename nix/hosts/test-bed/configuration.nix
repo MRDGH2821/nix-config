@@ -1,7 +1,10 @@
-{pkgs, ...}: {
-  imports = [
-    ../../system-modules/features/system-packages.nix
-  ];
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  imports = [];
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
