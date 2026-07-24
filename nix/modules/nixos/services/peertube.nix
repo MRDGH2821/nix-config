@@ -1,6 +1,4 @@
-{config, ...}: let
-  # peertube-dir = "${config.persistent_storage}/peertube/storage";
-in {
+{config, ...}: {
   # Create necessary directories for peertube
   # systemd.tmpfiles.rules = [
   #   "d ${peertube-dir} 0755 peertube peertube -"

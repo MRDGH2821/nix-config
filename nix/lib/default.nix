@@ -7,9 +7,9 @@
   domainBuilder = import ./domain-builder.nix;
   rcloneMounts = import ./rclone-mounts.nix;
 in {
-  autoImport = autoImport;
-  autoImportModules = autoImport.autoImportModules;
-  autoImportFolders = autoImport.autoImportFolders;
-  domainBuilder = domainBuilder;
-  rcloneMounts = rcloneMounts;
+  inherit autoImport;
+  inherit (autoImport) autoImportModules;
+  inherit (autoImport) autoImportFolders;
+  inherit domainBuilder;
+  inherit rcloneMounts;
 }

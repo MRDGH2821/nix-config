@@ -7,7 +7,7 @@
   mylibFor = args:
     mylib
     // (import ../../lib/rclone-mounts.nix args)
-    // (import ../../lib/domain-builder.nix {config = args.config;});
+    // (import ../../lib/domain-builder.nix {inherit (args) config;});
 in {
   class = "nixos";
   value = inputs.nixpkgs.lib.nixosSystem {

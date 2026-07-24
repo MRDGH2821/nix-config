@@ -105,7 +105,7 @@
   # Create tmpfiles rules for each user
   mkZimrcRule = username: let
     user = config.users.users.${username};
-    home = user.home;
+    inherit (user) home;
   in "f+ ${home}/.zimrc 0644 ${username} ${user.group} - ${zimrcContent}";
 in {
   systemd.tmpfiles.rules = map mkZimrcRule regularUsers;

@@ -19,8 +19,7 @@
   yamlFormat = pkgs.formats.yaml {};
 
   connectionSettings =
-    lib.mapAttrs
-    (name: conn: {
+    lib.mapAttrs (name: conn: {
       inherit (conn) url uuid labels;
       token_url = "file:/var/lib/forgejo-runner/token-${name}";
     })
@@ -114,7 +113,7 @@ in {
     };
 
     settings = lib.mkOption {
-      type = yamlFormat.type;
+      inherit (yamlFormat) type;
       default = {};
       description = ''
         Extra forgejo-runner settings (log, runner, cache, host, container
@@ -139,8 +138,7 @@ in {
           message = "services.forgejo-runner requires the ${cfg.containerRuntime} container runtime to be enabled.";
         }
       ]
-      ++ lib.mapAttrsToList
-      (name: _: {
+      ++ lib.mapAttrsToList (name: _: {
         assertion = builtins.match "[A-Za-z0-9_-]+" name != null;
         message = "Forgejo runner connection name '${name}' must use only letters, numbers, underscores, or hyphens.";
       })

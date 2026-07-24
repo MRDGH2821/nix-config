@@ -5,7 +5,10 @@
       enable = true;
       priority = 10;
     };
-    beautysh.enable = true;
+    beautysh = {
+      enable = true;
+      excludes = [".zed/*.sh"];
+    };
     deadnix.enable = true;
     djlint.enable = true;
     dockerfmt.enable = true;
@@ -29,31 +32,18 @@
 
     prettier = {
       enable = true;
-      excludes = [
-        # keep-sorted start
-        "*.*ignore"
-        "*.aac"
-        "*.docx"
-        "*.envrc"
-        "*.jinja"
-        "*.jpg"
-        "*.lock"
-        "*.mp4"
-        "*.nix"
-        "*.pdf"
-        "*.png"
-        "*.pptx"
-        "*.py"
-        "*.toml"
-        "*.txt"
-        "*.typ"
-        ".envrc"
-        "LICENCE"
-        "LICENSE"
-        "justfile"
-        # keep-sorted end
+      includes = [
+        "*.css"
+        "*.html"
+        "*.js"
+        "*.json"
+        "*.jsx"
+        "*.md"
+        "*.ts"
+        "*.tsx"
+        "*.yaml"
+        "*.yml"
       ];
-      includes = ["*"];
       priority = 100;
     };
     ruff-check = {
@@ -79,6 +69,8 @@
       excludes = [
         # keep-sorted start
         "**/.cspell.json"
+        "**/secrets.yaml"
+        "**/secrets/*"
         ".cspell.json"
         "CHANGELOG.md"
         # keep-sorted end

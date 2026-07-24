@@ -25,28 +25,25 @@ c2n() {
   local dir input found=0
   local compose_dirs
 
-  if [[ -f "${root}" ]]; then
+  if [[ -f ${root} ]]; then
     _c2n_generate "$(dirname "${root}")" "$(basename "${root}")"
     return
   fi
 
-  if [[ ! -d "${root}" ]]; then
+  if [[ ! -d ${root} ]]; then
     echo "c2n: not found: ${root}" >&2
     return 1
   fi
 
   if ! compose_dirs="$(
-    find "${root}" -type f \( \
-      -name docker-compose.yml -o -name docker-compose.yaml -o \
-      -name compose.yaml -o -name compose.yml \
-      \) -exec dirname {} \; | sort -u
+    find "${root}" -type f \( -name docker-compose.yml -o -name docker-compose.yaml -o -name compose.yaml -o -name compose.yml \) -exec dirname {} \; | sort -u
   )"; then
     echo "c2n: find failed under ${root}" >&2
     return 1
   fi
 
   while IFS= read -r dir; do
-    [[ -n "${dir}" ]] || continue
+    [[ -n ${dir} ]] || continue
     for input in docker-compose.yml docker-compose.yaml compose.yaml compose.yml; do
       if [[ -f "${dir}/${input}" ]]; then
         _c2n_generate "${dir}" "${input}"
@@ -56,7 +53,7 @@ c2n() {
     done
   done <<<"${compose_dirs}"
 
-  if [[ "${found}" -eq 0 ]]; then
+  if [[ ${found} -eq 0 ]]; then
     echo "c2n: no compose files under ${root}" >&2
     return 1
   fi
