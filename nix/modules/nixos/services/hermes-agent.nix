@@ -1,7 +1,4 @@
-{config, ...}: let
-  hermesStateDir = "${config.persistent_storage}/hermes-agent";
-  hermesEnvFile = config.sops.secrets.hermes-env.path;
-in {
+{config, ...}: {
   security.sudo.extraRules = [
     {
       commands = [
@@ -21,9 +18,9 @@ in {
       hostUsers = ["mr-nix"];
     };
     enable = true;
-    environmentFiles = [hermesEnvFile];
+    environmentFiles = [config.sops.secrets.hermes-env.path];
     extraArgs = ["run"];
-    stateDir = hermesStateDir;
+    stateDir = "${config.persistent_storage}/hermes-agent";
   };
   virtualisation.docker.enable = false;
 }

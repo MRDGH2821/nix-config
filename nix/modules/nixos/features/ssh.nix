@@ -4,10 +4,8 @@ in {
   environment.systemPackages = with pkgs; [
     openssh
   ];
-  networking = {
-    # configures the network interface(include wireless) via `nmcli` & `nmtui`
-    networkmanager.enable = true;
-  };
+  # configures the network interface(include wireless) via `nmcli` & `nmtui`
+  networking.networkmanager.enable = true;
   nix.settings.allowed-users = [
     "@wheel"
     "system-recovery"

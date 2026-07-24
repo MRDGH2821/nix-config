@@ -1,7 +1,6 @@
 # Source: https://blog.emillon.org/posts/2025-06-02-using-rclone-mount-with-systemd-on-nixos.html
 {
   config,
-  lib,
   pkgs,
   ...
 }: {
@@ -20,20 +19,22 @@
     options ? "",
     remoteName,
   }: {
-    environment.systemPackages = with pkgs; [
-      rclone
-    ];
+    environment.systemPackages = [pkgs.rclone];
     systemd = {
-      automounts = lib.singleton {
-        wantedBy = ["multi-user.target"];
-        where = mountPoint;
-      };
-      mounts = lib.singleton {
-        options = "_netdev,args2env,allow_other,vfs-cache-mode=full,${options},config=${configFile}";
-        type = "rclone";
-        what = "${remoteName}:${folderName}";
-        where = mountPoint;
-      };
+      automounts = [
+        {
+          wantedBy = ["multi-user.target"];
+          where = mountPoint;
+        }
+      ];
+      mounts = [
+        {
+          options = "_netdev,args2env,allow_other,vfs-cache-mode=full,${options},config=${configFile}";
+          type = "rclone";
+          what = "${remoteName}:${folderName}";
+          where = mountPoint;
+        }
+      ];
     };
   };
 }

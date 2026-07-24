@@ -3,35 +3,24 @@
   pkgs,
   ...
 }: let
+  inherit (pkgs) lib;
   pre-commit-check = import ./checks/pre-commit-check.nix {inherit inputs pkgs;};
-  llm-packages =
-    if inputs ? llm-agents
-    then let
-      llm-pkgs = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
-    in [
-      llm-pkgs.antigravity-cli
-      llm-pkgs.apm
-      llm-pkgs.copilot-cli
-      llm-pkgs.cursor-agent
-      llm-pkgs.git-surgeon
-      llm-pkgs.opencode
-      llm-pkgs.rtk
-    ]
-    else [];
-  nixos-cli-pkg =
-    if inputs ? nixos-cli
-    then [inputs.nixos-cli.packages.${pkgs.stdenv.hostPlatform.system}.default]
-    else [];
-  compose2nix-pkg =
-    if inputs ? compose2nix
-    then [inputs.compose2nix.packages.${pkgs.stdenv.hostPlatform.system}.default]
-    else [];
+  sys = pkgs.stdenv.hostPlatform.system;
+  optionalInput = name: f: lib.optionals (inputs ? ${name}) (f inputs.${name}.packages.${sys});
 in
   pkgs.mkShell {
     packages =
-      llm-packages
-      ++ nixos-cli-pkg
-      ++ compose2nix-pkg
+      optionalInput "llm-agents" (p: [
+        p.antigravity-cli
+        p.apm
+        p.copilot-cli
+        p.cursor-agent
+        p.git-surgeon
+        p.opencode
+        p.rtk
+      ])
+      ++ optionalInput "nixos-cli" (p: [p.default])
+      ++ optionalInput "compose2nix" (p: [p.default])
       ++ [
         pkgs.nil
         pkgs.nixd

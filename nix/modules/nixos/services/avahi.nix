@@ -1,7 +1,5 @@
 {pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    avahi
-  ];
+  environment.systemPackages = [pkgs.avahi];
   services.avahi = {
     enable = true;
     nssmdns4 = true;

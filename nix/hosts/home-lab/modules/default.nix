@@ -1,5 +1,3 @@
-{lib, ...}: let
-  mylib = import ../../../lib/auto-import.nix {inherit lib;};
-in {
+{mylib, ...}: {
   imports = mylib.autoImportModules ./.;
 }

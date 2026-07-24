@@ -9,7 +9,9 @@
     "**/.rbenv/**",
     "**/.venv/**",
     "**/node_modules/**",
-    "**/report/**"
+    "**/report/**",
+    "**/hosts/**/*.json",
+    "**/docs/superpowers/**"
   ],
   "reporters": ["html", "markdown"],
   "threshold": 0

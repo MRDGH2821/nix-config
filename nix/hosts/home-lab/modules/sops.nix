@@ -13,17 +13,6 @@
     # sops.defaultSopsFile = "/root/.sops/secrets/secrets.yaml";
     defaultSopsFile = ../secrets/secrets.yaml;
     secrets = {
-      # sops.secrets.peertubeSmtpPassword = {
-      #   owner = "peertube";
-      #   group = "peertube";
-      #   restartUnits = ["peertube.service"];
-      #   key = "smtpPassword";
-      # };
-      # sops.secrets.peertubeSecret = {
-      #   owner = "peertube";
-      #   group = "peertube";
-      #   restartUnits = ["peertube.service"];
-      # };
       acme = {
         format = "dotenv";
         key = "";
