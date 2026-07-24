@@ -1,17 +1,16 @@
 {pkgs, ...}: {
-  services.avahi = {
-    enable = true;
-    openFirewall = true;
-    nssmdns4 = true;
-    nssmdns6 = true;
-    publish = {
-      enable = true;
-      addresses = true; # Broadcast IP addresses
-      workstation = true; # Advertise this machine as a workstation
-    };
-  };
-
   environment.systemPackages = with pkgs; [
     avahi
   ];
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    nssmdns6 = true;
+    openFirewall = true;
+    publish = {
+      addresses = true; # Broadcast IP addresses
+      enable = true;
+      workstation = true; # Advertise this machine as a workstation
+    };
+  };
 }

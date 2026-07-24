@@ -1,54 +1,25 @@
 {config, ...}: {
-  # Create necessary directories for peertube
-  # systemd.tmpfiles.rules = [
-  #   "d ${peertube-dir} 0755 peertube peertube -"
-  #   "d ${peertube-dir}/tmp 0755 peertube peertube -"
-  #   "d ${peertube-dir}/tmp-persistent 0755 peertube peertube -"
-  #   "d ${peertube-dir}/bin 0755 peertube peertube -"
-  #   "d ${peertube-dir}/avatars 0755 peertube peertube -"
-  #   "d ${peertube-dir}/web-videos 0755 peertube peertube -"
-  #   "d ${peertube-dir}/streaming-playlists 0755 peertube peertube -"
-  #   "d ${peertube-dir}/original-video-files 0755 peertube peertube -"
-  #   "d ${peertube-dir}/redundancy 0755 peertube peertube -"
-  #   "d ${peertube-dir}/logs 0755 peertube peertube -"
-  #   "d ${peertube-dir}/previews 0755 peertube peertube -"
-  #   "d ${peertube-dir}/thumbnails 0755 peertube peertube -"
-  #   "d ${peertube-dir}/storyboards 0755 peertube peertube -"
-  #   "d ${peertube-dir}/torrents 0755 peertube peertube -"
-  #   "d ${peertube-dir}/captions 0755 peertube peertube -"
-  #   "d ${peertube-dir}/cache 0755 peertube peertube -"
-  #   "d ${peertube-dir}/plugins 0755 peertube peertube -"
-  #   "d ${peertube-dir}/well-known 0755 peertube peertube -"
-  #   "d ${peertube-dir}/uploads 0755 peertube peertube -"
-  #   "d ${peertube-dir}/client-overrides 0755 peertube peertube -"
-  # ];
-
-  sops.templates."peertube.env" = {
-    content = ''
-      NODE_ENV=production
-      PT_INITIAL_ROOT_PASSWORD=${config.sops.placeholder.dummyPassword}
-
-    '';
-  };
   services.peertube = {
-    enable = false;
-    redis.createLocally = true;
     database.createLocally = true;
-    localDomain = "peertube.${config.networking.baseDomain}";
-    listenWeb = 9050;
+    enable = false;
     listenHttp = 9050;
+    listenWeb = 9050;
+    localDomain = "peertube.${config.networking.baseDomain}";
+    redis.createLocally = true;
+    secrets.secretsFile = config.sops.secrets.peertubeSecret.path;
+    serviceEnvironmentFile = config.sops.templates."peertube.env".path;
     settings = {
-      video_transcription.enabled = true;
       smtp = {
-        transport = "smtp";
-        hostname = config.networking.smtp.host;
-        port = config.networking.smtp.port;
-        username = config.networking.smtp.email;
-        password = config.sops.placeholder.peertubeSmtpPassword;
-        tls = true;
         disable_starttls = false;
         from_address = config.networking.smtp.email;
+        hostname = config.networking.smtp.host;
+        password = config.sops.placeholder.peertubeSmtpPassword;
+        port = config.networking.smtp.port;
+        tls = true;
+        transport = "smtp";
+        username = config.networking.smtp.email;
       };
+      video_transcription.enabled = true;
       # storage = {
       #   tmp = "${peertube-dir}/tmp/";
       #   tmp_persistent = "${peertube-dir}/tmp-persistent/"; # As tmp but the directory is not cleaned up between PeerTube restarts
@@ -80,7 +51,33 @@
       # };
     };
     smtp.passwordFile = config.sops.secrets.peertubeSmtpPassword.path;
-    serviceEnvironmentFile = config.sops.templates."peertube.env".path;
-    secrets.secretsFile = config.sops.secrets.peertubeSecret.path;
   };
+  # Create necessary directories for peertube
+  # systemd.tmpfiles.rules = [
+  #   "d ${peertube-dir} 0755 peertube peertube -"
+  #   "d ${peertube-dir}/tmp 0755 peertube peertube -"
+  #   "d ${peertube-dir}/tmp-persistent 0755 peertube peertube -"
+  #   "d ${peertube-dir}/bin 0755 peertube peertube -"
+  #   "d ${peertube-dir}/avatars 0755 peertube peertube -"
+  #   "d ${peertube-dir}/web-videos 0755 peertube peertube -"
+  #   "d ${peertube-dir}/streaming-playlists 0755 peertube peertube -"
+  #   "d ${peertube-dir}/original-video-files 0755 peertube peertube -"
+  #   "d ${peertube-dir}/redundancy 0755 peertube peertube -"
+  #   "d ${peertube-dir}/logs 0755 peertube peertube -"
+  #   "d ${peertube-dir}/previews 0755 peertube peertube -"
+  #   "d ${peertube-dir}/thumbnails 0755 peertube peertube -"
+  #   "d ${peertube-dir}/storyboards 0755 peertube peertube -"
+  #   "d ${peertube-dir}/torrents 0755 peertube peertube -"
+  #   "d ${peertube-dir}/captions 0755 peertube peertube -"
+  #   "d ${peertube-dir}/cache 0755 peertube peertube -"
+  #   "d ${peertube-dir}/plugins 0755 peertube peertube -"
+  #   "d ${peertube-dir}/well-known 0755 peertube peertube -"
+  #   "d ${peertube-dir}/uploads 0755 peertube peertube -"
+  #   "d ${peertube-dir}/client-overrides 0755 peertube peertube -"
+  # ];
+  sops.templates."peertube.env".content = ''
+    NODE_ENV=production
+    PT_INITIAL_ROOT_PASSWORD=${config.sops.placeholder.dummyPassword}
+
+  '';
 }

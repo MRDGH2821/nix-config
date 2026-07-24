@@ -1,6 +1,6 @@
 {
-  inputs,
   hostName ? "home-lab",
+  inputs,
   ...
 }: let
   mylib = import ../../lib {inherit (inputs.nixpkgs) lib;};
@@ -11,14 +11,6 @@
 in {
   class = "nixos";
   value = inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = {
-      inherit
-        inputs
-        hostName
-        mylib
-        mylibFor
-        ;
-    };
     modules = [
       ./configuration.nix
       ./hardware-configuration.nix
@@ -31,5 +23,13 @@ in {
       inputs.authentik-nix.nixosModules.default
       inputs.hermes-agent.nixosModules.default
     ];
+    specialArgs = {
+      inherit
+        inputs
+        hostName
+        mylib
+        mylibFor
+        ;
+    };
   };
 }

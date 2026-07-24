@@ -4,26 +4,26 @@
 in {
   security.sudo.extraRules = [
     {
-      users = ["mr-nix"];
       commands = [
         {
           command = "/run/current-system/sw/bin/podman";
           options = ["NOPASSWD"];
         }
       ];
+      users = ["mr-nix"];
     }
   ];
-  virtualisation.docker.enable = false;
   services.hermes-agent = {
-    enable = true;
-    extraArgs = ["run"];
     addToSystemPackages = true;
     container = {
+      backend = "podman";
       enable = true;
       hostUsers = ["mr-nix"];
-      backend = "podman";
     };
-    stateDir = hermesStateDir;
+    enable = true;
     environmentFiles = [hermesEnvFile];
+    extraArgs = ["run"];
+    stateDir = hermesStateDir;
   };
+  virtualisation.docker.enable = false;
 }

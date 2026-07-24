@@ -13,10 +13,14 @@ in {
     zimfw
     oh-my-posh
   ];
-
   programs.zsh = {
+    autosuggestions = {
+      enable = true;
+      extraConfig."ZSH_AUTOSUGGEST_MANUAL_REBIND" = "1";
+    };
     enable = true;
     enableCompletion = true;
+    promptInit = builtins.readFile promptInitScript;
     setOptions = [
       "HIST_IGNORE_ALL_DUPES"
       "CORRECT"
@@ -25,15 +29,10 @@ in {
       "nomatch"
       "notify"
     ];
-    promptInit = builtins.readFile promptInitScript;
     shellInit = ''
       bindkey -e
       zmodload -F zsh/terminfo +p:terminfo
     '';
-    autosuggestions = {
-      enable = true;
-      extraConfig."ZSH_AUTOSUGGEST_MANUAL_REBIND" = "1";
-    };
     syntaxHighlighting = {
       enable = true;
       highlighters = [

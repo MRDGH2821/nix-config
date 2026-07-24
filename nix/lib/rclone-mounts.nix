@@ -1,8 +1,8 @@
 # Source: https://blog.emillon.org/posts/2025-06-02-using-rclone-mount-with-systemd-on-nixos.html
 {
-  pkgs,
-  lib,
   config,
+  lib,
+  pkgs,
   ...
 }: {
   # Create an rclone mount with systemd
@@ -14,24 +14,26 @@
   #   options = "_netdev,args2env,allow_other,vfs-cache-mode=full";
   # }
   rcloneMount = {
-    remoteName,
+    configFile ? config.sops.secrets.rclone.path,
     folderName ? "/",
     mountPoint ? "/mnt/rclone/${remoteName}/${folderName}",
-    configFile ? config.sops.secrets.rclone.path,
     options ? "",
+    remoteName,
   }: {
     environment.systemPackages = with pkgs; [
       rclone
     ];
-    systemd.mounts = lib.singleton {
-      where = mountPoint;
-      what = "${remoteName}:${folderName}";
-      type = "rclone";
-      options = "_netdev,args2env,allow_other,vfs-cache-mode=full,${options},config=${configFile}";
-    };
-    systemd.automounts = lib.singleton {
-      where = mountPoint;
-      wantedBy = ["multi-user.target"];
+    systemd = {
+      automounts = lib.singleton {
+        wantedBy = ["multi-user.target"];
+        where = mountPoint;
+      };
+      mounts = lib.singleton {
+        options = "_netdev,args2env,allow_other,vfs-cache-mode=full,${options},config=${configFile}";
+        type = "rclone";
+        what = "${remoteName}:${folderName}";
+        where = mountPoint;
+      };
     };
   };
 }

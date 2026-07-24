@@ -1,6 +1,6 @@
 {
-  pkgs,
   config,
+  pkgs,
   ...
 }: let
   zimrcContent = ''
@@ -108,15 +108,12 @@
     inherit (user) home;
   in "f+ ${home}/.zimrc 0644 ${username} ${user.group} - ${zimrcContent}";
 in {
+  programs.zsh.loginShellInit = ''
+    ZIM_HOME=''${ZDOTDIR:-$HOME}/.zim
+    if [[ ! ''${ZIM_HOME}/init.zsh -nt ''${ZIM_CONFIG_FILE:-''${ZDOTDIR:-''${HOME}}/.zimrc} ]]; then
+      source ${pkgs.zimfw}/zimfw.zsh init
+    fi
+    source ''${ZIM_HOME}/init.zsh
+  '';
   systemd.tmpfiles.rules = map mkZimrcRule regularUsers;
-
-  programs.zsh = {
-    loginShellInit = ''
-      ZIM_HOME=''${ZDOTDIR:-$HOME}/.zim
-      if [[ ! ''${ZIM_HOME}/init.zsh -nt ''${ZIM_CONFIG_FILE:-''${ZDOTDIR:-''${HOME}}/.zimrc} ]]; then
-        source ${pkgs.zimfw}/zimfw.zsh init
-      fi
-      source ''${ZIM_HOME}/init.zsh
-    '';
-  };
 }

@@ -28,10 +28,6 @@
     else [];
 in
   pkgs.mkShell {
-    shellHook = ''
-      ${pre-commit-check.shellHook}
-       git-agecrypt init
-    '';
     packages =
       llm-packages
       ++ nixos-cli-pkg
@@ -44,4 +40,8 @@ in
         pkgs.just-lsp
         pkgs.git-agecrypt
       ];
+    shellHook = ''
+      ${pre-commit-check.shellHook}
+       git-agecrypt init
+    '';
   }

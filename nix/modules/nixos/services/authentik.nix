@@ -1,18 +1,18 @@
 {config, ...}: {
   services.authentik = {
-    enable = true;
     createDatabase = true;
-    nginx.enable = false;
+    enable = true;
     environmentFile = config.sops.secrets.authentik.path;
+    nginx.enable = false;
     settings = {
-      disable_startup_analytics = true;
       avatars = "initials";
+      disable_startup_analytics = true;
       email = {
+        from = config.networking.smtp.email;
         host = config.networking.smtp.host;
         port = config.networking.smtp.port;
-        username = config.networking.smtp.email;
-        from = config.networking.smtp.email;
         use_tls = true;
+        username = config.networking.smtp.email;
       };
     };
   };

@@ -1,51 +1,48 @@
 {lib, ...}: {
   options.networking = {
     baseDomain = lib.mkOption {
-      type = lib.types.str;
       default = "your-new-domain.com";
       description = "Base domain for services";
-    };
-
-    email = lib.mkOption {
       type = lib.types.str;
-      default = "your-new-email@example.com";
-      description = "Admin email address";
     };
-
     dnsProvider = lib.mkOption {
-      type = lib.types.str;
       default = "your-provider";
       description = "DNS provider name for ACME/lego";
+      type = lib.types.str;
     };
-
+    email = lib.mkOption {
+      default = "your-new-email@example.com";
+      description = "Admin email address";
+      type = lib.types.str;
+    };
     smtp = lib.mkOption {
       type = lib.types.submodule {
         options = {
-          host = lib.mkOption {
+          email = lib.mkOption {
+            default = "user@example.com";
             type = lib.types.str;
+          };
+          host = lib.mkOption {
             default = "smtp.example.com";
+            type = lib.types.str;
           };
           port = lib.mkOption {
-            type = lib.types.port;
             default = 587;
-          };
-          email = lib.mkOption {
-            type = lib.types.str;
-            default = "user@example.com";
+            type = lib.types.port;
           };
           security = lib.mkOption {
+            default = "starttls";
+            description = "SMTP security mode";
             type = lib.types.enum [
               "starttls"
               "tls"
               "none"
             ];
-            default = "starttls";
-            description = "SMTP security mode";
           };
           username = lib.mkOption {
-            type = lib.types.str;
             default = "user";
             description = "SMTP username";
+            type = lib.types.str;
           };
         };
       };

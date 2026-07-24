@@ -5,10 +5,10 @@
     compose2nix
   ];
   virtualisation.podman = {
-    enable = true;
     autoPrune.enable = true;
-    dockerCompat = true;
     defaultNetwork.settings.dns_enabled = true;
+    dockerCompat = true;
     dockerSocket.enable = true;
+    enable = true;
   };
 }

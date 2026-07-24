@@ -1,14 +1,15 @@
 {config, ...}: {
-  services.bentopdf = {
-    enable = true;
-    domain = "pdf.${config.networking.baseDomain}";
-    nginx.enable = true;
+  services = {
+    bentopdf = {
+      domain = "pdf.${config.networking.baseDomain}";
+      enable = true;
+      nginx.enable = true;
+    };
+    nginx.virtualHosts."${config.services.bentopdf.domain}".listen = [
+      {
+        addr = "127.0.0.1";
+        port = 8090;
+      }
+    ];
   };
-
-  services.nginx.virtualHosts."${config.services.bentopdf.domain}".listen = [
-    {
-      addr = "127.0.0.1";
-      port = 8090;
-    }
-  ];
 }

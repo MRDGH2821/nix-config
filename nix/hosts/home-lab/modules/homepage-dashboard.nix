@@ -1,8 +1,8 @@
 {
   config,
   lib,
-  pkgs,
   mylibFor,
+  pkgs,
   ...
 }: let
   mylib = mylibFor {inherit pkgs lib config;};
@@ -10,7 +10,6 @@ in {
   environment.systemPackages = with pkgs; [
     iputils
   ];
-
   # systemd.services.homepage-dashboard = {
   #   serviceConfig = {
   #     SupplementaryGroups = ["docker" "podman"];
@@ -18,71 +17,69 @@ in {
   # };
 
   services.homepage-dashboard = {
-    enable = true;
-    settings = {
-      title = "Home Lab";
-      connectivityCheck = true;
-      layout = {
-        Tools = {
-          columns = 3;
-        };
-        Media = {
-          columns = 3;
-        };
-      };
-    };
-    environmentFiles = [config.sops.secrets.homepage-dashboard.path];
-    openFirewall = true;
-    listenPort = 7000;
     allowedHosts = config.networking.baseDomain;
-    widgets = [
+    bookmarks = [
       {
-        datetime = {
-          format = {
-            dateStyle = "long";
-            timeStyle = "long";
-          };
-        };
-      }
-      {
-        resources = {
-          cpu = true;
-          disk = "/";
-          memory = true;
-        };
-      }
-      {
-        search = {
-          provider = "duckduckgo";
-          target = "_blank";
-        };
+        Server = [
+          {
+            Pangolin = [
+              {
+                description = "Identity-Aware Tunneled Reverse Proxy Server with Dashboard UI.";
+                href = mylib.mkUrl "pangolin" true;
+                icon = "sh-pangolin";
+              }
+            ];
+          }
+          {
+            Authentik = [
+              {
+                description = "Take control of your identity needs with a secure, flexible solution.";
+                href = mylib.mkUrl "authentik" true;
+                icon = "sh-authentik";
+              }
+            ];
+          }
+          {
+            pgAdmin4 = [
+              {
+                description = "pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.";
+                href = mylib.mkUrl "pgadmin" true;
+                icon = "sh-pgadmin";
+              }
+            ];
+          }
+        ];
       }
     ];
+    enable = true;
+    environmentFiles = [config.sops.secrets.homepage-dashboard.path];
+    listenPort = 7000;
+    openFirewall = true;
     services = [
       {
         Tools = [
           {
             "Omni Tools" = {
+              container = "omni-tools";
               description = "Boost your productivity with OmniTools, the ultimate toolkit for getting things done quickly! Access thousands of user-friendly utilities for editing images, text, lists, and data, all directly from your browser.";
               href = mylib.mkUrl "omni-tools" true;
               icon = "sh-omnitools";
-              container = "omni-tools";
             };
           }
           {
             "Bento PDF" = {
-              description = "The PDF Toolkit built for privacy.";
-              icon = "sh-bentopdf";
-              href = mylib.mkUrl "pdf" true;
               container = "bentopdf";
+              description = "The PDF Toolkit built for privacy.";
+              href = mylib.mkUrl "pdf" true;
+              icon = "sh-bentopdf";
             };
           }
           {
             Vert = {
-              description = "The file converter you'll love.";
-              icon = "sh-vert";
-              href = mylib.mkUrl "vert" true;
               container = "vert";
+              description = "The file converter you'll love.";
+              href = mylib.mkUrl "vert" true;
+              icon = "sh-vert";
             };
           }
         ];
@@ -95,11 +92,11 @@ in {
               href = mylib.mkUrl "navidrome" true;
               icon = "sh-navidrome";
               widget = {
+                salt = "{{HOMEPAGE_VAR_NAVIDROME_SALT}}";
+                token = "{{HOMEPAGE_VAR_NAVIDROME_TOKEN}}";
                 type = "navidrome";
                 url = mylib.mkUrl "navidrome" true;
                 user = "{{HOMEPAGE_VAR_NAVIDROME_USER}}";
-                token = "{{HOMEPAGE_VAR_NAVIDROME_TOKEN}}";
-                salt = "{{HOMEPAGE_VAR_NAVIDROME_SALT}}";
               };
             };
           }
@@ -109,9 +106,9 @@ in {
               href = mylib.mkUrl "linkwarden" true;
               icon = "sh-linkwarden";
               widget = {
+                key = "{{HOMEPAGE_VAR_LINKWARDEN_KEY}}";
                 type = "linkwarden";
                 url = mylib.mkUrl "linkwarden" true;
-                key = "{{HOMEPAGE_VAR_LINKWARDEN_KEY}}";
               };
             };
           }
@@ -132,9 +129,9 @@ in {
               href = mylib.mkUrl "git" true;
               icon = "sh-forgejo";
               widget = {
+                key = "{{HOMEPAGE_VAR_FORGEJO_KEY}}";
                 type = "gitea";
                 url = mylib.mkUrl "git" true;
-                key = "{{HOMEPAGE_VAR_FORGEJO_KEY}}";
               };
             };
           }
@@ -152,37 +149,33 @@ in {
         ];
       }
     ];
-    bookmarks = [
+    settings = {
+      connectivityCheck = true;
+      layout = {
+        Media.columns = 3;
+        Tools.columns = 3;
+      };
+      title = "Home Lab";
+    };
+    widgets = [
       {
-        Server = [
-          {
-            Pangolin = [
-              {
-                href = mylib.mkUrl "pangolin" true;
-                icon = "sh-pangolin";
-                description = "Identity-Aware Tunneled Reverse Proxy Server with Dashboard UI.";
-              }
-            ];
-          }
-          {
-            Authentik = [
-              {
-                href = mylib.mkUrl "authentik" true;
-                icon = "sh-authentik";
-                description = "Take control of your identity needs with a secure, flexible solution.";
-              }
-            ];
-          }
-          {
-            pgAdmin4 = [
-              {
-                href = mylib.mkUrl "pgadmin" true;
-                icon = "sh-pgadmin";
-                description = "pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.";
-              }
-            ];
-          }
-        ];
+        datetime.format = {
+          dateStyle = "long";
+          timeStyle = "long";
+        };
+      }
+      {
+        resources = {
+          cpu = true;
+          disk = "/";
+          memory = true;
+        };
+      }
+      {
+        search = {
+          provider = "duckduckgo";
+          target = "_blank";
+        };
       }
     ];
   };

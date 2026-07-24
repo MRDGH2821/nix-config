@@ -6,38 +6,39 @@
   modulesPath,
   ...
 }: {
+  boot = {
+    extraModulePackages = [];
+    initrd = {
+      availableKernelModules = [
+        "ata_piix"
+        "ohci_pci"
+        "ehci_pci"
+        "virtio_pci"
+        "virtio_scsi"
+        "sd_mod"
+        "sr_mod"
+      ];
+      kernelModules = [];
+    };
+    kernelModules = [];
+  };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/00000000-0000-0000-0000-000000000000";
+      fsType = "ext4";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/0000-0000";
+      fsType = "vfat";
+      options = [
+        "fmask=0077"
+        "dmask=0077"
+      ];
+    };
+  };
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
-
-  boot.initrd.availableKernelModules = [
-    "ata_piix"
-    "ohci_pci"
-    "ehci_pci"
-    "virtio_pci"
-    "virtio_scsi"
-    "sd_mod"
-    "sr_mod"
-  ];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = [];
-  boot.extraModulePackages = [];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/00000000-0000-0000-0000-000000000000";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/0000-0000";
-    fsType = "vfat";
-    options = [
-      "fmask=0077"
-      "dmask=0077"
-    ];
-  };
-
   networking.useDHCP = lib.mkDefault true;
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

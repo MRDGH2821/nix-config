@@ -1,6 +1,6 @@
 {
-  lib ? inputs.nixpkgs.lib,
   inputs ? {},
+  lib ? inputs.nixpkgs.lib,
   ...
 }: let
   autoImport = import ./auto-import.nix {inherit lib;};

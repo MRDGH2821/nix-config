@@ -1,59 +1,47 @@
 {
-  pkgs,
   config,
+  pkgs,
   ...
 }: {
-  environment.systemPackages = with pkgs; [fosrl-pangolin];
   boot.kernelModules = ["wireguard"];
-
-  sops.templates.pangolin = {
-    content = ''
-      ${config.sops.placeholder.pangolin}
-
-      EMAIL_SMTP_PASS=${config.sops.placeholder.smtpPassword}
-    '';
-  };
-
-  services.pangolin = {
-    enable = true;
-    openFirewall = true;
-    settings = {
-      app = {
-        save_logs = true;
-      };
-      email = {
-        smtp_host = config.networking.smtp.host;
-        smtp_port = config.networking.smtp.port;
-        smtp_user = config.networking.smtp.email;
-      };
-      flags = {
-        require_email_verification = false;
-        disable_signup_without_invite = true;
-        disable_user_create_org = true;
-      };
-      domains = {
-        domain1 = {
+  environment.systemPackages = with pkgs; [fosrl-pangolin];
+  services = {
+    pangolin = {
+      baseDomain = config.networking.baseDomain;
+      dnsProvider = config.networking.dnsProvider;
+      enable = true;
+      environmentFile = config.sops.templates.pangolin.path;
+      letsEncryptEmail = config.networking.email;
+      openFirewall = true;
+      settings = {
+        app.save_logs = true;
+        domains.domain1 = {
           cert_resolver = config.networking.dnsProvider;
           prefer_wildcard_cert = true;
         };
+        email = {
+          smtp_host = config.networking.smtp.host;
+          smtp_port = config.networking.smtp.port;
+          smtp_user = config.networking.smtp.email;
+        };
+        flags = {
+          disable_signup_without_invite = true;
+          disable_user_create_org = true;
+          require_email_verification = false;
+        };
       };
     };
-    letsEncryptEmail = config.networking.email;
-    baseDomain = config.networking.baseDomain;
-    environmentFile = config.sops.templates.pangolin.path;
-    dnsProvider = config.networking.dnsProvider;
-  };
-
-  services.traefik = {
-    environmentFiles = [
+    traefik.environmentFiles = [
       config.sops.templates.acme.path
     ];
   };
+  sops.templates.pangolin.content = ''
+    ${config.sops.placeholder.pangolin}
 
-  users.users.traefik = {
-    extraGroups = [
-      "docker"
-      "podman"
-    ];
-  };
+    EMAIL_SMTP_PASS=${config.sops.placeholder.smtpPassword}
+  '';
+  users.users.traefik.extraGroups = [
+    "docker"
+    "podman"
+  ];
 }
