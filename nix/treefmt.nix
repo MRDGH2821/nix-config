@@ -7,6 +7,7 @@
     };
     beautysh = {
       enable = true;
+      excludes = [".zed/c2n.sh"];
     };
     deadnix.enable = true;
     djlint.enable = true;
@@ -52,8 +53,8 @@
         "*.toml"
         "*.txt"
         "*.typ"
-        ".envrc"
         ".editorconfig"
+        ".envrc"
         ".envrc.*"
         "LICENCE"
         "LICENSE"
