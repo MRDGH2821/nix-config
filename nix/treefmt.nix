@@ -7,7 +7,6 @@
     };
     beautysh = {
       enable = true;
-      excludes = [".zed/*.sh"];
     };
     deadnix.enable = true;
     djlint.enable = true;
@@ -32,18 +31,31 @@
 
     prettier = {
       enable = true;
-      includes = [
-        "*.css"
-        "*.html"
-        "*.js"
-        "*.json"
-        "*.jsx"
-        "*.md"
-        "*.ts"
-        "*.tsx"
-        "*.yaml"
-        "*.yml"
-      ];
+      excludes = [
+            # keep-sorted start
+            "*.*ignore"
+            "*.aac"
+            "*.docx"
+            "*.envrc"
+            "*.jinja"
+            "*.jpg"
+            "*.lock"
+            "*.mp4"
+            "*.nix"
+            "*.pdf"
+            "*.png"
+            "*.pptx"
+            "*.py"
+            "*.toml"
+            "*.txt"
+            "*.typ"
+            ".envrc"
+            "LICENCE"
+            "LICENSE"
+            "justfile"
+            # keep-sorted end
+            ];
+      includes = ["*"];
       priority = 100;
     };
     ruff-check = {
@@ -73,6 +85,8 @@
         "**/secrets/*"
         ".cspell.json"
         "CHANGELOG.md"
+        "**/hosts/**/*.json"
+        "**/secrets/**"
         # keep-sorted end
       ];
     };
