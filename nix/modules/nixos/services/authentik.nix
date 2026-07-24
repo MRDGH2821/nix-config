@@ -5,6 +5,8 @@
     nginx.enable = false;
     environmentFile = config.sops.secrets.authentik.path;
     settings = {
+      disable_startup_analytics = true;
+      avatars = "initials";
       email = {
         host = config.networking.smtp.host;
         port = config.networking.smtp.port;
@@ -12,8 +14,6 @@
         from = config.networking.smtp.email;
         use_tls = true;
       };
-      disable_startup_analytics = true;
-      avatars = "initials";
     };
   };
 }

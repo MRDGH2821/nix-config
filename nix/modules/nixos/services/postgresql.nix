@@ -14,7 +14,9 @@
     '';
     enableTCPIP = true;
   };
+
   networking.firewall.allowedTCPPorts = [5432];
+
   services.postgresqlBackup = {
     enable = true;
     backupAll = true;
