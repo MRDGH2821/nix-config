@@ -123,11 +123,20 @@ deployments:
     kind: uri
     owners:
       - .
+    runtime: gemini
+    scope: project
+    target: mcp
+    value: nixos
+  - active_owner: .
+    content_hash:
+    kind: uri
+    owners:
+      - .
     runtime: opencode
     scope: project
     target: mcp
     value: nixos
-generated_at: "2026-07-24T14:31:49.143052+00:00"
+generated_at: "2026-07-24T14:52:34.001223+00:00"
 lockfile_version: "1"
 mcp_configs:
   nixos:
@@ -143,6 +152,8 @@ mcp_target_servers:
   copilot:
     - nixos
   cursor:
+    - nixos
+  gemini:
     - nixos
   opencode:
     - nixos

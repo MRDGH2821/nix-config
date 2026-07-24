@@ -51,4 +51,5 @@ report/
 .opencode/skills
 .vscode/mcp.json
 /.agents/skills
+/.gemini/settings.json
 opencode.json

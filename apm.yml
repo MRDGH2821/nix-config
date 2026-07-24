@@ -28,5 +28,6 @@ targets:
   - antigravity
   - copilot
   - cursor
+  - gemini
   - opencode
 version: 0.0.0
