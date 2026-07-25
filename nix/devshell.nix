@@ -31,12 +31,6 @@ in
       ];
     shellHook = ''
       ${pre-commit-check.shellHook}
-      rtk init --opencode 
-      rtk init -g --gemini 
-      rtk init -g --copilot
-      rtk init --agent cursor
-      rtk init --agent antigravity
-      rtk init --agent hermes
       ${pkgs.lib.getExe pkgs.git-agecrypt} init
       apm install
     '';
