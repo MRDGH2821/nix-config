@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  enableDefaultExcludes = false;
   programs = {
     actionlint.enable = true;
     alejandra = {
@@ -124,8 +125,6 @@
   };
   projectRootFile = "flake.nix";
   settings = {
-    "allow-missing-formatter" = true;
-    excludes = ["**/skills/**"];
     formatter = {
       cspell-sort = {
         command = "${pkgs.lib.getExe pkgs.yq-go}";
@@ -146,6 +145,15 @@
           ".words|= sort_by(downcase)|.ignorePaths|=sort_by(downcase)"
         ];
         priority = 9;
+      };
+      ignore-files-formatter = {
+        command = "${pkgs.lib.getExe pkgs.uv}x";
+        includes = [
+          "**/.*ignore"
+          ".*ignore"
+        ];
+        options = ["git+https://github.com/lorenzwalthert/gitignore-tidy"];
+        priority = 1;
       };
       prettypst-default = {
         command = "${pkgs.lib.getExe pkgs.prettypst}";
@@ -213,6 +221,29 @@
         ];
         priority = 0;
       };
+    };
+    global = {
+      allow-missing-formatter = true;
+      excludes = [
+        # keep-sorted start block=yes
+        # Custom excludes
+        # keep-sorted start
+        "**/apm_modules/**"
+        "**/node_modules/**"
+        "**/skills/**"
+        # keep-sorted end
+        # Defaults from treefmt-nix (sans .gitignore, so ignore-files-formatter can process it)
+        # keep-sorted start
+        "*.lock"
+        "*.patch"
+        ".gitattributes"
+        ".gitmodules"
+        "LICENSE"
+        "go.mod"
+        "go.sum"
+        # keep-sorted end
+        # keep-sorted end
+      ];
     };
   };
 }
