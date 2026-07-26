@@ -44,12 +44,13 @@ report/
 
 # agents
 .agent/skills
+.agents/rules
 .agents/skills
 .cursor/skills
+.gemini/settings.json
 .github/skills
 .mcp.json
 .opencode/skills
+.rtk
 .vscode/mcp.json
-/.agents/skills
-/.gemini/settings.json
 opencode.json
