@@ -1,7 +1,7 @@
 ---
 apm_version: 0.26.0
 dependencies:
-  - content_hash: sha256:0eb0fe4d0dd8b4d1e5c99e2a6103bb679e6ba54d90886b8423b93091014a8d88
+  - content_hash: sha256:74450c901abb809db695f1c32fd6e0a68fad426d0474ba945992e1a94dd122db
     deployed_file_hashes:
       .agents/skills/git-commit/SKILL.md: sha256:554d1a3c6d95f15bc1170160659ecdc9a9958b64f377f3988941b672c249b13f
     deployed_files:
@@ -11,7 +11,7 @@ dependencies:
     name: awesome-copilot
     package_type: skill_bundle
     repo_url: github/awesome-copilot
-    resolved_commit: 30472ecf0fe34cc561df958c08501ecc5ca80ea4
+    resolved_commit: aa280f28b1b73f9b6e6917b607eb92127b67b419
     skill_subset:
       - git-commit
     version: unknown
@@ -136,7 +136,7 @@ deployments:
     scope: project
     target: mcp
     value: nixos
-generated_at: "2026-07-24T14:52:34.001223+00:00"
+generated_at: "2026-07-26T10:53:52.169963+00:00"
 lockfile_version: "1"
 mcp_configs:
   nixos:
