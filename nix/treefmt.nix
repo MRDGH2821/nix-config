@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   enableDefaultExcludes = false;
   programs = {
     actionlint.enable = true;
@@ -17,6 +21,10 @@
     dos2unix.enable = true;
     flake-edit.enable = true;
     genemichaels.enable = true;
+    gofmt.enable = true;
+    gofumpt.enable = true;
+    goimports.enable = true;
+    golangci-lint.enable = true;
     just.enable = true;
     keep-sorted.enable = true;
     nbstripout.enable = true;
@@ -80,8 +88,13 @@
       enable = true;
       priority = 9;
     };
+    rustfmt.enable = true;
     shellcheck.enable = true;
     shfmt.enable = true;
+    sort-markdown-tables = {
+      enable = true;
+      priority = 3;
+    };
     sqlfluff.enable = true;
     sqlfluff-lint.enable = true;
     statix.enable = true;
@@ -127,7 +140,7 @@
   settings = {
     formatter = {
       cspell-sort = {
-        command = "${pkgs.lib.getExe pkgs.yq-go}";
+        command = "${lib.getExe pkgs.yq-go}";
         includes = [
           # keep-sorted start
           "**/.CSpell*"
@@ -156,7 +169,7 @@
         priority = 1;
       };
       prettypst-default = {
-        command = "${pkgs.lib.getExe pkgs.prettypst}";
+        command = "${lib.getExe pkgs.prettypst}";
         includes = ["*.typ"];
         no-positional-arg-support = true;
         options = [
@@ -166,7 +179,7 @@
         priority = 2;
       };
       prettypst-otbs = {
-        command = "${pkgs.lib.getExe pkgs.prettypst}";
+        command = "${lib.getExe pkgs.prettypst}";
         includes = ["*.typ"];
         no-positional-arg-support = true;
         options = [
@@ -175,14 +188,8 @@
         ];
         priority = 3;
       };
-      sort-markdown-tables = {
-        command = "smt";
-        includes = ["*.md"];
-        options = ["-i"];
-        priority = 2;
-      };
       tombi-format = {
-        command = "${pkgs.lib.getExe pkgs.tombi}";
+        command = "${lib.getExe pkgs.tombi}";
         includes = ["*.toml"];
         options = [
           "format"
@@ -195,7 +202,7 @@
         "--sort-table-keys"
       ];
       yamlfix = {
-        command = "${pkgs.lib.getExe pkgs.yamlfix}";
+        command = "${lib.getExe pkgs.yamlfix}";
         includes = [
           # keep-sorted start
           "*.yaml"
@@ -205,7 +212,7 @@
         priority = 8;
       };
       yq-key-sort = {
-        command = "${pkgs.lib.getExe pkgs.yq-go}";
+        command = "${lib.getExe pkgs.yq-go}";
         includes = [
           # keep-sorted start
           "*.json"
@@ -225,23 +232,11 @@
     global = {
       allow-missing-formatter = true;
       excludes = [
-        # keep-sorted start block=yes
-        # Custom excludes
         # keep-sorted start
         "**/apm_modules/**"
         "**/node_modules/**"
         "**/skills/**"
-        # keep-sorted end
-        # Defaults from treefmt-nix (sans .gitignore, so ignore-files-formatter can process it)
-        # keep-sorted start
-        "*.lock"
-        "*.patch"
         ".gitattributes"
-        ".gitmodules"
-        "LICENSE"
-        "go.mod"
-        "go.sum"
-        # keep-sorted end
         # keep-sorted end
       ];
     };

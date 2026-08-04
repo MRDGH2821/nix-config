@@ -38,6 +38,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:swarsel/pedantix/v1.1.0";
     };
+    smt = {
+      inputs = {
+        blueprint.follows = "blueprint";
+        git-hooks.follows = "git-hooks";
+        nixpkgs.follows = "nixpkgs";
+        pedantix.follows = "pedantix";
+        treefmt.follows = "treefmt";
+      };
+      url = "github:MRDGH2821/Sort-Markdown-Tables";
+    };
     sops-nix = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Mic92/sops-nix";

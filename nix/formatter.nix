@@ -4,13 +4,11 @@
   ...
 }: let
   treefmtEval = inputs.treefmt.lib.evalModule pkgs {
-    imports =
-      [
-        ./treefmt.nix
-      ]
-      ++ pkgs.lib.optionals (inputs ? pedantix) [
-        inputs.pedantix.treefmtModules.default
-      ];
+    imports = [
+      ./treefmt.nix
+      inputs.pedantix.treefmtModules.default
+      inputs.smt.treefmtModules.default
+    ];
   };
 in
   treefmtEval.config.build.wrapper.overrideAttrs (old: {
