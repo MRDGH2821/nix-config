@@ -44,6 +44,7 @@ report/
 
 # agents
 .agent/skills
+.agents/mcp_config.json
 .agents/rules
 .agents/skills
 .cursor/skills

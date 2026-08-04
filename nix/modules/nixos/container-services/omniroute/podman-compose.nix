@@ -62,7 +62,7 @@
           "--hostname=omniroute-web"
           "--network=host"
         ];
-        image = "ghcr.io/diegosouzapw/omniroute:3.8.48-web";
+        image = "ghcr.io/diegosouzapw/omniroute:3.8.49-web";
         log-driver = "journald";
         ports = [
           "20128:20128/tcp"

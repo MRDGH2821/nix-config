@@ -136,7 +136,7 @@ deployments:
     scope: project
     target: mcp
     value: nixos
-generated_at: "2026-07-26T10:53:52.169963+00:00"
+generated_at: "2026-08-02T00:08:08.371148+00:00"
 lockfile_version: "1"
 mcp_configs:
   nixos:
