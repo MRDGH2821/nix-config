@@ -18,7 +18,7 @@ in {
       ./secrets/agecrypt/duckdns-domain.nix
       ./modules
       ../../vars
-      ../../modules/nixos
+      inputs.self.nixosModules.default
       inputs.sops-nix.nixosModules.sops
       inputs.authentik-nix.nixosModules.default
       inputs.hermes-agent.nixosModules.default

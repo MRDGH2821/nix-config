@@ -615,16 +615,15 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1784793946,
-        "narHash": "sha256-6NwpoqHkMMnqDkoJGbjZ47PUx+M4yYDcN5HiTKscw7E=",
+        "lastModified": 1785851015,
+        "narHash": "sha256-zemqpfpXkHPGefuF8lgNrupH2RmB4GarQpIn5yVGiow=",
         "owner": "swarsel",
         "repo": "pedantix",
-        "rev": "bd5eeffcc4af3950a144114f11428c376c75507d",
+        "rev": "57fb5794182b7574f48ff0d391485ab6af70bc8a",
         "type": "github"
       },
       "original": {
         "owner": "swarsel",
-        "ref": "v1.1.0",
         "repo": "pedantix",
         "type": "github"
       }

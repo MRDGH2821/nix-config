@@ -36,7 +36,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     pedantix = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:swarsel/pedantix/v1.1.0";
+      url = "github:swarsel/pedantix";
     };
     smt = {
       inputs = {

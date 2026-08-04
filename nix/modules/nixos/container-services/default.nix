@@ -1,4 +1,4 @@
-{mylib, ...}: {
+_: {mylib, ...}: {
   imports = mylib.autoImportFolders ./.;
   networking.firewall = {
     extraCommands = "iptables -I nixos-fw 1 -i br+ -j ACCEPT";

@@ -159,15 +159,6 @@
         ];
         priority = 9;
       };
-      ignore-files-formatter = {
-        command = "${pkgs.lib.getExe pkgs.uv}x";
-        includes = [
-          "**/.*ignore"
-          ".*ignore"
-        ];
-        options = ["git+https://github.com/lorenzwalthert/gitignore-tidy"];
-        priority = 1;
-      };
       prettypst-default = {
         command = "${lib.getExe pkgs.prettypst}";
         includes = ["*.typ"];

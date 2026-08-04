@@ -1,3 +1,3 @@
-{mylib, ...}: {
+_: {mylib, ...}: {
   imports = mylib.autoImportModules ./.;
 }
