@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  flake,
+  inputs,
+  pkgs,
+  ...
+}: {
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
@@ -6,7 +11,22 @@
       systemd-boot.enable = true;
     };
   };
-  imports = [];
+  imports = [
+    ./hardware-configuration.nix
+    ../home-lab/modules/sops.nix
+    ../home-lab/modules/acme.nix
+
+    flake.modules.nixos.features
+    flake.modules.nixos.services
+    flake.modules.nixos.shell
+    flake.modules.nixos.fixes
+    flake.modules.nixos.container-services
+    flake.modules.nixos.vars
+
+    inputs.sops-nix.nixosModules.sops
+    inputs.authentik-nix.nixosModules.default
+    inputs.hermes-agent.nixosModules.default
+  ];
   networking = {
     hostName = "test-bed";
     networkmanager.enable = true;

@@ -5,7 +5,6 @@
     keepassxc
   ];
   hardware.graphics.enable = true;
-  imports = [../../../modules/nixos/features/rclone-mounts.nix];
   my.rclone.mounts.keepassxc = {
     folderName = "Keepass";
     mountPoint = "/mnt/rclone/kpxc/Keepass";
