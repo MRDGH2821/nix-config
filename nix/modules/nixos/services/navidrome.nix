@@ -1,36 +1,24 @@
-{
-  config,
-  lib,
-  mylibFor,
-  pkgs,
-  ...
-}: let
-  mylib = mylibFor {inherit pkgs lib config;};
-  rclone-navidrome = "/mnt/rclone/navidrome";
-  mount-options = "ro";
-  music-folder = mylib.rcloneMount {
-    folderName = "Music";
-    mountPoint = "${rclone-navidrome}/Music";
-    options = mount-options;
-    remoteName = "pcloud-personal";
+{config, ...}: {
+  my.rclone.mounts = {
+    navidrome-kirtan = {
+      folderName = "Kirtans";
+      mountPoint = "/mnt/rclone/navidrome/Kirtans";
+      options = "ro";
+      remoteName = "pcloud-personal";
+    };
+    navidrome-music = {
+      folderName = "Music";
+      mountPoint = "/mnt/rclone/navidrome/Music";
+      options = "ro";
+      remoteName = "pcloud-personal";
+    };
   };
-  kirtan-folder = mylib.rcloneMount {
-    folderName = "Kirtans";
-    mountPoint = "${rclone-navidrome}/Kirtans";
-    options = mount-options;
-    remoteName = "pcloud-personal";
-  };
-in {
-  imports = [
-    music-folder
-    kirtan-folder
-  ];
   services.navidrome = {
     enable = false;
     openFirewall = true;
     settings = {
       BaseUrl = "https://navidrome.${config.networking.baseDomain}";
-      MusicFolder = rclone-navidrome;
+      MusicFolder = "/mnt/rclone/navidrome";
       ReverseProxyUserHeader = "X-authentik-username";
     };
   };

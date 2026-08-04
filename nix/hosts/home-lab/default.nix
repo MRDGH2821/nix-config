@@ -4,7 +4,6 @@
   ...
 }: let
   mylib = import ../../lib {inherit (inputs.nixpkgs) lib;};
-  mylibFor = args: mylib // (import ../../lib/rclone-mounts.nix args);
 in {
   class = "nixos";
   value = inputs.nixpkgs.lib.nixosSystem {
@@ -25,7 +24,6 @@ in {
         inputs
         hostName
         mylib
-        mylibFor
         ;
     };
   };

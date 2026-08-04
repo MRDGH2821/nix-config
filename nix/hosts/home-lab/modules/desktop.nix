@@ -1,27 +1,17 @@
-{
-  config,
-  lib,
-  mylibFor,
-  pkgs,
-  ...
-}: let
-  mylib = mylibFor {inherit pkgs lib config;};
-  rclone-kpxc = "/mnt/rclone/kpxc";
-  mount-options = "rw";
-  keepassxc-folder = mylib.rcloneMount {
-    folderName = "Keepass";
-    mountPoint = "${rclone-kpxc}/Keepass";
-    options = mount-options;
-    remoteName = "pcloud-personal";
-  };
-in {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     waypipe
     zed-editor
     keepassxc
   ];
   hardware.graphics.enable = true;
-  imports = [keepassxc-folder];
+  imports = [../../../modules/nixos/features/rclone-mounts.nix];
+  my.rclone.mounts.keepassxc = {
+    folderName = "Keepass";
+    mountPoint = "/mnt/rclone/kpxc/Keepass";
+    options = "rw";
+    remoteName = "pcloud-personal";
+  };
   services = {
     desktopManager.plasma6.enable = true;
     openssh.enable = true;
