@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  sshKeys = import ../keys/ssh-keys.nix;
+  sshKeys = import ../../../keys/ssh-keys.nix;
 in {
   nix.settings = {
     allowed-users = [

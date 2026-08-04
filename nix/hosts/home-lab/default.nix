@@ -13,7 +13,7 @@ in {
       ./secrets/agecrypt/smtp.nix
       ./secrets/agecrypt/duckdns-domain.nix
       ./modules
-      ../../vars
+      inputs.self.nixosModules.vars
       inputs.self.nixosModules.default
       inputs.sops-nix.nixosModules.sops
       inputs.authentik-nix.nixosModules.default
