@@ -39,16 +39,16 @@ Discard broken uncommitted Nix WIP (corrupted host files, `././` paths, incomple
 
 ## 2. Decisions
 
-| Topic | Choice |
-|-------|--------|
-| Barrel imports | Keep simple auto-import on `flake.lib` only |
-| Host entry | Blueprint-native `configuration.nix`; delete escape-hatch `default.nix` |
-| Shared NixOS wiring | **Approach 2:** each host lists `flake.modules.nixos.*` explicitly (no mega-facade `modules/nixos/default.nix`) |
-| `default.nix` retention | Keep only as local auto-import aggregators; drop when Blueprint already maps that role |
-| `nix/vars/` | Move to `nix/modules/nixos/vars/` |
-| Rclone | NixOS module options: `my.rclone.mounts` |
-| URLs | Lib functions: `flake.lib.mkUrl` / `mkSubdomain` |
-| Home Manager | Phase 2, separate design/plan/commits |
+| Topic                   | Choice                                                                                                          |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Barrel imports          | Keep simple auto-import on `flake.lib` only                                                                     |
+| Host entry              | Blueprint-native `configuration.nix`; delete escape-hatch `default.nix`                                         |
+| Shared NixOS wiring     | **Approach 2:** each host lists `flake.modules.nixos.*` explicitly (no mega-facade `modules/nixos/default.nix`) |
+| `default.nix` retention | Keep only as local auto-import aggregators; drop when Blueprint already maps that role                          |
+| `nix/vars/`             | Move to `nix/modules/nixos/vars/`                                                                               |
+| Rclone                  | NixOS module options: `my.rclone.mounts`                                                                        |
+| URLs                    | Lib functions: `flake.lib.mkUrl` / `mkSubdomain`                                                                |
+| Home Manager            | Phase 2, separate design/plan/commits                                                                           |
 
 ---
 
@@ -138,11 +138,11 @@ Blueprint loads `hosts/<name>/configuration.nix` and produces `nixosConfiguratio
 
 ### 4.3 `default.nix` retention rules
 
-| Keep | Drop |
-|------|------|
+| Keep                                                                                                                                                                                                       | Drop                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | Folder barrels that only `autoImportModules` / `autoImportFolders` so nested `.nix` files load under one Blueprint module name (`services/`, `features/`, `container-services/`, host `modules/`, `vars/`) | Host escape hatch `default.nix` (`class` / `value` / `nixosSystem`) |
-| | `modules/nixos/default.nix` facade or `_module.args` lib injection |
-| | Any `default.nix` that only re-exports a single Blueprint leaf |
+|                                                                                                                                                                                                            | `modules/nixos/default.nix` facade or `_module.args` lib injection  |
+|                                                                                                                                                                                                            | Any `default.nix` that only re-exports a single Blueprint leaf      |
 
 ---
 
@@ -237,11 +237,11 @@ Port existing `lib/rclone-mounts.nix` behavior: install `pkgs.rclone`, generate 
 
 Replace helper `imports = [ (rcloneMount {…}) ]` with attr declarations:
 
-| File | Action |
-|------|--------|
-| `modules/nixos/services/jellyfin.nix` | `my.rclone.mounts.jellyfin-*` |
-| `modules/nixos/services/navidrome.nix` | `my.rclone.mounts.navidrome-*` |
-| `hosts/home-lab/modules/desktop.nix` | Keepass mount via `my.rclone.mounts` |
+| File                                   | Action                               |
+| -------------------------------------- | ------------------------------------ |
+| `modules/nixos/services/jellyfin.nix`  | `my.rclone.mounts.jellyfin-*`        |
+| `modules/nixos/services/navidrome.nix` | `my.rclone.mounts.navidrome-*`       |
+| `hosts/home-lab/modules/desktop.nix`   | Keepass mount via `my.rclone.mounts` |
 
 Hosts that declare rclone mounts must still import `sops-nix` (home-lab does today).
 
@@ -277,13 +277,13 @@ Prefer small logical commits if implementing incrementally; Phase 2 must not mix
 
 ## 9. Verification
 
-| Check | Expectation |
-|-------|-------------|
-| `just check` | Passes |
-| `nixosConfigurations.home-lab` / `test-bed` | Present and evaluate |
-| No host escape hatch | No `class` / `value` / host-local `nixosSystem` |
-| No dual lib | No `mylib` / `mylibFor` / `nixLib` injection |
-| Module attrs | `features`, `services`, `shell`, `fixes`, `container-services`, `vars` under `flake.modules.nixos` |
+| Check                                       | Expectation                                                                                        |
+| ------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `just check`                                | Passes                                                                                             |
+| `nixosConfigurations.home-lab` / `test-bed` | Present and evaluate                                                                               |
+| No host escape hatch                        | No `class` / `value` / host-local `nixosSystem`                                                    |
+| No dual lib                                 | No `mylib` / `mylibFor` / `nixLib` injection                                                       |
+| Module attrs                                | `features`, `services`, `shell`, `fixes`, `container-services`, `vars` under `flake.modules.nixos` |
 
 Optional:
 
@@ -295,13 +295,13 @@ nix eval .#nixosConfigurations.home-lab.config.networking.hostName
 
 ## 10. Risks and mitigations
 
-| Risk | Mitigation |
-|------|------------|
-| Nested barrels lack `flake` arg | Use Blueprint module wrap; fallback to lib-only auto-import or explicit imports |
-| Host forgets a shared module | Start both hosts with full explicit list |
+| Risk                                                  | Mitigation                                                                                |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Nested barrels lack `flake` arg                       | Use Blueprint module wrap; fallback to lib-only auto-import or explicit imports           |
+| Host forgets a shared module                          | Start both hosts with full explicit list                                                  |
 | Rclone `configFile` default before sops secret exists | Only declare mounts on hosts with sops + secret; keep default aligned with current helper |
-| Stale paths after `vars` move | Grep and fix imports |
-| Broken WIP pollutes rewrite | Reset Nix files from last good commit before editing |
+| Stale paths after `vars` move                         | Grep and fix imports                                                                      |
+| Broken WIP pollutes rewrite                           | Reset Nix files from last good commit before editing                                      |
 
 ---
 

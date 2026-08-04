@@ -24,31 +24,31 @@
 
 ## File map
 
-| Path | Role after plan |
-|------|-----------------|
-| `flake.nix` | Unchanged Blueprint entry |
-| `nix/lib/default.nix` | `autoImportModules`, `autoImportFolders`, `mkUrl`, `mkSubdomain` |
-| `nix/lib/auto-import.nix` | Unchanged logic |
-| `nix/lib/domain-builder.nix` | **Delete** (folded into lib) |
-| `nix/lib/rclone-mounts.nix` | **Delete** after module lands |
-| `nix/modules/nixos/features/rclone-mounts.nix` | **Create** — `my.rclone.mounts` |
-| `nix/modules/nixos/features/default.nix` | Barrel: `flake.lib.autoImportModules` |
-| `nix/modules/nixos/services/default.nix` | Barrel |
-| `nix/modules/nixos/services/jellyfin.nix` | Consume `my.rclone.mounts` |
-| `nix/modules/nixos/services/navidrome.nix` | Consumer + keep `BaseUrl` string as-is or use `mkUrl` only if already present as string |
-| `nix/modules/nixos/shell/default.nix` | Barrel |
-| `nix/modules/nixos/fixes/default.nix` | Barrel |
-| `nix/modules/nixos/container-services/default.nix` | Barrel `autoImportFolders` + firewall |
-| `nix/modules/nixos/container-services/*/default.nix` | Nested barrels without `mylib` |
-| `nix/modules/nixos/default.nix` | **Delete** |
-| `nix/modules/nixos/vars/**` | **Moved from** `nix/vars/**` |
-| `nix/vars/**` | **Delete** after move |
-| `nix/hosts/home-lab/default.nix` | **Delete** |
-| `nix/hosts/test-bed/default.nix` | **Delete** |
-| `nix/hosts/home-lab/configuration.nix` | Sole entry + full import list |
-| `nix/hosts/test-bed/configuration.nix` | Sole entry + full import list |
-| `nix/hosts/home-lab/modules/*.nix` | desktop/homepage no mylib |
-| `nix/modules/home/` | Phase 2 — touch only if check forces |
+| Path                                                 | Role after plan                                                                         |
+| ---------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `flake.nix`                                          | Unchanged Blueprint entry                                                               |
+| `nix/lib/default.nix`                                | `autoImportModules`, `autoImportFolders`, `mkUrl`, `mkSubdomain`                        |
+| `nix/lib/auto-import.nix`                            | Unchanged logic                                                                         |
+| `nix/lib/domain-builder.nix`                         | **Delete** (folded into lib)                                                            |
+| `nix/lib/rclone-mounts.nix`                          | **Delete** after module lands                                                           |
+| `nix/modules/nixos/features/rclone-mounts.nix`       | **Create** — `my.rclone.mounts`                                                         |
+| `nix/modules/nixos/features/default.nix`             | Barrel: `flake.lib.autoImportModules`                                                   |
+| `nix/modules/nixos/services/default.nix`             | Barrel                                                                                  |
+| `nix/modules/nixos/services/jellyfin.nix`            | Consume `my.rclone.mounts`                                                              |
+| `nix/modules/nixos/services/navidrome.nix`           | Consumer + keep `BaseUrl` string as-is or use `mkUrl` only if already present as string |
+| `nix/modules/nixos/shell/default.nix`                | Barrel                                                                                  |
+| `nix/modules/nixos/fixes/default.nix`                | Barrel                                                                                  |
+| `nix/modules/nixos/container-services/default.nix`   | Barrel `autoImportFolders` + firewall                                                   |
+| `nix/modules/nixos/container-services/*/default.nix` | Nested barrels without `mylib`                                                          |
+| `nix/modules/nixos/default.nix`                      | **Delete**                                                                              |
+| `nix/modules/nixos/vars/**`                          | **Moved from** `nix/vars/**`                                                            |
+| `nix/vars/**`                                        | **Delete** after move                                                                   |
+| `nix/hosts/home-lab/default.nix`                     | **Delete**                                                                              |
+| `nix/hosts/test-bed/default.nix`                     | **Delete**                                                                              |
+| `nix/hosts/home-lab/configuration.nix`               | Sole entry + full import list                                                           |
+| `nix/hosts/test-bed/configuration.nix`               | Sole entry + full import list                                                           |
+| `nix/hosts/home-lab/modules/*.nix`                   | desktop/homepage no mylib                                                               |
+| `nix/modules/home/`                                  | Phase 2 — touch only if check forces                                                    |
 
 ---
 
@@ -979,23 +979,23 @@ EOF
 
 ## Spec coverage checklist (author self-review)
 
-| Spec requirement | Task |
-|------------------|------|
-| Discard broken WIP | Task 1 |
-| Pure `flake.lib` auto-import + URLs | Task 2, Task 5 |
-| Delete domain-builder dual form | Task 2 |
-| `my.rclone.mounts` module | Task 3 |
-| Migrate jellyfin/navidrome/desktop | Task 3 |
-| Delete lib rclone helper | Task 3 |
-| Move vars → modules/nixos/vars | Task 4 |
-| Barrels without mylib | Task 5 |
-| homepage URL via flake.lib | Task 5 (and temporary local in Task 2) |
-| Native configuration.nix hosts | Task 6 |
-| Delete host default.nix | Task 6 |
-| Delete modules/nixos/default.nix | Task 6 |
-| Explicit Approach 2 imports | Task 6 |
-| `just check` green | Tasks 1–7 |
-| No HM Phase 2 work | Not scheduled |
+| Spec requirement                    | Task                                   |
+| ----------------------------------- | -------------------------------------- |
+| Discard broken WIP                  | Task 1                                 |
+| Pure `flake.lib` auto-import + URLs | Task 2, Task 5                         |
+| Delete domain-builder dual form     | Task 2                                 |
+| `my.rclone.mounts` module           | Task 3                                 |
+| Migrate jellyfin/navidrome/desktop  | Task 3                                 |
+| Delete lib rclone helper            | Task 3                                 |
+| Move vars → modules/nixos/vars      | Task 4                                 |
+| Barrels without mylib               | Task 5                                 |
+| homepage URL via flake.lib          | Task 5 (and temporary local in Task 2) |
+| Native configuration.nix hosts      | Task 6                                 |
+| Delete host default.nix             | Task 6                                 |
+| Delete modules/nixos/default.nix    | Task 6                                 |
+| Explicit Approach 2 imports         | Task 6                                 |
+| `just check` green                  | Tasks 1–7                              |
+| No HM Phase 2 work                  | Not scheduled                          |
 
 ## Phase 2 reminder (do not implement here)
 
