@@ -1,15 +1,10 @@
 {
   config,
+  flake,
   pkgs,
   ...
 }: let
-  mkUrl = subdomain: secure: let
-    protocol =
-      if secure
-      then "https"
-      else "http";
-    domain = config.networking.baseDomain;
-  in "${protocol}://${subdomain}.${domain}";
+  mkUrl = flake.lib.mkUrl config.networking.baseDomain;
 in {
   environment.systemPackages = with pkgs; [
     iputils

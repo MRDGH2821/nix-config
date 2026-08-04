@@ -1,10 +1,12 @@
-{
+{flake, ...}: {
   config,
-  mylib,
   pkgs,
   ...
-}: {
-  imports = mylib.autoImportModules ./.;
+}: let
+  lib = flake.inputs.nixpkgs.lib;
+  auto = import ../../../../lib/auto-import.nix {inherit lib;};
+in {
+  imports = auto.autoImportModules ./.;
   services = {
     # might need to create the extension manually
     # systemd.services.postgresql.postStart = lib.mkAfter ''

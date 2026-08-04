@@ -1,9 +1,8 @@
-{
-  config,
-  mylib,
-  ...
-}: {
-  imports = mylib.autoImportModules ./.;
+{flake, ...}: {config, ...}: let
+  lib = flake.inputs.nixpkgs.lib;
+  auto = import ../../../../lib/auto-import.nix {inherit lib;};
+in {
+  imports = auto.autoImportModules ./.;
   services.redis.servers.omniroute = {
     bind = null;
     enable = true;

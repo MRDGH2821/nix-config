@@ -22,6 +22,7 @@ in {
         hostName
         mylib
         ;
+      flake = inputs.self;
     };
   };
 }
