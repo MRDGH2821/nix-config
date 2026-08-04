@@ -1,11 +1,15 @@
 {
   config,
-  lib,
-  mylibFor,
   pkgs,
   ...
 }: let
-  mylib = mylibFor {inherit pkgs lib config;};
+  mkUrl = subdomain: secure: let
+    protocol =
+      if secure
+      then "https"
+      else "http";
+    domain = config.networking.baseDomain;
+  in "${protocol}://${subdomain}.${domain}";
 in {
   environment.systemPackages = with pkgs; [
     iputils
@@ -25,7 +29,7 @@ in {
             Pangolin = [
               {
                 description = "Identity-Aware Tunneled Reverse Proxy Server with Dashboard UI.";
-                href = mylib.mkUrl "pangolin" true;
+                href = mkUrl "pangolin" true;
                 icon = "sh-pangolin";
               }
             ];
@@ -34,7 +38,7 @@ in {
             Authentik = [
               {
                 description = "Take control of your identity needs with a secure, flexible solution.";
-                href = mylib.mkUrl "authentik" true;
+                href = mkUrl "authentik" true;
                 icon = "sh-authentik";
               }
             ];
@@ -43,7 +47,7 @@ in {
             pgAdmin4 = [
               {
                 description = "pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.";
-                href = mylib.mkUrl "pgadmin" true;
+                href = mkUrl "pgadmin" true;
                 icon = "sh-pgadmin";
               }
             ];
@@ -62,7 +66,7 @@ in {
             "Omni Tools" = {
               container = "omni-tools";
               description = "Boost your productivity with OmniTools, the ultimate toolkit for getting things done quickly! Access thousands of user-friendly utilities for editing images, text, lists, and data, all directly from your browser.";
-              href = mylib.mkUrl "omni-tools" true;
+              href = mkUrl "omni-tools" true;
               icon = "sh-omnitools";
             };
           }
@@ -70,7 +74,7 @@ in {
             "Bento PDF" = {
               container = "bentopdf";
               description = "The PDF Toolkit built for privacy.";
-              href = mylib.mkUrl "pdf" true;
+              href = mkUrl "pdf" true;
               icon = "sh-bentopdf";
             };
           }
@@ -78,7 +82,7 @@ in {
             Vert = {
               container = "vert";
               description = "The file converter you'll love.";
-              href = mylib.mkUrl "vert" true;
+              href = mkUrl "vert" true;
               icon = "sh-vert";
             };
           }
@@ -89,13 +93,13 @@ in {
           {
             Navidrome = {
               description = "Your Personal Streaming Service.";
-              href = mylib.mkUrl "navidrome" true;
+              href = mkUrl "navidrome" true;
               icon = "sh-navidrome";
               widget = {
                 salt = "{{HOMEPAGE_VAR_NAVIDROME_SALT}}";
                 token = "{{HOMEPAGE_VAR_NAVIDROME_TOKEN}}";
                 type = "navidrome";
-                url = mylib.mkUrl "navidrome" true;
+                url = mkUrl "navidrome" true;
                 user = "{{HOMEPAGE_VAR_NAVIDROME_USER}}";
               };
             };
@@ -103,19 +107,19 @@ in {
           {
             Linkwarden = {
               description = "Linkwarden helps you collect, read, annotate, and fully preserve what matters, all in one place.";
-              href = mylib.mkUrl "linkwarden" true;
+              href = mkUrl "linkwarden" true;
               icon = "sh-linkwarden";
               widget = {
                 key = "{{HOMEPAGE_VAR_LINKWARDEN_KEY}}";
                 type = "linkwarden";
-                url = mylib.mkUrl "linkwarden" true;
+                url = mkUrl "linkwarden" true;
               };
             };
           }
           {
             Peertube = {
               description = "Videos sharing & live streaming on free open source software PeerTube! No ads, no tracking, no spam.";
-              href = mylib.mkUrl "peertube" true;
+              href = mkUrl "peertube" true;
               icon = "sh-peertube";
             };
           }
@@ -126,12 +130,12 @@ in {
           {
             Forgejo = {
               description = "Your Personal Streaming Service.";
-              href = mylib.mkUrl "git" true;
+              href = mkUrl "git" true;
               icon = "sh-forgejo";
               widget = {
                 key = "{{HOMEPAGE_VAR_FORGEJO_KEY}}";
                 type = "gitea";
-                url = mylib.mkUrl "git" true;
+                url = mkUrl "git" true;
               };
             };
           }
@@ -142,7 +146,7 @@ in {
           {
             Nextcloud = {
               description = "Nextcloud is a safe home for all your data. Access and share your files, calendars, contacts, mail & more from any device, on your terms.";
-              href = mylib.mkUrl "nc" true;
+              href = mkUrl "nc" true;
               icon = "sh-nextcloud";
             };
           }
