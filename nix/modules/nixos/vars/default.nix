@@ -1,8 +1,7 @@
 {flake, ...}: let
-  lib = flake.inputs.nixpkgs.lib;
-  auto = import ../../../lib/auto-import.nix {inherit lib;};
+  inherit (flake.inputs.nixpkgs) lib;
 in {
-  imports = auto.autoImportModules ./.;
+  imports = flake.lib.autoImportModules ./.;
   options.persistent_storage = lib.mkOption {
     default = "/etc/nixos/persist";
     description = "Path to persistent storage";
