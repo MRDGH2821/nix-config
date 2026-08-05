@@ -1,11 +1,9 @@
 {
   config,
-  flake,
+  mkUrl,
   pkgs,
   ...
-}: let
-  mkUrl = flake.lib.mkUrl config.networking.baseDomain;
-in {
+}: {
   environment.systemPackages = with pkgs; [
     iputils
   ];

@@ -8,11 +8,16 @@ in
   autoImport
   // {
     inherit (autoImport) autoImportModules autoImportFolders;
-    mkSubdomain = baseDomain: subdomain: "${subdomain}.${baseDomain}";
-    mkUrl = baseDomain: subdomain: secure: let
-      protocol =
-        if secure
-        then "https"
-        else "http";
-    in "${protocol}://${subdomain}.${baseDomain}";
+    # Close over config once — callers use mkUrl "svc" true, not pass baseDomain.
+    # Wire via: `_module.args = flake.lib.mkDomainHelpers { inherit config; };`
+    # or `inherit ((flake.lib.mkDomainHelpers { inherit config; })) mkUrl;`
+    mkDomainHelpers = {config}: {
+      mkSubdomain = subdomain: "${subdomain}.${config.networking.baseDomain}";
+      mkUrl = subdomain: secure: let
+        protocol =
+          if secure
+          then "https"
+          else "http";
+      in "${protocol}://${subdomain}.${config.networking.baseDomain}";
+    };
   }
