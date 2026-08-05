@@ -1,6 +1,6 @@
-{flake, ...}: {
+{inputs, ...}: {
   imports = [
-    flake.modules.home.common
-    flake.modules.home.mr-nix
+    inputs.self.homeModules.common
+    inputs.self.homeModules.mr-nix
   ];
 }

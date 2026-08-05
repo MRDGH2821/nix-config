@@ -1,16 +1,13 @@
+# ls/ll/la come from programs.eza Zsh integration.
 {
-  environment.shellAliases = {
+  home.shellAliases = {
     cat = "bat --paging=never";
     dir = "dir --color=auto";
     egrep = "egrep --color=auto";
     fgrep = "fgrep --color=auto";
     grep = "grep --color=auto";
-    l = "ls -CF";
-    la = "ls -A";
-    ll = "ls -alF";
-    ls = "ls --color=auto";
     tb = "nc termbin.com 9999";
-    tf = ''touchfile() { mkdir -p "$(dirname "$1")" && touch "$1" && echo "$1" }'';
+    tf = "touchfile";
     vdir = "vdir --color=auto";
   };
 }
