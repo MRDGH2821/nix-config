@@ -124,6 +124,7 @@
     "searx",
     "searxng",
     "shfmt",
+    "specialfs",
     "SPROMPT",
     "statix",
     "stdenv",

@@ -1,8 +1,18 @@
 {
   config,
+  lib,
   pkgs,
   ...
-}: {
+}: let
+  nc = pkgs.nextcloud33;
+in {
+  # Host DB is already on 33.0.7.x; refuse eval if nixpkgs would install a lower package.
+  assertions = [
+    {
+      assertion = lib.versionAtLeast nc.version "33.0.7";
+      message = "services.nextcloud.package is ${nc.version}; need >= 33.0.7 (host is already on 33.0.7.x). Update nixpkgs; do not deploy an older nextcloud33.";
+    }
+  ];
   services = {
     nextcloud = {
       caching.redis = true;
@@ -15,7 +25,7 @@
       database.createLocally = true;
       enable = true;
       hostName = "nextcloud";
-      package = pkgs.nextcloud33;
+      package = nc;
       settings = {
         mail_domain = config.networking.smtp.email;
         mail_smtpauth = true;

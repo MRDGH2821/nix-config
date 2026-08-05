@@ -1,17 +1,19 @@
 {
+  lib,
+  pkgs,
+  ...
+}: {
   sops = {
     age = {
-      # This will generate a new key if the key specified above does not exist
-      generateKey = true;
-      # This is using an age key that is expected to already be in the filesystem
+      # Identity is written by sopsAgeHostKey (host SSH → age).
+      generateKey = false;
       keyFile = "/var/lib/sops-nix/key.txt";
-      # This will automatically import SSH keys as age keys
-      sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+      # Prefer keyFile only — avoid dual conversion paths.
+      sshKeyPaths = [];
     };
-    # This will add secrets.yml to the nix store
-    # You can avoid this by adding a string to the full path instead, i.e.
-    # sops.defaultSopsFile = "/root/.sops/secrets/secrets.yaml";
     defaultSopsFile = ../secrets/secrets.yaml;
+    # Secrets are age-only; RSA→GPG is unused and noisy.
+    gnupg.sshKeyPaths = lib.mkForce [];
     secrets = {
       acme = {
         format = "dotenv";
@@ -98,6 +100,27 @@
         key = "";
         sopsFile = ../secrets/wireless.env;
       };
+    };
+  };
+  # Ensure host SSH is converted to an age identity *before* sops-install-secrets.
+  # The random /var/lib/sops-nix/key.txt from generateKey=true is not a recipient
+  # for our secrets — only admin (age18mhd…) and host SSH → age1t6v85… unlock them.
+  system.activationScripts = {
+    # sops-nix defines setupSecrets as stringAfter users/groups; pull it after us.
+    setupSecrets.deps = ["sopsAgeHostKey"];
+    sopsAgeHostKey = {
+      deps = [
+        "specialfs"
+        "users"
+        "groups"
+      ];
+      text = ''
+        install -d -m 0700 /var/lib/sops-nix
+        ${lib.getExe pkgs.ssh-to-age} -private-key \
+          -i /etc/ssh/ssh_host_ed25519_key \
+          -o /var/lib/sops-nix/key.txt
+        chmod 0600 /var/lib/sops-nix/key.txt
+      '';
     };
   };
 }
