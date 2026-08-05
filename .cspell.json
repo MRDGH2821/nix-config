@@ -115,6 +115,7 @@
     "pycache",
     "pyodide",
     "pytest",
+    "qcow",
     "radicale",
     "rclone",
     "searx",
