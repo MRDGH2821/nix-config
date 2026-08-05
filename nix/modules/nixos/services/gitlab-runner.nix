@@ -1,7 +1,6 @@
 {config, ...}: {
   services.gitlab-runner = {
     clear-docker-cache.enable = true;
-    concurrent = 3;
     enable = true;
     services.an-runner = {
       authenticationTokenConfigFile = config.sops.secrets.glr-an.path;
@@ -12,5 +11,6 @@
       ];
       executor = "docker";
     };
+    settings.concurrent = 3;
   };
 }
