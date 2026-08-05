@@ -475,3 +475,38 @@ Configuration in `.vscode/` for cross-editor support (Zed recommended)
 
 - `.ai/AGENTS_GLOBAL.md` - Global agent guidelines
 - `.ai/logs/` - AI work logs (create daily files as needed)
+
+## Cursor Cloud specific instructions
+
+These notes cover non-obvious caveats when running in the Cursor Cloud VM. The
+startup update script already installs Nix (persisted under `/nix` in the VM
+snapshot), starts the Nix daemon, and runs `bun install`. Standard commands live
+in the README and `justfile`; only the gotchas below are cloud-specific.
+
+- **No systemd — the Nix daemon is started manually.** The container init is
+  `tini`, so there is no service manager. The startup script launches
+  `sudo nohup nix-daemon >/tmp/nix-daemon.log 2>&1 &`. If a `nix` command fails
+  with `cannot connect to socket at '/nix/var/nix/daemon-socket/socket'`, the
+  daemon isn't running — start it with that same command, then retry.
+- **Nix is only on `PATH` in login shells.** `/etc/bash.bashrc` sources the Nix
+  profile, so `bash -lc '...'` works. Non-login shells (the default for tool
+  commands) do not: first run
+  `. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh`.
+- **Dev tools come from the flake devShell, not the system.** `direnv` is not
+  active here, so run tooling via `nix develop --command <cmd>` — e.g.
+  `nix develop --command just check`, `nix develop --command treefmt`. `just`,
+  `sops`, `treefmt`, `alejandra`, `nixd`, `bun`, `uv`, etc. only exist inside it.
+- **`just check` = `nix flake check`.** `devShells`, `formatter`, and the
+  `test-bed` NixOS config evaluate cleanly. To prove a full system builds without
+  a heavy realisation, evaluate the derivation:
+  `nix eval --raw '.#nixosConfigurations.test-bed.config.system.build.toplevel.drvPath'`.
+- **The `home-lab` config needs decrypted secrets.** `home-lab/default.nix`
+  imports `nix/hosts/home-lab/secrets/agecrypt/*.nix`, which are encrypted at rest
+  with git-agecrypt. Without the age private key those files stay ciphertext, so
+  `nix flake check` and `treefmt` fail **only** on `home-lab` / those 3 files
+  (`stream did not contain valid UTF-8`). To work on `home-lab`, register the age
+  key and re-checkout per `nix/hosts/home-lab/secrets/README.md`. Everything else
+  works without the key.
+- **Deployment recipes don't apply here.** `just deploy`, `just home-lab`,
+  `just provision`, and `nix-cmds.sh` target real/remote NixOS hosts and cannot
+  run inside this container.
