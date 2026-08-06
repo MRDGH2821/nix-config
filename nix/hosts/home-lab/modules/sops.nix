@@ -1,18 +1,22 @@
 {
   lib,
-  pkgs,
   ...
 }: {
+  # Secrets are age-encrypted for:
+  #   - admin age18mhd… (local sops editing)
+  #   - host SSH ed25519 → age1t6v85… (activation on home-lab)
+  #
+  # Use host ed25519 via age.sshKeyPaths so sops-install-secrets can import it.
+  # Do not set sshKeyPaths = [] with only a generateKey keyFile: random keyfiles
+  # are not encryption recipients and activation fails with
+  # "Error getting data key: 0 successful groups required, got 0".
   sops = {
     age = {
-      # Identity is written by sopsAgeHostKey (host SSH → age).
       generateKey = false;
-      keyFile = "/var/lib/sops-nix/key.txt";
-      # Prefer keyFile only — avoid dual conversion paths.
-      sshKeyPaths = [];
+      sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
     };
     defaultSopsFile = ../secrets/secrets.yaml;
-    # Secrets are age-only; RSA→GPG is unused and noisy.
+    # Age-only secrets; skip RSA host → GPG import.
     gnupg.sshKeyPaths = lib.mkForce [];
     secrets = {
       acme = {
@@ -100,27 +104,6 @@
         key = "";
         sopsFile = ../secrets/wireless.env;
       };
-    };
-  };
-  # Ensure host SSH is converted to an age identity *before* sops-install-secrets.
-  # The random /var/lib/sops-nix/key.txt from generateKey=true is not a recipient
-  # for our secrets — only admin (age18mhd…) and host SSH → age1t6v85… unlock them.
-  system.activationScripts = {
-    # sops-nix defines setupSecrets as stringAfter users/groups; pull it after us.
-    setupSecrets.deps = ["sopsAgeHostKey"];
-    sopsAgeHostKey = {
-      deps = [
-        "specialfs"
-        "users"
-        "groups"
-      ];
-      text = ''
-        install -d -m 0700 /var/lib/sops-nix
-        ${lib.getExe pkgs.ssh-to-age} -private-key \
-          -i /etc/ssh/ssh_host_ed25519_key \
-          -o /var/lib/sops-nix/key.txt
-        chmod 0600 /var/lib/sops-nix/key.txt
-      '';
     };
   };
 }

@@ -18,6 +18,7 @@ in
         just
         just-lsp
         git-agecrypt
+        ssh-to-age
       ]
       ++ [nixos-cli];
   }
