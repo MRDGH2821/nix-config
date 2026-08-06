@@ -15,7 +15,7 @@
       database.createLocally = true;
       enable = true;
       hostName = "nextcloud";
-      package = pkgs.nextcloud33;
+      package = pkgs.nextcloud34;
       settings = {
         mail_domain = config.networking.smtp.email;
         mail_smtpauth = true;
