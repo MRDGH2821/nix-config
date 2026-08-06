@@ -18,7 +18,6 @@
 
     flake.modules.nixos.features
     flake.modules.nixos.services
-    flake.modules.nixos.shell
     flake.modules.nixos.fixes
     flake.modules.nixos.container-services
     flake.modules.nixos.vars

@@ -1,17 +1,20 @@
-{
+{lib, ...}: {
+  # Secrets are age-encrypted for:
+  #   - admin age18mhd… (local sops editing)
+  #   - host SSH ed25519 → age1t6v85… (activation on home-lab)
+  #
+  # Use host ed25519 via age.sshKeyPaths so sops-install-secrets can import it.
+  # Do not set sshKeyPaths = [] with only a generateKey keyFile: random keyfiles
+  # are not encryption recipients and activation fails with
+  # "Error getting data key: 0 successful groups required, got 0".
   sops = {
     age = {
-      # This will generate a new key if the key specified above does not exist
-      generateKey = true;
-      # This is using an age key that is expected to already be in the filesystem
-      keyFile = "/var/lib/sops-nix/key.txt";
-      # This will automatically import SSH keys as age keys
+      generateKey = false;
       sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
     };
-    # This will add secrets.yml to the nix store
-    # You can avoid this by adding a string to the full path instead, i.e.
-    # sops.defaultSopsFile = "/root/.sops/secrets/secrets.yaml";
     defaultSopsFile = ../secrets/secrets.yaml;
+    # Age-only secrets; skip RSA host → GPG import.
+    gnupg.sshKeyPaths = lib.mkForce [];
     secrets = {
       acme = {
         format = "dotenv";

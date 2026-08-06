@@ -22,7 +22,6 @@
 
     flake.modules.nixos.features
     flake.modules.nixos.services
-    flake.modules.nixos.shell
     flake.modules.nixos.fixes
     flake.modules.nixos.container-services
     flake.modules.nixos.vars
@@ -37,7 +36,6 @@
   };
   nix.settings.allowed-users = [
     "@wheel"
-    "bose-game"
   ];
   programs.ssh.startAgent = true;
   services = {
@@ -45,14 +43,4 @@
     openssh.enable = true;
   };
   system.stateVersion = "25.05";
-  users.users.bose-game = {
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-    ];
-    isNormalUser = true;
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF5wVbxASqs1YeVPFBzUoyNCABQFDOF0/JXxGrz2u215 Bose Game Mini PC"
-    ];
-  };
 }
