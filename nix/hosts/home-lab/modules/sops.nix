@@ -1,7 +1,4 @@
-{
-  lib,
-  ...
-}: {
+{lib, ...}: {
   # Secrets are age-encrypted for:
   #   - admin age18mhd… (local sops editing)
   #   - host SSH ed25519 → age1t6v85… (activation on home-lab)
