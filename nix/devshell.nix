@@ -12,13 +12,16 @@ in
     inherit (pre-commit-check) shellHook;
     packages = with pkgs;
       [
+        # keep-sorted start
+        compose2nix
+        git-agecrypt
+        just
+        just-lsp
         nil
         nixd
         sops
-        just
-        just-lsp
-        git-agecrypt
         ssh-to-age
+        # keep-sorted end
       ]
       ++ [nixos-cli];
   }
