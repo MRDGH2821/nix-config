@@ -111,7 +111,6 @@
         "**/hosts/**/*.json"
         "**/secrets.yaml"
         "**/secrets/*"
-        "**q/secrets/**"
         ".cspell.json"
         "CHANGELOG.md"
         # keep-sorted end
