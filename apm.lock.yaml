@@ -105,7 +105,7 @@ deployments:
     kind: uri
     owners:
       - .
-    runtime: copilot
+    runtime: antigravity
     scope: project
     target: mcp
     value: nixos
@@ -136,7 +136,16 @@ deployments:
     scope: project
     target: mcp
     value: nixos
-generated_at: "2026-08-02T00:08:08.371148+00:00"
+  - active_owner: .
+    content_hash:
+    kind: uri
+    owners:
+      - .
+    runtime: vscode
+    scope: project
+    target: mcp
+    value: nixos
+generated_at: "2026-08-26T06:25:39.224045+00:00"
 lockfile_version: "1"
 mcp_configs:
   nixos:
@@ -149,11 +158,13 @@ mcp_configs:
 mcp_servers:
   - nixos
 mcp_target_servers:
-  copilot:
+  antigravity:
     - nixos
   cursor:
     - nixos
   gemini:
     - nixos
   opencode:
+    - nixos
+  vscode:
     - nixos
