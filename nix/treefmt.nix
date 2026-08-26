@@ -98,11 +98,15 @@
     sqlfluff.enable = true;
     sqlfluff-lint.enable = true;
     statix.enable = true;
-    taplo.enable = true;
-    toml-sort = {
+    taplo = {
       enable = true;
-      priority = 0;
+      priority = 15;
+      settings.formatting = {
+        array_auto_expand = true;
+        array_trailing_comma = false;
+      };
     };
+    toml-sort.enable = true;
     typos = {
       enable = true;
       excludes = [
