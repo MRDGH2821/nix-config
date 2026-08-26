@@ -13,28 +13,25 @@ in
     packages = with pkgs;
       [
         # keep-sorted start
-        compose2nix
-        git-agecrypt
-        just
-        just-lsp
-        nil
-        nixd
-        sops
-        ssh-to-age
         bun
         cocogitto
+        compose2nix
         copier
         git
+        git-agecrypt
         git-credential-oauth
         glab
+        just
+        just-lsp
         lazygit
         nil
         nixd
         repgrep
         ripgrep
+        sops
+        ssh-to-age
         uv
         # keep-sorted end
       ]
       ++ [nixos-cli];
-    
   }

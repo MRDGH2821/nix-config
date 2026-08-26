@@ -75,6 +75,9 @@
       excludes = [
         # keep-sorted start
         "**/.cspell.json"
+        "**/hosts/**/*.json"
+        "**/secrets.yaml"
+        "**/secrets/**"
         ".cspell.json"
         "CHANGELOG.md"
         # keep-sorted end
