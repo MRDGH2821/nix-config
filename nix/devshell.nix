@@ -21,7 +21,20 @@ in
         nixd
         sops
         ssh-to-age
+        bun
+        cocogitto
+        copier
+        git
+        git-credential-oauth
+        glab
+        lazygit
+        nil
+        nixd
+        repgrep
+        ripgrep
+        uv
         # keep-sorted end
       ]
       ++ [nixos-cli];
+    
   }

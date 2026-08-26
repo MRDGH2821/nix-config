@@ -1,6 +1,2 @@
-{
-  inputs,
-  pkgs,
-  ...
-}:
-(import ../formatter.nix {inherit inputs pkgs;}).check
+{perSystem, ...}:
+perSystem.self.formatter.check

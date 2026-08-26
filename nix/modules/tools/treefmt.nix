@@ -10,10 +10,7 @@
       enable = true;
       priority = 10;
     };
-    beautysh = {
-      enable = true;
-      excludes = [".zed/c2n.sh"];
-    };
+    beautysh.enable = true;
     deadnix.enable = true;
     djlint.enable = true;
     dockerfmt.enable = true;
@@ -48,36 +45,6 @@
     };
     prettier = {
       enable = true;
-      excludes = [
-        # keep-sorted start
-        "*.*ignore"
-        "*.aac"
-        "*.docx"
-        "*.env"
-        "*.envrc"
-        "*.ini"
-        "*.jinja"
-        "*.jpg"
-        "*.lock"
-        "*.mp4"
-        "*.nix"
-        "*.pdf"
-        "*.png"
-        "*.pptx"
-        "*.py"
-        "*.sh"
-        "*.toml"
-        "*.txt"
-        "*.typ"
-        ".editorconfig"
-        ".envrc"
-        ".envrc.*"
-        "LICENCE"
-        "LICENSE"
-        "justfile"
-        # keep-sorted end
-      ];
-      includes = ["*"];
       priority = 100;
     };
     ruff-check = {
@@ -98,23 +65,16 @@
     sqlfluff.enable = true;
     sqlfluff-lint.enable = true;
     statix.enable = true;
-    taplo = {
+    taplo.enable = true;
+    toml-sort = {
       enable = true;
-      priority = 15;
-      settings.formatting = {
-        array_auto_expand = true;
-        array_trailing_comma = false;
-      };
+      priority = 0;
     };
-    toml-sort.enable = true;
     typos = {
       enable = true;
       excludes = [
         # keep-sorted start
         "**/.cspell.json"
-        "**/hosts/**/*.json"
-        "**/secrets.yaml"
-        "**/secrets/*"
         ".cspell.json"
         "CHANGELOG.md"
         # keep-sorted end
@@ -225,14 +185,7 @@
     };
     global = {
       allow-missing-formatter = true;
-      excludes = [
-        # keep-sorted start
-        "**/apm_modules/**"
-        "**/node_modules/**"
-        "**/skills/**"
-        ".gitattributes"
-        # keep-sorted end
-      ];
+      excludes = ["**/skills/**"];
     };
   };
 }

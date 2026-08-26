@@ -9,17 +9,20 @@
 #   Java       → PascalCase   (Oracle Code Conventions — must match class name)
 # ── Ignored paths ─────────────────────────────────────────────────────────
 ignore:
-  - node_modules
+  # keep-sorted start
   - .git
-  - dist
-  - build
-  - target # Rust/Java build output
   - .gradle
-  - __pycache__
   - .pytest_cache
   - .venv
-  - venv
+  - __pycache__
+  - apm_modules
+  - build
+  - dist
+  - node_modules
   - result # Nix build result symlink
+  - target # Rust/Java build output
+  - venv
+  # keep-sorted end
 ls:
   .cjs: kebab-case
   .d.ts: snake_case

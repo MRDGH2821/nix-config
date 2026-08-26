@@ -8,6 +8,28 @@ result-*
 *.ccu
 
 # Ignore local configuration files containing sensitive information
+# AI
+# keep-sorted start
+.agents/mcp_config.json
+.agents/skills/
+.claude/skills/
+.cursor/mcp.json
+.cursor/skills
+.gemini/settings.json
+.github/skills
+.mcp.json
+.opencode/skills
+.vscode/mcp.json
+apm_modules/
+opencode.json
+# keep-sorted end
+
+# Env
+.env
+.env.*
+!.env.sample
+
+# Others
 *.local
 .env
 .env.*
@@ -49,6 +71,7 @@ target/
 .svn
 .venv/
 /.cache_ggshield
+.worktrees
 __MACOSX
 __pycache__
 config
@@ -58,3 +81,5 @@ node_modules
 node_modules/
 public
 home-lab.qcow2
+report/
+target/
