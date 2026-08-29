@@ -94,7 +94,7 @@
       firefox
       heroic
       kdePackages.kleopatra
-      keepassxc
+      # keepassxc: installed via programs.keepassxc (keepassxc.nix)
       ludusavi # game-save backup; GUI (pulls kdialog) — gated deliberately, not in the brief's list
       marktext
       meld

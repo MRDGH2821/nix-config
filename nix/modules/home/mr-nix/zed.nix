@@ -457,7 +457,7 @@ _: {
       }
       {
         args = ["\"$ZED_WORKTREE_ROOT\""];
-        command = "sourcegit";
+        command = "SourceGit";
         hide = "always";
         label = "Open Sourcegit";
         tags = ["git"];
