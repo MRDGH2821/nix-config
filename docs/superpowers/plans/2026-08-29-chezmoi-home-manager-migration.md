@@ -408,20 +408,11 @@ Port the functions verbatim from `shell_aliases.sh` (read it first — reproduce
       echo "GITHUB_TOKEN exported."
     }
 
-    export-glab() {
-      local token
-      command -v glab >/dev/null 2>&1 || { echo "Error: 'glab' is not installed." >&2; return 1; }
-      token="$(glab auth status --show-token 2>&1 | sed -n 's/.*[Tt]oken.*: \([^[:space:]]*\)$/\1/p' | head -n 1)"
-      if [[ -z "''${token}" || "''${token}" == *'*'* ]]; then
-        echo "Error: failed to get GitLab token." >&2
-        return 1
-      fi
-      export GITLAB_TOKEN="''${token}"
-      echo "GITLAB_TOKEN exported."
-    }
   '';
 }
 ```
+
+`export-glab` — port verbatim from `shell_aliases.sh` into the same `initContent` block (it parses the token from `glab auth status --show-token` with `sed`, then `export GITLAB_TOKEN`). Escape `$` as `''$` inside the Nix string.
 
 For `update-repo` (long, ~60 lines in `shell_aliases.sh`): reproduce it in the same `initContent` block verbatim from the source — escape `${` as `''${` and `''` (empty) is not present. Read `shell_aliases.sh` and copy the whole `update-repo() { … }` body.
 
@@ -658,7 +649,8 @@ Notes for the executor:
   mine.git = {
     userName = "MRDGH2821";
     userEmail = "ask.mrdgh2821@outlook.com";
-    signingKey = "1915CBA05A598D01"; # dot_config/git/config [user].signingkey
+    # Value from chezmoi dot_config/git/config -> [user].signingkey
+    signingKey = "<gpg-signing-key-id>";
   };
 ```
 
