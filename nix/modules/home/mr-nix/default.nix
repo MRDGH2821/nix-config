@@ -7,6 +7,7 @@
     ./dev-tools.nix
     ./git.nix
     ./keepassxc.nix
+    ./misc-configs.nix
     ./packages.nix
     ./zed.nix
   ];

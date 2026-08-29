@@ -213,6 +213,9 @@
         "**/node_modules/**"
         "**/skills/**"
         ".gitattributes"
+        # Verbatim third-party dotfiles vendored for Home Manager drop-ins;
+        # key-sorting / reformatting them would defeat the point.
+        "nix/modules/home/mr-nix/files/**"
         # keep-sorted end
       ];
     };

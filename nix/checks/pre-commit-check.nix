@@ -58,7 +58,12 @@ inputs.git-hooks.lib.${pkgs.stdenv.hostPlatform.system}.run {
       name = "ls-lint";
       stages = ["pre-commit"];
     };
-    ripsecrets.enable = true;
+    ripsecrets = {
+      enable = true;
+      # soar's vendored config carries the upstream repo's minisign *public*
+      # key (verifies release signatures, published upstream) — not a secret.
+      excludes = ["nix/modules/home/mr-nix/files/soar-config\\.toml"];
+    };
     typos = {
       enable = true;
       settings.configPath = "./typos.toml";
