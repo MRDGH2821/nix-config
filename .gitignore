@@ -6,25 +6,72 @@ result-*
 
 # Ignore automatically generated files & folders
 *.ccu
-.direnv
 
 # Ignore local configuration files containing sensitive information
+# AI
+# keep-sorted start
+.agents/mcp_config.json
+.agents/skills/
+.claude/skills/
+.cursor/mcp.json
+.cursor/skills
+.gemini/settings.json
+.github/skills
+.mcp.json
+.opencode/skills
+.vscode/mcp.json
+apm_modules/
+opencode.json
+# keep-sorted end
+
+# Env
+.env
+.env.*
+!.env.sample
+
+# Others
 *.local
 .env
+.env.*
+!.env.sample
 config.local.sh
 
-# Ignore pangolin dirs
+# Added by ggshield
+.cache_ggshield
+
+# APM dependencies
+apm_modules/
+
+# agents
+.agent/skills
+.agents/mcp_config.json
+.agents/rules
+.agents/skills
+.cursor/skills
+.gemini/settings.json
+.github/skills
+.mcp.json
+.opencode/skills
+.rtk
+.vscode/mcp.json
+opencode.json
+
+# Other
+
 .DS_Store
 .debug/
 .devenv
-.env.*
-!.env.sample
+.direnv
 .git
 .new
 .next
+report/
+target/
+.pre-commit-config.yaml
 .svn
 .venv/
 /.cache_ggshield
+.worktrees
 __MACOSX
 __pycache__
 config
@@ -33,10 +80,6 @@ megalinter-reports/
 node_modules
 node_modules/
 public
-
-# Added by ggshield
-.cache_ggshield
+home-lab.qcow2
+report/
 target/
-
-# APM dependencies
-apm_modules/

@@ -1,42 +1,69 @@
 ---
-apm_version: 0.25.0
+apm_version: 0.26.0
 dependencies:
-  - content_hash: sha256:0eb0fe4d0dd8b4d1e5c99e2a6103bb679e6ba54d90886b8423b93091014a8d88
+  - content_hash: sha256:74450c901abb809db695f1c32fd6e0a68fad426d0474ba945992e1a94dd122db
     deployed_file_hashes:
       .agents/skills/git-commit/SKILL.md: sha256:554d1a3c6d95f15bc1170160659ecdc9a9958b64f377f3988941b672c249b13f
-      .claude/skills/git-commit/SKILL.md: sha256:554d1a3c6d95f15bc1170160659ecdc9a9958b64f377f3988941b672c249b13f
     deployed_files:
       - .agents/skills/git-commit
       - .agents/skills/git-commit/SKILL.md
-      - .claude/skills/git-commit
-      - .claude/skills/git-commit/SKILL.md
     host: github.com
     name: awesome-copilot
     package_type: skill_bundle
     repo_url: github/awesome-copilot
-    resolved_commit: 30472ecf0fe34cc561df958c08501ecc5ca80ea4
+    resolved_commit: aa280f28b1b73f9b6e6917b607eb92127b67b419
     skill_subset:
       - git-commit
     version: unknown
-  - content_hash: sha256:da9027bce1018aab91d6f4582683107511774979a6db8b80435d03d9e9de334b
+  - content_hash: sha256:1cd37f37cb9e137eb1e8311fce2d349da3f3c58bf20de28336a1c5c526a4b170
     deployed_file_hashes:
-      .agents/skills/find-skills/SKILL.md: sha256:deddc03b4b5f50755b97fcdb737a786676992ef7e9be614d2cd2c71e0320bebf
-      .claude/skills/find-skills/SKILL.md: sha256:deddc03b4b5f50755b97fcdb737a786676992ef7e9be614d2cd2c71e0320bebf
+      .agents/skills/dry-refactoring/SKILL.md: sha256:81c7480e1134aa13d2de2669de3276a48faed7a7c19e66a4670db5cb92dc98dc
+    deployed_files:
+      - .agents/skills/dry-refactoring
+      - .agents/skills/dry-refactoring/SKILL.md
+    host: github.com
+    name: jscpd
+    package_type: skill_bundle
+    repo_url: kucherenko/jscpd
+    resolved_commit: 64258a9af460fc554c1ad884f976787378721d90
+    resolved_ref: v5.0.12
+    skill_subset:
+      - dry-refactoring
+    version: unknown
+  - content_hash: sha256:bd08e34ee9cce2f9fb6c2b9483368375f7dce3e7e9146a68a331993041231d03
+    deployed_file_hashes:
+      .agents/skills/find-skills/SKILL.md: sha256:c00eeea0e13e74fe4a9d84ba0a8542205a1b736d65f13134fe1a6647eb14976f
     deployed_files:
       - .agents/skills/find-skills
       - .agents/skills/find-skills/SKILL.md
-      - .claude/skills/find-skills
-      - .claude/skills/find-skills/SKILL.md
     host: github.com
     name: skills
     package_type: skill_bundle
     repo_url: vercel-labs/skills
-    resolved_commit: 2adcfe5a4cce0ce5f4d5547a997b2a161ec5d127
-    resolved_ref: v1.5.14
+    resolved_commit: c042b919289e113a419da93d4c0db9b4c91fe368
+    resolved_ref: v1.5.20
     skill_subset:
       - find-skills
     version: unknown
 deployments:
+  - active_owner: kucherenko/jscpd
+    content_hash:
+    kind: project-relative
+    owners:
+      - kucherenko/jscpd
+    runtime:
+    scope: project
+    target: agent-skills
+    value: .agents/skills/dry-refactoring
+  - active_owner: kucherenko/jscpd
+    content_hash: sha256:81c7480e1134aa13d2de2669de3276a48faed7a7c19e66a4670db5cb92dc98dc
+    kind: project-relative
+    owners:
+      - kucherenko/jscpd
+    runtime:
+    scope: project
+    target: agent-skills
+    value: .agents/skills/dry-refactoring/SKILL.md
   - active_owner: vercel-labs/skills
     content_hash:
     kind: project-relative
@@ -44,16 +71,16 @@ deployments:
       - vercel-labs/skills
     runtime:
     scope: project
-    target: agents
+    target: agent-skills
     value: .agents/skills/find-skills
   - active_owner: vercel-labs/skills
-    content_hash: sha256:deddc03b4b5f50755b97fcdb737a786676992ef7e9be614d2cd2c71e0320bebf
+    content_hash: sha256:c00eeea0e13e74fe4a9d84ba0a8542205a1b736d65f13134fe1a6647eb14976f
     kind: project-relative
     owners:
       - vercel-labs/skills
     runtime:
     scope: project
-    target: agents
+    target: agent-skills
     value: .agents/skills/find-skills/SKILL.md
   - active_owner: github/awesome-copilot
     content_hash:
@@ -62,7 +89,7 @@ deployments:
       - github/awesome-copilot
     runtime:
     scope: project
-    target: agents
+    target: agent-skills
     value: .agents/skills/git-commit
   - active_owner: github/awesome-copilot
     content_hash: sha256:554d1a3c6d95f15bc1170160659ecdc9a9958b64f377f3988941b672c249b13f
@@ -71,50 +98,14 @@ deployments:
       - github/awesome-copilot
     runtime:
     scope: project
-    target: agents
+    target: agent-skills
     value: .agents/skills/git-commit/SKILL.md
-  - active_owner: vercel-labs/skills
-    content_hash:
-    kind: project-relative
-    owners:
-      - vercel-labs/skills
-    runtime:
-    scope: project
-    target: claude
-    value: .claude/skills/find-skills
-  - active_owner: vercel-labs/skills
-    content_hash: sha256:deddc03b4b5f50755b97fcdb737a786676992ef7e9be614d2cd2c71e0320bebf
-    kind: project-relative
-    owners:
-      - vercel-labs/skills
-    runtime:
-    scope: project
-    target: claude
-    value: .claude/skills/find-skills/SKILL.md
-  - active_owner: github/awesome-copilot
-    content_hash:
-    kind: project-relative
-    owners:
-      - github/awesome-copilot
-    runtime:
-    scope: project
-    target: claude
-    value: .claude/skills/git-commit
-  - active_owner: github/awesome-copilot
-    content_hash: sha256:554d1a3c6d95f15bc1170160659ecdc9a9958b64f377f3988941b672c249b13f
-    kind: project-relative
-    owners:
-      - github/awesome-copilot
-    runtime:
-    scope: project
-    target: claude
-    value: .claude/skills/git-commit/SKILL.md
   - active_owner: .
     content_hash:
     kind: uri
     owners:
       - .
-    runtime: claude
+    runtime: antigravity
     scope: project
     target: mcp
     value: nixos
@@ -132,11 +123,29 @@ deployments:
     kind: uri
     owners:
       - .
+    runtime: gemini
+    scope: project
+    target: mcp
+    value: nixos
+  - active_owner: .
+    content_hash:
+    kind: uri
+    owners:
+      - .
     runtime: opencode
     scope: project
     target: mcp
     value: nixos
-generated_at: "2026-07-16T22:19:04.970629+00:00"
+  - active_owner: .
+    content_hash:
+    kind: uri
+    owners:
+      - .
+    runtime: vscode
+    scope: project
+    target: mcp
+    value: nixos
+generated_at: "2026-08-26T06:25:39.224045+00:00"
 lockfile_version: "1"
 mcp_configs:
   nixos:
@@ -149,9 +158,13 @@ mcp_configs:
 mcp_servers:
   - nixos
 mcp_target_servers:
-  claude:
+  antigravity:
     - nixos
   cursor:
     - nixos
+  gemini:
+    - nixos
   opencode:
+    - nixos
+  vscode:
     - nixos

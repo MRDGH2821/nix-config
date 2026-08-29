@@ -1,43 +1,46 @@
 {
+  flake,
+  inputs,
   modulesPath,
   pkgs,
   ...
 }: {
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    loader = {
+      efi.canTouchEfiVariables = true;
+      systemd-boot.enable = true;
+    };
+  };
   imports = [
-    ./modules/sops.nix
-    (modulesPath + "/installer/scan/not-detected.nix")
-    (modulesPath + "/profiles/qemu-guest.nix")
-    ../../system-modules/features/system-packages.nix
+    "${modulesPath}/installer/scan/not-detected.nix"
+    "${modulesPath}/profiles/qemu-guest.nix"
+    ./hardware-configuration.nix
+    ./modules
+    ./secrets/agecrypt/smtp.nix
+    ./secrets/agecrypt/duckdns-domain.nix
+
+    flake.modules.nixos.features
+    flake.modules.nixos.services
+    flake.modules.nixos.fixes
+    flake.modules.nixos.container-services
+    flake.modules.nixos.vars
+
+    inputs.sops-nix.nixosModules.sops
+    inputs.authentik-nix.nixosModules.default
+    inputs.hermes-agent.nixosModules.default
   ];
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  services.openssh.enable = true;
-
-  programs.ssh.startAgent = true;
-
   networking = {
-    # configures the network interface(include wireless) via `nmcli` & `nmtui`
-    networkmanager.enable = true;
     hostName = "home-lab";
+    networkmanager.enable = true;
   };
-
-  users.users.bose-game = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-    ];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF5wVbxASqs1YeVPFBzUoyNCABQFDOF0/JXxGrz2u215 Bose Game Mini PC"
-    ];
-  };
-  services.automatic-timezoned.enable = true;
   nix.settings.allowed-users = [
     "@wheel"
-    "bose-game"
   ];
+  programs.ssh.startAgent = true;
+  services = {
+    automatic-timezoned.enable = true;
+    openssh.enable = true;
+  };
   system.stateVersion = "25.05";
 }

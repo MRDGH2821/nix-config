@@ -2,25 +2,28 @@
 author: MRDGH2821
 dependencies:
   apm:
-    - git: vercel-labs/skills
-      ref: v1.5.14
-      skills:
-        - find-skills
-    - git: github/awesome-copilot
-      skills:
-        - git-commit
+    - git: https://github.com/MRDGH2821/copier-mr-minimal
   mcp:
     - args:
         - mcp-nixos
       command: uvx
-      name: nixos
+      name: mcp-nixos
       registry: false
       transport: stdio
+description: Project generated from copier-mr-minimal
 includes: auto
 name: nix-config
-scripts: {}
+scripts:
+  antigravity: agy plugin install https://github.com/obra/superpowers
+  claude: |
+    claude plugin marketplace add obra/superpowers-marketplace
+    claude plugin install superpowers@superpowers-marketplace
+  cursor: cursor-agent plugin marketplace add https://github.com/obra/superpowers
+  opencode: opencode plugin superpowers@git+https://github.com/obra/superpowers.git -g
 targets:
-  - cursor
-  - opencode
+  - antigravity
   - claude
-version: 0.27.1
+  - cursor
+  - gemini
+  - opencode
+version: 0.0.0

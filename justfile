@@ -50,6 +50,15 @@ home-lab: check
 home-lab-debug: check
     nixos apply ".#home-lab" --target-host {{ home-lab-target }} --build-host {{ home-lab-target }} --remote-root --show-trace --verbose --yes
 
+# Build a QEMU VM of home-lab (only virtualisation.vmVariant overrides apply).
+# Login: mr-nix / vm  or  root / vm.  SSH: localhost:2222 (with your sharedKey).
+# Exit serial console: Ctrl-a then x.
+home-lab-vm:
+    nix build ".#nixosConfigurations.home-lab.config.system.build.vm" -o result-home-lab-vm
+
+home-lab-vm-run: home-lab-vm
+    ./result-home-lab-vm/bin/run-*-vm
+
 ############################################################################
 #
 #  Provisioning — first-time install on bare metal / VMs
