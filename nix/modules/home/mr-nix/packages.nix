@@ -12,6 +12,7 @@
 # Deliberately NOT added here (owned elsewhere / out of scope):
 #   - bat, direnv, eza, fastfetch, fzf, gh, lazygit, oh-my-posh, topgrade, zoxide
 #     -> installed by their dedicated `programs.*` modules (shell/, dev-tools.nix).
+#   - git-delta -> pulled in by `programs.delta` (git.nix).
 #   - alejandra, treefmt -> provided by the flake devshell / `nix fmt`.
 #   - nix, podman, pam-u2f, sane-backends, system-config-printer -> system level.
 #   - chezmoi (retired), mise (programs.mise), soar / antidot (Task 9), mcfly (dropped),

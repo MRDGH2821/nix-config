@@ -57,7 +57,10 @@ in {
         settings = {
           core = {
             autocrlf = false;
-            editor = "zed -n --wait";
+            # Zed is only the editor on GUI (desktop) hosts where it is
+            # installed; on the headless servers leave core.editor unset so
+            # git falls back to the system default instead of a missing binary.
+            editor = lib.mkIf config.mine.gui.enable "zed -n --wait";
           };
           credential = {
             helper = [
@@ -79,7 +82,9 @@ in {
             guitool = "meld";
           };
           push.followTags = true;
-          tag.forceSignAnnotated = true;
+          # Only force-sign annotated tags where signing is actually configured;
+          # otherwise `git tag -a` on the servers demands an impossible signature.
+          tag = lib.mkIf (cfg.signingKey != "") {forceSignAnnotated = true;};
           user = lib.mkMerge [
             (lib.mkIf (cfg.userName != "") {name = cfg.userName;})
             (lib.mkIf (cfg.userEmail != "") {email = cfg.userEmail;})

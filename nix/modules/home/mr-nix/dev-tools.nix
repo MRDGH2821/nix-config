@@ -21,7 +21,11 @@
 #     (`/home/arch/.config/fastfetch/weather.sh`) and the `/mnt/ISOz` disk
 #     entry. Everything else is kept as-is.
 #   - tombi config is copied verbatim to ./files/tombi.toml.
-_: {
+#   - lazygit `os.editPreset` / topgrade: the chezmoi source hardcodes `zed` and
+#     an `"Antidot rules" = "antidot update"` command. `zed` is only present on
+#     GUI hosts (else lazygit's edit key opens nothing), and `antidot` is not
+#     installed here (that topgrade step always failed) — dropped deliberately.
+{config, ...}: {
   programs = {
     direnv = {
       enable = true;
@@ -68,7 +72,10 @@ _: {
           overrideGpg = true;
         };
         gui.sidePanelWidth = 0.3;
-        os.editPreset = "zed";
+        os.editPreset =
+          if config.mine.gui.enable
+          then "zed"
+          else "nano";
       };
     };
     mise = {
@@ -123,10 +130,7 @@ _: {
     topgrade = {
       enable = true;
       settings = {
-        commands = {
-          "Antidot rules" = "antidot update";
-          "Hermes Agent" = "hermes update";
-        };
+        commands."Hermes Agent" = "hermes update";
         firmware.upgrade = true;
         git = {
           max_concurrency = 1;

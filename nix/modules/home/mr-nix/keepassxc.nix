@@ -1,10 +1,14 @@
 # KeePassXC as Freedesktop Secret Service provider for this user.
 # Database exposure (which group is published) is still set per-db in the GUI.
+# GUI-host only (mine.gui.enable): the headless NixOS servers must not autostart
+# a graphical password manager or claim the Secret Service D-Bus name.
 {
+  config,
   lib,
   pkgs,
   ...
-}: {
+}:
+lib.mkIf config.mine.gui.enable {
   programs.keepassxc = {
     autostart = true;
     enable = true;
