@@ -403,3 +403,9 @@ git config --show-origin --get commit.gpgsign
 - **Consistency:** username is de-hardcoded in §2/§3.2 and the stub sets it in §3.1; `mcfly` dropped in §1.1/§3.8/§7; `soar`/`antidot` config-only in §1.1/§3.6/§3.7/§5.
 - **Scope:** one implementation plan, ~7 new small modules + 1 stub + flake input edit. Sized like Phase 2 but larger; splittable per §6.11.
 - **Ambiguity resolved:** "everything portable" = nixpkgs-or-`llm-agents` only; anything absent is listed as out-of-band, not silently dropped. GUI packages gated behind `mine.gui.enable` so the standalone Fedora build stays lean.
+
+---
+
+## Implemented
+
+Phase 3 is done. Executed via [the implementation plan](../plans/2026-08-29-chezmoi-home-manager-migration.md) (Tasks 1–10) on branch `mihir/feat/chezmoi-home-manager`. All flake checks and the `mr-fw16@fw16` / `mr-nix@home-lab` / NixOS `home-lab` / `test-bed` builds pass. Phases 4–6 (NixOS `fw16` host, KDE/Plasma, Flatpak) remain out of scope.
