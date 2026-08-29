@@ -65,5 +65,12 @@
       inherit inputs;
       nixpkgs.config.allowUnfree = true;
       prefix = "nix";
+      # nixpkgs 26.11 dropped x86_64-darwin; drop it from the generated
+      # flake outputs so `nix flake check` / `nix flake show` stop erroring.
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
     };
 }

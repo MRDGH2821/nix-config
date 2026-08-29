@@ -100,6 +100,11 @@ in {
       ];
     };
   };
+  # nixpkgs 26.11 ships its own services.forgejo-runner module (previously
+  # only services.gitea-actions-runner existed). This file is a full custom
+  # reimplementation of the option tree + systemd unit, so disable upstream
+  # to avoid "option services.forgejo-runner.package is already declared".
+  disabledModules = ["services/continuous-integration/forgejo-runner.nix"];
   options.services.forgejo-runner = {
     connections = lib.mkOption {
       default = {};

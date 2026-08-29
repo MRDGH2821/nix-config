@@ -1,0 +1,15 @@
+# typos configuration — https://github.com/crate-ci/typos
+# Referenced by nix/checks/pre-commit-check.nix (typos.settings.configPath).
+
+[default.extend-identifiers]
+# ALSA HD-audio kernel module, not a typo of "had".
+snd_hda_intel = "snd_hda_intel"
+
+[files]
+extend-exclude = [
+  "flake.lock",
+  # Generated hardware dump — full of kernel module names (snd_hda_intel, …).
+  "nix/hosts/home-lab/bose-game-home-lab.json",
+  # sops-encrypted blobs — ciphertext produces only false positives.
+  "nix/hosts/home-lab/secrets/**"
+]

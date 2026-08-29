@@ -10,7 +10,9 @@
       enable = true;
       priority = 10;
     };
-    beautysh.enable = true;
+    # beautysh crashes on valid here-strings ("indent/outdent mismatch");
+    # shfmt already covers shell formatting.
+    beautysh.enable = false;
     deadnix.enable = true;
     djlint.enable = true;
     dockerfmt.enable = true;

@@ -14,22 +14,22 @@ Phase 2 wired Home Manager for `mr-nix` on `home-lab` / `test-bed` (wire-up only
 
 ### 1.1 Decisions
 
-| Topic                | Choice                                                                                                                                                             |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| End state            | **Staged**: build a Home Manager layer that works **standalone on Fedora now**, structured so a future NixOS `fw16` host adopts the same shared modules              |
-| Host                 | New `nix/hosts/fw16/` — `users/` stub now; `configuration.nix` + `hardware-configuration.nix` deferred to the NixOS phase                                            |
-| Standalone account   | **Split**: `hosts/fw16/users/mr-fw16.nix` (matches the real Fedora login `mr-fw16` / `/home/mr-fw16`). All real config lives in shared `homeModules` that both `mr-fw16` (standalone) and `mr-nix` (NixOS hosts) import |
-| Migration style      | **Nativize where possible** — `programs.*` regenerating config from Nix; `xdg.configFile` / `home.file` only for apps with no module or not worth modelling          |
-| Packages             | **Everything portable** — every chezmoi-listed package that exists in nixpkgs (or `llm-agents.nix`), GUI apps included                                               |
-| `mise`               | **Keep** — `programs.mise` with `globalConfig` port; complements Nix for non-Nix project toolchains                                                                  |
-| `mcfly`              | **Drop** — fzf history widget + `zsh-history-substring-search` already configured in `shell/zsh.nix`                                                                 |
-| `soar` + `antidot`   | **Keep configs** (verbatim `xdg.configFile`); binaries are out-of-band (not in nixpkgs, not packaged here)                                                           |
-| Signing key / GPG    | **Module option** — expose via a home-module option (`vars`-style), set per host/stub, not hardcoded in `git.nix`                                                    |
-| opencode config      | **Migrate verbatim** — `xdg.configFile` for `opencode.json` + `tui.json`                                                                                            |
-| KDE / Plasma         | **Future plan** — `dolphinrc`, `konsolerc`, `spectaclerc`, konsole profiles, `plasma-workspace/env/*`, `kxmlgui5` are out of scope here (separate `plasma-manager` workstream) |
-| Flatpak / non-nixpkgs GUI | **Future plan** — Grayjay, Alpaca, planify, onlyoffice, ente-auth, Flatseal, Warehouse, Snapshot, Gramps, Firmware, etc. handled in a later `services.flatpak` pass |
-| `nixos-hardware`     | Add `github:NixOS/nixos-hardware` flake input now; the `framework-16` AMD profile is imported later by `hosts/fw16/configuration.nix`                                |
-| `llm-agents.nix`     | Add `github:numtide/llm-agents.nix` flake input; consume via `overlays.shared-nixpkgs` → `pkgs.llm-agents.*` for `herdr`, `rtk`, `apm`, `hermes-agent`               |
+| Topic                     | Choice                                                                                                                                                                                                                  |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| End state                 | **Staged**: build a Home Manager layer that works **standalone on Fedora now**, structured so a future NixOS `fw16` host adopts the same shared modules                                                                 |
+| Host                      | New `nix/hosts/fw16/` — `users/` stub now; `configuration.nix` + `hardware-configuration.nix` deferred to the NixOS phase                                                                                               |
+| Standalone account        | **Split**: `hosts/fw16/users/mr-fw16.nix` (matches the real Fedora login `mr-fw16` / `/home/mr-fw16`). All real config lives in shared `homeModules` that both `mr-fw16` (standalone) and `mr-nix` (NixOS hosts) import |
+| Migration style           | **Nativize where possible** — `programs.*` regenerating config from Nix; `xdg.configFile` / `home.file` only for apps with no module or not worth modelling                                                             |
+| Packages                  | **Everything portable** — every chezmoi-listed package that exists in nixpkgs (or `llm-agents.nix`), GUI apps included                                                                                                  |
+| `mise`                    | **Keep** — `programs.mise` with `globalConfig` port; complements Nix for non-Nix project toolchains                                                                                                                     |
+| `mcfly`                   | **Drop** — fzf history widget + `zsh-history-substring-search` already configured in `shell/zsh.nix`                                                                                                                    |
+| `soar` + `antidot`        | **Keep configs** (verbatim `xdg.configFile`); binaries are out-of-band (not in nixpkgs, not packaged here)                                                                                                              |
+| Signing key / GPG         | **Module option** — expose via a home-module option (`vars`-style), set per host/stub, not hardcoded in `git.nix`                                                                                                       |
+| opencode config           | **Migrate verbatim** — `xdg.configFile` for `opencode.json` + `tui.json`                                                                                                                                                |
+| KDE / Plasma              | **Future plan** — `dolphinrc`, `konsolerc`, `spectaclerc`, konsole profiles, `plasma-workspace/env/*`, `kxmlgui5` are out of scope here (separate `plasma-manager` workstream)                                          |
+| Flatpak / non-nixpkgs GUI | **Future plan** — Grayjay, Alpaca, planify, onlyoffice, ente-auth, Flatseal, Warehouse, Snapshot, Gramps, Firmware, etc. handled in a later `services.flatpak` pass                                                     |
+| `nixos-hardware`          | Add `github:NixOS/nixos-hardware` flake input now; the `framework-16` AMD profile is imported later by `hosts/fw16/configuration.nix`                                                                                   |
+| `llm-agents.nix`          | Add `github:numtide/llm-agents.nix` flake input; consume via `overlays.shared-nixpkgs` → `pkgs.llm-agents.*` for `herdr`, `rtk`, `apm`, `hermes-agent`                                                                  |
 
 ### 1.2 Success criteria
 
@@ -48,7 +48,7 @@ Phase 2 wired Home Manager for `mr-nix` on `home-lab` / `test-bed` (wire-up only
 - KDE/Plasma personal config (`plasma-manager`).
 - Flatpak + non-nixpkgs GUI apps.
 - Packaging `soar` / `antidot` for Nix.
-- Migrating `home-lab` / `test-bed` to the new shared modules (they *may* adopt them, decided during implement; not required).
+- Migrating `home-lab` / `test-bed` to the new shared modules (they _may_ adopt them, decided during implement; not required).
 - Espanso config, `marktext` config, `gallery-dl` beyond `config.json`.
 
 ---
@@ -202,16 +202,16 @@ Notes:
 
 ### 3.5 `modules/home/mr-nix/dev-tools.nix`
 
-| Program                | Source                                    | Target                                                                         |
-| ---------------------- | ----------------------------------------- | ------------------------------------------------------------------------------ |
-| `programs.lazygit`     | `dot_config/lazygit/config.yml`           | `.settings` = YAML as attrs. `os.editPreset = "zed"`, delta diffRenderer kept (drop `/usr/bin/` prefix) |
-| `programs.mise`        | `dot_config/mise/config.toml`             | `.globalConfig.tools` = the tool map. `enableMutableConfig = true` (user runs `mise use`). `enableZshIntegration = true` |
-| `programs.direnv`      | `.zshrc.d/12-direnv`                       | `.enable = true`, `.nix-direnv.enable = true` (repo already uses direnv)       |
-| `programs.gh`          | git credential helper refs                 | `.enable = true`, `.settings.git_protocol = "https"`                          |
-| `programs.topgrade`    | `dot_config/topgrade.toml`                 | `.settings` = TOML as attrs                                                    |
-| `programs.gallery-dl`  | `dot_config/gallery-dl/config.json`        | `.settings` = JSON as attrs                                                    |
-| `programs.fastfetch`   | `dot_config/fastfetch/config.jsonc`        | `.settings` = the JSONC object (strip comments). Fix hardcoded paths (`/home/arch/...weather.sh`, ISOz disk) — drop those modules or parametrise |
-| `tombi`                | `dot_config/tombi/config.toml`             | no HM module → `xdg.configFile."tombi/config.toml"` in misc-configs           |
+| Program               | Source                              | Target                                                                                                                                           |
+| --------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `programs.lazygit`    | `dot_config/lazygit/config.yml`     | `.settings` = YAML as attrs. `os.editPreset = "zed"`, delta diffRenderer kept (drop `/usr/bin/` prefix)                                          |
+| `programs.mise`       | `dot_config/mise/config.toml`       | `.globalConfig.tools` = the tool map. `enableMutableConfig = true` (user runs `mise use`). `enableZshIntegration = true`                         |
+| `programs.direnv`     | `.zshrc.d/12-direnv`                | `.enable = true`, `.nix-direnv.enable = true` (repo already uses direnv)                                                                         |
+| `programs.gh`         | git credential helper refs          | `.enable = true`, `.settings.git_protocol = "https"`                                                                                             |
+| `programs.topgrade`   | `dot_config/topgrade.toml`          | `.settings` = TOML as attrs                                                                                                                      |
+| `programs.gallery-dl` | `dot_config/gallery-dl/config.json` | `.settings` = JSON as attrs                                                                                                                      |
+| `programs.fastfetch`  | `dot_config/fastfetch/config.jsonc` | `.settings` = the JSONC object (strip comments). Fix hardcoded paths (`/home/arch/...weather.sh`, ISOz disk) — drop those modules or parametrise |
+| `tombi`               | `dot_config/tombi/config.toml`      | no HM module → `xdg.configFile."tombi/config.toml"` in misc-configs                                                                              |
 
 ### 3.6 `modules/home/mr-nix/packages.nix`
 
@@ -232,22 +232,22 @@ Notes:
 
 Verbatim drops (`xdg.configFile` unless noted). Each `source` points at a copy vendored into `nix/modules/home/mr-nix/files/` (extract chezmoi templating first — render once, commit the plain file):
 
-| Target path                                   | From                                             | Notes |
-| --------------------------------------------- | ------------------------------------------------ | ----- |
-| `herdr/config.toml`                            | `dot_config/herdr/config.toml`                   | static |
-| `soar/config.toml`, `soar/packages.toml`       | `dot_config/soar/*`                              | binary out-of-band |
-| `opencode/opencode.json`, `opencode/tui.json`  | `dot_config/opencode/*`                          | verbatim per decision |
-| `topgrade` handled by module                   | —                                               | — |
-| `tombi/config.toml`                            | `dot_config/tombi/config.toml`                   | no module |
-| `~/.config/cargo/config.toml` (`home.file`)    | `dot_local/share/cargo/config.toml`              | sccache wrapper; ensure `CARGO_HOME` set in session-vars |
-| `nix/nix.conf`                                 | `dot_config/nix/nix.conf`                        | OR fold into NixOS `nix.settings` on the future host; keep as user `nix.conf` for standalone Fedora |
-| `copier/settings.yml`                          | `dot_config/copier/settings.yml`                 | trust list |
-| `~/.shellcheckrc` (`home.file`)                | `dot_shellcheckrc`                               | — |
-| `~/.local/bin/cspell-refresh-words` (`home.file`, executable) | `dot_local/bin/executable_cspell-refresh-words` | needs `yq`, `bunx` on PATH |
-| `~/.local/bin/herdr-open` (`home.file`, executable)           | `dot_local/bin/executable_herdr-open`           | needs `herdr`, `yq`, `git` |
-| `git/templates/hooks/commit-msg`, `git/templates/hooks/pre-commit` (executable) | `dot_config/git/templates/hooks/executable_*` | referenced by `init.templateDir` |
-| `fastfetch` handled by module                  | —                                               | — |
-| `MangoHud/MangoHud.conf`                        | `dot_config/MangoHud/MangoHud.conf`             | **defer** to desktop phase (`programs.mangohud`) |
+| Target path                                                                     | From                                            | Notes                                                                                               |
+| ------------------------------------------------------------------------------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `herdr/config.toml`                                                             | `dot_config/herdr/config.toml`                  | static                                                                                              |
+| `soar/config.toml`, `soar/packages.toml`                                        | `dot_config/soar/*`                             | binary out-of-band                                                                                  |
+| `opencode/opencode.json`, `opencode/tui.json`                                   | `dot_config/opencode/*`                         | verbatim per decision                                                                               |
+| `topgrade` handled by module                                                    | —                                               | —                                                                                                   |
+| `tombi/config.toml`                                                             | `dot_config/tombi/config.toml`                  | no module                                                                                           |
+| `~/.config/cargo/config.toml` (`home.file`)                                     | `dot_local/share/cargo/config.toml`             | sccache wrapper; ensure `CARGO_HOME` set in session-vars                                            |
+| `nix/nix.conf`                                                                  | `dot_config/nix/nix.conf`                       | OR fold into NixOS `nix.settings` on the future host; keep as user `nix.conf` for standalone Fedora |
+| `copier/settings.yml`                                                           | `dot_config/copier/settings.yml`                | trust list                                                                                          |
+| `~/.shellcheckrc` (`home.file`)                                                 | `dot_shellcheckrc`                              | —                                                                                                   |
+| `~/.local/bin/cspell-refresh-words` (`home.file`, executable)                   | `dot_local/bin/executable_cspell-refresh-words` | needs `yq`, `bunx` on PATH                                                                          |
+| `~/.local/bin/herdr-open` (`home.file`, executable)                             | `dot_local/bin/executable_herdr-open`           | needs `herdr`, `yq`, `git`                                                                          |
+| `git/templates/hooks/commit-msg`, `git/templates/hooks/pre-commit` (executable) | `dot_config/git/templates/hooks/executable_*`   | referenced by `init.templateDir`                                                                    |
+| `fastfetch` handled by module                                                   | —                                               | —                                                                                                   |
+| `MangoHud/MangoHud.conf`                                                        | `dot_config/MangoHud/MangoHud.conf`             | **defer** to desktop phase (`programs.mangohud`)                                                    |
 
 ### 3.8 `modules/home/shell/` updates
 
@@ -311,21 +311,21 @@ Add substituter for the `llm-agents` cache to `nix.settings` on the future host 
 
 ## 5. Explicitly excluded from `files/`
 
-| Path / group                                                    | Reason |
-| -------------------------------------------------------------- | ------ |
-| `readonly_Documents/**`, `dot_config/powershell/**`, `.chezmoiscripts/windows/**` | Windows |
-| `.chezmoiscripts/**` (all)                                       | distro configure + package-install scripts; replaced by Nix |
-| `.chezmoidata/packages/linux/{arch,debian,ubuntu,fedora}.yaml`, `.chezmoidata/distros.yaml` | package manifests → `home.packages` / future NixOS |
-| `.chezmoidata/skills.yaml` (empty), `.chezmoidata/packages/python3.yaml` (`uv-upx`) | empty / out-of-band |
-| `dot_config/paru/**`                                             | Arch AUR helper |
-| `.chezmoi.toml.tmpl`, `.chezmoitemplates/**`, `.chezmoiignore`, `dot_config/copier` templating | chezmoi machinery (render once, keep output only) |
-| `dot_local/share/antidot/{alias,env}.sh`, `antidot init` hooks   | `$HOME` XDG-cleanup; moot on Nix. `antidot` config kept only if it exists (none in tree) |
-| `dot_bashrc` "content outside managed sections" self-check       | HM owns `~/.bashrc` |
-| `dot_config/{dolphinrc,konsolerc,spectaclerc.tmpl}`, `dot_config/plasma-workspace/**`, `dot_local/share/konsole/**`, `dot_local/share/kxmlgui5/**` | KDE/Plasma — future `plasma-manager` phase |
-| `dot_config/MangoHud/**`                                         | future desktop phase (`programs.mangohud`) |
-| `dot_config/marktext/**`                                         | app-managed state |
-| `.chezmoitemplates/shell-scripts/{01-chezmoi,02-mcfly,03-antidot}.sh` | chezmoi retired / mcfly dropped / antidot dropped |
-| `dot_config/{dolphinrc → private_*}` and `readonly_*`            | KDE / Windows |
+| Path / group                                                                                                                                       | Reason                                                                                   |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `readonly_Documents/**`, `dot_config/powershell/**`, `.chezmoiscripts/windows/**`                                                                  | Windows                                                                                  |
+| `.chezmoiscripts/**` (all)                                                                                                                         | distro configure + package-install scripts; replaced by Nix                              |
+| `.chezmoidata/packages/linux/{arch,debian,ubuntu,fedora}.yaml`, `.chezmoidata/distros.yaml`                                                        | package manifests → `home.packages` / future NixOS                                       |
+| `.chezmoidata/skills.yaml` (empty), `.chezmoidata/packages/python3.yaml` (`uv-upx`)                                                                | empty / out-of-band                                                                      |
+| `dot_config/paru/**`                                                                                                                               | Arch AUR helper                                                                          |
+| `.chezmoi.toml.tmpl`, `.chezmoitemplates/**`, `.chezmoiignore`, `dot_config/copier` templating                                                     | chezmoi machinery (render once, keep output only)                                        |
+| `dot_local/share/antidot/{alias,env}.sh`, `antidot init` hooks                                                                                     | `$HOME` XDG-cleanup; moot on Nix. `antidot` config kept only if it exists (none in tree) |
+| `dot_bashrc` "content outside managed sections" self-check                                                                                         | HM owns `~/.bashrc`                                                                      |
+| `dot_config/{dolphinrc,konsolerc,spectaclerc.tmpl}`, `dot_config/plasma-workspace/**`, `dot_local/share/konsole/**`, `dot_local/share/kxmlgui5/**` | KDE/Plasma — future `plasma-manager` phase                                               |
+| `dot_config/MangoHud/**`                                                                                                                           | future desktop phase (`programs.mangohud`)                                               |
+| `dot_config/marktext/**`                                                                                                                           | app-managed state                                                                        |
+| `.chezmoitemplates/shell-scripts/{01-chezmoi,02-mcfly,03-antidot}.sh`                                                                              | chezmoi retired / mcfly dropped / antidot dropped                                        |
+| `dot_config/{dolphinrc → private_*}` and `readonly_*`                                                                                              | KDE / Windows                                                                            |
 
 ---
 
@@ -348,16 +348,16 @@ Add substituter for the `llm-agents` cache to `nix.settings` on the future host 
 
 ## 7. Verification
 
-| Check                                             | Expectation |
-| ------------------------------------------------- | ----------- |
-| `just check` / `nix flake check`                  | Pass |
-| `nix flake show`                                  | Lists `mr-fw16@fw16` |
-| `nix build .#mr-fw16@fw16.activationPackage`      | Builds on `x86_64-linux` |
-| `nix eval .#homeModules --apply 'x: builtins.attrNames x'` | includes `common`, `mr-nix` |
-| `home-lab` / `test-bed` eval                       | still build |
-| generated `~/.config/git/config`                  | matches chezmoi semantics (signing, delta, includeIf, credential stack) |
-| generated `~/.config/zed/settings.json`           | parity with `private_settings.json` (minus mutable-state churn) |
-| grep `nix/` for `mcfly`, `antidot init`, `chezmoi`| absent (docs/logs exempt) |
+| Check                                                      | Expectation                                                             |
+| ---------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `just check` / `nix flake check`                           | Pass                                                                    |
+| `nix flake show`                                           | Lists `mr-fw16@fw16`                                                    |
+| `nix build .#mr-fw16@fw16.activationPackage`               | Builds on `x86_64-linux`                                                |
+| `nix eval .#homeModules --apply 'x: builtins.attrNames x'` | includes `common`, `mr-nix`                                             |
+| `home-lab` / `test-bed` eval                               | still build                                                             |
+| generated `~/.config/git/config`                           | matches chezmoi semantics (signing, delta, includeIf, credential stack) |
+| generated `~/.config/zed/settings.json`                    | parity with `private_settings.json` (minus mutable-state churn)         |
+| grep `nix/` for `mcfly`, `antidot init`, `chezmoi`         | absent (docs/logs exempt)                                               |
 
 Manual (standalone Fedora):
 
@@ -371,18 +371,18 @@ git config --show-origin --get commit.gpgsign
 
 ## 8. Risks and mitigations
 
-| Risk | Mitigation |
-| ---- | ---------- |
-| Blueprint rejects `nixpkgs.overlays` arg | apply `llm-agents` overlay inside a shared module (`nixpkgs.overlays = [...]`) instead |
-| `llm-agents` inputs bloat `flake.lock` / eval time | don't `follows` its nixpkgs; rely on its cache; pin and update deliberately |
-| Standalone HM on Fedora: `nix.conf` / `programs.*` assume NixOS paths | test `activationPackage` build; keep `targets.genericLinux = true` if HM needs it for non-NixOS |
-| Zed `mutableUserSettings=false` fights the GUI (Zed rewrites settings) | start `false`; flip to `true` + `home.activation` seed if friction |
-| `fastfetch` config has hardcoded foreign paths (`/home/arch`, ISOz, weather.sh) | strip/replace those modules during port; document removed modules |
-| `home.username` still auto-set by Blueprint from path → conflict with stub `mkForce` | prefer path-derived; only set explicitly where Blueprint doesn't; use `lib.mkForce` only if eval demands |
-| chezmoi templating hides host-specific values (gpu, devicetype, pcloudfolder) | those drive KDE/rclone/desktop — all out of scope here; when rendering verbatim files, render for `linux`/`fedora`/`laptop` and commit output |
-| `git/templates/hooks` scripts assume tools on PATH | ensure `packages.nix` provides them (`prek`, etc.); or point `init.templateDir` at an HM-built dir |
-| Package name drift in nixpkgs (`nvtop`→`nvtopPackages.full`, `tealdeer`/`tlrr`) | resolve each via `mcp-nixos` at implement time; keep a "not found" list in the plan |
-| Duplicate `touchfile` (in `zsh.nix` and `functions.nix`) | single definition in `functions.nix`; remove from `zsh.nix` |
+| Risk                                                                                 | Mitigation                                                                                                                                    |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Blueprint rejects `nixpkgs.overlays` arg                                             | apply `llm-agents` overlay inside a shared module (`nixpkgs.overlays = [...]`) instead                                                        |
+| `llm-agents` inputs bloat `flake.lock` / eval time                                   | don't `follows` its nixpkgs; rely on its cache; pin and update deliberately                                                                   |
+| Standalone HM on Fedora: `nix.conf` / `programs.*` assume NixOS paths                | test `activationPackage` build; keep `targets.genericLinux = true` if HM needs it for non-NixOS                                               |
+| Zed `mutableUserSettings=false` fights the GUI (Zed rewrites settings)               | start `false`; flip to `true` + `home.activation` seed if friction                                                                            |
+| `fastfetch` config has hardcoded foreign paths (`/home/arch`, ISOz, weather.sh)      | strip/replace those modules during port; document removed modules                                                                             |
+| `home.username` still auto-set by Blueprint from path → conflict with stub `mkForce` | prefer path-derived; only set explicitly where Blueprint doesn't; use `lib.mkForce` only if eval demands                                      |
+| chezmoi templating hides host-specific values (gpu, devicetype, pcloudfolder)        | those drive KDE/rclone/desktop — all out of scope here; when rendering verbatim files, render for `linux`/`fedora`/`laptop` and commit output |
+| `git/templates/hooks` scripts assume tools on PATH                                   | ensure `packages.nix` provides them (`prek`, etc.); or point `init.templateDir` at an HM-built dir                                            |
+| Package name drift in nixpkgs (`nvtop`→`nvtopPackages.full`, `tealdeer`/`tlrr`)      | resolve each via `mcp-nixos` at implement time; keep a "not found" list in the plan                                                           |
+| Duplicate `touchfile` (in `zsh.nix` and `functions.nix`)                             | single definition in `functions.nix`; remove from `zsh.nix`                                                                                   |
 
 ---
 
