@@ -60,7 +60,7 @@
           extraOptions = [
             "--network=host"
           ];
-          image = "ghcr.io/plastic-labs/honcho:v3.0.12";
+          image = "ghcr.io/plastic-labs/honcho:v3.1.0";
           log-driver = "journald";
         };
         "honcho-memory-deriver" = {
@@ -71,7 +71,7 @@
             "--entrypoint=[\"/app/.venv/bin/python\", \"-m\", \"src.deriver\"]"
             "--network=host"
           ];
-          image = "ghcr.io/plastic-labs/honcho:v3.0.12";
+          image = "ghcr.io/plastic-labs/honcho:v3.1.0";
           log-driver = "journald";
         };
         "honcho-memory-migrate" = {
@@ -79,7 +79,7 @@
             "--entrypoint=[\"/app/.venv/bin/alembic\", \"upgrade\", \"head\"]"
             "--network=host"
           ];
-          image = "ghcr.io/plastic-labs/honcho:v3.0.12";
+          image = "ghcr.io/plastic-labs/honcho:v3.1.0";
           log-driver = "journald";
         };
       };
