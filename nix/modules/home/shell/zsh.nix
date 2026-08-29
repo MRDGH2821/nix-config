@@ -36,7 +36,20 @@
           eval "$(${lib.getExe pkgs.oh-my-posh} init zsh --config "$random_omp_theme")"
         fi
 
-        touchfile() { mkdir -p "$(dirname "$1")" && touch "$1" && echo "$1"; }
+        # uv / uvx completions (chezmoi .zshrc.d/11-uv.sh)
+        if (( ''${+commands[uv]} )); then
+          eval "$(uv --generate-shell-completion zsh)"
+          eval "$(uvx --generate-shell-completion zsh)"
+        fi
+        # cargo completion via rustup's fpath function (chezmoi .zshrc.d/13-cargo.sh)
+        if (( ''${+commands[rustc]} )); then
+          _rust_zsh_fns="$(rustc --print sysroot)/share/zsh/site-functions"
+          if [[ -d "''${_rust_zsh_fns}" ]]; then
+            fpath=("''${_rust_zsh_fns}" ''${fpath})
+            autoload -Uz _cargo
+          fi
+          unset _rust_zsh_fns
+        fi
       '';
       # zimrc ohmyzsh/* plugins + git (zim `git` module)
       oh-my-zsh = {
