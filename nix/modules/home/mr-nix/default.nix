@@ -1,6 +1,9 @@
 {...}: {
-  # Username comes from the hosts/*/users/<name> path; host stubs import this
-  # module for shared per-user settings.
-  home.username = "mr-nix";
-  imports = [./keepassxc.nix];
+  # Shared per-user Home Manager config for the interactive account.
+  # Identity (home.username / home.homeDirectory) is owned by the consumer
+  # stub under hosts/<host>/users/, so the same module serves both the
+  # NixOS `mr-nix` user and the standalone Fedora `mr-fw16` account.
+  imports = [
+    ./keepassxc.nix
+  ];
 }
