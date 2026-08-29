@@ -18,7 +18,18 @@
     dockerfmt.enable = true;
     dockfmt.enable = true;
     dos2unix.enable = true;
-    flake-edit.enable = true;
+    flake-edit = {
+      enable = true;
+      # llm-agents.nix ships its own pinned nixpkgs plus a matching binary
+      # cache (cache.numtide.com) and is only built/tested against that pin.
+      # Keep its nixpkgs graph independent so `flake-edit follow` does not
+      # rewrite flake.nix to make it track this flake's nixpkgs.
+      settings.follow.ignore = [
+        "llm-agents.nixpkgs"
+        "llm-agents.bun2nix.nixpkgs"
+        "llm-agents.treefmt-nix.nixpkgs"
+      ];
+    };
     genemichaels.enable = true;
     gofmt.enable = true;
     gofumpt.enable = true;

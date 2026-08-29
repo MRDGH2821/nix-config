@@ -32,9 +32,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/home-manager";
     };
+    llm-agents.url = "github:numtide/llm-agents.nix";
     nixos-cli = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/nixos-cli";
+    };
+    nixos-hardware = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:NixOS/nixos-hardware";
     };
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     pedantix = {
@@ -63,7 +68,10 @@
   outputs = inputs:
     inputs.blueprint {
       inherit inputs;
-      nixpkgs.config.allowUnfree = true;
+      nixpkgs = {
+        config.allowUnfree = true;
+        overlays = [inputs.llm-agents.overlays.shared-nixpkgs];
+      };
       prefix = "nix";
       # nixpkgs 26.11 dropped x86_64-darwin; drop it from the generated
       # flake outputs so `nix flake check` / `nix flake show` stop erroring.
