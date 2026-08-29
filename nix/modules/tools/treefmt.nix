@@ -126,6 +126,9 @@
     formatter = {
       cspell-sort = {
         command = "${lib.getExe pkgs.yq-go}";
+        # the `cspell*` globs also catch the `cspell-refresh-words` helper
+        # script, which is not a cspell config file.
+        excludes = ["nix/modules/home/mr-nix/files/bin/*"];
         includes = [
           # keep-sorted start
           "**/.CSpell*"
@@ -164,6 +167,11 @@
         ];
         priority = 3;
       };
+      # shellcheck / shfmt match by file extension; the vendored `files/bin/`
+      # helpers install as extension-less executables (bash shebang), so add
+      # them to both formatters' include sets (lists concatenate on merge).
+      shellcheck.includes = ["nix/modules/home/mr-nix/files/bin/*"];
+      shfmt.includes = ["nix/modules/home/mr-nix/files/bin/*"];
       tombi-format = {
         command = "${lib.getExe pkgs.tombi}";
         includes = ["*.toml"];
@@ -214,8 +222,16 @@
         "**/skills/**"
         ".gitattributes"
         # Verbatim third-party dotfiles vendored for Home Manager drop-ins;
-        # key-sorting / reformatting them would defeat the point.
-        "nix/modules/home/mr-nix/files/**"
+        # key-sorting / reformatting them would defeat the point. Excluded by
+        # data-file extension rather than a blanket `files/**` so that the
+        # `files/bin/` helper scripts (installed as executables) stay under
+        # shellcheck / shfmt. treefmt globs: `*` also spans `/`.
+        "nix/modules/home/mr-nix/files/*.conf"
+        "nix/modules/home/mr-nix/files/*.json"
+        "nix/modules/home/mr-nix/files/*.toml"
+        "nix/modules/home/mr-nix/files/*.yml"
+        "nix/modules/home/mr-nix/files/git/**"
+        "nix/modules/home/mr-nix/files/shellcheckrc"
         # keep-sorted end
       ];
     };
