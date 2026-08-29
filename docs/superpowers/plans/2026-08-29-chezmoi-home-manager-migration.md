@@ -90,7 +90,7 @@ nix flake check
 
 - Produces: `inputs.nixos-hardware`, `inputs.llm-agents`; `pkgs.llm-agents.<name>` resolvable in every module (via `nixpkgs.overlays`).
 
-- [ ] **Step 1: Add the two inputs**
+- [x] **Step 1: Add the two inputs**
 
 In `flake.nix`, inside `inputs = { … }`, add (keep the existing alphabetical ordering — `llm-agents` after `home-manager`… actually after `hermes-agent`; `nixos-hardware` after `nixos-cli`):
 
@@ -101,7 +101,7 @@ In `flake.nix`, inside `inputs = { … }`, add (keep the existing alphabetical o
 
 Do NOT add `inputs.nixpkgs.follows` to `llm-agents` — it ships its own pinned nixpkgs + binary cache; overriding it forces local rebuilds.
 
-- [ ] **Step 2: Apply the llm-agents overlay in the Blueprint call**
+- [x] **Step 2: Apply the llm-agents overlay in the Blueprint call**
 
 Change the `outputs` block to:
 
@@ -122,12 +122,12 @@ Change the `outputs` block to:
     };
 ```
 
-- [ ] **Step 3: Lock the inputs**
+- [x] **Step 3: Lock the inputs**
 
 Run: `nix flake lock`
 Expected: `flake.lock` gains `llm-agents`, `nixos-hardware` (and their transitive deps).
 
-- [ ] **Step 4: Verify the overlay resolves and nothing broke**
+- [x] **Step 4: Verify the overlay resolves and nothing broke**
 
 ```bash
 nix build --no-link '.#nixosConfigurations.home-lab.pkgs.llm-agents.herdr' 2>&1 | tail -5
@@ -140,7 +140,7 @@ If `overlays.shared-nixpkgs` does not exist (name changed upstream), run `nix fl
 `nixpkgs.overlays = [(final: prev: { llm-agents = inputs.llm-agents.packages.${prev.stdenv.hostPlatform.system}; })]`
 in a new `nix/modules/nixos/features/llm-agents-overlay.nix` AND an equivalent in home — but try the overlay output first.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 nix fmt
@@ -172,11 +172,11 @@ EOF
 
 - Produces: `flake.modules.home.mr-nix` no longer sets `home.username`; consumers own identity. Blueprint sets `home.username = lib.mkDefault "<path-name>"` automatically, so NixOS stubs only need an explicit value if they must override the path (they don't — path is already `mr-nix`), but set it explicitly for clarity and to survive a future rename.
 
-- [ ] **Step 1: Read the current files**
+- [x] **Step 1: Read the current files**
 
 Read `nix/modules/home/mr-nix/default.nix`, `nix/hosts/home-lab/users/mr-nix.nix`, `nix/hosts/test-bed/users/mr-nix.nix`.
 
-- [ ] **Step 2: Remove `home.username` from the shared module**
+- [x] **Step 2: Remove `home.username` from the shared module**
 
 `nix/modules/home/mr-nix/default.nix` becomes (imports list will grow in later tasks — leave the existing `./keepassxc.nix`):
 
@@ -192,7 +192,7 @@ Read `nix/modules/home/mr-nix/default.nix`, `nix/hosts/home-lab/users/mr-nix.nix
 }
 ```
 
-- [ ] **Step 3: Set username in the NixOS stubs**
+- [x] **Step 3: Set username in the NixOS stubs**
 
 Both `nix/hosts/home-lab/users/mr-nix.nix` and `nix/hosts/test-bed/users/mr-nix.nix` — add `home.username = "mr-nix";` alongside the existing imports:
 
@@ -206,7 +206,7 @@ Both `nix/hosts/home-lab/users/mr-nix.nix` and `nix/hosts/test-bed/users/mr-nix.
 }
 ```
 
-- [ ] **Step 4: Verify existing configs still evaluate**
+- [x] **Step 4: Verify existing configs still evaluate**
 
 ```bash
 nix flake check
@@ -215,7 +215,7 @@ nix build --no-link '.#legacyPackages.x86_64-linux.homeConfigurations."mr-nix@ho
 
 Expected: green; `mr-nix@home-lab` builds.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 nix fmt
@@ -245,7 +245,7 @@ EOF
 - Consumes: `flake.modules.home.common`, `flake.modules.home.mr-nix`.
 - Produces: `legacyPackages.<system>.homeConfigurations."mr-fw16@fw16"`. Sets `mine.git.*` and `mine.gui.enable` (options defined in Tasks 5 & 8 — until then this stub sets values for options that don't exist yet, so add the `mine.*` attrs only in the task that introduces each option; for THIS task the stub is minimal).
 
-- [ ] **Step 1: Create the minimal stub**
+- [x] **Step 1: Create the minimal stub**
 
 `nix/hosts/fw16/users/mr-fw16.nix`:
 
@@ -269,7 +269,7 @@ EOF
 }
 ```
 
-- [ ] **Step 2: Verify the standalone config is generated and builds**
+- [x] **Step 2: Verify the standalone config is generated and builds**
 
 ```bash
 nix flake show 2>&1 | grep -A3 homeConfigurations
@@ -279,12 +279,12 @@ nix build --no-link --print-out-paths \
 
 Expected: `mr-fw16@fw16` listed; activation package builds.
 
-- [ ] **Step 3: Verify `nix flake check`**
+- [x] **Step 3: Verify `nix flake check`**
 
 Run: `nix flake check`
 Expected: `all checks passed!`
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 nix fmt
@@ -318,11 +318,11 @@ EOF
 - Consumes: existing `programs.zsh` (from `zsh.nix`), `programs.eza` Zsh integration (provides `ls`/`ll`/`la`).
 - Produces: `home.sessionVariables.{EDITOR,VISUAL,PAGER,CARGO_HOME}`, `home.sessionPath`, and zsh functions `line`, `rmedirs`, `touchfile`, `export-gh`, `export-glab`, `update-repo`.
 
-- [ ] **Step 1: Read the chezmoi sources**
+- [x] **Step 1: Read the chezmoi sources**
 
 Read: `~/.local/share/chezmoi/files/.chezmoitemplates/shell-scripts/00-export_paths.sh`, `~/.local/share/chezmoi/files/.chezmoitemplates/shell-scripts/shell_aliases.sh`, `~/.local/share/chezmoi/files/.chezmoitemplates/shell-scripts/11-uv.sh`, `~/.local/share/chezmoi/files/.chezmoitemplates/shell-scripts/13-cargo.sh`, and current `nix/modules/home/shell/zsh.nix` (note it already defines `touchfile` in `initContent`).
 
-- [ ] **Step 2: Create `session-vars.nix`**
+- [x] **Step 2: Create `session-vars.nix`**
 
 ```nix
 # Session env + PATH. XDG base dirs are set by Home Manager itself; do not
@@ -362,7 +362,7 @@ Fix the module header to take `config`:
 }
 ```
 
-- [ ] **Step 3: Create `functions.nix`**
+- [x] **Step 3: Create `functions.nix`**
 
 Port the functions verbatim from `shell_aliases.sh` (read it first — reproduce the bodies exactly). Put them in `programs.zsh.initContent` at a normal order:
 
@@ -416,13 +416,13 @@ Port the functions verbatim from `shell_aliases.sh` (read it first — reproduce
 
 For `update-repo` (long, ~60 lines in `shell_aliases.sh`): reproduce it in the same `initContent` block verbatim from the source — escape `${` as `''${` and `''` (empty) is not present. Read `shell_aliases.sh` and copy the whole `update-repo() { … }` body.
 
-- [ ] **Step 4: Remove the duplicate `touchfile` from `zsh.nix`**
+- [x] **Step 4: Remove the duplicate `touchfile` from `zsh.nix`**
 
 In `nix/modules/home/shell/zsh.nix` `initContent`, delete the line:
 `touchfile() { mkdir -p "$(dirname "$1")" && touch "$1" && echo "$1"; }`
 (now owned by `functions.nix`).
 
-- [ ] **Step 5: Add uv / cargo completions to `zsh.nix`**
+- [x] **Step 5: Add uv / cargo completions to `zsh.nix`**
 
 Append to the `zsh.nix` `initContent` (the `lib.mkOrder 550` block), after the existing content:
 
@@ -443,7 +443,7 @@ Append to the `zsh.nix` `initContent` (the `lib.mkOrder 550` block), after the e
         fi
 ```
 
-- [ ] **Step 6: Merge chezmoi aliases into `aliases.nix`**
+- [x] **Step 6: Merge chezmoi aliases into `aliases.nix`**
 
 Read current `nix/modules/home/shell/aliases.nix` (already has `cat`, `tb`, `tf`, `grep` etc.). Add the missing ones from `shell_aliases.sh` that make sense on NixOS/Fedora:
 
@@ -469,7 +469,7 @@ Read current `nix/modules/home/shell/aliases.nix` (already has `cat`, `tb`, `tf`
 
 Do NOT add `dnf = "dnf5"` (Fedora-only; irrelevant and confusing on NixOS) or `zed = "zeditor"` (handle Zed via `programs.zed-editor` + PATH). If `programs.eza` already supplies `ll`/`la`/`l` and a collision warning appears, drop those three here.
 
-- [ ] **Step 7: Wire the new modules**
+- [x] **Step 7: Wire the new modules**
 
 `nix/modules/home/shell/default.nix` — add to `imports`:
 
@@ -478,7 +478,7 @@ Do NOT add `dnf = "dnf5"` (Fedora-only; irrelevant and confusing on NixOS) or `z
     ./session-vars.nix
 ```
 
-- [ ] **Step 8: Build and inspect**
+- [x] **Step 8: Build and inspect**
 
 ```bash
 out=$(nix build --no-link --print-out-paths '.#legacyPackages.x86_64-linux.homeConfigurations."mr-fw16@fw16".activationPackage')
@@ -489,7 +489,7 @@ nix flake check
 
 Expected: functions present in the generated zshrc; `nix flake check` green. (Session vars land in `~/.config/environment.d` and/or the zsh env; exact path varies — confirm they're set with `home-manager` docs if unsure.)
 
-- [ ] **Step 9: Commit**
+- [x] **Step 9: Commit**
 
 ```bash
 nix fmt
@@ -523,15 +523,15 @@ EOF
 
 - Produces: `options.mine.git.{userName,userEmail,signingKey}` (all `lib.types.str`). Consumed by the fw16 stub. `programs.git.enable = true` with delta, credential helpers, `includeIf` blocks, signing.
 
-- [ ] **Step 1: Read the source**
+- [x] **Step 1: Read the source**
 
 Read `~/.local/share/chezmoi/files/dot_config/git/config`, `~/.local/share/chezmoi/files/dot_config/git/templates/hooks/executable_commit-msg`, `~/.local/share/chezmoi/files/dot_config/git/templates/hooks/executable_pre-commit`.
 
-- [ ] **Step 2: Vendor the hook scripts**
+- [x] **Step 2: Vendor the hook scripts**
 
 Copy the two hook scripts verbatim into `nix/modules/home/mr-nix/files/git/templates/hooks/{commit-msg,pre-commit}` (strip the `executable_` chezmoi prefix).
 
-- [ ] **Step 3: Write `git.nix`**
+- [x] **Step 3: Write `git.nix`**
 
 ```nix
 {
@@ -639,7 +639,7 @@ Notes for the executor:
 - `config-axisnexa` / `config-unimelb` are NOT in the chezmoi tree — the `includeIf` entries simply no-op when the files are absent. Leave them unmanaged.
 - If `programs.git.delta` errors on an unknown option key, move that key into `extraConfig.delta.<key>`.
 
-- [ ] **Step 4: Import + set values**
+- [x] **Step 4: Import + set values**
 
 `nix/modules/home/mr-nix/default.nix` imports: add `./git.nix`.
 
@@ -676,7 +676,7 @@ Revised option block:
   };
 ```
 
-- [ ] **Step 5: Build + inspect the generated git config**
+- [x] **Step 5: Build + inspect the generated git config**
 
 ```bash
 out=$(nix build --no-link --print-out-paths '.#legacyPackages.x86_64-linux.homeConfigurations."mr-fw16@fw16".activationPackage')
@@ -687,7 +687,7 @@ nix flake check
 
 Expected: config has `[user] name/email`, `[commit] gpgsign = true`, `[user] signingkey`, delta blocks, `[includeIf …]`, credential helper stack; hooks executable; `nix flake check` green.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 nix fmt
@@ -719,11 +719,11 @@ EOF
 - Consumes: nothing new.
 - Produces: `programs.zed-editor` with `userSettings`, `userKeymaps`, `userTasks`, `extensions`; `package = null` (config-only; Zed installed by the OS / GUI layer).
 
-- [ ] **Step 1: Read the source**
+- [x] **Step 1: Read the source**
 
 Read `~/.local/share/chezmoi/files/dot_config/zed/private_settings.json`, `~/.local/share/chezmoi/files/dot_config/zed/keymap.json`, `~/.local/share/chezmoi/files/dot_config/zed/tasks.json`.
 
-- [ ] **Step 2: Write `zed.nix`**
+- [x] **Step 2: Write `zed.nix`**
 
 Translate the three JSON files into Nix attrs / lists. `userSettings` is the object from `private_settings.json`; `userKeymaps` is the array from `keymap.json`; `userTasks` is the array from `tasks.json`; `extensions` is the list of keys in `auto_install_extensions` whose value is `true`.
 
@@ -777,11 +777,11 @@ Translate the three JSON files into Nix attrs / lists. `userSettings` is the obj
 
 Executor: transcribe the JSON exactly. JSON `true`/`false`/numbers/strings map directly; JSON objects → `{ }`, arrays → `[ ]`. Keep `context_servers.mcp-nixos`, `agent.*`, `telemetry.*` as-is. `mutableUserSettings` / `mutableUserKeymaps` / `mutableUserTasks` are left at their defaults (`false`) — declarative.
 
-- [ ] **Step 3: Import**
+- [x] **Step 3: Import**
 
 `nix/modules/home/mr-nix/default.nix` imports: add `./zed.nix`.
 
-- [ ] **Step 4: Build + inspect**
+- [x] **Step 4: Build + inspect**
 
 ```bash
 out=$(nix build --no-link --print-out-paths '.#legacyPackages.x86_64-linux.homeConfigurations."mr-fw16@fw16".activationPackage')
@@ -793,7 +793,7 @@ nix flake check
 
 Expected: three valid JSON files generated; `nix flake check` green.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 nix fmt
@@ -824,15 +824,15 @@ EOF
 
 - Produces: `programs.{lazygit,mise,direnv,gh,topgrade,gallery-dl,fastfetch}` enabled + configured; `xdg.configFile."tombi/config.toml"`.
 
-- [ ] **Step 1: Read the sources**
+- [x] **Step 1: Read the sources**
 
 Read `~/.local/share/chezmoi/files/dot_config/lazygit/config.yml`, `dot_config/mise/config.toml`, `dot_config/topgrade.toml`, `dot_config/gallery-dl/config.json`, `dot_config/fastfetch/config.jsonc`, `dot_config/tombi/config.toml`.
 
-- [ ] **Step 2: Vendor tombi config**
+- [x] **Step 2: Vendor tombi config**
 
 Copy `dot_config/tombi/config.toml` verbatim → `nix/modules/home/mr-nix/files/tombi.toml`.
 
-- [ ] **Step 3: Write `dev-tools.nix`**
+- [x] **Step 3: Write `dev-tools.nix`**
 
 ```nix
 {...}: {
@@ -904,7 +904,7 @@ Copy `dot_config/tombi/config.toml` verbatim → `nix/modules/home/mr-nix/files/
 
 Executor: `lazygit.settings` is YAML→attrs, `mise.globalConfig`/`topgrade.settings` are TOML→attrs, `gallery-dl.settings`/`fastfetch.settings` are JSON→attrs. Mise tool keys with colons (`"aqua:cantino/mcfly"`) stay quoted strings. Note the mise list includes `mcfly` as an aqua tool — KEEP it (dropping mcfly refers to the shell-history integration, not blocking the binary if the user pins it via mise; but the `programs.mcfly` HM module is NOT used).
 
-- [ ] **Step 4: Import + build + inspect**
+- [x] **Step 4: Import + build + inspect**
 
 `nix/modules/home/mr-nix/default.nix` imports: add `./dev-tools.nix`.
 
@@ -918,7 +918,7 @@ nix flake check
 
 Expected: all config files generated; `nix flake check` green.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 nix fmt
@@ -949,15 +949,15 @@ EOF
 
 - Produces: `options.mine.gui.enable` (`lib.types.bool`, `default = false`). `home.packages` = CLI set always + GUI set when `mine.gui.enable`.
 
-- [ ] **Step 1: Read the sources**
+- [x] **Step 1: Read the sources**
 
 Read `~/.local/share/chezmoi/files/.chezmoidata/packages/linux/linux_common.yaml`, `.chezmoidata/packages/linux/fedora.yaml`, `.chezmoidata/packages/rust.yaml`, `dot_config/mise/config.toml`.
 
-- [ ] **Step 2: Resolve each package name in nixpkgs**
+- [x] **Step 2: Resolve each package name in nixpkgs**
 
 For every candidate, confirm the nixpkgs attribute with mcp-nixos (`nix {"action":"search","query":"<name>"}`), because names drift (`nvtop` → `nvtopPackages.full`, `tealdeer` provides `tldr`, etc.). Build a "resolved" list and a "not in nixpkgs" list. The spec §3.6 has the starting sets.
 
-- [ ] **Step 3: Write `packages.nix`**
+- [x] **Step 3: Write `packages.nix`**
 
 ```nix
 {
@@ -1041,13 +1041,13 @@ For every candidate, confirm the nixpkgs attribute with mcp-nixos (`nix {"action
 
 Executor: adjust attribute paths per Step 2 findings. For any package that fails to build or is absent, move it to a `# not available: …` comment block and note it in the task's commit body — do NOT block the whole module on one package. `alejandra`/`treefmt` are provided by the flake devshell — do not add them here. `podman`/`nix` are system-level — not here.
 
-- [ ] **Step 4: Import + enable GUI on fw16**
+- [x] **Step 4: Import + enable GUI on fw16**
 
 `nix/modules/home/mr-nix/default.nix` imports: add `./packages.nix`.
 
 `nix/hosts/fw16/users/mr-fw16.nix` — add `mine.gui.enable = true;`.
 
-- [ ] **Step 5: Build + inspect**
+- [x] **Step 5: Build + inspect**
 
 ```bash
 out=$(nix build --no-link --print-out-paths '.#legacyPackages.x86_64-linux.homeConfigurations."mr-fw16@fw16".activationPackage')
@@ -1058,7 +1058,7 @@ nix flake check
 
 Expected: binaries present incl. `herdr`/`rtk` (llm-agents) and `firefox` (GUI); `nix flake check` green.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 nix fmt
@@ -1091,7 +1091,7 @@ EOF
 
 - Produces: `xdg.configFile` entries for herdr, soar, opencode, copier, nix; `home.file` for `~/.shellcheckrc`, `~/.local/share/cargo/config.toml`, and two `~/.local/bin` executables.
 
-- [ ] **Step 1: Read + vendor the sources**
+- [x] **Step 1: Read + vendor the sources**
 
 Read and copy verbatim (strip chezmoi `executable_` / `dot_` prefixes; these files have no templating):
 
@@ -1109,7 +1109,7 @@ Read and copy verbatim (strip chezmoi `executable_` / `dot_` prefixes; these fil
 | `dot_local/bin/executable_cspell-refresh-words` | `files/bin/cspell-refresh-words` |
 | `dot_local/bin/executable_herdr-open`           | `files/bin/herdr-open`           |
 
-- [ ] **Step 2: Write `misc-configs.nix`**
+- [x] **Step 2: Write `misc-configs.nix`**
 
 ```nix
 {...}: {
@@ -1143,7 +1143,7 @@ Notes:
 - On the standalone Fedora config `nix/nix.conf` is a user override — harmless. If a later NixOS `fw16` host adopts these modules, guard this one entry with `lib.mkIf (!config.targets.genericLinux.enable)` or move it to the NixOS layer. For now leave it.
 - The `cargo-config.toml` sets `rustc-wrapper = "sccache"` — `sccache` is in `home.packages` (Task 8). Fine.
 
-- [ ] **Step 3: Import + build + inspect**
+- [x] **Step 3: Import + build + inspect**
 
 `nix/modules/home/mr-nix/default.nix` imports: add `./misc-configs.nix`.
 
@@ -1156,7 +1156,7 @@ nix flake check
 
 Expected: all files present; scripts executable; `nix flake check` green.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 nix fmt
@@ -1183,7 +1183,7 @@ EOF
 - Modify: `.agents/logs/2026-08-29.md`
 - Modify: `docs/superpowers/specs/2026-08-29-chezmoi-to-nix-migration-design.md` (append "Implemented" note + link this plan) — optional
 
-- [ ] **Step 1: Full gate**
+- [x] **Step 1: Full gate**
 
 ```bash
 nix fmt
@@ -1195,7 +1195,7 @@ nix build --no-link '.#nixosConfigurations.home-lab.config.system.build.toplevel
 
 Expected: all green / build.
 
-- [ ] **Step 2: Spot-check generated tree**
+- [x] **Step 2: Spot-check generated tree**
 
 ```bash
 out=$(nix build --no-link --print-out-paths '.#legacyPackages.x86_64-linux.homeConfigurations."mr-fw16@fw16".activationPackage')
@@ -1204,7 +1204,7 @@ find "$out/home-files" -type f | sort
 
 Confirm against spec §3: git config, zed/\*.json, lazygit, mise, fastfetch, gallery-dl, topgrade, tombi, herdr, soar, opencode, copier, nix.conf, shellcheckrc, cargo config, bin scripts, zsh functions.
 
-- [ ] **Step 3: grep for things that must be absent**
+- [x] **Step 3: grep for things that must be absent**
 
 ```bash
 git grep -nE 'mcfly|antidot init|programs\.mcfly' -- 'nix/**' || echo "clean"
@@ -1212,11 +1212,11 @@ git grep -nE 'mcfly|antidot init|programs\.mcfly' -- 'nix/**' || echo "clean"
 
 Expected: `clean` (no mcfly / antidot runtime in nix modules).
 
-- [ ] **Step 4: Update the AI work log**
+- [x] **Step 4: Update the AI work log**
 
 Append a closing entry to `.agents/logs/2026-08-29.md` per AGENTS.md (Actions covering Tasks 1–9, Outcome ✅).
 
-- [ ] **Step 5: Commit the log**
+- [x] **Step 5: Commit the log**
 
 ```bash
 git add .agents/logs/2026-08-29.md docs/superpowers/specs/2026-08-29-chezmoi-to-nix-migration-design.md
@@ -1229,7 +1229,7 @@ EOF
 )"
 ```
 
-- [ ] **Step 6: Hand off**
+- [x] **Step 6: Hand off**
 
 Report the branch state and remaining out-of-scope phases (spec §1.3 / §9): NixOS `fw16` host, KDE/Plasma via plasma-manager, Flatpak pass. Offer `superpowers:finishing-a-development-branch`.
 

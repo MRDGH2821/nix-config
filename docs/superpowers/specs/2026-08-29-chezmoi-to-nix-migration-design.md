@@ -1,7 +1,7 @@
 # Chezmoi → Nix Home Manager Migration Design Specification
 
 - **Date**: 2026-08-29
-- **Branch**: `feat/migrate-chezmoi`
+- **Branch**: `mihir/feat/chezmoi-home-manager`
 - **Depends on**: [Blueprint Home Manager Phase 2](./2026-08-05-blueprint-home-manager-phase-2-design.md)
 - **Source repo**: `~/.local/share/chezmoi/` (chezmoi root = `files/`)
 - **Docs**: [Blueprint folder structure — users](https://numtide.github.io/blueprint/main/getting-started/folder_structure/)
