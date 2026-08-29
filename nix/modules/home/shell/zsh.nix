@@ -38,7 +38,7 @@
 
         # uv / uvx completions (chezmoi .zshrc.d/11-uv.sh)
         if (( ''${+commands[uv]} )); then
-          eval "$(uv --generate-shell-completion zsh)"
+          eval "$(uv generate-shell-completion zsh)"
           eval "$(uvx --generate-shell-completion zsh)"
         fi
         # cargo completion via rustup's fpath function (chezmoi .zshrc.d/13-cargo.sh)

@@ -2,6 +2,9 @@
 # files/.chezmoitemplates/shell-scripts/shell_aliases.sh. Placed after the
 # zsh.nix lib.mkOrder 550 block so `line` (used by the others) is defined.
 # The duplicate `touchfile` that used to live in zsh.nix is now owned here.
+#
+# cspell:ignore oken -- the export-glab `sed 's/.*[Tt]oken.*/.../'` pattern below
+# splits into the token "oken", which is not a real word.
 {lib, ...}: {
   programs.zsh.initContent = lib.mkOrder 600 ''
     line() {
