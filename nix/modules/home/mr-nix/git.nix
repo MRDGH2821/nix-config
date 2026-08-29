@@ -31,6 +31,7 @@ in {
         enable = true;
         enableGitIntegration = true;
         options = {
+          dark = true;
           line-numbers = true;
           navigate = true;
           side-by-side = true;
