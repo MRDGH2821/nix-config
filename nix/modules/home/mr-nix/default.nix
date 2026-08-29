@@ -4,6 +4,7 @@
   # stub under hosts/<host>/users/, so the same module serves both the
   # NixOS `mr-nix` user and the standalone Fedora `mr-fw16` account.
   imports = [
+    ./git.nix
     ./keepassxc.nix
   ];
 }
