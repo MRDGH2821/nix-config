@@ -34,7 +34,7 @@ inputs.git-hooks.lib.${pkgs.stdenv.hostPlatform.system}.run {
     cspell = {
       args = [
         "--config"
-        ".cspell.json"
+        ".config/cspell.json"
         "--no-must-find-files"
         "--no-progress"
         "--no-summary"
