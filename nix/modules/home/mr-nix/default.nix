@@ -6,5 +6,6 @@
   imports = [
     ./git.nix
     ./keepassxc.nix
+    ./zed.nix
   ];
 }
