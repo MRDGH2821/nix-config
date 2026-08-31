@@ -2,7 +2,7 @@
   home = {
     homeDirectory = "/home/mr-fw16";
     packages = with pkgs; [
-      llm-pkgs.claude-desktop
+      llm-agents.claude-desktop
     ];
     stateVersion = "26.11";
     # Real Fedora login on the Framework 16 (not "mr-nix").
