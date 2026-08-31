@@ -4,6 +4,7 @@
     packages = with pkgs; [
       llm-pkgs.claude-desktop
     ];
+    stateVersion = "26.11";
     # Real Fedora login on the Framework 16 (not "mr-nix").
     username = "mr-fw16";
   };
