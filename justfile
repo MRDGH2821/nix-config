@@ -76,3 +76,23 @@ gen-hw-config:
     nixos-anywhere --generate-hardware-config nixos-generate-config \
         ./nix/hosts/home-lab/hardware-configuration.nix \
         "root@${TARGET_HOST}"
+
+############################################################################
+#
+#  Home Manager — standalone user config (non-NixOS, e.g. Framework 16)
+#
+############################################################################
+
+home-target := "mr-fw16@fw16"
+
+# Activate the standalone Home Manager config (first run renames colliding dotfiles to *.hm-bak).
+home cfg=home-target: check
+    home-manager switch --flake ".#{{ cfg }}" -b hm-bak
+
+# Build the activation package without switching (result symlink).
+home-build cfg=home-target:
+    home-manager build --flake ".#{{ cfg }}"
+
+# Show Home Manager news for the config.
+home-news cfg=home-target:
+    home-manager news --flake ".#{{ cfg }}"
