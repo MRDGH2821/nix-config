@@ -66,7 +66,6 @@
           "ssh"
           "systemd"
           "tldr"
-          "vscode"
         ];
         # Prompt comes from oh-my-posh, not an omz theme.
         theme = "";
