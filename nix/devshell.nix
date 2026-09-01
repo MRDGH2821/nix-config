@@ -1,9 +1,9 @@
 {
+  flake,
   inputs,
   pkgs,
   ...
 }: let
-  pre-commit-check = import ./checks/pre-commit-check.nix {inherit inputs pkgs;};
   # Flake-style packages (not in nixpkgs, or pinned to the flake input so the
   # CLI matches what builds the configs). See:
   # https://nix-community.github.io/nixos-cli/installation.html
@@ -11,7 +11,7 @@
   home-manager = inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
   pkgs.mkShell {
-    inherit (pre-commit-check) shellHook;
+    inherit (flake.checks.${pkgs.stdenv.hostPlatform.system}.pre-commit-check) shellHook;
     packages = with pkgs;
       [
         # keep-sorted start

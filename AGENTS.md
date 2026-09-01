@@ -191,9 +191,26 @@ Configuration lives in `apm.yml`. Do not skip this when skills or MCP tools are 
 
 ## Project Context
 
-- **Project Type**: Project generated from copier-mr-minimal
+- **Project Type**: Project generated from copier-mr-nix
 - **Key Technologies**: Nix flake + [Blueprint](https://numtide.github.io/blueprint/) (`nix/`), git-hooks.nix with `prek`, MegaLinter, treefmt-nix, cocogitto, Copier, direnv
 - **Purpose**: Standardized starting point for new projects with quality checks and a reproducible Nix env
+
+## Recommendations
+
+### Configuration directory
+
+If this project is a tool, CLI, or library that reads its own configuration,
+make it resolve that configuration from a project-level `.config/` directory
+(e.g. `.config/<project-name>.toml`) in addition to any other supported
+locations. This template already keeps its own tool configs there
+(`.config/cspell.json`, `.config/rumdl.toml`, `.config/cliff.toml`); extending
+the same convention to what this project ships keeps consumers' repo roots tidy.
+
+References:
+
+- <https://github.com/numtide/prj-spec> — project directory specification
+- <https://dot-config.github.io/> — the `.config/` directory convention
+- <https://github.com/pi0/config-dir> — reference implementation for resolving it
 
 ## Branch naming strategy
 
