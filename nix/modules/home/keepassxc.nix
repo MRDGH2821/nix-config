@@ -14,9 +14,15 @@
     autostart = true;
     enable = true;
     settings = {
+      Browser = {
+        AllowExpiredCredentials = true;
+        CustomProxyLocation = "";
+        Enabled = true;
+        SearchInAllDatabases = true;
+      };
       FdoSecrets = {
-        ConfirmAccessItem = true;
-        ConfirmDeleteItem = true;
+        ConfirmAccessItem = false;
+        ConfirmDeleteItem = false;
         Enabled = true;
         ShowNotification = true;
         UnlockBeforeSearch = true;
@@ -27,6 +33,20 @@
         MinimizeOnStartup = true;
         MinimizeToTray = true;
         ShowTrayIcon = true;
+        TrayIconAppearance = "colorful";
+      };
+      General = {
+        BackupBeforeSave = true;
+        BackupFilePathPattern = "./Bkp/{DB_FILENAME}.old.kdbx";
+        ConfigVersion = 2;
+        MinimizeAfterUnlock = true;
+        NumberOfRememberedLastDatabases = 7;
+      };
+      SSHAgent.Enabled = true;
+      Security = {
+        IconDownloadFallback = true;
+        LockDatabaseIdle = false;
+        NoConfirmMoveEntryToRecycleBin = false;
       };
     };
   };
