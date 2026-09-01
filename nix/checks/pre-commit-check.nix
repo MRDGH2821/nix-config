@@ -62,7 +62,7 @@ inputs.git-hooks.lib.${pkgs.stdenv.hostPlatform.system}.run {
       enable = true;
       # soar's vendored config carries the upstream repo's minisign *public*
       # key (verifies release signatures, published upstream) — not a secret.
-      excludes = ["nix/modules/home/mr-nix/files/soar-config\\.toml"];
+      excludes = ["nix/modules/home/files/soar-config\\.toml"];
     };
     typos = {
       enable = true;

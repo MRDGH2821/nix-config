@@ -56,7 +56,7 @@ apm_modules/
 .vscode/mcp.json
 opencode.json
 # but keep the vendored Home Manager drop-in copy
-!nix/modules/home/mr-nix/files/opencode.json
+!nix/modules/home/files/opencode.json
 
 # Other
 

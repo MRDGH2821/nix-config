@@ -13,6 +13,11 @@
 # cspell:ignore unsandboxed Meslo -- verbatim strings from the Zed JSON source
 # (`allow_unsandboxed`, the "MesloLGM Nerd Font Mono" font family).
 _: {
+  # Zed is this account's editor.
+  home.sessionVariables = {
+    EDITOR = "zed --wait";
+    VISUAL = "zed --wait";
+  };
   programs.zed-editor = {
     enable = true;
     extensions = [

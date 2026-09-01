@@ -133,7 +133,7 @@
         command = "${lib.getExe pkgs.yq-go}";
         # the `cspell*` globs also catch the `cspell-refresh-words` helper
         # script, which is not a cspell config file.
-        excludes = ["nix/modules/home/mr-nix/files/bin/*"];
+        excludes = ["nix/modules/home/files/bin/*"];
         includes = [
           # keep-sorted start
           "**/.CSpell*"
@@ -176,8 +176,8 @@
       # shellcheck / shfmt match by file extension; the vendored `files/bin/`
       # helpers install as extension-less executables (bash shebang), so add
       # them to both formatters' include sets (lists concatenate on merge).
-      shellcheck.includes = ["nix/modules/home/mr-nix/files/bin/*"];
-      shfmt.includes = ["nix/modules/home/mr-nix/files/bin/*"];
+      shellcheck.includes = ["nix/modules/home/files/bin/*"];
+      shfmt.includes = ["nix/modules/home/files/bin/*"];
       tombi-format = {
         command = "${lib.getExe pkgs.tombi}";
         includes = ["*.toml"];
@@ -232,12 +232,12 @@
         # data-file extension rather than a blanket `files/**` so that the
         # `files/bin/` helper scripts (installed as executables) stay under
         # shellcheck / shfmt. treefmt globs: `*` also spans `/`.
-        "nix/modules/home/mr-nix/files/*.conf"
-        "nix/modules/home/mr-nix/files/*.json"
-        "nix/modules/home/mr-nix/files/*.toml"
-        "nix/modules/home/mr-nix/files/*.yml"
-        "nix/modules/home/mr-nix/files/git/**"
-        "nix/modules/home/mr-nix/files/shellcheckrc"
+        "nix/modules/home/files/*.conf"
+        "nix/modules/home/files/*.json"
+        "nix/modules/home/files/*.toml"
+        "nix/modules/home/files/*.yml"
+        "nix/modules/home/files/git/**"
+        "nix/modules/home/files/shellcheckrc"
         # keep-sorted end
       ];
     };

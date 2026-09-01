@@ -11,7 +11,7 @@
     "apm.lock.yaml",
     "megalinter",
     "megalinter-reports",
-    "nix/modules/home/mr-nix/files/**",
+    "nix/modules/home/files/**",
     "package-lock.json",
     "report"
   ],
