@@ -85,3 +85,4 @@ public
 home-lab.qcow2
 report/
 target/
+/.codex/config.toml
