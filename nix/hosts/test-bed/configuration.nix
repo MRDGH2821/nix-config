@@ -1,3 +1,5 @@
+# VM-only graphical sandbox for previewing the mr-fw16 Home Manager layout.
+# Boot with: just test-bed-vm-run
 {
   flake,
   inputs,
@@ -12,24 +14,23 @@
     };
   };
   imports = [
-    ./hardware-configuration.nix
-    ../home-lab/modules/sops.nix
-    ../home-lab/modules/acme.nix
+    ./modules
 
-    flake.modules.nixos.features
-    flake.modules.nixos.services
-    flake.modules.nixos.fixes
-    flake.modules.nixos.container-services
-    flake.modules.nixos.vars
-
-    inputs.sops-nix.nixosModules.sops
-    inputs.authentik-nix.nixosModules.default
-    inputs.hermes-agent.nixosModules.default
+    # Dev-friendly system layer only — no homelab services, secrets, or containers.
+    ../../modules/nixos/features/dev-packages.nix
+    ../../modules/nixos/features/direnv.nix
+    ../../modules/nixos/features/git.nix
+    ../../modules/nixos/features/home-manager.nix
+    ../../modules/nixos/features/system-packages.nix
   ];
   networking = {
     hostName = "test-bed";
     networkmanager.enable = true;
   };
+  nix.settings.allowed-users = [
+    "@wheel"
+    "mr-fw16"
+  ];
   programs.ssh.startAgent = true;
   services = {
     automatic-timezoned.enable = true;

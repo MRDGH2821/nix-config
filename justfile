@@ -59,6 +59,14 @@ home-lab-vm:
 home-lab-vm-run: home-lab-vm
     ./result-home-lab-vm/bin/run-*-vm
 
+# Build a QEMU VM of test-bed (graphical Home Manager layout preview).
+# Login: mr-fw16 / preview  or  root / preview.  SSH: localhost:2224.
+test-bed-vm:
+    nix build ".#nixosConfigurations.test-bed.config.system.build.vm" -o result-test-bed-vm
+
+test-bed-vm-run: test-bed-vm
+    ./result-test-bed-vm/bin/run-*-vm
+
 ############################################################################
 #
 #  Provisioning — first-time install on bare metal / VMs
