@@ -3,7 +3,6 @@
   pkgs,
   ...
 }: {
-  hardware.graphics.enable = true;
   environment.systemPackages = with pkgs; [
     kdePackages.dolphin
     kdePackages.kate
@@ -11,6 +10,7 @@
     tree
     zed-editor
   ];
+  hardware.graphics.enable = true;
   security.pam.services = {
     login.kwallet.enable = lib.mkForce false;
     sddm.kwallet.enable = lib.mkForce false;

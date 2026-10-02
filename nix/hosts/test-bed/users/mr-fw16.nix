@@ -1,5 +1,9 @@
 # Full Home Manager stack for inspecting dotfile layout in the test-bed VM.
-{flake, lib, ...}: {
+{
+  flake,
+  lib,
+  ...
+}: {
   home = {
     homeDirectory = "/home/mr-fw16";
     stateVersion = lib.mkForce "26.11";

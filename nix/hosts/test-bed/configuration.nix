@@ -1,11 +1,6 @@
 # VM-only graphical sandbox for previewing the mr-fw16 Home Manager layout.
 # Boot with: just test-bed-vm-run
-{
-  flake,
-  inputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
