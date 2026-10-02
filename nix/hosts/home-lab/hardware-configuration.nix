@@ -7,39 +7,38 @@
   modulesPath,
   ...
 }: {
+  boot = {
+    extraModulePackages = [];
+    initrd = {
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+      ];
+      kernelModules = [];
+    };
+    kernelModules = ["kvm-amd"];
+  };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/85ef381b-d1e5-46e5-8c32-54b43fb305da";
+      fsType = "ext4";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/B8F4-EA22";
+      fsType = "vfat";
+      options = [
+        "fmask=0077"
+        "dmask=0077"
+      ];
+    };
+  };
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
-
-  boot.initrd.availableKernelModules = [
-    "nvme"
-    "xhci_pci"
-    "usbhid"
-    "usb_storage"
-    "sd_mod"
-  ];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/85ef381b-d1e5-46e5-8c32-54b43fb305da";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/B8F4-EA22";
-    fsType = "vfat";
-    options = [
-      "fmask=0077"
-      "dmask=0077"
-    ];
-  };
-
-  swapDevices = [
-    {device = "/dev/disk/by-uuid/5b53383e-212b-4546-b841-fe0145a154d0";}
-  ];
-
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
@@ -49,7 +48,8 @@
   # networking.interfaces.enp2s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.eth0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  swapDevices = [
+    {device = "/dev/disk/by-uuid/5b53383e-212b-4546-b841-fe0145a154d0";}
+  ];
 }

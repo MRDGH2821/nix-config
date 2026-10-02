@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+# Regression: exact directory wins over custom labels and shared basenames,
+# and a failed workspace lookup is reported instead of hidden.
+set -euo pipefail
+
+script="$(cd "$(dirname "$0")" && pwd)/herdr-open"
+tmp="$(mktemp -d)"
+trap 'rm -rf "${tmp}"' EXIT
+
+mkdir -p "${tmp}/a/app" "${tmp}/b/app" "${tmp}/bin"
+git -C "${tmp}/a/app" init -q
+git -C "${tmp}/b/app" init -q
+dir_a="$(cd "${tmp}/a/app" && pwd)"
+dir_b="$(cd "${tmp}/b/app" && pwd)"
+
+cat >"${tmp}/bin/yq" <<'EOF'
+#!/usr/bin/env bash
+echo "yq must not be used for Herdr lookup" >&2
+exit 1
+EOF
+
+cat >"${tmp}/bin/herdr" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+printf '%s\n' "$*" >>"${HERDR_LOG:?}"
+if [[ ${HERDR_FAIL:-} == 1 && ${1:-} == worktree && ${2:-} == list ]]; then
+  echo "herdr lookup failed" >&2
+  exit 1
+fi
+if [[ ${1:-} == worktree && ${2:-} == list ]]; then
+  jq -n --arg a "${HERDR_DIR_A:?}" --arg b "${HERDR_DIR_B:?}" '{
+    result: {
+      worktrees: [
+        {path: $a, label: "custom-name", open_workspace_id: "w-custom"},
+        {path: $b, label: "app", open_workspace_id: "w-basename"}
+      ]
+    }
+  }'
+  exit 0
+fi
+if [[ ${1:-} == workspace && ${2:-} == focus ]]; then
+  exit 0
+fi
+if [[ $# -eq 0 ]]; then
+  exit 0
+fi
+echo "unexpected herdr command: $*" >&2
+exit 1
+EOF
+chmod +x "${tmp}/bin/herdr" "${tmp}/bin/yq"
+
+export PATH="${tmp}/bin:${PATH}"
+export HERDR_LOG="${tmp}/log"
+export HERDR_DIR_A="${dir_a}"
+export HERDR_DIR_B="${dir_b}"
+
+assert_focus() {
+  local dir="$1" want="$2" other="$3"
+  : >"${HERDR_LOG}"
+  local out
+  out="$("${script}" "${dir}")"
+  grep -q "${want}" <<<"${out}"
+  grep -q "worktree list --cwd ${dir}" "${HERDR_LOG}"
+  grep -q "workspace focus ${want}" "${HERDR_LOG}"
+  if grep -q "workspace focus ${other}" "${HERDR_LOG}"; then
+    echo "focused ${other} while opening ${dir}" >&2
+    exit 1
+  fi
+}
+
+# Same basename "app": custom label follows the directory, not the other project.
+assert_focus "${dir_a}" w-custom w-basename
+assert_focus "${dir_b}" w-basename w-custom
+
+: >"${HERDR_LOG}"
+export HERDR_FAIL=1
+set +e
+err="$("${script}" "${dir_a}" 2>&1 >/dev/null)"
+code=$?
+set -e
+if [[ ${code} -eq 0 ]]; then
+  echo "lookup failure was hidden" >&2
+  exit 1
+fi
+grep -q "herdr lookup failed" <<<"${err}"
+if grep -q "workspace create" "${HERDR_LOG}"; then
+  echo "created a workspace after a lookup failure" >&2
+  exit 1
+fi
+
+echo "herdr-open-check ok"

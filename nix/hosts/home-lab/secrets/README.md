@@ -32,7 +32,7 @@ Configuration lives in:
    ```sh
    # Native age identity
    git-agecrypt config add -i ~/.config/age/your-key.txt
-   
+
    # Or an OpenSSH key (ed25519/RSA) if that was used as the recipient
    git-agecrypt config add -i ~/.ssh/id_ed25519
    ```

@@ -50,6 +50,23 @@ home-lab: check
 home-lab-debug: check
     nixos apply ".#home-lab" --target-host {{ home-lab-target }} --build-host {{ home-lab-target }} --remote-root --show-trace --verbose --yes
 
+# Build a QEMU VM of home-lab (only virtualisation.vmVariant overrides apply).
+# Login: mr-nix / vm  or  root / vm.  SSH: localhost:2222 (with your sharedKey).
+# Exit serial console: Ctrl-a then x.
+home-lab-vm:
+    nix build ".#nixosConfigurations.home-lab.config.system.build.vm" -o result-home-lab-vm
+
+home-lab-vm-run: home-lab-vm
+    ./result-home-lab-vm/bin/run-*-vm
+
+# Build a QEMU VM of test-bed (graphical Home Manager layout preview).
+# Login: mr-fw16 / preview  or  root / preview.  SSH: localhost:2224.
+test-bed-vm:
+    nix build ".#nixosConfigurations.test-bed.config.system.build.vm" -o result-test-bed-vm
+
+test-bed-vm-run: test-bed-vm
+    ./result-test-bed-vm/bin/run-*-vm
+
 ############################################################################
 #
 #  Provisioning — first-time install on bare metal / VMs
@@ -67,3 +84,23 @@ gen-hw-config:
     nixos-anywhere --generate-hardware-config nixos-generate-config \
         ./nix/hosts/home-lab/hardware-configuration.nix \
         "root@${TARGET_HOST}"
+
+############################################################################
+#
+#  Home Manager — standalone user config (non-NixOS, e.g. Framework 16)
+#
+############################################################################
+
+home-target := "mr-fw16@fw16"
+
+# Activate the standalone Home Manager config (first run renames colliding dotfiles to *.hm-bak).
+home cfg=home-target: check
+    home-manager switch --flake ".#{{ cfg }}" -b hm-bak
+
+# Build the activation package without switching (result symlink).
+home-build cfg=home-target:
+    home-manager build --flake ".#{{ cfg }}"
+
+# Show Home Manager news for the config.
+home-news cfg=home-target:
+    home-manager news --flake ".#{{ cfg }}"

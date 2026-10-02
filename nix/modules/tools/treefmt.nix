@@ -1,0 +1,245 @@
+{
+  lib,
+  pkgs,
+  ...
+}: {
+  enableDefaultExcludes = false;
+  programs = {
+    actionlint.enable = true;
+    alejandra = {
+      enable = true;
+      priority = 10;
+    };
+    # beautysh crashes on valid here-strings ("indent/outdent mismatch");
+    # shfmt already covers shell formatting.
+    beautysh.enable = false;
+    deadnix.enable = true;
+    djlint = {
+      enable = true;
+      indent = 2;
+      lint = true;
+      priority = 10;
+    };
+    dockerfmt.enable = true;
+    dockfmt.enable = true;
+    dos2unix.enable = true;
+    flake-edit = {
+      enable = true;
+      # llm-agents.nix ships its own pinned nixpkgs plus a matching binary
+      # cache (cache.numtide.com) and is only built/tested against that pin.
+      # Keep its nixpkgs graph independent so `flake-edit follow` does not
+      # rewrite flake.nix to make it track this flake's nixpkgs.
+      settings.follow.ignore = [
+        "llm-agents.nixpkgs"
+        "llm-agents.bun2nix.nixpkgs"
+        "llm-agents.treefmt-nix.nixpkgs"
+      ];
+    };
+    genemichaels.enable = true;
+    gofmt.enable = true;
+    gofumpt.enable = true;
+    goimports.enable = true;
+    golangci-lint.enable = true;
+    just.enable = true;
+    keep-sorted.enable = true;
+    nbstripout.enable = true;
+    nixf-diagnose.enable = true;
+    nixfmt = {
+      enable = true;
+      priority = 1;
+    };
+    nixpkgs-fmt.enable = false;
+    oxfmt = {
+      enable = true;
+      priority = 80;
+    };
+    pedantix = {
+      enable = true;
+      settings.attrs = {
+        blank-lines = 0;
+        flatten = true;
+        merge = true;
+      };
+    };
+    prettier = {
+      enable = true;
+      priority = 100;
+    };
+    ruff-check = {
+      enable = true;
+      priority = 8;
+    };
+    ruff-format = {
+      enable = true;
+      priority = 9;
+    };
+    rustfmt.enable = true;
+    shellcheck.enable = true;
+    shfmt.enable = true;
+    sort-markdown-tables = {
+      enable = true;
+      priority = 3;
+    };
+    sqlfluff.enable = true;
+    sqlfluff-lint.enable = true;
+    statix.enable = true;
+    taplo = {
+      enable = true;
+      priority = 15;
+      settings.formatting = {
+        array_auto_expand = true;
+        array_trailing_comma = false;
+      };
+    };
+    toml-sort.enable = true;
+    typos = {
+      enable = true;
+      excludes = [
+        # keep-sorted start
+        "**/.cspell.json"
+        "**/cspell.json"
+        "**/hosts/**/*.json"
+        "**/secrets.yaml"
+        "**/secrets/**"
+        ".config/cspell.json"
+        ".cspell.json"
+        "CHANGELOG.md"
+        # keep-sorted end
+      ];
+    };
+    typstyle = {
+      enable = true;
+      priority = 1;
+    };
+    xmllint.enable = true;
+    yamllint = {
+      enable = true;
+      priority = 9;
+      settings = {
+        extends = "default";
+        rules = {
+          comments = "disable";
+          line-length = "disable";
+          truthy = "disable";
+        };
+      };
+    };
+    zizmor.enable = true;
+  };
+  projectRootFile = "flake.nix";
+  settings = {
+    formatter = {
+      cspell-sort = {
+        command = "${lib.getExe pkgs.yq-go}";
+        # the `cspell*` globs also catch the `cspell-refresh-words` helper
+        # script, which is not a cspell config file.
+        excludes = ["nix/modules/home/files/bin/*"];
+        includes = [
+          # keep-sorted start
+          "**/.CSpell*"
+          "**/.cspell*"
+          "**/cSpell*"
+          "**/cspell*"
+          ".CSpell*"
+          ".cspell*"
+          "cspell*"
+          # keep-sorted end
+        ];
+        no-positional-arg-support = true;
+        options = [
+          "-i"
+          ".words|= sort_by(downcase)|.ignorePaths|=sort_by(downcase)"
+        ];
+        priority = 9;
+      };
+      djlint.options = ["--single-attribute-per-line"];
+      prettypst-default = {
+        command = "${lib.getExe pkgs.prettypst}";
+        includes = ["*.typ"];
+        no-positional-arg-support = true;
+        options = [
+          "-s"
+          "default"
+        ];
+        priority = 2;
+      };
+      prettypst-otbs = {
+        command = "${lib.getExe pkgs.prettypst}";
+        includes = ["*.typ"];
+        no-positional-arg-support = true;
+        options = [
+          "-s"
+          "otbs"
+        ];
+        priority = 3;
+      };
+      # shellcheck / shfmt match by file extension; the vendored `files/bin/`
+      # helpers install as extension-less executables (bash shebang), so add
+      # them to both formatters' include sets (lists concatenate on merge).
+      shellcheck.includes = ["nix/modules/home/files/bin/*"];
+      shfmt.includes = ["nix/modules/home/files/bin/*"];
+      tombi-format = {
+        command = "${lib.getExe pkgs.tombi}";
+        includes = ["*.toml"];
+        options = [
+          "format"
+          "--offline"
+        ];
+        priority = 11;
+      };
+      toml-sort.options = [
+        "--sort-inline-tables"
+        "--sort-table-keys"
+      ];
+      yamlfix = {
+        command = "${lib.getExe pkgs.yamlfix}";
+        includes = [
+          # keep-sorted start
+          "*.yaml"
+          "*.yml"
+          # keep-sorted end
+        ];
+        priority = 8;
+      };
+      yq-key-sort = {
+        command = "${lib.getExe pkgs.yq-go}";
+        includes = [
+          # keep-sorted start
+          "*.json"
+          "*.yaml"
+          "*.yml"
+          # keep-sorted end
+        ];
+        no-positional-arg-support = true;
+        options = [
+          "-P"
+          "-i"
+          "sort_keys(..)"
+        ];
+        priority = 0;
+      };
+    };
+    global = {
+      allow-missing-formatter = true;
+      excludes = [
+        # keep-sorted start
+        "**/apm_modules/**"
+        "**/node_modules/**"
+        "**/skills/**"
+        ".gitattributes"
+        # Verbatim third-party dotfiles vendored for Home Manager drop-ins;
+        # key-sorting / reformatting them would defeat the point. Excluded by
+        # data-file extension rather than a blanket `files/**` so that the
+        # `files/bin/` helper scripts (installed as executables) stay under
+        # shellcheck / shfmt. treefmt globs: `*` also spans `/`.
+        "nix/modules/home/files/*.conf"
+        "nix/modules/home/files/*.json"
+        "nix/modules/home/files/*.toml"
+        "nix/modules/home/files/*.yml"
+        "nix/modules/home/files/git/**"
+        "nix/modules/home/files/shellcheckrc"
+        # keep-sorted end
+      ];
+    };
+  };
+}

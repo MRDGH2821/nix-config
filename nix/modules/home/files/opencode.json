@@ -1,0 +1,16 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "Devenv": {
+      "command": ["devenv", "mcp"],
+      "enabled": true,
+      "type": "local"
+    }
+  },
+  "model": "opencode/big-pickle",
+  "plugin": [
+    "@simonwjackson/opencode-direnv",
+    "superpowers@git+https://github.com/obra/superpowers.git"
+  ],
+  "small_model": "opencode/gpt-5-nano"
+}

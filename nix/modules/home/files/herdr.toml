@@ -1,0 +1,24 @@
+onboarding = false
+
+[experimental]
+pane_history = true
+
+[[keys.command]]
+command = "jt.command-palette.open"
+description = "Command palette"
+key = "prefix+p"
+type = "plugin_action"
+
+[session]
+resume_agents_on_restore = true
+
+[theme]
+auto_switch = false
+name = "gruvbox"
+
+[ui]
+agent_panel_sort = "priority"
+show_agent_labels_on_pane_borders = true
+
+[ui.toast]
+delivery = "system"

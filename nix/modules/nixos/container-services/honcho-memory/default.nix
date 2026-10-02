@@ -1,0 +1,113 @@
+{
+  config,
+  flake,
+  pkgs,
+  ...
+}: {
+  imports = flake.lib.autoImportModules ./.;
+  services = {
+    # might need to create the extension manually
+    # systemd.services.postgresql.postStart = lib.mkAfter ''
+    #   psql -d honcho -c "CREATE EXTENSION IF NOT EXISTS vector;"
+    # '';
+    postgresql = {
+      enable = true;
+      enableTCPIP = true;
+      ensureDatabases = ["honcho"];
+      ensureUsers = [
+        {
+          ensureDBOwnership = true;
+          name = "honcho";
+        }
+      ];
+      extensions = [pkgs.postgresqlPackages.pgvector];
+      initialScript = pkgs.writeText "init-honcho.sql" ''
+        CREATE EXTENSION IF NOT EXISTS vector;
+      '';
+    };
+    redis.servers.honcho = {
+      bind = null;
+      enable = true;
+      openFirewall = true;
+      port = 6381;
+    };
+  };
+  sops.templates.honcho.content = ''
+    DB_CONNECTION_URI=postgresql+psycopg://honcho@/honcho?host=/run/postgresql
+    AUTH_USE_AUTH=true
+    # PORT=8000
+    CACHE_ENABLED=true
+    CACHE_URL=redis://localhost:6381/0?suppress=true
+    VECTOR_STORE_TYPE=pgvector
+    LOG_LEVEL=INFO
+    # Migration flag: set to true when migration from pgvector is complete
+    VECTOR_STORE_MIGRATED=false
+  '';
+  systemd.services = {
+    "podman-honcho-memory-api" = {
+      after = [
+        "postgresql.service"
+        "redis-honcho.service"
+        "podman-honcho-memory-migrate.service"
+      ];
+      requires = [
+        "postgresql.service"
+        "redis-honcho.service"
+        "podman-honcho-memory-migrate.service"
+      ];
+      serviceConfig = {
+        Restart = "always";
+        RestartSec = 5;
+        StartLimitBurst = 3;
+        StartLimitIntervalSec = 60;
+      };
+    };
+    "podman-honcho-memory-deriver" = {
+      after = ["podman-honcho-memory-api.service"];
+      requires = ["podman-honcho-memory-api.service"];
+      serviceConfig = {
+        Restart = "always";
+        RestartSec = 5;
+        StartLimitBurst = 3;
+        StartLimitIntervalSec = 60;
+      };
+    };
+    "podman-honcho-memory-migrate" = {
+      after = [
+        "postgresql.service"
+      ];
+      requires = [
+        "postgresql.service"
+      ];
+    };
+  };
+  virtualisation.oci-containers.containers = {
+    "honcho-memory-api" = {
+      environmentFiles = [
+        config.sops.secrets.honcho-memory.path
+        config.sops.templates.honcho.path
+      ];
+      volumes = [
+        "/run/postgresql:/run/postgresql"
+      ];
+    };
+    "honcho-memory-deriver" = {
+      environmentFiles = [
+        config.sops.secrets.honcho-memory.path
+        config.sops.templates.honcho.path
+      ];
+      volumes = [
+        "/run/postgresql:/run/postgresql"
+      ];
+    };
+    "honcho-memory-migrate" = {
+      environmentFiles = [
+        config.sops.secrets.honcho-memory.path
+        config.sops.templates.honcho.path
+      ];
+      volumes = [
+        "/run/postgresql:/run/postgresql"
+      ];
+    };
+  };
+}

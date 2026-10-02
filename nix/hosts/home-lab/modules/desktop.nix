@@ -1,34 +1,29 @@
 {
-  config,
   lib,
   pkgs,
-  mylibFor,
   ...
-}: let
-  mylib = mylibFor {inherit pkgs lib config;};
-  rclone-kpxc = "/mnt/rclone/kpxc";
-  mount-options = "rw";
-  keepassxc-folder = mylib.rcloneMount {
-    remoteName = "pcloud-personal";
-    folderName = "Keepass";
-    mountPoint = "${rclone-kpxc}/Keepass";
-    options = mount-options;
-  };
-in {
-  imports = [
-    keepassxc-folder
-  ];
-  services.desktopManager.plasma6.enable = true;
-
-  services.openssh.enable = true;
-  hardware.graphics.enable = true;
-
+}: {
   environment.systemPackages = with pkgs; [
     waypipe
     zed-editor
-    keepassxc
   ];
-
+  # KeePassXC is installed and autostarted via homeModules.mr-nix (Secret Service).
+  # KWallet PAM would race KeePassXC for secrets — disable unlock helpers on this host.
+  hardware.graphics.enable = true;
+  my.rclone.mounts.keepassxc = {
+    folderName = "Keepass";
+    mountPoint = "/mnt/rclone/kpxc/Keepass";
+    options = "rw";
+    remoteName = "pcloud-personal";
+  };
+  security.pam.services = {
+    login.kwallet.enable = lib.mkForce false;
+    sddm.kwallet.enable = lib.mkForce false;
+  };
+  services = {
+    desktopManager.plasma6.enable = true;
+    openssh.enable = true;
+  };
   users.users.mr-nix.extraGroups = [
     "audio"
     "render"

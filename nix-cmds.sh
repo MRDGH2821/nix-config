@@ -92,7 +92,7 @@ generate_hardware_config() {
 nixos_rebuild() {
   HOST=mr-nix@"${HOST_IP}"
 
-  if [[ "${HOST_IP}" == "localhost" ]]; then
+  if [[ ${HOST_IP} == "localhost" ]]; then
     sudo nixos-rebuild switch --flake "${FLAKE}" --verbose
   else
     nixos-rebuild-ng switch --flake "${FLAKE}" --sudo --ask-sudo-password --target-host "${HOST}" --build-host "${HOST}"

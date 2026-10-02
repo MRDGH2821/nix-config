@@ -6,35 +6,7 @@
         "parser": "json",
         "trailingComma": "none"
       }
-    },
-    {
-      "files": ["*.toml"],
-      "options": {
-        "parser": "toml",
-        "reorderKeys": true,
-        "trailingComma": "none"
-      }
-    },
-    {
-      "files": ["*.sh", "**/.envrc", "**/.envrc.**"],
-      "options": {
-        "parser": "sh",
-        "spaceRedirects": false
-      }
-    },
-    {
-      "files": ["*.ini"],
-      "options": {
-        "parser": "ini",
-        "trailingComma": "none"
-      }
     }
-  ],
-  "plugins": [
-    "prettier-plugin-toml",
-    "@prettier/plugin-xml",
-    "prettier-plugin-sh",
-    "prettier-plugin-ini"
   ],
   "tabWidth": 2,
   "trailingComma": "none",
