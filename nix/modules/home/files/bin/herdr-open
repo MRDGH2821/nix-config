@@ -2,45 +2,26 @@
 set -euo pipefail
 
 dir="${1:-.}"
-dir="$(cd "${dir}" 2>/dev/null && pwd)" || {
+dir="$(cd "${dir}" && pwd)" || {
   echo >&2 "Directory does not exist: ${1:-.}"
   exit 1
 }
 
-herdr workspace list --format json >/dev/null 2>&1 || true
-
-# Collect workspace IDs whose root path matches ${dir}.
-candidate_ids=$(
-  herdr workspace list 2>/dev/null |
-    yq -r '.result.workspaces[].workspace_id' || true
-)
-
+# Match the checkout path. Labels are display names and are not unique.
 matched_workspace_id=""
-for ws_id in ${candidate_ids}; do
-  info=$(herdr workspace get "${ws_id}" 2>/dev/null || true)
-  # Check worktree list first.
-  wt=$(herdr worktree list 2>/dev/null || true)
-  if [[ -n ${wt} ]]; then
-    # shellcheck disable=SC2016  # $dir is a yq variable bound via --arg, not shell.
-    open_id=$(printf '%s' "${wt}" | yq -r --arg dir "${dir}" '
-      .result.worktrees[]
-      | select(.path == $dir)
-      | .open_workspace_id // ""
-    ' 2>/dev/null || true)
-    if [[ ${open_id} == "${ws_id}" ]]; then
-      matched_workspace_id="${ws_id}"
-      break
-    fi
-  fi
-  # Fallback: match workspace label against basename of dir.
-  label=$(printf '%s' "${info}" | yq -r '
-    .result.workspace.label // ""
-  ' 2>/dev/null || true)
-  if [[ ${label} == "$(basename "${dir}")" ]]; then
-    matched_workspace_id="${ws_id}"
-    break
-  fi
-done
+if git -C "${dir}" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  common="$(git -C "${dir}" rev-parse --path-format=absolute --git-common-dir)"
+  source="$(cd "${common}/.." && pwd)"
+  worktrees="$(herdr worktree list --cwd "${source}")"
+  matched_workspace_id="$(
+    printf '%s\n' "${worktrees}" | jq -r --arg dir "${dir}" '
+      [ .result.worktrees[]
+        | select(.path == $dir)
+        | .open_workspace_id // empty
+      ] | first // empty
+    '
+  )"
+fi
 
 if [[ -n ${matched_workspace_id} ]]; then
   echo "Found existing Herdr workspace: ${matched_workspace_id} (${dir})"
