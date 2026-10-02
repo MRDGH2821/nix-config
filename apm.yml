@@ -3,6 +3,7 @@ author: MRDGH2821
 dependencies:
   apm:
     - git: https://github.com/MRDGH2821/copier-mr-nix
+    - git: https://github.com/mattpocock/skills
   mcp:
     - args:
         - mcp-nixos
