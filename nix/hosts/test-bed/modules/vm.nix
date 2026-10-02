@@ -16,7 +16,10 @@
       {
         from = "host";
         guest.port = 22;
-        host.port = 2224;
+        host = {
+          address = "127.0.0.1";
+          port = 2224;
+        };
       }
     ];
     graphics = true;
