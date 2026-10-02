@@ -3,7 +3,7 @@
 # GNU sed's e instruction and awk's system() can run another program.
 # Issue #7: the owner said this allow list can be deleted entirely.
 set -eu
-root=$(CDPATH= cd -- "$(dirname "$0")/../../.." && pwd)
+root=$(CDPATH='' cd -- "$(dirname "$0")/../../.." && pwd)
 zed=$root/nix/modules/home/zed.nix
 
 if grep -F 'always_allow' "$zed" >/dev/null; then
