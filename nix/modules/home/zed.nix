@@ -149,24 +149,6 @@ _: {
         tool_permissions.tools = {
           fetch.default = "allow";
           "mcp:NixOS MCP:nix".default = "allow";
-          terminal.always_allow = [
-            {pattern = "^cat\\b";}
-            {pattern = "^grep\\b";}
-            {pattern = "^head\\b";}
-            {pattern = "^sed\\b";}
-            {pattern = "^git\\s+check-ignore(\\s|$)";}
-            {pattern = "^echo\\s+===(\\s|$)";}
-            {pattern = "^echo\\b";}
-            {pattern = "^grep\\s+\\^-(\\s|$)";}
-            {pattern = "^sort\\b";}
-            {pattern = "^uniq\\b";}
-            {pattern = "^wc\\b";}
-            {pattern = "^git\\s+ls-files(\\s|$)";}
-            {pattern = "^ls\\s+nix/checks/(\\s|$)";}
-            {pattern = "^git\\s+ls-tree(\\s|$)";}
-            {pattern = "^awk\\s+\\{print(\\s|$)";}
-            {pattern = "^ls\\b";}
-          ];
         };
       };
       agent_servers = {
