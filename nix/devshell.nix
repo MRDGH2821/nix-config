@@ -28,11 +28,13 @@ in
         lazygit
         nil
         nixd
+        nixos-anywhere
         repgrep
         ripgrep
         sops
         ssh-to-age
         uv
+        yq-go
         # keep-sorted end
       ]
       ++ [
