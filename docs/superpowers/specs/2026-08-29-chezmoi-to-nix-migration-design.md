@@ -22,7 +22,7 @@ Phase 2 wired Home Manager for `mr-nix` on `home-lab` / `test-bed` (wire-up only
 | Migration style           | **Nativize where possible** — `programs.*` regenerating config from Nix; `xdg.configFile` / `home.file` only for apps with no module or not worth modelling                                                             |
 | Packages                  | **Everything portable** — every chezmoi-listed package that exists in nixpkgs (or `llm-agents.nix`), GUI apps included                                                                                                  |
 | `mise`                    | **Keep** — `programs.mise` with `globalConfig` port; complements Nix for non-Nix project toolchains                                                                                                                     |
-| `mcfly`                   | **Drop** — fzf history widget + `zsh-history-substring-search` already configured in `shell/zsh.nix`                                                                                                                    |
+| `mcfly`                   | **Drop shell-history integration** — fzf history widget + `zsh-history-substring-search` already configured in `shell/zsh.nix` (retaining the `aqua:cantino/mcfly` binary tool pin in `mise` is allowed)                |
 | `soar` + `antidot`        | **Keep configs** (verbatim `xdg.configFile`); binaries are out-of-band (not in nixpkgs, not packaged here)                                                                                                              |
 | Signing key / GPG         | **Module option** — expose via a home-module option (`vars`-style), set per host/stub, not hardcoded in `git.nix`                                                                                                       |
 | opencode config           | **Migrate verbatim** — `xdg.configFile` for `opencode.json` + `tui.json`                                                                                                                                                |
@@ -357,7 +357,25 @@ Add substituter for the `llm-agents` cache to `nix.settings` on the future host 
 | `home-lab` / `test-bed` eval                               | still build                                                             |
 | generated `~/.config/git/config`                           | matches chezmoi semantics (signing, delta, includeIf, credential stack) |
 | generated `~/.config/zed/settings.json`                    | parity with `private_settings.json` (minus mutable-state churn)         |
-| grep `nix/` for `mcfly`, `antidot init`, `chezmoi`         | absent (docs/logs exempt)                                               |
+| shell-history acceptance command below                     | exit 0 and prints `clean`; comments and the mise pin may remain         |
+
+Active shell initialization or `programs.mcfly` module configuration under `nix/`. Comments and the retained `"aqua:cantino/mcfly"` mise pin are allowed. `git grep` status 1 (no match) prints `clean`. Any other failure keeps that status and does not print `clean`.
+
+```bash
+status=0
+git grep -nE 'mcfly init|antidot init|programs\.mcfly[[:space:]]*(\.|=)' -- nix/ || status=$?
+if [ "$status" -eq 1 ]; then
+  printf '%s\n' 'clean'
+else
+  if [ "$status" -eq 0 ]; then
+    printf '%s\n' 'active shell-history initialization or programs.mcfly configuration is present' >&2
+    exit 1
+  else
+    printf '%s\n' "git grep failed with status ${status}" >&2
+    exit "$status"
+  fi
+fi
+```
 
 Manual (standalone Fedora):
 

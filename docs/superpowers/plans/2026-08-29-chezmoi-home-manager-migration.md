@@ -23,7 +23,7 @@
 - Blueprint arg style in `nix/` files: `{ flake, inputs, pkgs, lib, ... }`. Consume same-flake modules via `flake.modules.home.<name>` and `flake.modules.nixos.<name>`.
 - New verbatim config files are vendored under `nix/modules/home/mr-nix/files/` — render any chezmoi templating ONCE (for `linux` / `fedora` / `laptop`) and commit the plain output; never commit `.tmpl` syntax.
 - Do NOT migrate: Windows (`readonly_Documents/`, `powershell/`, `.chezmoiscripts/windows/`), `.chezmoiscripts/**`, `.chezmoidata/packages/linux/{arch,debian,ubuntu,fedora}.yaml`, `paru/`, chezmoi templating machinery, `antidot` runtime hooks, KDE/Plasma rc files, `MangoHud`, Flatpak lists, `marktext/`. (Spec §5.)
-- `mcfly` is dropped. `mise` is kept. `soar` + `antidot` keep their config files only (binaries out-of-band).
+- `mcfly` shell-history integration is dropped (retained `mise` binary pin allowed). `mise` is kept. `soar` + `antidot` keep their config files only (binaries out-of-band).
 
 ---
 
@@ -1204,13 +1204,27 @@ find "$out/home-files" -type f | sort
 
 Confirm against spec §3: git config, zed/\*.json, lazygit, mise, fastfetch, gallery-dl, topgrade, tombi, herdr, soar, opencode, copier, nix.conf, shellcheckrc, cargo config, bin scripts, zsh functions.
 
-- [x] **Step 3: grep for things that must be absent**
+- [x] **Step 3: Confirm active shell-history initialization is absent**
+
+Same command as spec §7. Comments and the retained `"aqua:cantino/mcfly"` mise pin are allowed. `git grep` status 1 (no match) prints `clean`. Any other failure keeps that status and does not print `clean`.
 
 ```bash
-git grep -nE 'mcfly|antidot init|programs\.mcfly' -- 'nix/**' || echo "clean"
+status=0
+git grep -nE 'mcfly init|antidot init|programs\.mcfly[[:space:]]*(\.|=)' -- nix/ || status=$?
+if [ "$status" -eq 1 ]; then
+  printf '%s\n' 'clean'
+else
+  if [ "$status" -eq 0 ]; then
+    printf '%s\n' 'active shell-history initialization or programs.mcfly configuration is present' >&2
+    exit 1
+  else
+    printf '%s\n' "git grep failed with status ${status}" >&2
+    exit "$status"
+  fi
+fi
 ```
 
-Expected: `clean` (no mcfly / antidot runtime in nix modules).
+Expected: exit 0 and one line, `clean`.
 
 - [x] **Step 4: Update the AI work log**
 

@@ -1,9 +1,28 @@
 {
   config,
   flake,
+  lib,
   pkgs,
   ...
-}: {
+}: let
+  migrate = config.virtualisation.oci-containers.containers.honcho-memory-migrate;
+  # The generated unit detaches and reports ready when the runtime starts.
+  # This foreground command keeps the unit starting until the migration exits.
+  migrateCommand = lib.concatStringsSep " \\\n  " (
+    [
+      "exec podman run"
+      "--name=honcho-memory-migrate"
+      "--log-driver=${lib.escapeShellArg migrate."log-driver"}"
+      "--replace"
+      "--rm"
+      "--pull ${lib.escapeShellArg migrate.pull}"
+    ]
+    ++ map lib.escapeShellArg migrate.extraOptions
+    ++ map (file: "--env-file ${lib.escapeShellArg file}") migrate.environmentFiles
+    ++ map (volume: "-v ${lib.escapeShellArg volume}") migrate.volumes
+    ++ [(lib.escapeShellArg migrate.image)]
+  );
+in {
   imports = flake.lib.autoImportModules ./.;
   services = {
     # might need to create the extension manually
@@ -63,8 +82,14 @@
       };
     };
     "podman-honcho-memory-deriver" = {
-      after = ["podman-honcho-memory-api.service"];
-      requires = ["podman-honcho-memory-api.service"];
+      after = [
+        "podman-honcho-memory-api.service"
+        "podman-honcho-memory-migrate.service"
+      ];
+      requires = [
+        "podman-honcho-memory-api.service"
+        "podman-honcho-memory-migrate.service"
+      ];
       serviceConfig = {
         Restart = "always";
         RestartSec = 5;
@@ -76,9 +101,16 @@
       after = [
         "postgresql.service"
       ];
+      postStop = lib.mkForce "true";
+      preStop = lib.mkForce "true";
       requires = [
         "postgresql.service"
       ];
+      script = lib.mkForce migrateCommand;
+      serviceConfig = {
+        RemainAfterExit = true;
+        Type = lib.mkForce "oneshot";
+      };
     };
   };
   virtualisation.oci-containers.containers = {
