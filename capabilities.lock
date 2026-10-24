@@ -1,0 +1,93 @@
+version: 1
+generator: capa@2.4.0
+generatedAt: '2026-10-24T23:05:22.643Z'
+skills:
+  - id: atomic-commits
+    source: github
+    repo: nullswan/atomic-commits
+    skillName: atomic-commits
+    requestedVersion: null
+    requestedRef: null
+    resolvedRef: b1428499726d0efd3b2c914e58a7279c707538e0
+    resolvedVersion: null
+  - id: bootstrap
+    source: github
+    repo: infragate/capa
+    skillName: bootstrap
+    requestedVersion: null
+    requestedRef: null
+    resolvedRef: d7af1197d4214599b8143794212b6094c9096d99
+    resolvedVersion: v2.4.0
+  - id: capabilities-manager
+    source: github
+    repo: infragate/capa
+    skillName: capabilities-manager
+    requestedVersion: null
+    requestedRef: null
+    resolvedRef: d7af1197d4214599b8143794212b6094c9096d99
+    resolvedVersion: v2.4.0
+  - id: gh
+    source: github
+    repo: cli/cli
+    skillName: gh
+    requestedVersion: null
+    requestedRef: null
+    resolvedRef: 4f2cfe92e3499f8581bf39db77e0a1431fa7b55c
+    resolvedVersion: v2.103.2
+plugins:
+  - id: mattpocock-skills
+    source: github
+    repo: mattpocock/skills
+    subpath: null
+    requestedSearchName: null
+    requestedVersion: null
+    requestedRef: null
+    resolvedRef: 24fe0ef7737efae15c87225755e9f6f5965e4888
+    resolvedVersion: v1.3.1
+    manifestName: mattpocock-skills
+    manifestVersion: 1.3.1
+  - id: megalinter
+    source: github
+    repo: oxsecurity/megalinter
+    subpath: null
+    requestedSearchName: null
+    requestedVersion: null
+    requestedRef: null
+    resolvedRef: 9949bad031045f366be2467e00e8371a7328a2e2
+    resolvedVersion: v10.1.0
+    manifestName: megalinter
+    manifestVersion: 1.0.5
+  - id: nix
+    source: gitlab
+    repo: gitlab-org/ai/skills
+    subpath: .claude-plugin/plugins/nix
+    requestedSearchName: null
+    requestedVersion: null
+    requestedRef: null
+    resolvedRef: 1f49aff31296bb71faed0b247637406a7547158b
+    resolvedVersion: null
+    manifestName: discovered
+    manifestVersion: null
+  - id: paad
+    source: github
+    repo: Ovid/paad
+    subpath: plugins/paad
+    requestedSearchName: null
+    requestedVersion: null
+    requestedRef: null
+    resolvedRef: 3e0b871428a22801e319ce06c0330fce4ab194de
+    resolvedVersion: null
+    manifestName: paad
+    manifestVersion: 2.0.2
+  - id: superpowers
+    source: github
+    repo: obra/superpowers
+    subpath: null
+    requestedSearchName: null
+    requestedVersion: null
+    requestedRef: null
+    resolvedRef: 2ce8aa15d05bd57213e6f746f953aafb7ded7a8b
+    resolvedVersion: v7.0.1
+    manifestName: superpowers
+    manifestVersion: 7.0.1
+hooks: []

@@ -1,0 +1,60 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/infragate/capa/main/schema/capabilities.schema.json
+options:
+  toolExposure: on-demand
+plugins:
+  - def:
+      description: "Core skills library: TDD, debugging, collaboration patterns, and proven techniques"
+      repo: obra/superpowers
+    id: superpowers
+    type: github
+  - def:
+      description: Matt Pocock's agent skills for real engineering (grilling, spec/ticket flows, TDD, code review, domain modelling and more).
+      repo: mattpocock/skills
+    id: mattpocock-skills
+    type: github
+  - def:
+      description: "Set up, run and fix MegaLinter on any repository: 100+ linters for 69+ languages, 23+ formats and 21+ tooling formats, from CI or locally."
+      repo: oxsecurity/megalinter
+    id: megalinter
+    type: github
+  - def:
+      description: Architecture analysis, code quality, and development workflow skills by Ovid
+      repo: Ovid/paad::plugins/paad
+    id: paad
+    type: github
+  - def:
+      repo: gitlab-org/ai/skills::.claude-plugin/plugins/nix
+    id: nix
+    type: gitlab
+providers:
+  - antigravity
+  - codex
+  - cursor
+servers:
+  - def:
+      args:
+        - mcp-nixos
+      cmd: uvx
+    id: mcp-nixos
+    type: mcp
+skills:
+  - def:
+      description: Guide for managing capabilities with capa CLI
+      repo: infragate/capa@capabilities-manager
+    id: capabilities-manager
+    type: github
+  - def:
+      description: "Capify an existing project: discover skills/rules/hooks/MCP servers across all providers and synthesize capabilities.yaml"
+      repo: infragate/capa@bootstrap
+    id: bootstrap
+    type: github
+  - def:
+      repo: nullswan/atomic-commits@atomic-commits
+    id: atomic-commits
+    type: github
+  - def:
+      repo: cli/cli@gh
+    id: gh
+    type: github
+tools: []
