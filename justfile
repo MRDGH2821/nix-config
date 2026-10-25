@@ -50,8 +50,17 @@ home-lab: check
 home-lab-debug: check
     nixos apply ".#home-lab" --target-host {{ home-lab-target }} --build-host {{ home-lab-target }} --remote-root --show-trace --verbose --yes
 
+# Build the production home-lab closure without deploying it.
+home-lab-build:
+    nix build ".#nixosConfigurations.home-lab.config.system.build.toplevel" --no-link -L
+
+# Run the isolated home-lab integration test.
+home-lab-test:
+    nix build ".#checks.x86_64-linux.home-lab-integration" --no-link -L
+
 # Build a QEMU VM of home-lab (only virtualisation.vmVariant overrides apply).
-# Login: mr-nix / vm  or  root / vm.  SSH: localhost:2222 (with your sharedKey).
+# Login: mr-nix / vm (console and SSH); root / vm (console only).
+# SSH: 127.0.0.1:2222.
 # Exit serial console: Ctrl-a then x.
 home-lab-vm:
     nix build ".#nixosConfigurations.home-lab.config.system.build.vm" -o result-home-lab-vm

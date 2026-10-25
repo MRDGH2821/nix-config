@@ -1,0 +1,10 @@
+title = "nix-config betterleaks configuration"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Deliberately public isolated homelab test fixtures"
+paths = [
+  '''^nix/tests/home-lab/fixtures/(public-age-key\.txt|public-tls-key\.pem|secrets\.yaml)$''',
+]
