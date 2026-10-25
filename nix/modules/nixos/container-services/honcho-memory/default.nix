@@ -2,7 +2,6 @@
   config,
   flake,
   lib,
-  pkgs,
   ...
 }: let
   migrate = config.virtualisation.oci-containers.containers.honcho-memory-migrate;
@@ -13,6 +12,7 @@
       "exec podman run"
       "--name=honcho-memory-migrate"
       "--log-driver=${lib.escapeShellArg migrate."log-driver"}"
+      # antipatterns: ignore NL11 — Podman's runtime name-replacement flag, not substituteInPlace.
       "--replace"
       "--rm"
       "--pull ${lib.escapeShellArg migrate.pull}"
@@ -25,10 +25,6 @@
 in {
   imports = flake.lib.autoImportModules ./.;
   services = {
-    # might need to create the extension manually
-    # systemd.services.postgresql.postStart = lib.mkAfter ''
-    #   psql -d honcho -c "CREATE EXTENSION IF NOT EXISTS vector;"
-    # '';
     postgresql = {
       enable = true;
       enableTCPIP = true;
@@ -39,10 +35,7 @@ in {
           name = "honcho";
         }
       ];
-      extensions = [pkgs.postgresqlPackages.pgvector];
-      initialScript = pkgs.writeText "init-honcho.sql" ''
-        CREATE EXTENSION IF NOT EXISTS vector;
-      '';
+      extensions = ps: [ps.pgvector];
     };
     redis.servers.honcho = {
       bind = null;
@@ -100,17 +93,26 @@ in {
     "podman-honcho-memory-migrate" = {
       after = [
         "postgresql.service"
+        "postgresql-setup.service"
       ];
       postStop = lib.mkForce "true";
       preStop = lib.mkForce "true";
       requires = [
         "postgresql.service"
+        "postgresql-setup.service"
       ];
       script = lib.mkForce migrateCommand;
       serviceConfig = {
         RemainAfterExit = true;
         Type = lib.mkForce "oneshot";
       };
+    };
+    postgresql-setup = {
+      # Repeat database-local extension setup whenever PostgreSQL restarts.
+      partOf = ["postgresql.service"];
+      postStart = lib.mkAfter ''
+        psql -U postgres -d honcho -v ON_ERROR_STOP=1 -c "CREATE EXTENSION IF NOT EXISTS vector;"
+      '';
     };
   };
   virtualisation.oci-containers.containers = {
