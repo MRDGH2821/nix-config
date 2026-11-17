@@ -34,14 +34,14 @@ systemctl stop forgejo.service
 
 # The script runs as root, so the redirect writes as root.
 # shellcheck disable=SC2024
-sudo -u postgres pg_dump -Fc forgejo > "${DEST}/forgejo.dump"
+sudo -u postgres pg_dump -Fc forgejo >"${DEST}/forgejo.dump"
 tar --acls --xattrs -cpf "${DEST}/forgejo-files.tar" \
   -C / var/lib/forgejo
 
 pg_restore --list "${DEST}/forgejo.dump" >/dev/null
 
 # Check the complete archive and confirm the repository directory is present.
-tar -tf "${DEST}/forgejo-files.tar" > "${DEST}/archive-contents.txt"
+tar -tf "${DEST}/forgejo-files.tar" >"${DEST}/archive-contents.txt"
 if ! grep -q '^var/lib/forgejo/repositories/' "${DEST}/archive-contents.txt"; then
   echo "Repository directory is missing from the backup archive." >&2
   exit 1

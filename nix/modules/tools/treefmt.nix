@@ -30,9 +30,12 @@
       # Keep its nixpkgs graph independent so `flake-edit follow` does not
       # rewrite flake.nix to make it track this flake's nixpkgs.
       settings.follow.ignore = [
+        "authentik-nix.flake-parts.nixpkgs-lib"
+        "llm-agents.flake-parts.nixpkgs-lib"
         "llm-agents.nixpkgs"
         "llm-agents.bun2nix.nixpkgs"
         "llm-agents.treefmt-nix.nixpkgs"
+        "nixos-cli.flake-parts.nixpkgs-lib"
       ];
     };
     genemichaels.enable = true;

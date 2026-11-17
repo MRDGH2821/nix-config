@@ -46,7 +46,7 @@ systemctl stop nextcloud-cron.service
 
 # The script runs as root, so the redirect writes as root.
 # shellcheck disable=SC2024
-sudo -u postgres pg_dump -Fc nextcloud > "${DEST}/nextcloud.dump"
+sudo -u postgres pg_dump -Fc nextcloud >"${DEST}/nextcloud.dump"
 tar --acls --xattrs -cpf "${DEST}/nextcloud-files.tar" \
   -C / var/lib/nextcloud
 
