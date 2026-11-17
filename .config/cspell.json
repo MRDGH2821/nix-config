@@ -18,6 +18,7 @@
     "report"
   ],
   "ignoreRegExpList": [
+    "/ENC\\[AES256_GCM,[^\\]]+\\]/g",
     "/\\/nix\\/store\\/[0-9a-z]{32}/g"
   ],
   "language": "en,en-GB",
