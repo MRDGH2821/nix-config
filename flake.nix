@@ -54,7 +54,7 @@
         pedantix.follows = "pedantix";
         treefmt.follows = "treefmt";
       };
-      url = "github:MRDGH2821/Sort-Markdown-Tables";
+      url = "github:MRDGH2821/Sort-Markdown-Tables/v0.5.0";
     };
     sops-nix = {
       inputs.nixpkgs.follows = "nixpkgs";
