@@ -30,22 +30,6 @@
     "smtpPassword"
     "wireless"
   ];
-  tiktokenUrl = "https://openaipublic.blob.core.windows.net/encodings/o200k_base.tiktoken";
-  tiktokenCacheFile = builtins.hashString "sha1" tiktokenUrl;
-  tiktokenEncoding = pkgs.fetchurl {
-    hash = "sha256-RGqVOMtsNI41FhINfAiwn1fDZJXirP/+WaW/iwz7Gi0=";
-    url = tiktokenUrl;
-  };
-  tiktokenCache = pkgs.runCommand "homelab-test-tiktoken-cache" {} ''
-    install -Dm0444 ${tiktokenEncoding} "$out/${tiktokenCacheFile}"
-  '';
-  tiktokenCacheMount = "${tiktokenCache}:/tiktoken-cache:ro";
-  tiktokenCacheEnvironment = "--env=TIKTOKEN_CACHE_DIR=/tiktoken-cache";
-  honchoTiktokenContainers = [
-    "honcho-memory-api"
-    "honcho-memory-deriver"
-    "honcho-memory-migrate"
-  ];
   badger = pkgs.fetchFromGitHub {
     hash = "sha256-iHL2amAuiiufb9hlokRP14wHq2Ei2eQdUlYP4FmpS9o=";
     owner = "fosrl";
@@ -56,7 +40,6 @@
     "authentik"
     "git"
     "jellyfin"
-    "linkwarden"
     "nextcloud"
     "omniroute"
     "pangolin"
@@ -83,19 +66,6 @@ in {
             builtins.attrValues config.sops.secrets
           );
           message = "The sandbox must not retain any production SOPS inputs.";
-        }
-        {
-          assertion = let
-            containers = config.virtualisation.oci-containers.containers;
-          in
-            lib.all (
-              name:
-                builtins.hasAttr name containers
-                && lib.elem tiktokenCacheEnvironment containers.${name}.extraOptions
-                && lib.elem tiktokenCacheMount containers.${name}.volumes
-            )
-            honchoTiktokenContainers;
-          message = "Every sandbox Honcho container must mount the pinned tiktoken cache and set TIKTOKEN_CACHE_DIR.";
         }
       ];
       boot.loader = {
@@ -268,7 +238,9 @@ in {
                 TimeoutStartSec = 0;
                 Type = "oneshot";
               };
-              unitConfig.RequiresMountsFor = config.virtualisation.containers.storage.settings.storage.graphroot;
+              unitConfig.RequiresMountsFor =
+                config.virtualisation.containers.storage.rootful.settings.storage.graphroot
+                  or "/var/lib/containers/storage";
             };
             traefik = {
               # Yaegi resolves this source under its working directory.
@@ -300,20 +272,13 @@ in {
       virtualisation = {
         cores = lib.mkDefault 4;
         diskSize = lib.mkDefault 30720;
-        # Concurrent real apps, PostgreSQL and six OCI units (Omniroute is 5 GiB).
+        # Concurrent real apps, PostgreSQL and three OCI units (Omniroute is 5 GiB).
         memorySize = lib.mkDefault 12288;
         oci-containers.containers =
-          lib.mapAttrs (
-            name: _:
-              {
-                imageFile = lib.mkForce null;
-                pull = lib.mkForce "never";
-              }
-              // lib.optionalAttrs (lib.elem name honchoTiktokenContainers) {
-                extraOptions = lib.mkAfter [tiktokenCacheEnvironment];
-                volumes = lib.mkAfter [tiktokenCacheMount];
-              }
-          )
+          lib.mapAttrs (_name: _: {
+            imageFile = lib.mkForce null;
+            pull = lib.mkForce "never";
+          })
           images;
         restrictNetwork = lib.mkForce true;
       };

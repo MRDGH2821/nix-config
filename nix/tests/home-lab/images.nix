@@ -1,19 +1,5 @@
 # Public registry snapshots for the isolated x86_64 sandbox, never runtime pulls.
 {pkgs}: let
-  honcho = {
-    archive = pkgs.dockerTools.pullImage {
-      arch = "amd64";
-      finalImageTag = "v3.1.0";
-      imageDigest = honcho.digest;
-      imageName = "ghcr.io/plastic-labs/honcho";
-      os = "linux";
-      # antipatterns: ignore FS01 — dockerTools.pullImage requires this argument name.
-      sha256 = "sha256-qlbsbCi780W2TQPXxpxOGzuL17iy7fnKJ5+D/Pik0SI=";
-    };
-    digest = "sha256:b73a8015f9e3ee51525e5b5cb238a915aa47de5107593d81b892213322fa369d";
-    image = "ghcr.io/plastic-labs/honcho:v3.1.0";
-    imageId = "sha256:e01041eb86df5de4d9afcd0da4dfa4a7aca80c19c4df62fcf3e81dc065bf520b";
-  };
   omniroute = {
     archive = pkgs.dockerTools.pullImage {
       arch = "amd64";
@@ -58,8 +44,5 @@
   };
 in {
   inherit omni-tools vert;
-  honcho-memory-api = honcho;
-  honcho-memory-deriver = honcho;
-  honcho-memory-migrate = honcho;
   omniroute-web = omniroute;
 }

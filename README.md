@@ -116,14 +116,13 @@ TMPDIR="$HOME/.local/state/homelab-test/tmp" \
   just home-lab-vm-run
 ```
 
-The first build downloads approximately 6 GiB of pinned container archives
+The first build downloads pinned container archives
 in addition to Nix dependencies. Both VM modes use the shared
 `homelab-test-images.service` oneshot before any OCI container starts. It
-checks each of the four distinct pinned image references against its expected
+checks each of the three distinct pinned image references against its expected
 image ID, loading the local archive only when the reference is absent or its
 ID differs, then verifies the loaded ID. A missing or mismatched image fails
-startup. The loader remains active for the boot, so Honcho's three units share
-one import and migration/API recovery restarts do not reload archives. On
+startup. The loader remains active for the boot. On
 reboot or a changed loader definition, IDs are checked again, including fixture
 updates under unchanged tags. Every container uses `pull=never`; guests must
 not pull images from the network.
@@ -134,8 +133,7 @@ as `latest` can still move independently, so a passing test does not certify
 a newer image later pulled under the same tag.
 
 The integration check asserts full-stack startup and service health plus
-selected core workflows: Honcho migration ordering and failure propagation,
-PostgreSQL writes/backup/restore, authenticated and unauthorized Forgejo API
+selected core workflows: PostgreSQL writes/backup/restore, authenticated and unauthorized Forgejo API
 access through fixture Traefik, network isolation, reboot persistence, and
 candidate activation inside the guest. It does not prove every application
 correct or verify real SSO enrollment or Pangolin's database-held routes.
@@ -144,8 +142,8 @@ mounts, cloud credentials, and public ACME are excluded. The desktop, waypipe,
 development-package, and Home Manager user-profile modules are also omitted.
 Mail uses a local Mailpit sink; media uses synthetic audio fixtures.
 
-Linkwarden and OmniRoute remain configured in the sandbox but are excluded from
-automated unit and endpoint checks by user decision. Their startup correctness
+OmniRoute remains configured in the sandbox but are excluded from
+automated unit and endpoint checks by user decision. Its startup correctness
 is not covered by `just home-lab-test`.
 
 For a historical upgrade rehearsal, apply the same reviewed sandbox module

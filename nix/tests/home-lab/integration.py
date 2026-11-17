@@ -84,7 +84,6 @@ def run(server, client, settings, subtest):
             "pgadmin.service",
             "homepage-dashboard.service",
             "jellyfin.service",
-            "ollama.service",
             "mailpit-sandbox.service",
         ]
         + (["searx.service"] if settings["searxEnabled"] else [])
@@ -116,16 +115,6 @@ def run(server, client, settings, subtest):
         ("pgAdmin", "http://127.0.0.1:5050/misc/ping", ""),
         ("Homepage", "http://127.0.0.1:7000/", " --header 'Host: homelab.test'"),
         ("Jellyfin", "http://127.0.0.1:8096/health", ""),
-        (
-            "Ollama",
-            "http://127.0.0.1:11434/api/tags",
-            " | jq -e '.models | type == \"array\"'",
-        ),
-        (
-            "Honcho API",
-            "http://127.0.0.1:8000/openapi.json",
-            " | jq -e '.paths | length > 0'",
-        ),
         ("Omni Tools", "http://127.0.0.1:3081/", ""),
         ("VERT", "http://127.0.0.1:3080/", ""),
         ("SMTP fixture", "http://127.0.0.1:8025/livez", ""),
@@ -153,49 +142,10 @@ def run(server, client, settings, subtest):
             "systemctl --failed --no-legend --plain --output=json "
             "| jq -r '.[].unit' "
             + "| grep -v -E "
-            + quote(
-                f"^(linkwarden|linkwarden-worker|podman-omniroute-web|{omniroute_id}-.*)\\.service$"
-            )
+            + quote(f"^(podman-omniroute-web|{omniroute_id}-.*)\\.service$")
             + " || true"
         ).strip()
         assert failed == "", failed
-
-    def check_migration():
-        migration = server.get_unit_info("podman-honcho-memory-migrate.service")
-        assert (
-            migration["Result"] == "success" and migration["ExecMainStatus"] == "0"
-        ), migration
-        finished = int(migration["ExecMainExitTimestampMonotonic"])
-        assert finished > 0, migration
-        for unit in (
-            "podman-honcho-memory-api.service",
-            "podman-honcho-memory-deriver.service",
-        ):
-            info = server.get_unit_info(unit)
-            assert int(info["ExecMainStartTimestampMonotonic"]) >= finished, (
-                unit,
-                migration,
-                info,
-            )
-        assert sql("SELECT count(*) FROM alembic_version", "honcho") == "1"
-        # Use the application's socket connection and role, never postgres privileges.
-        vector = server.succeed(
-            "psql -X -w -v ON_ERROR_STOP=1 -At -h /run/postgresql -U honcho -d honcho -c "
-            + quote(
-                "SELECT current_user, rolsuper, '[1,2,3]'::vector <-> '[1,2,3]'::vector "
-                "FROM pg_roles WHERE rolname = current_user"
-            )
-        ).strip()
-        assert vector == "honcho|f|0", vector
-        assert (
-            int(
-                sql(
-                    "SELECT count(*) FROM information_schema.tables WHERE table_schema='public'",
-                    "honcho",
-                )
-            )
-            > 1
-        )
 
     def check_isolation():
         for machine in (server, client):
@@ -221,7 +171,6 @@ def run(server, client, settings, subtest):
     try:
         with subtest("full safe stack starts, without enabling disabled applications"):
             check_stack()
-            check_migration()
             images = json.loads(server.succeed("cat /etc/homelab-test/images.json"))
             for name, fixture in images.items():
                 image_id = server.succeed(
@@ -230,13 +179,12 @@ def run(server, client, settings, subtest):
                 assert image_id.removeprefix("sha256:") == fixture[
                     "imageId"
                 ].removeprefix("sha256:"), (name, image_id, fixture)
-                if name != "honcho-memory-migrate":
-                    used_id = server.succeed(
-                        "podman inspect --format '{{.Image}}' " + quote(name)
-                    ).strip()
-                    assert used_id.removeprefix("sha256:") == image_id.removeprefix(
-                        "sha256:"
-                    ), name
+                used_id = server.succeed(
+                    "podman inspect --format '{{.Image}}' " + quote(name)
+                ).strip()
+                assert used_id.removeprefix("sha256:") == image_id.removeprefix(
+                    "sha256:"
+                ), name
         with subtest("isolated network and effective client firewall policy"):
             check_isolation()
         with subtest("real PostgreSQL write, configured full backup, isolated restore"):
@@ -311,46 +259,6 @@ psql -X -v ON_ERROR_STOP=1 -At -d integration_workflow -c 'SELECT value FROM pro
             )
             assert status == 201, result
             check_repository(token)
-        with subtest("failed real Honcho migration blocks both dependents"):
-            dependents = (
-                "podman-honcho-memory-api.service",
-                "podman-honcho-memory-deriver.service",
-            )
-            server.succeed(
-                "systemctl stop "
-                + " ".join(dependents)
-                + " podman-honcho-memory-migrate.service"
-            )
-            previous = {
-                unit: server.get_unit_info(unit)["ExecMainStartTimestampMonotonic"]
-                for unit in dependents
-            }
-            sql("ALTER DATABASE honcho ALLOW_CONNECTIONS false")
-            try:
-                sql(
-                    "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname='honcho'"
-                )
-                status, output = server.execute(
-                    "timeout 120 systemctl start " + " ".join(dependents)
-                )
-                assert status not in (0, 124), output
-                failed = server.get_unit_info("podman-honcho-memory-migrate.service")
-                assert (
-                    failed["Result"] == "exit-code"
-                    and int(failed["ExecMainStatus"]) != 0
-                ), failed
-                for unit in dependents:
-                    info = server.get_unit_info(unit)
-                    assert info["ActiveState"] in ("inactive", "failed"), (unit, info)
-                    assert info["ExecMainStartTimestampMonotonic"] == previous[unit], (
-                        unit,
-                        info,
-                    )
-            finally:
-                sql("ALTER DATABASE honcho ALLOW_CONNECTIONS true")
-            server.succeed("systemctl reset-failed")
-            server.succeed("timeout 180 systemctl start " + " ".join(dependents))
-            check_migration()
         with subtest("reboot persists actual database and repository values"):
             old_boot = server.succeed("cat /proc/sys/kernel/random/boot_id").strip()
             server.reboot()
@@ -360,7 +268,6 @@ psql -X -v ON_ERROR_STOP=1 -At -d integration_workflow -c 'SELECT value FROM pro
                 != old_boot
             )
             check_stack()
-            check_migration()
             check_isolation()
             assert (
                 sql("SELECT value FROM probe", "integration_workflow")
