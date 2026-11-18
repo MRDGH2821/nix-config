@@ -1,0 +1,903 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
+
+---
+
+## [0.1.0] - 2026-11-18
+
+### Bug Fixes
+
+- **(acme)** enable dnsProvider configuration for certificate management - ([ce01548](https://github.com/MRDGH2821/nix-config/commit/ce01548a80c2048ddf9ed2ca5b903d429daae1ad)) - MRDGH2821
+- **(acme)** update group configuration to use traefik instead of caddy - ([8e68890](https://github.com/MRDGH2821/nix-config/commit/8e68890d8249382e17c38868f87873cbb1eab748)) - MRDGH2821
+- **(bewcloud)** :wrench: update PostgreSQL and SMTP credentials in environment file - ([836c0eb](https://github.com/MRDGH2821/nix-config/commit/836c0ebbc68d8be24a00fe9ef41b9d4e0280febb)) - MRDGH2821
+- **(bewcloud)** :bug: convert numeric values to strings for consistency in configuration - ([fd8a193](https://github.com/MRDGH2821/nix-config/commit/fd8a193ae728621f2e44045c8279d8e4c4ceda98)) - MRDGH2821
+- **(caddy)** :truck: add missing TLS resolver configuration for virtual hosts - ([e2ef01c](https://github.com/MRDGH2821/nix-config/commit/e2ef01c0aa494377143d20230d6843f04d71235b)) - MRDGH2821
+- **(cog)** accept historical commit scopes - ([96f2226](https://github.com/MRDGH2821/nix-config/commit/96f22266ea3b067cce8d9e14464db92fe52f37bf)) - MRDGH2821
+- **(cspell)** ignore encrypted SOPS values - ([46a2680](https://github.com/MRDGH2821/nix-config/commit/46a268060b722a06f64abd60a1be150e22ad365a)) - MRDGH2821
+- **(devshell)** :package: add missing build inputs for encryption tools - ([c812c54](https://github.com/MRDGH2821/nix-config/commit/c812c542267d1199bc766e52933fb6749670e0d7)) - MRDGH2821
+- **(devshell)** :fire: remove self parameter & format file - ([495718e](https://github.com/MRDGH2821/nix-config/commit/495718e63713761c9bc3b5ecf6952a0cd9637fd4)) - MRDGH2821
+- **(devshell)** :hammer: init git-agecrypt on creating devshell - ([c5cb654](https://github.com/MRDGH2821/nix-config/commit/c5cb654f85c3f2fa136654202206075e8654f0c5)) - MRDGH2821
+- **(devshell)** wire nixos-cli from flake input - ([b762ff1](https://github.com/MRDGH2821/nix-config/commit/b762ff153628f3ad4c564cec08b6fa7386056282)) - MRDGH2821
+- **(devshell)** restore provisioning and release tools - ([3f1ebad](https://github.com/MRDGH2821/nix-config/commit/3f1ebad0e59e9dcee6bafdf2e0d05e1ff5adac6c)) - MRDGH2821
+- **(features)** :green_heart: add more attributes to system-recovery user - ([dc7b90c](https://github.com/MRDGH2821/nix-config/commit/dc7b90c2afd618e24c2f1c0a3788b03863a58645)) - MRDGH2821
+- **(features)** :pencil2: fix typo - ([3aa9859](https://github.com/MRDGH2821/nix-config/commit/3aa98590282e5c6405ebda9b619383d498dadb16)) - MRDGH2821
+- **(features)** :adhesive_bandage: allow listening on all interfaces & allow access via firewall - ([d769d19](https://github.com/MRDGH2821/nix-config/commit/d769d19531732d5cfbcd5086ec75fe938ffa2b65)) - MRDGH2821
+- **(features)** :adhesive_bandage: open firewall for avahi - ([28475fc](https://github.com/MRDGH2821/nix-config/commit/28475fc051502fea45ee0102c7f8cf70354508df)) - MRDGH2821
+- **(features)** :wrench: add additional options to make avahi work - ([4400ec7](https://github.com/MRDGH2821/nix-config/commit/4400ec77a6261b3d7e88789800acf450ce6576c3)) - MRDGH2821
+- **(features)** :package: fix syntax - ([3bf8848](https://github.com/MRDGH2821/nix-config/commit/3bf8848d486c9dd5d6db557d95f6eac672c4920c)) - MRDGH2821
+- **(features)** remove redundant setting - ([743e789](https://github.com/MRDGH2821/nix-config/commit/743e789ea33688660d7473e9716e371c2d39e2fe)) - MRDGH2821
+- **(features)** make editor, keepassxc and user nix.conf host-aware - ([565b887](https://github.com/MRDGH2821/nix-config/commit/565b8874c4a631d3a0feb828e7d5b429fad1e029)) - MRDGH2821
+- **(flake)** correct path for importing scalpel module - ([143fa00](https://github.com/MRDGH2821/nix-config/commit/143fa004d0ffffc422a334d00f1e6a9c94d0d1a0)) - MRDGH2821
+- **(flake)** remove authentik-nix nixpkgs follows to resolve gopkgs hash mismatch - ([ca5379d](https://github.com/MRDGH2821/nix-config/commit/ca5379d725333412ce0e763f09d50d9579658f17)) - MRDGH2821
+- **(flake)** resolve nix flake check schema and formatting errors - ([b4e029b](https://github.com/MRDGH2821/nix-config/commit/b4e029be388f09380a9262241342a02ee9d1e423)) - MRDGH2821
+- **(flake)** restore nix flake check under nixpkgs 26.11 - ([cdb8c0a](https://github.com/MRDGH2821/nix-config/commit/cdb8c0a672eeb41306ff825498bdbb969504553d)) - MRDGH2821
+- **(flake)** preserve input pins during formatting - ([e967f45](https://github.com/MRDGH2821/nix-config/commit/e967f45526dafd0f59c5e4a9a4e66d57477ffed4)) - MRDGH2821
+- **(git)** add delta dark option, fix Task 5 log formatting - ([bbb33d0](https://github.com/MRDGH2821/nix-config/commit/bbb33d0386c82e1fe9353f29ab80659a3883c327)) - MRDGH2821
+- **(hermes-agent)** add home server url - ([b4e7553](https://github.com/MRDGH2821/nix-config/commit/b4e755393682d434f76e6097fab1a4e3f18ebe39)) - MRDGH2821
+- **(hermes-agent)** add olm & mautrix - ([ae8f426](https://github.com/MRDGH2821/nix-config/commit/ae8f4262ff1459130e77f994ef3643108b93f0fc)) - MRDGH2821
+- **(hermes-agent)** fix syntax - ([31497d1](https://github.com/MRDGH2821/nix-config/commit/31497d128f3adcb86d43624ec34b96448f5acb28)) - MRDGH2821
+- **(hosts)** correct llm-agents overlay attr in mr-fw16 packages - ([9c686e6](https://github.com/MRDGH2821/nix-config/commit/9c686e6c198c5c044117af6c425a5bdd2e3aa643)) - MRDGH2821
+- **(hosts/home-lab)** :ambulance: prevent checking of log rotate - ([9897b0b](https://github.com/MRDGH2821/nix-config/commit/9897b0b0560a38f6d74a31b43f39faed06cb0474)) - MRDGH2821
+- **(hosts/home-lab)** reorder sops.nix imports for consistency - ([756c314](https://github.com/MRDGH2821/nix-config/commit/756c314e60e7c46fae9dcf31b29d49f93b7743d2)) - MRDGH2821
+- **(hosts/home-lab)** ensure wireguard kernel module is included in boot configuration - ([dd563cb](https://github.com/MRDGH2821/nix-config/commit/dd563cbae5d065b8a951c56371f5c98ed416d972)) - MRDGH2821
+- **(hosts/home-lab)** remove wireguard kernel module from boot configuration - ([9fdd4c5](https://github.com/MRDGH2821/nix-config/commit/9fdd4c508552af5b55724c769cc60aaa1c925c12)) - MRDGH2821
+- **(hosts/home-lab)** :truck: fix path - ([dabddc0](https://github.com/MRDGH2821/nix-config/commit/dabddc0bc7d531b244434837fb3352c927772494)) - MRDGH2821
+- **(hosts/home-lab)** :wrench: import smtp settings - ([4752b53](https://github.com/MRDGH2821/nix-config/commit/4752b530e83fb591d076f4eea9ff45ae19856135)) - MRDGH2821
+- **(hosts/home-lab)** :wrench: prevent port collision - ([c2b6fc1](https://github.com/MRDGH2821/nix-config/commit/c2b6fc18499fcd9badb6b0cdbcc75498fe933e0e)) - MRDGH2821
+- **(hosts/home-lab)** :rotating_light: fix linter errors - ([56a5c64](https://github.com/MRDGH2821/nix-config/commit/56a5c648efa458f136cc7687013e2f1190ac165d)) - MRDGH2821
+- **(hosts/home-lab)** remove deleted module - ([53eac71](https://github.com/MRDGH2821/nix-config/commit/53eac712580873dc601c72c9ff6ac27afb5ab563)) - MRDGH2821
+- **(hosts/home-lab)** align sandbox with current services - ([93c9970](https://github.com/MRDGH2821/nix-config/commit/93c99709a90b357f6e9736a4ee185769f60f7cef)) - MRDGH2821
+- **(hosts/test-bed)** unblock development shell evaluation - ([4e9e0d6](https://github.com/MRDGH2821/nix-config/commit/4e9e0d61f94bf8ea15abe21b586ab391f9f5bd15)) - MRDGH2821
+- **(hosts/test-bed)** bind preview SSH to loopback - ([a97e049](https://github.com/MRDGH2821/nix-config/commit/a97e04937b4e4a32119766600289706303a530ab)) - MRDGH2821
+- **(justfile)** clean up comments for clarity and consistency - ([e79d9ba](https://github.com/MRDGH2821/nix-config/commit/e79d9bad622cb621e51ed081816a46bf5cebc126)) - MRDGH2821
+- **(justfile)** correct upp parameter syntax - ([1c207bb](https://github.com/MRDGH2821/nix-config/commit/1c207bbcf954ba8772b55672877da557eebf93cf)) - MRDGH2821
+- **(megalinter)** apply fixes - ([d4bb91c](https://github.com/MRDGH2821/nix-config/commit/d4bb91c07afee244c915628efc0e4e49f6d16130)) - MRDGH2821
+- **(nix-cmds)** add remote sudo support for nixos-rebuild command - ([3c390e9](https://github.com/MRDGH2821/nix-config/commit/3c390e9a6487ec6831f0ab86bb110a9cb9420821)) - MRDGH2821
+- **(nix-cmds)** replace nixos-rebuild with nixos-rebuild-ng for improved remote sudo support - ([6cf2436](https://github.com/MRDGH2821/nix-config/commit/6cf2436f3ef9528637109c06262f4f74e4df6a2b)) - MRDGH2821
+- **(nix-cmds)** add --sudo flag to nixos-rebuild-ng for improved sudo handling - ([054476a](https://github.com/MRDGH2821/nix-config/commit/054476ac1d79072be525599b13020f84d68867ed)) - MRDGH2821
+- **(nix-cmds)** :wrench: remove redundant --verbose flag from nixos-rebuild-ng command - ([7f0303b](https://github.com/MRDGH2821/nix-config/commit/7f0303b64e38c2cb212844f57ce12f91e249f340)) - MRDGH2821
+- **(package)** use recommended package name - ([bf8118a](https://github.com/MRDGH2821/nix-config/commit/bf8118ab30eb9e3fe7f3da45fe3f3d68b13ea569)) - MRDGH2821
+- **(packages)** :green_heart: remove lib as it prevented building - ([201f8ff](https://github.com/MRDGH2821/nix-config/commit/201f8ffb6a0b2b1979e760cbdc699ef51dc87ae7)) - MRDGH2821
+- **(pangolin)** ensure letsEncryptEmail is properly interpolated - ([9a7d0c2](https://github.com/MRDGH2821/nix-config/commit/9a7d0c2f74c3d19c9a00930eb64eb24f9a1269e1)) - MRDGH2821
+- **(pangolin)** update letsEncryptEmail to use placeholder for runtime substitution - ([dbb5d42](https://github.com/MRDGH2821/nix-config/commit/dbb5d42cb2cae09719aa8314831843910404dcba)) - MRDGH2821
+- **(pangolin)** improve sops placeholder handling for letsEncryptEmail and baseDomain - ([4ee0be2](https://github.com/MRDGH2821/nix-config/commit/4ee0be288214952d18a6601f2921ebfb18baac24)) - MRDGH2821
+- **(pangolin)** reset letsEncryptEmail and baseDomain to empty strings - ([9e07602](https://github.com/MRDGH2821/nix-config/commit/9e07602d38a1b00c90c47b68439ef262fcae3f21)) - MRDGH2821
+- **(pangolin)** add wireguard kernel module to boot configuration - ([3360c79](https://github.com/MRDGH2821/nix-config/commit/3360c79cfdc65e44fd59af67de50dbd1fde391bc)) - MRDGH2821
+- **(pangolin)** set default letsEncryptEmail and baseDomain values - ([491f2f4](https://github.com/MRDGH2821/nix-config/commit/491f2f478571e6a7f597aadb8120808fb682b966)) - MRDGH2821
+- **(pangolin)** refactor sops.templates structure for clarity - ([b485657](https://github.com/MRDGH2821/nix-config/commit/b4856577258cc8fd0130dda9477ccf4c61757c69)) - MRDGH2821
+- **(pangolin)** :wrench: update ExecStartPre to use serviceConfig for scalpel config copying - ([1f9642b](https://github.com/MRDGH2821/nix-config/commit/1f9642b0c57817fa07f8c811300cbfc08d41244f)) - MRDGH2821
+- **(pangolin)** :wrench: refactor preStart to copy scalpel-generated config into runtime config directory - ([71aa4ae](https://github.com/MRDGH2821/nix-config/commit/71aa4ae58ecf91c0c5ebf4f9ca015f854f5e00ff)) - MRDGH2821
+- **(peertube)** :wrench: update SMTP password file reference to use peertubeSmtpPassword - ([0942962](https://github.com/MRDGH2821/nix-config/commit/0942962d0410730d1e0fb2607494bbcb3f16b0cc)) - MRDGH2821
+- **(peertube)** :wrench: add disable_starttls option to SMTP configuration - ([2930cd1](https://github.com/MRDGH2821/nix-config/commit/2930cd17e4898412cca8aaabddb544fc3d1ae21f)) - MRDGH2821
+- **(pgadmin)** :wrench: update SMTP username configuration to use email - ([7cd7244](https://github.com/MRDGH2821/nix-config/commit/7cd724452b1f76bd951511f0cc9b84b542401280)) - MRDGH2821
+- **(pgadmin)** :wrench: change format from "env" to "dotenv" for pgadmin secrets - ([876b7e8](https://github.com/MRDGH2821/nix-config/commit/876b7e82587549f76ebd2e1956bff72c00affad9)) - MRDGH2821
+- **(pgadmin)** :wrench: correct property name from 'owner' to 'user' and update systemd service configuration - ([3afd994](https://github.com/MRDGH2821/nix-config/commit/3afd99420468d0358731c1d820358562c1ff735f)) - MRDGH2821
+- **(pgadmin)** ignore internal column version options - ([9b3c859](https://github.com/MRDGH2821/nix-config/commit/9b3c859363319198b1e873f4f1f6449efd640d93)) - MRDGH2821
+- **(radicale)** :wrench: add systemd service configuration for directory permissions - ([106345b](https://github.com/MRDGH2821/nix-config/commit/106345bbda87e8428d8a40293134a96c738ade23)) - MRDGH2821
+- **(radicale)** :wrench: remove state attrs & use variable for radicale directory path - ([f39248b](https://github.com/MRDGH2821/nix-config/commit/f39248b05d78cea817af4e4584bd07af3da46dfe)) - MRDGH2821
+- **(radicale)** :wrench: replace service preStart with tmpfiles rules for directory permissions - ([65c712f](https://github.com/MRDGH2821/nix-config/commit/65c712f3fe9debf18dee4f9f29bec4d1fb9edf47)) - MRDGH2821
+- **(scalpel)** :pencil2: fix typo - ([df4caa6](https://github.com/MRDGH2821/nix-config/commit/df4caa6ad17493b706b8fcdddf6b8e874946ef1f)) - MRDGH2821
+- **(scalpel)** update scalpel script configuration and preStart handling - ([e9388f4](https://github.com/MRDGH2821/nix-config/commit/e9388f47d640b1a067f333ca6be3e823890e1955)) - MRDGH2821
+- **(scalpel)** update systemd service configuration for pangolin - ([e73192c](https://github.com/MRDGH2821/nix-config/commit/e73192cbb41952af94d7a04c67d1acb66c877464)) - MRDGH2821
+- **(scalpel)** :wrench: use an alternate way to inject secrets - ([10a22b7](https://github.com/MRDGH2821/nix-config/commit/10a22b7b2a89feb731167f43156aed7088b976c5)) - MRDGH2821
+- **(scalpel)** :pencil2: fix file extension - ([5bea59f](https://github.com/MRDGH2821/nix-config/commit/5bea59fa6e0071ec2900f1a46d5f1875904e14de)) - MRDGH2821
+- **(scalpel)** :wrench: use ExecStartPre as an alternate way - ([5ca03a4](https://github.com/MRDGH2821/nix-config/commit/5ca03a47193efef0002eada0ecfa4e39064db25a)) - MRDGH2821
+- **(scalpel)** :wrench: add lowercase variants for matchers - ([f4c0a48](https://github.com/MRDGH2821/nix-config/commit/f4c0a48a03d0e6dcb0a140feae98429ec9fafb62)) - MRDGH2821
+- **(secrets)** :fire: remove quotes - ([e6331d6](https://github.com/MRDGH2821/nix-config/commit/e6331d6dcd5b518062117463beac0147c22ab823)) - MRDGH2821
+- **(secrets)** :bug: fix base domain url - ([c0fb42e](https://github.com/MRDGH2821/nix-config/commit/c0fb42e35cd61b09b4f7170391305735aaf20a9c)) - MRDGH2821
+- **(secrets)** :lock: fix path & recipient - ([2c012b4](https://github.com/MRDGH2821/nix-config/commit/2c012b4c9e388a48c533f0a2bdaa0a6138875709)) - MRDGH2821
+- **(secrets)** update traefik.env with missing DNS challenge settings - ([c7734a3](https://github.com/MRDGH2821/nix-config/commit/c7734a378be7b107526f7f433c19dcfc1cb9e017)) - MRDGH2821
+- **(secrets)** :wrench: change certificate resolver - ([940e933](https://github.com/MRDGH2821/nix-config/commit/940e9330c0e2e8f4d51a79c3fa19cf0264956d36)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: comment out invalid secret - ([2fc98fc](https://github.com/MRDGH2821/nix-config/commit/2fc98fcfe175c6f85641936261dd85bf1d08eb0d)) - MRDGH2821
+- **(secrets)** :truck: fix config key name - ([6aed06a](https://github.com/MRDGH2821/nix-config/commit/6aed06a16e281ab32fd5061e918e490a4a59eebe)) - MRDGH2821
+- **(secrets)** :wrench: fix module definition - ([f841c6d](https://github.com/MRDGH2821/nix-config/commit/f841c6dd050c44368dd48fea4b8cbbca84000a59)) - MRDGH2821
+- **(secrets)** :truck: fix file paths - ([58d7887](https://github.com/MRDGH2821/nix-config/commit/58d78874298759b86b42dd052ae68c4046eccd93)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: segregate comments away from config values - ([1d8d28b](https://github.com/MRDGH2821/nix-config/commit/1d8d28b3db8f4c136b65ee517786c9af194c6a96)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: add NEXT_AUTH secret - ([cc8b4d3](https://github.com/MRDGH2821/nix-config/commit/cc8b4d33715082feafc471300432c2cfd204b092)) - MRDGH2821
+- **(secrets)** fix mac - ([1e4fb12](https://github.com/MRDGH2821/nix-config/commit/1e4fb1255b21d8f1ed08da06fb54c5eedc170aa3)) - MRDGH2821
+- **(secrets)** add hermes api token - ([476c60e](https://github.com/MRDGH2821/nix-config/commit/476c60e341b004ce23c8a00e91343b82f7d8239e)) - MRDGH2821
+- **(secrets)** update service secrets - ([3a333c0](https://github.com/MRDGH2821/nix-config/commit/3a333c0f95299e2bec8b05f953aa1a0e4c49134a)) - MRDGH2821
+- **(secrets)** add server secret for searxng - ([17b5f63](https://github.com/MRDGH2821/nix-config/commit/17b5f639890f5814f81cc166e1d3741441f07f96)) - MRDGH2821
+- **(secrets)** fix secret layout - ([b809f1a](https://github.com/MRDGH2821/nix-config/commit/b809f1a2a4dddb44453295e6c12460cab0a80eaf)) - MRDGH2821
+- **(secrets)** fix token value - ([448a5b2](https://github.com/MRDGH2821/nix-config/commit/448a5b2356fd41f6b88cb42e2acc640980f05399)) - MRDGH2821
+- **(service)** allow unfree ocis - ([cf3a797](https://github.com/MRDGH2821/nix-config/commit/cf3a79748c4f5d051b542254344d9a001e3c5f4f)) - MRDGH2821
+- **(service)** use updated branch of authentik - ([d96ca6d](https://github.com/MRDGH2821/nix-config/commit/d96ca6dfdf622f81f05dbdc77d7d6692dbde6bc6)) - MRDGH2821
+- **(service)** correct go modules vendor hash - ([f7b4140](https://github.com/MRDGH2821/nix-config/commit/f7b4140f8c6c7d62b3c39e125f0522144daf6c08)) - MRDGH2821
+- **(services)** :bug: fix config option - ([cdcc6cc](https://github.com/MRDGH2821/nix-config/commit/cdcc6cc08a829700c20714a38603b905241c7e71)) - MRDGH2821
+- **(services)** :wrench: remove invalid option - ([72232fa](https://github.com/MRDGH2821/nix-config/commit/72232fad96ad228a4ac33f2aeb3288201d44691c)) - MRDGH2821
+- **(services)** :bug: make path absolute - ([e8fcfb5](https://github.com/MRDGH2821/nix-config/commit/e8fcfb527f6b3f5ba2ffd867bda90157209de618)) - MRDGH2821
+- **(services)** :truck: move pangolin scalpel out of auto imports & explicitly import in home-lab flake - ([edab250](https://github.com/MRDGH2821/nix-config/commit/edab2506c173f984b7fad531126ab91f61ce937c)) - MRDGH2821
+- **(services)** :wrench: add oneshot service restarter for pangolin - ([32308ec](https://github.com/MRDGH2821/nix-config/commit/32308ecbf5046691da03db40fcb4b8779fabb8d0)) - MRDGH2821
+- **(services)** :wrench: remove sops-nix templates and add back scalpel method - ([61714a1](https://github.com/MRDGH2821/nix-config/commit/61714a181b7243e362cfb6ff917fac6848c87718)) - MRDGH2821
+- **(services)** :wrench: use boolean values & add domain config option - ([e3ebe93](https://github.com/MRDGH2821/nix-config/commit/e3ebe93dd2bc149e661a54a19e755a6eaae13c79)) - MRDGH2821
+- **(services)** :wrench: add duckdns config in caddy - ([399a22d](https://github.com/MRDGH2821/nix-config/commit/399a22d9d40a1fdc10086df9f2118992f332c0dc)) - MRDGH2821
+- **(services)** :wrench: provide certificates by acme path - ([8e1978d](https://github.com/MRDGH2821/nix-config/commit/8e1978d38328362f158be7ccf85de113ac3fe18c)) - MRDGH2821
+- **(services)** :wrench: fix email config in pangolin - ([73f870d](https://github.com/MRDGH2821/nix-config/commit/73f870d42c4fe829d463f4bf518cd85970ac1297)) - MRDGH2821
+- **(services)** :passport_control: fix postgresql auth problems - ([893fd69](https://github.com/MRDGH2821/nix-config/commit/893fd699d11ba68ad223a1d692b5d2578a3cb9f9)) - MRDGH2821
+- **(services)** set network mode as host - ([ead11ea](https://github.com/MRDGH2821/nix-config/commit/ead11eadb5772d154aece9e3afd958a23bbe86f8)) - MRDGH2821
+- **(services)** :bug: add more cookie allowed domains in bewcloud - ([ba2f010](https://github.com/MRDGH2821/nix-config/commit/ba2f010fc2cf18ad0933f1259a59f3a6f047dbec)) - MRDGH2821
+- **(services)** :adhesive_bandage: ensure paths are created before container starts - ([a05640b](https://github.com/MRDGH2821/nix-config/commit/a05640ba1076ce21d10b579e80a4da0409662b15)) - MRDGH2821
+- **(services)** add more volume locations - ([1912b39](https://github.com/MRDGH2821/nix-config/commit/1912b3906c9e46c3188497d10f691003512cd416)) - MRDGH2821
+- **(services)** :wrench: change port number - ([fa0d91d](https://github.com/MRDGH2821/nix-config/commit/fa0d91d4c5704ad2f9766c0f6130e3f15074fc69)) - MRDGH2821
+- **(services)** :bug: update ROOT_URL with https prefix - ([4cbae0b](https://github.com/MRDGH2821/nix-config/commit/4cbae0b5deefa07d003b9cec3837baef03266098)) - MRDGH2821
+- **(services)** :wrench: remove firewall port configuration and add missing FROM field in mailer settings - ([08fa3dd](https://github.com/MRDGH2821/nix-config/commit/08fa3dd0b7bcdf272adbaecdb3a09ad790f77018)) - MRDGH2821
+- **(services)** :bug: update mailer protocol to smtp+starttls and correct username configuration - ([360fb68](https://github.com/MRDGH2821/nix-config/commit/360fb686c32db76fb2ec62bc317bff34bd72cf5d)) - MRDGH2821
+- **(services)** :bug: correct mailer protocol and update envelope from field; add msmtp configuration - ([5d6f35d](https://github.com/MRDGH2821/nix-config/commit/5d6f35de3b1abf1361b4b39ad572743513a15272)) - MRDGH2821
+- **(services)** :bug: update mailer configuration by renaming ENVELOPE_FROM to FROM - ([c40035b](https://github.com/MRDGH2821/nix-config/commit/c40035b62ccda7025f6c8bfb93eb4d9ed8a95981)) - MRDGH2821
+- **(services)** :bug: update msmtp logfile path to use persistent storage - ([0c387fb](https://github.com/MRDGH2821/nix-config/commit/0c387fbf6498c336cbada67245b22460f7b6a082)) - MRDGH2821
+- **(services)** :bug: update mailer protocol to smtp+starttls and correct username configuration - ([74f1131](https://github.com/MRDGH2821/nix-config/commit/74f1131e1986c36a7388c3730dd70a499c6071a5)) - MRDGH2821
+- **(services)** reorder vert service configuration in docker-compose - ([0e3faf3](https://github.com/MRDGH2821/nix-config/commit/0e3faf39cf1690d25319acdb647d93d72937d3e4)) - MRDGH2821
+- **(services)** :bug: correct openFirewall property assignment in linkwarden service - ([d2da454](https://github.com/MRDGH2821/nix-config/commit/d2da454157f71a26b3b4c592bd64378ae84a297e)) - MRDGH2821
+- **(services)** :pencil2: fix syntax - ([4f8debd](https://github.com/MRDGH2821/nix-config/commit/4f8debde7d25ece1d2600dc5294c6ec5d98c72cd)) - MRDGH2821
+- **(services)** :bug: update host.docker.internal IP for portnote web service - ([4f34f68](https://github.com/MRDGH2821/nix-config/commit/4f34f68332d470093efea894265171cf90f68884)) - MRDGH2821
+- **(services)** :wrench: implement a communication fix for docker containers - ([d427132](https://github.com/MRDGH2821/nix-config/commit/d427132dd1c4413c8e37d0fd187de91bc34f1c1d)) - MRDGH2821
+- **(services)** :bug: add host.docker.internal entry for portnote agent - ([c6175b7](https://github.com/MRDGH2821/nix-config/commit/c6175b7d7c16bb06eb2442e0dd08feb1ca8111e6)) - MRDGH2821
+- **(services)** :wrench: add missing env variable needed for auth - ([906ef60](https://github.com/MRDGH2821/nix-config/commit/906ef60cc78da01e4653b23f479981e3013bf5b6)) - MRDGH2821
+- **(services)** :wrench: fix base url & music folder config for navidrome - ([5474e22](https://github.com/MRDGH2821/nix-config/commit/5474e2293f62ad8c87d915b87d128f53f3c6eab4)) - MRDGH2821
+- **(services)** :wrench: update OLLAMA_MODEL to phi4-mini:latest - ([af93a6d](https://github.com/MRDGH2821/nix-config/commit/af93a6d6d463f0aacff8d697db23938fe215eef3)) - MRDGH2821
+- **(services)** :wrench: change listening port for peertube - ([c7df16b](https://github.com/MRDGH2821/nix-config/commit/c7df16bfc771ab2a684a5c36198e38e41cf81409)) - MRDGH2821
+- **(services)** :adhesive_bandage: add base domain in allowed hosts - ([d0fee86](https://github.com/MRDGH2821/nix-config/commit/d0fee86323914080f1dda7fa2bd84c581ef49df3)) - MRDGH2821
+- **(services)** simply enable service for now - ([a08c010](https://github.com/MRDGH2821/nix-config/commit/a08c010c02f2805a3849ed3608ab9a52345f54ca)) - MRDGH2821
+- **(services)** resolve resume-matcher setup permission errors - ([ab5d6d1](https://github.com/MRDGH2821/nix-config/commit/ab5d6d17f4a5756358ea72022979db430fb8fcba)) - MRDGH2821
+- **(services)** handle non-git directories in resume-matcher setup - ([1287b2e](https://github.com/MRDGH2821/nix-config/commit/1287b2e9357db4b4c6a5f42fc2c8106f88a3bf3b)) - MRDGH2821
+- **(services)** use preStart for root-level cleanup in resume-matcher - ([eaf13be](https://github.com/MRDGH2821/nix-config/commit/eaf13be24f348c1572d424c560f08eb0fbc4a683)) - MRDGH2821
+- **(services)** improve resume-matcher setup to handle existing directories - ([ac32ca4](https://github.com/MRDGH2821/nix-config/commit/ac32ca4c9e1e492ff4c5c2a48b730307874c0685)) - MRDGH2821
+- **(services)** update image url - ([4e89d87](https://github.com/MRDGH2821/nix-config/commit/4e89d872ea98271fb4ea46fe5c84413c5470677f)) - MRDGH2821
+- **(services)** add directory creation rules - ([1a4d7f3](https://github.com/MRDGH2821/nix-config/commit/1a4d7f3a2ba28686f95626b07c579372bf7096c5)) - MRDGH2821
+- **(services)** use a workaround to create directories - ([a048185](https://github.com/MRDGH2821/nix-config/commit/a0481853f096ea235d2d78338eeb1d470d036622)) - MRDGH2821
+- **(services)** append tmpfiles dependency - ([cdce7d0](https://github.com/MRDGH2821/nix-config/commit/cdce7d05a24cecf0b3aff6719a3e3ddf0543c25d)) - MRDGH2821
+- **(services)** remove uneeded services dependency - ([76cabd7](https://github.com/MRDGH2821/nix-config/commit/76cabd7734badc5ba33be4a15ea39432e7f52a0c)) - MRDGH2821
+- **(services)** add env vars - ([787b168](https://github.com/MRDGH2821/nix-config/commit/787b16825c7669ef3078763fb3ccae169020e3fc)) - MRDGH2821
+- **(services)** allow open-webui unfree package - ([77f021d](https://github.com/MRDGH2821/nix-config/commit/77f021d2cab7353252754fedc9e678539ecf16ab)) - MRDGH2821
+- **(services)** fix port numbers - ([5e28053](https://github.com/MRDGH2821/nix-config/commit/5e28053465306486a13fb34d3e8b43093e499640)) - MRDGH2821
+- **(services)** add api url - ([5fabbdd](https://github.com/MRDGH2821/nix-config/commit/5fabbdd84552c71dd23c1455db04b5c1c7e439a9)) - MRDGH2821
+- **(services)** use host network for hermes-workspace - ([7f6ef00](https://github.com/MRDGH2821/nix-config/commit/7f6ef00a6cc879e42656b4fd6a2f1b32e3a78a05)) - MRDGH2821
+- **(services)** add nginx config - ([6b8d3eb](https://github.com/MRDGH2821/nix-config/commit/6b8d3eba02f3a59fd38546db68f09d74bfc2e76f)) - MRDGH2821
+- **(services)** correct honcho-memory database, redis, and container networking - ([da37614](https://github.com/MRDGH2821/nix-config/commit/da3761421ece6076ff39bef0ef3121e79f969af7)) - MRDGH2821
+- **(services)** correct honcho-memory service ordering and restart backoff - ([72c4833](https://github.com/MRDGH2821/nix-config/commit/72c4833f4c32b935cf7aa417f28c69b4445e6497)) - MRDGH2821
+- **(services)** correct honcho-memory service ordering and restart backoff - ([72b35cc](https://github.com/MRDGH2821/nix-config/commit/72b35cce133c6f4c5d51439fd7e59aa5ca164731)) - MRDGH2821
+- **(services)** simplify honcho-memory container startup ordering and host access - ([342ce1e](https://github.com/MRDGH2821/nix-config/commit/342ce1e055bdc00358447a2b0dec3f8b6db36ebf)) - MRDGH2821
+- **(services)** add trust auth for local TCP connections to honcho PostgreSQL - ([23185a9](https://github.com/MRDGH2821/nix-config/commit/23185a95a914c7fa1ee1ef52573e01ee1396510c)) - MRDGH2821
+- **(services)** add db migration service for honcho - ([bc120de](https://github.com/MRDGH2821/nix-config/commit/bc120de843630c222f2c45e4c9ad0e93ae76eee6)) - MRDGH2821
+- **(services)** mount postgresql socket in container - ([9190023](https://github.com/MRDGH2821/nix-config/commit/9190023ad49eccc5c0f6d331e15c9009bb417931)) - MRDGH2821
+- **(services)** remove health check - ([878355a](https://github.com/MRDGH2821/nix-config/commit/878355a933c9695130f19f2d4c2aebbed890e307)) - MRDGH2821
+- **(services)** remove health check - ([7cc5c7a](https://github.com/MRDGH2821/nix-config/commit/7cc5c7a8091862fa7f8c5ca43f8dbe302b1cc847)) - MRDGH2821
+- **(services)** add volume settings - ([7c00312](https://github.com/MRDGH2821/nix-config/commit/7c00312cdbe6d86a07c06bad07ed20572803c886)) - MRDGH2821
+- **(services)** change port - ([b023621](https://github.com/MRDGH2821/nix-config/commit/b023621a3d956bc3380da92312a694b2a9575f74)) - MRDGH2821
+- **(services)** regenrate podman compose.nix file - ([f6ab2cc](https://github.com/MRDGH2821/nix-config/commit/f6ab2cc5ebef9b4b685de5f9073215493e84490f)) - MRDGH2821
+- **(services)** normalize runner token and non-interactive deploy - ([6e866c7](https://github.com/MRDGH2821/nix-config/commit/6e866c7920e3eb140bc4200e7dd8790bc63a33d8)) - MRDGH2821
+- **(services)** await successful Honcho migrations - ([af16ec3](https://github.com/MRDGH2821/nix-config/commit/af16ec3b8af87eac034a8da2eca62c2f5fc071b9)) - MRDGH2821
+- **(services)** initialize Honcho pgvector - ([a78ae89](https://github.com/MRDGH2821/nix-config/commit/a78ae89b038246c8f975003232a93b21da0ac036)) - MRDGH2821
+- **(services)** update modules for current nixpkgs - ([6f9d0fa](https://github.com/MRDGH2821/nix-config/commit/6f9d0faf6ad5953e0b45eca62092a1174b78294c)) - MRDGH2821
+- **(shell)** scope cspell silence, restore l alias, modernize uv completion - ([ebe766f](https://github.com/MRDGH2821/nix-config/commit/ebe766f30ac16ab6d028ddb23d468b0a83ed494a)) - MRDGH2821
+- **(shell)** repair l alias and gate zed editor to GUI hosts - ([dba3ed3](https://github.com/MRDGH2821/nix-config/commit/dba3ed3ce3e34f6eb9ad802b64a1f7041bb6ab05)) - MRDGH2821
+- **(shell)** match Herdr workspaces by exact directory - ([bf16161](https://github.com/MRDGH2821/nix-config/commit/bf1616140a02fb67504a0e4fbcee4c7d50b96412)) - MRDGH2821
+- **(sops)** :wrench: update secrets configuration and paths using ai - ([2a6309b](https://github.com/MRDGH2821/nix-config/commit/2a6309bb17934027c0e6312346345b8b352dd101)) - MRDGH2821
+- **(sops)** update path_regex for creation_rules to allow nested secrets - ([6bfc8f6](https://github.com/MRDGH2821/nix-config/commit/6bfc8f6f9f566bffe73b5270f1099e7a8f8b83a9)) - MRDGH2821
+- **(sops)** add format specification for pangolin secret - ([41fcae8](https://github.com/MRDGH2821/nix-config/commit/41fcae840ea4e27445548ef791d58859a61deea2)) - MRDGH2821
+- **(sops)** update secret formats from "env" to "dotenv" for consistency - ([ad8596f](https://github.com/MRDGH2821/nix-config/commit/ad8596f8e4445268407c9a55a9d21adfa4ba13aa)) - MRDGH2821
+- **(sops)** use mac verification on encrypted values - ([92a7aee](https://github.com/MRDGH2821/nix-config/commit/92a7aeeabfccb28d7862df5ca0e707803da28cd9)) - MRDGH2821
+- **(sops)** decrypt via host SSH age key and rewrap secrets.yaml - ([2954551](https://github.com/MRDGH2821/nix-config/commit/2954551c184488379e85c265a352b9eeeeb19745)) - MRDGH2821
+- **(treefmt)** nest taplo formatting options under [formatting] table - ([a93eed4](https://github.com/MRDGH2821/nix-config/commit/a93eed4867d503e259ae1bdf93c5fceb12bac8d7)) - MRDGH2821
+- **(treefmt)** keep vendored files/bin scripts under shellcheck and shfmt - ([2602577](https://github.com/MRDGH2821/nix-config/commit/2602577ef7a551068052e4ad34c638d481b15259)) - MRDGH2821
+- **(variables)** :truck: fix path - ([1a83e0d](https://github.com/MRDGH2821/nix-config/commit/1a83e0df619a039698c00475a26432d735c5e545)) - MRDGH2821
+- **(vscode)** :fire: remove unnecessary run options - ([5faaaad](https://github.com/MRDGH2821/nix-config/commit/5faaaad0639e4d34e14e682f51939f423c007e5e)) - MRDGH2821
+- **(vscode)** :wrench: add deno enable path - ([5693986](https://github.com/MRDGH2821/nix-config/commit/569398604c3b0c9c61e859f7258e9719697c95a6)) - MRDGH2821
+- **(vscode)** :truck: fix path - ([dfb31ed](https://github.com/MRDGH2821/nix-config/commit/dfb31ed01f157ef9218e898026bcebdd6970815d)) - MRDGH2821
+- **(zed)** remove unneeded variable - ([3a13129](https://github.com/MRDGH2821/nix-config/commit/3a131295055c689c93c38489ee8b566919c9405e)) - MRDGH2821
+- **(zed)** correct SourceGit binary casing; drop duplicate keepassxc - ([407d47c](https://github.com/MRDGH2821/nix-config/commit/407d47cf380f21a950d37d8393286f9b67d9f994)) - MRDGH2821
+- **(zed)** remove terminal approval bypasses - ([4b2102e](https://github.com/MRDGH2821/nix-config/commit/4b2102eadbefbe5242c7627b427218d435b84193)) - MRDGH2821
+- **(zed)** quote the regression check path setting - ([48d810d](https://github.com/MRDGH2821/nix-config/commit/48d810d851e98273b2272b0b5f65e819286d2500)) - MRDGH2821
+- :wrench: add empty devices - ([846d819](https://github.com/MRDGH2821/nix-config/commit/846d81907acdd595e0cb298fb212c014b5a4ab4f)) - MRDGH2821
+- :wrench: use systemd boot - ([ba26302](https://github.com/MRDGH2821/nix-config/commit/ba26302e9e62c40ec0a3398903b73673645f9e88)) - MRDGH2821
+- :wrench: change disk device - ([7d3cf1f](https://github.com/MRDGH2821/nix-config/commit/7d3cf1f866493e5276ab8633d09defad1f9e78e8)) - MRDGH2821
+- fix path - ([de0bdf4](https://github.com/MRDGH2821/nix-config/commit/de0bdf44344b4402cbb19dad839d36ff2bb15e15)) - MRDGH2821
+- :rotating_light: add linter fixes - ([f84465b](https://github.com/MRDGH2821/nix-config/commit/f84465b56654ce5f7d4426d85f0037d356a5bcc2)) - MRDGH2821
+- :bug: fix path - ([dd1374c](https://github.com/MRDGH2821/nix-config/commit/dd1374c20c997088c77cdb43b6a743e96ebfa348)) - MRDGH2821
+- :bug: comment out username attribute - ([3d950b3](https://github.com/MRDGH2821/nix-config/commit/3d950b34999ece6688bae2f22e4499e1d8f9b7f4)) - MRDGH2821
+- :hammer: watch flake.nix instead - ([c44a94e](https://github.com/MRDGH2821/nix-config/commit/c44a94e5d4307e55b6f0a8fb8c63e8d33f93eb05)) - MRDGH2821
+- :hammer:apply linter fixes & add changes flag to command - ([80e2577](https://github.com/MRDGH2821/nix-config/commit/80e25776323134a97f3c4b16d1599774cda93405)) - MRDGH2821
+- :wrench: allow users to use nix builder - ([5499110](https://github.com/MRDGH2821/nix-config/commit/54991100e2304a5ceda9781188be049ef52f7ec3)) - MRDGH2821
+- :bug: use correct way to define nix variables - ([53ab686](https://github.com/MRDGH2821/nix-config/commit/53ab6866d3a79f78599f9d2bbd68efcf4fca9735)) - MRDGH2821
+- :wrench: fix config errors - ([a50b63e](https://github.com/MRDGH2821/nix-config/commit/a50b63e3b042c01334fd878537b8ac3af43912b6)) - MRDGH2821
+- :bug: add folder importer function - ([2e9b90b](https://github.com/MRDGH2821/nix-config/commit/2e9b90bf2c1dc6eab9f3cea39750104b0d84a438)) - MRDGH2821
+- :pencil2: fix typo - ([990d63a](https://github.com/MRDGH2821/nix-config/commit/990d63a30a6e6aa944584c5b6d60a4d95b3a9795)) - MRDGH2821
+- :wrench: add --ask-sudo-password arg for proper deployment - ([fb407e3](https://github.com/MRDGH2821/nix-config/commit/fb407e3871ab50fdb31d7e2dc5531b76df2f780a)) - MRDGH2821
+- :wrench: correct persistent storage path and description - ([c14adac](https://github.com/MRDGH2821/nix-config/commit/c14adacbe92cec5a46d131bc4f102ce3428d8f7e)) - MRDGH2821
+- :wrench: check before deploying - ([93ef8ef](https://github.com/MRDGH2821/nix-config/commit/93ef8efb62f6c49b2f4e45729d3e9ff54e93ef32)) - MRDGH2821
+- fix syntax - ([8aeeb59](https://github.com/MRDGH2821/nix-config/commit/8aeeb59beeacb5d8c3ecfa00c07cab8161c37eda)) - MRDGH2821
+- add podman group - ([f25e163](https://github.com/MRDGH2821/nix-config/commit/f25e163d60a080cbb0840d03547b0e5950f25be5)) - MRDGH2821
+- remove supplementary groups - ([06a9099](https://github.com/MRDGH2821/nix-config/commit/06a9099600c2ff8ffee6eaedd00ec614bb4e5429)) - MRDGH2821
+- add default.nix - ([c0fb5c8](https://github.com/MRDGH2821/nix-config/commit/c0fb5c8c16d14424de71240495338a91330bce28)) - MRDGH2821
+- remove duplicate package - ([68ff94a](https://github.com/MRDGH2821/nix-config/commit/68ff94a944ab48acd239c6c890c6e25ecd9b04b7)) - MRDGH2821
+- fix path - ([5f3e770](https://github.com/MRDGH2821/nix-config/commit/5f3e770ed6c1ac308070f0296df2e9e2224e247c)) - MRDGH2821
+- fix imports - ([d312bc8](https://github.com/MRDGH2821/nix-config/commit/d312bc846b53e36895a9bad3331f075f5bbca246)) - MRDGH2821
+- add missing variables - ([cf260b6](https://github.com/MRDGH2821/nix-config/commit/cf260b689f9f7b9849e76b46c7a194b888ee8915)) - MRDGH2821
+- fix oauth url - ([4be139a](https://github.com/MRDGH2821/nix-config/commit/4be139a8169ef040d625bf534f2f975eed950df8)) - MRDGH2821
+- fix syntax - ([f66e152](https://github.com/MRDGH2821/nix-config/commit/f66e15283b06d013ae59bc66b73338b980cb4604)) - MRDGH2821
+- fix syntax - ([1390932](https://github.com/MRDGH2821/nix-config/commit/1390932c2b918fb651188971a2d729a84f4f99f6)) - MRDGH2821
+- stringify the values - ([0b4fa91](https://github.com/MRDGH2821/nix-config/commit/0b4fa9139914c9af93e9709b41e247b8c312c59d)) - MRDGH2821
+- fix syntax - ([50ac852](https://github.com/MRDGH2821/nix-config/commit/50ac8525b996fd78cd26a3a8de0c352d54471f59)) - MRDGH2821
+- fix syntax - ([595768b](https://github.com/MRDGH2821/nix-config/commit/595768b4f665d9291de42b33b92ed45aa32babb1)) - MRDGH2821
+- use correct variable name - ([1ebac8f](https://github.com/MRDGH2821/nix-config/commit/1ebac8fae276f371943a9f5b1263e27d8f80486b)) - MRDGH2821
+- add home state version - ([2c67fd6](https://github.com/MRDGH2821/nix-config/commit/2c67fd6c64f7fa8893e8a1700ce8f3750dfaf740)) - MRDGH2821
+- fix import paths - ([5bda00a](https://github.com/MRDGH2821/nix-config/commit/5bda00abb1d10373decbf8d9d99162ae49836025)) - MRDGH2821
+- revert typo fixes - ([00a7443](https://github.com/MRDGH2821/nix-config/commit/00a7443b87fb436fab78204edd2de3501d19e6f2)) - MRDGH2821
+- fix evaluation warning - ([43599d7](https://github.com/MRDGH2821/nix-config/commit/43599d742aae6c6a1a609c846c2f99e37b70f8d1)) - MRDGH2821
+- add home manager backups option - ([169cb49](https://github.com/MRDGH2821/nix-config/commit/169cb49fe3249f7b3163da02150d9cf293f10abb)) - MRDGH2821
+- remove nix store path from log (cspell violation) - ([9c40334](https://github.com/MRDGH2821/nix-config/commit/9c4033475924abb3064b83b674cf691425cee921)) - MRDGH2821
+- fix keepass settings - ([e8b5232](https://github.com/MRDGH2821/nix-config/commit/e8b5232aa066ac18db1abf5fe05a03008983ded4)) - MRDGH2821
+
+### Documentation
+
+- **(devshell)** update AGENTS.md documentation - ([7c4c7e2](https://github.com/MRDGH2821/nix-config/commit/7c4c7e28981abc7c7f7ee12e2a03b21e0a77f767)) - MRDGH2821
+- **(logs)** add task 2 (de-hardcode home.username) entry - ([9a1c652](https://github.com/MRDGH2821/nix-config/commit/9a1c652330230a0870513578a0c0b2573471222b)) - MRDGH2821
+- **(logs)** record Task 4 shell migration work - ([c9658da](https://github.com/MRDGH2821/nix-config/commit/c9658daae8e479553b932fc381f460f868c9c6c2)) - MRDGH2821
+- **(logs)** record Task 4 fix round 1 - ([ad3c843](https://github.com/MRDGH2821/nix-config/commit/ad3c8439e92e06552544446dcd7e78facb229fa7)) - MRDGH2821
+- **(logs)** record Task 5 git config port - ([ee25bb6](https://github.com/MRDGH2821/nix-config/commit/ee25bb6f2e45cbb99adaf30717361f24fb8e4e38)) - MRDGH2821
+- **(logs)** record Task 6 programs.zed-editor port - ([86da359](https://github.com/MRDGH2821/nix-config/commit/86da35929dbecb572023df25a0f5ecb4adbe8a7e)) - MRDGH2821
+- **(logs)** record Task 7 dev-tools Home Manager port - ([2daf3f7](https://github.com/MRDGH2821/nix-config/commit/2daf3f700ceea29bfc50b9760e1da60ad8d371b6)) - MRDGH2821
+- **(logs)** record Task 8 packages.nix / mine.gui.enable - ([c1cfefd](https://github.com/MRDGH2821/nix-config/commit/c1cfefd6170198c80f1ff286adb99cc597d8fac4)) - MRDGH2821
+- **(logs)** record Task 9 verbatim config vendoring - ([ad2df59](https://github.com/MRDGH2821/nix-config/commit/ad2df59b9aae204bd8af4a2584227b169e712ced)) - MRDGH2821
+- **(logs)** preserve separate worker entries in the stack - ([f2e7211](https://github.com/MRDGH2821/nix-config/commit/f2e72115ebb1d99098ab043034cbf9b16c311d53)) - MRDGH2821
+- **(logs)** format appended review entry - ([c6e5d2f](https://github.com/MRDGH2821/nix-config/commit/c6e5d2fbcfb124cf5dff75ec35932b455bb86467)) - MRDGH2821
+- **(logs)** format appended review entry - ([44db02f](https://github.com/MRDGH2821/nix-config/commit/44db02f2585578074b60d328774e2ec81a8c97ac)) - MRDGH2821
+- **(logs)** format appended review entry - ([fc1d0c2](https://github.com/MRDGH2821/nix-config/commit/fc1d0c2cc8bf3e06c6f5c5bc4b6419886c63faa0)) - MRDGH2821
+- **(logs)** format appended review entry - ([9d7354d](https://github.com/MRDGH2821/nix-config/commit/9d7354d2212860aae87454404e71ac3aa7aedb6a)) - MRDGH2821
+- **(logs)** format appended review entry - ([e2b7251](https://github.com/MRDGH2821/nix-config/commit/e2b72512e501bb2c03e67ed9baa699f222700f17)) - MRDGH2821
+- **(logs)** record homelab test commits - ([2979bd2](https://github.com/MRDGH2821/nix-config/commit/2979bd245e8b61617c3320dd1c29a5aa302bea58)) - MRDGH2821
+- **(rclone)** :memo: add source link for rclone mount configuration - ([9e4a506](https://github.com/MRDGH2821/nix-config/commit/9e4a506f65f74ea65d75c83792850171bce88d76)) - MRDGH2821
+- **(secrets)** :memo: add a way to see encrypted files - ([35c6f89](https://github.com/MRDGH2821/nix-config/commit/35c6f898dc1fa2f60750f3b45414c8ac1ce34a24)) - MRDGH2821
+- **(secrets)** document git-agecrypt decryption workflow - ([c3cb1ec](https://github.com/MRDGH2821/nix-config/commit/c3cb1ec8a03bce2b3cc64af1eaeb717a59ad730c)) - MRDGH2821
+- **(services)** clarify settings/connections merge precedence in forgejo-runner module - ([25a3d40](https://github.com/MRDGH2821/nix-config/commit/25a3d40af6cf17bf9ffb81e6a54795641c14e924)) - MRDGH2821
+- :memo: add docs to create new secrets - ([2e6f6d1](https://github.com/MRDGH2821/nix-config/commit/2e6f6d1511f185470c717abbe92ff6946421be34)) - MRDGH2821
+- log git commit for Hermes work - ([262f159](https://github.com/MRDGH2821/nix-config/commit/262f159ec647103c70648e1d007db7a0a861d7c7)) - MRDGH2821
+- update AI work log for commit operation - ([50369c4](https://github.com/MRDGH2821/nix-config/commit/50369c4bfaa92c327c742036e2c7834d400ac30a)) - MRDGH2821
+- add agent docs - ([ac44c8c](https://github.com/MRDGH2821/nix-config/commit/ac44c8c35c9f3a452ffa78cb90aca24613dcfb67)) - MRDGH2821
+- add ai log - ([19d69e9](https://github.com/MRDGH2821/nix-config/commit/19d69e9b80107b21c7e1d98f5835336ae9ddabc3)) - MRDGH2821
+- add ai logs - ([7d28135](https://github.com/MRDGH2821/nix-config/commit/7d28135b695a1eaebaf306e6af0dd0444428b513)) - MRDGH2821
+- align README with just and direnv workflow - ([e7cf413](https://github.com/MRDGH2821/nix-config/commit/e7cf41367c30a03847ece6e290ba2eb0d0680fda)) - MRDGH2821
+- add ai logs & plans - ([d66b566](https://github.com/MRDGH2821/nix-config/commit/d66b566d46315f06ba8a354ad703fdd43a47f608)) - MRDGH2821
+- add ai logs - ([97c01db](https://github.com/MRDGH2821/nix-config/commit/97c01db23a5b5c76b1e44c194a429451f4c817fd)) - MRDGH2821
+- add blueprint migration design spec - ([aa09cce](https://github.com/MRDGH2821/nix-config/commit/aa09cce35445878316834dfa1b0e8c49fd841afb)) - MRDGH2821
+- add native syntax plan - ([98bee05](https://github.com/MRDGH2821/nix-config/commit/98bee056fe6b1e917911c6c7c006a17a42433bfe)) - MRDGH2821
+- add logs & plans - ([09ea2d8](https://github.com/MRDGH2821/nix-config/commit/09ea2d8600d932ff627e720f947d60b64254fdf7)) - MRDGH2821
+- add ai logs - ([1f1c031](https://github.com/MRDGH2821/nix-config/commit/1f1c031e7b942dac096393eaf173a23a153e3517)) - MRDGH2821
+- add Blueprint simplify design spec - ([aa1b38b](https://github.com/MRDGH2821/nix-config/commit/aa1b38bc684661b46f9f6a9ce7e5788a10ddb1d7)) - MRDGH2821
+- add Blueprint simplify implementation plan - ([644f8c0](https://github.com/MRDGH2821/nix-config/commit/644f8c04e37efdccd8b86bae4b3aa6101b3059d4)) - MRDGH2821
+- add logs - ([39745e5](https://github.com/MRDGH2821/nix-config/commit/39745e5962a6923323a0fd6b0f268739ecfd89c3)) - MRDGH2821
+- add AI work logs for Blueprint simplify session - ([2a1e3e5](https://github.com/MRDGH2821/nix-config/commit/2a1e3e559b1e047239a483de970773f66cd847cd)) - MRDGH2821
+- add Blueprint Home Manager Phase 2 design - ([3a0a2e2](https://github.com/MRDGH2821/nix-config/commit/3a0a2e24dcf2c9cab24e902307ba5b2b419dec93)) - MRDGH2821
+- add Blueprint Home Manager Phase 2 implementation plan - ([696a64e](https://github.com/MRDGH2821/nix-config/commit/696a64e9d5bc66a19173cd2a2cf9e17ac45232ba)) - MRDGH2821
+- add logs - ([9f13e05](https://github.com/MRDGH2821/nix-config/commit/9f13e05c43be603413674474261b312b722b2398)) - MRDGH2821
+- add ai log - ([f4e9c6d](https://github.com/MRDGH2821/nix-config/commit/f4e9c6dbcdf5b2d68b4c15e2c588454b7801707d)) - MRDGH2821
+- add chezmoi to nix home-manager migration design - ([3a9e18c](https://github.com/MRDGH2821/nix-config/commit/3a9e18c926273d525d446cdb989fa6f4b8182fa4)) - MRDGH2821
+- add chezmoi to Home Manager migration implementation plan - ([2b136c8](https://github.com/MRDGH2821/nix-config/commit/2b136c8d6be4ab0ece4945f97a9cdc0605406c5a)) - MRDGH2821
+- unbreak pre-commit-check on the migration plan doc - ([0ace9be](https://github.com/MRDGH2821/nix-config/commit/0ace9be1525ce4ba466285e6c77ed7926ab4c3c7)) - MRDGH2821
+- log Task 3 completion — fw16 standalone home config stub - ([4a4e325](https://github.com/MRDGH2821/nix-config/commit/4a4e325069ee200c0c722502dc419511c534ba02)) - MRDGH2821
+- append Task 8 fix round 1 to work log - ([84f526d](https://github.com/MRDGH2821/nix-config/commit/84f526d94bf832ab98ea61ee0b227d7a0c10a623)) - MRDGH2821
+- log chezmoi to Home Manager migration completion - ([c00f7f2](https://github.com/MRDGH2821/nix-config/commit/c00f7f2647ca47f1475ee6ba4d5dcea3d658097d)) - MRDGH2821
+- tick migration plan, correct spec branch, log fix wave - ([5e75734](https://github.com/MRDGH2821/nix-config/commit/5e7573415e1863865f5fc64801a510d7b74c81b8)) - MRDGH2821
+- add verified branch review and backlog - ([c2f92dc](https://github.com/MRDGH2821/nix-config/commit/c2f92dc8d39aac9a3f8e96464be70c9a2be93f77)) - MRDGH2821
+- preserve coordinator action logs - ([4e3924a](https://github.com/MRDGH2821/nix-config/commit/4e3924a4778f21e078e3960af58ed355ca5afd34)) - MRDGH2821
+- align shell history migration checks - ([9084ab3](https://github.com/MRDGH2821/nix-config/commit/9084ab392b7d51cd7dd551f74289dc11f10d35d4)) - MRDGH2821
+- resolve coordinator log merge conflicts - ([801041c](https://github.com/MRDGH2821/nix-config/commit/801041c87c503b4d14bd89add60dba4b86aeb6ad)) - MRDGH2821
+- record conflict resolution verification - ([a26dee4](https://github.com/MRDGH2821/nix-config/commit/a26dee4523c54c721675555f1ff9d4ae43924e26)) - MRDGH2821
+- update AI work log - ([bfde4a1](https://github.com/MRDGH2821/nix-config/commit/bfde4a1f408428e972f02bd4127f5d9353825231)) - MRDGH2821
+- add ai logs - ([4ac796c](https://github.com/MRDGH2821/nix-config/commit/4ac796c9d4f3d7b99a3af6f92f0f53e9c9e7a9ed)) - MRDGH2821
+- record flake check fixes - ([e847e6d](https://github.com/MRDGH2821/nix-config/commit/e847e6d328aad4ec1ec6f670a25f893c62a01016)) - MRDGH2821
+- record pgadmin fix and verification - ([0ae8a54](https://github.com/MRDGH2821/nix-config/commit/0ae8a547c9a6d5591be36ffaa532a0301a97dd4a)) - MRDGH2821
+- add ai logs - ([ceca373](https://github.com/MRDGH2821/nix-config/commit/ceca37374db80fa34a6adc5a675244699cdb37fe)) - MRDGH2821
+
+### Features
+
+- **(devshell)** :wrench: add compose2nix package & watch devShell changes - ([850bbdb](https://github.com/MRDGH2821/nix-config/commit/850bbdb191d0e7cc3d34b2f05b87deb46077fdac)) - MRDGH2821
+- **(devshell)** :package: use flake utils for flake config - ([ba88e90](https://github.com/MRDGH2821/nix-config/commit/ba88e901620fab761bcab66ec81a50a1a60b4718)) - MRDGH2821
+- **(devshell)** :package: add nixos-rebuild-ng in devshell - ([c40b6c7](https://github.com/MRDGH2821/nix-config/commit/c40b6c71fa1db3c7a69bbfaf605c7b73a6c1ab06)) - MRDGH2821
+- **(devshell)** add scalpel and nixos-container to development environment - ([edd10be](https://github.com/MRDGH2821/nix-config/commit/edd10be58354ecfe6421c6a42c81dcf35715dcca)) - MRDGH2821
+- **(devshell)** :package: add compose2nix from github - ([ef76b46](https://github.com/MRDGH2821/nix-config/commit/ef76b46b2b24bcf8e83a1c5e4311126376e0875e)) - MRDGH2821
+- **(devshell)** :package: add just & related config - ([bf2cb25](https://github.com/MRDGH2821/nix-config/commit/bf2cb25bf286abe11e612f91b5b494f8a34fa93f)) - MRDGH2821
+- **(devshell)** :package: add just lsp & formatter - ([0515ba3](https://github.com/MRDGH2821/nix-config/commit/0515ba3c4d89f900606482220d9461fcea9378f4)) - MRDGH2821
+- **(devshell)** :package: add moreutils package - ([b47898f](https://github.com/MRDGH2821/nix-config/commit/b47898f7743ac9e5e557a16ece48e3207958a2b4)) - MRDGH2821
+- **(disko)** :fire: remove disko config - ([45beb3e](https://github.com/MRDGH2821/nix-config/commit/45beb3eb41c8cea4c92a054ef33e6f6fc48b87e6)) - MRDGH2821
+- **(domain)** update default base domain - ([84f1d3b](https://github.com/MRDGH2821/nix-config/commit/84f1d3b5a1976d5cbb11dddde41666bbe77b533d)) - MRDGH2821
+- **(features)** :wrench: add ssh feature - ([383d23a](https://github.com/MRDGH2821/nix-config/commit/383d23a45b9b83d208b5636a82d59e2966b83612)) - MRDGH2821
+- **(features)** :wrench: add docker - ([7d0c9be](https://github.com/MRDGH2821/nix-config/commit/7d0c9be6847df0a44b240562033ae59ec31d4b56)) - MRDGH2821
+- **(features)** :sparkles: add avahi - ([3834c43](https://github.com/MRDGH2821/nix-config/commit/3834c43b0fd481888366a255042a9dd0534a2f77)) - MRDGH2821
+- **(features)** :sparkles: add direnv program - ([9c8cf24](https://github.com/MRDGH2821/nix-config/commit/9c8cf241b43b9edf7991ce2d71f8b987c7c164ae)) - MRDGH2821
+- **(features)** :wrench: add sops-nix config - ([06cded4](https://github.com/MRDGH2821/nix-config/commit/06cded497ce11a7196a71ee0cc956aa5080c457e)) - MRDGH2821
+- **(features)** :package: add fosrl pangolin - ([b25d933](https://github.com/MRDGH2821/nix-config/commit/b25d9337845fe68e37bf1e5a5398eaf72a8905fd)) - MRDGH2821
+- **(features)** :package: add dev packages - ([e6cbf2a](https://github.com/MRDGH2821/nix-config/commit/e6cbf2ab222b1e0d4da813a275ce835cae925564)) - MRDGH2821
+- **(features)** :package: use zsh as main shell - ([852fb79](https://github.com/MRDGH2821/nix-config/commit/852fb79c91e15f787b1089754baf70dd9e7c75ec)) - MRDGH2821
+- **(features)** :package: add git & config - ([3c56ccb](https://github.com/MRDGH2821/nix-config/commit/3c56ccbd5c6aca407ca4e76307e08b0dc29e50c3)) - MRDGH2821
+- **(features)** :sparkles: add radicale service - ([01cfab1](https://github.com/MRDGH2821/nix-config/commit/01cfab17093463cabcabaa17c9519ba7748237cf)) - MRDGH2821
+- **(features)** :wrench: add domain builder functions - ([d9575b3](https://github.com/MRDGH2821/nix-config/commit/d9575b3f7b5baa1f1b152ce4242ea0c2994c38cb)) - MRDGH2821
+- **(features)** :sparkles: add rclone mounting function - ([884e96a](https://github.com/MRDGH2821/nix-config/commit/884e96a2c2bc4fddc4f000c3b6f90fbf3a56fa53)) - MRDGH2821
+- **(features)** :fire: remove rclome mount config - ([58d8415](https://github.com/MRDGH2821/nix-config/commit/58d84151863a888d422f4d3781aaaa81a8a7cefd)) - MRDGH2821
+- **(features)** add declarative my.rclone.mounts module - ([8a00071](https://github.com/MRDGH2821/nix-config/commit/8a00071f91ebb1991241e7a410fe1c73b9f6a460)) - MRDGH2821
+- **(features)** port dev-tool configs to Home Manager - ([e3681dd](https://github.com/MRDGH2821/nix-config/commit/e3681dd5e2694a9241d0ded4c8fc6dd4ce1c2284)) - MRDGH2821
+- **(features)** vendor verbatim configs (herdr, soar, opencode, …) - ([ae1d1a4](https://github.com/MRDGH2821/nix-config/commit/ae1d1a4eced667d6a0ece63c34f129f31e31e6f9)) - MRDGH2821
+- **(features)** KeePassXC Secret Service keyring as a standalone module - ([caed174](https://github.com/MRDGH2821/nix-config/commit/caed174a16969635218963be189a207e5397ea0c)) - MRDGH2821
+- **(flake)** integrate home-manager into NixOS deployment - ([507f3b0](https://github.com/MRDGH2821/nix-config/commit/507f3b07774b12ea65131258329c895c1d5576ef)) - MRDGH2821
+- **(flake)** add open-webui overlay override - ([a2f1b6f](https://github.com/MRDGH2821/nix-config/commit/a2f1b6fe0511fc3d58c04a1faca33d5667321271)) - MRDGH2821
+- **(git)** port chezmoi git config to programs.git - ([938e33e](https://github.com/MRDGH2821/nix-config/commit/938e33e71b5535078590182252f9a81251f4cba4)) - MRDGH2821
+- **(hermes-agent)** run Hermes in NixOS container with Podman OCI - ([17e3fd2](https://github.com/MRDGH2821/nix-config/commit/17e3fd293d6d2657a6be06d03d358fb1a6d0fb41)) - MRDGH2821
+- **(hermes-agent)** add matrix integration & config - ([f9c475a](https://github.com/MRDGH2821/nix-config/commit/f9c475a7cfe7893cffcce1a62c35b74433b22791)) - MRDGH2821
+- **(hermes-agent)** add WebUI container integrated with gateway - ([aa40855](https://github.com/MRDGH2821/nix-config/commit/aa4085554bf7c43275e2d8cba20f278f254e8e7b)) - MRDGH2821
+- **(homepage)** add nextcloud - ([e020518](https://github.com/MRDGH2821/nix-config/commit/e020518340a6f851a7d5a144d8cfecc8807a274f)) - MRDGH2821
+- **(homepage-dashboard)** :sparkles: enhance dashboard configuration with domain builder and additional widgets - ([1764941](https://github.com/MRDGH2821/nix-config/commit/1764941a68294af517ae3fcbc4f6410b2bb21243)) - MRDGH2821
+- **(hosts)** wire Blueprint Home Manager for mr-nix - ([325ae0b](https://github.com/MRDGH2821/nix-config/commit/325ae0b4ff5d00e55751e4830b008dac5e6d9c77)) - MRDGH2821
+- **(hosts)** add KeePassXC as Secret Service for mr-nix - ([9a72634](https://github.com/MRDGH2821/nix-config/commit/9a726341e45fa1001df52515501e4bd31e97a7fb)) - MRDGH2821
+- **(hosts)** add standalone fw16 home config for mr-fw16 - ([75a4d77](https://github.com/MRDGH2821/nix-config/commit/75a4d770a42167e3c61366d12f6cc7164fb00a3e)) - MRDGH2821
+- **(hosts/home-lab)** :truck: rename flake & import ssh feature - ([1e264b5](https://github.com/MRDGH2821/nix-config/commit/1e264b576540b2761c291b3253c609a83f93457f)) - MRDGH2821
+- **(hosts/home-lab)** :fire: remove uneeded config - ([a8ccb9e](https://github.com/MRDGH2821/nix-config/commit/a8ccb9e7a2a79f3ea2e06cada00536c77c7f9a66)) - MRDGH2821
+- **(hosts/home-lab)** :wrench: import new features & modules - ([619c898](https://github.com/MRDGH2821/nix-config/commit/619c89883dd3a8d331d6a68663b969b6e1f83d69)) - MRDGH2821
+- **(hosts/home-lab)** :wrench: add hostname - ([cfce719](https://github.com/MRDGH2821/nix-config/commit/cfce719fd01a92202e6cdf1144d9a9bd1fdf5082)) - MRDGH2821
+- **(hosts/home-lab)** :wrench: copy hardware config from the host - ([0e6a42e](https://github.com/MRDGH2821/nix-config/commit/0e6a42e0d6f28b6a3aeb74a6c10229907eb89319)) - MRDGH2821
+- **(hosts/home-lab)** :wrench: use latest kernel available - ([70a2459](https://github.com/MRDGH2821/nix-config/commit/70a2459b877f4e1edbcc1cccdf3aa7935e6992f6)) - MRDGH2821
+- **(hosts/home-lab)** :sparkles: add sops-nix - ([e85aa30](https://github.com/MRDGH2821/nix-config/commit/e85aa3010116ce6060abb50b712f5787d330ffc2)) - MRDGH2821
+- **(hosts/home-lab)** :wrench: add homer dashboard - ([443f76e](https://github.com/MRDGH2821/nix-config/commit/443f76e7e596b826ab40b3e4d0ea49fc498ff615)) - MRDGH2821
+- **(hosts/home-lab)** :wrench: import shell config - ([8933db6](https://github.com/MRDGH2821/nix-config/commit/8933db697d853c7117d618ffeb7eb53be1a5a438)) - MRDGH2821
+- **(hosts/home-lab)** :wrench: add wifi password - ([6126575](https://github.com/MRDGH2821/nix-config/commit/6126575d471e92c4ba41fd9d5da4e22e8b390422)) - MRDGH2821
+- **(hosts/home-lab)** :sparkles: use homepage dashboard - ([984336b](https://github.com/MRDGH2821/nix-config/commit/984336b723ccc17760606cf8274a0cfb526da3c1)) - MRDGH2821
+- **(hosts/home-lab)** :sparkles: add bookmarks - ([f2a171f](https://github.com/MRDGH2821/nix-config/commit/f2a171f095de2793e08c00c36e90f4f0342fc7fa)) - MRDGH2821
+- **(hosts/home-lab)** add hyprland - ([d13af37](https://github.com/MRDGH2821/nix-config/commit/d13af3705eb7b11ff834088f4e1b6add017df1e3)) - MRDGH2821
+- **(hosts/home-lab)** add QEMU VM variant for local testing - ([3fb9bd6](https://github.com/MRDGH2821/nix-config/commit/3fb9bd6d1b54f387f6220c0ce48618c38215d7bc)) - MRDGH2821
+- **(hosts/test-bed)** :sparkles: add a new system config - ([f4ce4a0](https://github.com/MRDGH2821/nix-config/commit/f4ce4a0e9ef27043d38aa921d5e0524e9fbfd559)) - MRDGH2821
+- **(hosts/test-bed)** add NixOS VM configuration - ([da5ec94](https://github.com/MRDGH2821/nix-config/commit/da5ec94dbc827e32f9227bb71019b68f6b4bc6d1)) - MRDGH2821
+- **(hosts/test-bed)** add graphical VM for previewing Home Manager layout - ([6fbab0f](https://github.com/MRDGH2821/nix-config/commit/6fbab0fd4a4c6eed67d7759a889a9f9bafb0c64d)) - MRDGH2821
+- **(justfile)** :sparkles: add check command and update home-lab rebuild commands - ([f23388e](https://github.com/MRDGH2821/nix-config/commit/f23388e326d336598104bf1b78e0fbda2369ef57)) - MRDGH2821
+- **(justfile)** add provision and gen-hw-config from nix-cmds.sh - ([21be3a4](https://github.com/MRDGH2821/nix-config/commit/21be3a4398e30ff79f7d58a5c745737859f2a014)) - MRDGH2821
+- **(justfile)** add Home Manager activation recipes - ([26ab21e](https://github.com/MRDGH2821/nix-config/commit/26ab21e02acd567a9d32f66bffc6cb6d7b984ea9)) - MRDGH2821
+- **(nginx)** disable HTTP2 support in nginx configuration - ([f3ed5cb](https://github.com/MRDGH2821/nix-config/commit/f3ed5cb582a445b1eafe9a9010fbe7dc3c110986)) - MRDGH2821
+- **(packages)** :package: remove duplicates & enable nix-ld - ([b912f0b](https://github.com/MRDGH2821/nix-config/commit/b912f0b0e5288c4e28ff39b8c4fd6f48294d6a7a)) - MRDGH2821
+- **(packages)** :package: add authentik package - ([cc4defa](https://github.com/MRDGH2821/nix-config/commit/cc4defaa4c37c2e3337628fdb87a3738603716b3)) - MRDGH2821
+- **(packages)** :package: use nixd instead of nil - ([c040e21](https://github.com/MRDGH2821/nix-config/commit/c040e21554bae17d705084c2f1d725e8f02a970d)) - MRDGH2821
+- **(packages)** port chezmoi package set to home.packages - ([1d250c4](https://github.com/MRDGH2821/nix-config/commit/1d250c4fff026093a0509d1283edc4e23a2dc2f4)) - MRDGH2821
+- **(pgadmin)** :sparkles: add pgadmin local secrets and configuration - ([ff951b6](https://github.com/MRDGH2821/nix-config/commit/ff951b6f330cdc7477603aa36332dcfc1847b100)) - MRDGH2821
+- **(rclone)** :sparkles: add rclone configuration and secrets management - ([0b64e71](https://github.com/MRDGH2821/nix-config/commit/0b64e71e40590d4f237857edbef4def34a4ee778)) - MRDGH2821
+- **(scalpel)** implement scalpel module and shell script for secret management - ([81e9d1d](https://github.com/MRDGH2821/nix-config/commit/81e9d1d12175bef112c0b002c12ff230f4fc6b26)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: add letsencrypt_email secret configuration - ([3f75cfc](https://github.com/MRDGH2821/nix-config/commit/3f75cfcb07e563f29b4afea0f475da2a7a56aaa6)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: update casing & add baseDomain - ([c18a280](https://github.com/MRDGH2821/nix-config/commit/c18a280ba30daba738727e46f4ab07477c711ac7)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: update secrets & sops config - ([9eb6c49](https://github.com/MRDGH2821/nix-config/commit/9eb6c4957f428a274b8b77107f82b32c74126039)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: add acme configuration - ([49e8047](https://github.com/MRDGH2821/nix-config/commit/49e80475f8d7f12ea842fdabfdf47deb4c14d93e)) - MRDGH2821
+- **(secrets)** add traefik and acme secrets configuration - ([ab3db81](https://github.com/MRDGH2821/nix-config/commit/ab3db8179822f119e9cea0b7061c3c84feed572c)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: provide secrets via scalpel - ([d8e296f](https://github.com/MRDGH2821/nix-config/commit/d8e296f8204bbcec32720728ccf97c716bb0c750)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: update secret values & import in homelab - ([fbebd76](https://github.com/MRDGH2821/nix-config/commit/fbebd764765235d370158f1df7625a235305c202)) - MRDGH2821
+- **(secrets)** :fire: delete old secrets & pangolin - ([75dad5c](https://github.com/MRDGH2821/nix-config/commit/75dad5c1d15d38e028987dfbe6d9da85caa44911)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: add acme secrets - ([196406d](https://github.com/MRDGH2821/nix-config/commit/196406df85acb74b12caf3773bf71ff5a1f04c77)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: add dynu api key & dynu config - ([244ad9c](https://github.com/MRDGH2821/nix-config/commit/244ad9c5255dd90ed12f367cadc7a75e58c91e12)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: add domain secrets - ([01cf066](https://github.com/MRDGH2821/nix-config/commit/01cf066e14e6e4ab4c0f02f48a41b6c094bb8827)) - MRDGH2821
+- **(secrets)** :truck: fix paths - ([ff13241](https://github.com/MRDGH2821/nix-config/commit/ff13241814ce677a62a6daed6d9c9a2bb6118600)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: add smtp config - ([2500944](https://github.com/MRDGH2821/nix-config/commit/25009448b63a4c60fa48cb96cd289db6b403f8dc)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: add smtp password - ([3b9391f](https://github.com/MRDGH2821/nix-config/commit/3b9391f19307f4aaa3c012e5b8748c2deec275ad)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: add smtp security parameter - ([ff039d3](https://github.com/MRDGH2821/nix-config/commit/ff039d310f12e29afbc84885da6571fee93f352d)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: add bewcloud secrets - ([24b478f](https://github.com/MRDGH2821/nix-config/commit/24b478f129d0fa9e3552c2a1f5cfff5eb29171a7)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: update bewcloud secrets - ([3dc9c0e](https://github.com/MRDGH2821/nix-config/commit/3dc9c0eb63c7139ad1678c205cf78b67b30c3dec)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: add postgres secrets - ([7af45b5](https://github.com/MRDGH2821/nix-config/commit/7af45b5547e96e0bb948ae66509733d1d834891d)) - MRDGH2821
+- **(secrets)** :sparkles: add postgres user, password, and db secrets - ([032bb82](https://github.com/MRDGH2821/nix-config/commit/032bb82da9395c7fd521bd6d8bb9d3006971158a)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: update smtp password - ([ac23975](https://github.com/MRDGH2821/nix-config/commit/ac23975f4c22836561dd3498370a9742da480f7a)) - MRDGH2821
+- **(secrets)** :fire: remove redundant secrets - ([e0a83bb](https://github.com/MRDGH2821/nix-config/commit/e0a83bb9f314621ed36a224af3fc155ff6702c51)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: add OIDC secrets - ([8ddeb22](https://github.com/MRDGH2821/nix-config/commit/8ddeb229a8aa6ecf5eb0b4ef35bd1c8c86d4966b)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: add peertube secret - ([bf50367](https://github.com/MRDGH2821/nix-config/commit/bf50367cfd87d715edac659cc6b255b58afbd38e)) - MRDGH2821
+- **(secrets)** :sparkles: add peertube SMTP password configuration - ([acda334](https://github.com/MRDGH2821/nix-config/commit/acda3342fe403902be73bff3e55afb0c3fc51bcd)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: add homepage secrets & add peertube url - ([f757f5a](https://github.com/MRDGH2821/nix-config/commit/f757f5a164ffbcb2969f55d212a546413732a01e)) - MRDGH2821
+- **(secrets)** add secrets - ([7b578d9](https://github.com/MRDGH2821/nix-config/commit/7b578d940b881ff0540923793275a6665009a0d8)) - MRDGH2821
+- **(secrets)** add secrets for hermes webui - ([970e0fe](https://github.com/MRDGH2821/nix-config/commit/970e0fe373a2c489f566370fc748f3fe97f25daf)) - MRDGH2821
+- **(service)** add ocis - ([677025a](https://github.com/MRDGH2821/nix-config/commit/677025af795bb4e4419a7e6c0c234ff380317ad9)) - MRDGH2821
+- **(services)** :wrench: add stirling pdf service - ([0822202](https://github.com/MRDGH2821/nix-config/commit/08222024b976d1862238190c1bcbabec1eb13faf)) - MRDGH2821
+- **(services)** :sparkles: add bewcloud & postgresql - ([ca78cd3](https://github.com/MRDGH2821/nix-config/commit/ca78cd361c746465ba9ec9012ea06a0e2a164cf4)) - MRDGH2821
+- **(services)** :truck: update & move pangolin service configuration - ([9a52f0f](https://github.com/MRDGH2821/nix-config/commit/9a52f0f21aec4c80c1dc51f467b510552b474723)) - MRDGH2821
+- **(services)** :wrench: add services flake - ([f7cfce8](https://github.com/MRDGH2821/nix-config/commit/f7cfce8504bd354fab34c488bc9afa95abbe01ad)) - MRDGH2821
+- **(services)** :closed_lock_with_key: add pangolin secrets - ([f21aadc](https://github.com/MRDGH2821/nix-config/commit/f21aadcc4315551bdcb0eb7a00973bb90c98bb5a)) - MRDGH2821
+- **(services)** :wrench: update bewcloud config - ([0968fbe](https://github.com/MRDGH2821/nix-config/commit/0968fbe88a96bfa2d243a99e342a4366955b26e3)) - MRDGH2821
+- **(services)** enable automatic time zone adjustment - ([a8f5ef0](https://github.com/MRDGH2821/nix-config/commit/a8f5ef015168544fd1b04eeab44e77e48f410ee7)) - MRDGH2821
+- **(services)** :wrench: add caddy config - ([62a0e46](https://github.com/MRDGH2821/nix-config/commit/62a0e46f8c9c0c3d5c030a688cc592973e6f649d)) - MRDGH2821
+- **(services)** :bug: use path via nix values - ([61902d9](https://github.com/MRDGH2821/nix-config/commit/61902d9a592d1c8edddb37a4148983a8ea52e48c)) - MRDGH2821
+- **(services)** add TLS configuration for Caddy virtual host - ([9f67d29](https://github.com/MRDGH2821/nix-config/commit/9f67d29a83460ee60fec0e2bf32aeed0edd38a2b)) - MRDGH2821
+- **(services)** :wrench: disable nginx, enable caddy - ([a26e719](https://github.com/MRDGH2821/nix-config/commit/a26e7199d63ebf24e4c1b377dc6588dabf591179)) - MRDGH2821
+- **(services)** :fire: use barebones config for caddy - ([742cbf1](https://github.com/MRDGH2821/nix-config/commit/742cbf1c9ccb66ecf7d218f37f810af44648f880)) - MRDGH2821
+- **(services)** :wrench: add pangolin & its secrets - ([6af3d23](https://github.com/MRDGH2821/nix-config/commit/6af3d23d7a35adb42023b483617037a4ff150b86)) - MRDGH2821
+- **(services)** :wrench: update bewcloud config - ([d8bbf54](https://github.com/MRDGH2821/nix-config/commit/d8bbf54f744d91ee7d2ded82e14acc4b6bb466eb)) - MRDGH2821
+- **(services)** :wrench: add nix expression of bewcloud - ([8872f3b](https://github.com/MRDGH2821/nix-config/commit/8872f3bda569d727101b4e6c2db4f07cfd8a4c99)) - MRDGH2821
+- **(services)** :wrench: put traefik in docker group - ([e9acbdf](https://github.com/MRDGH2821/nix-config/commit/e9acbdfaa493e36b04692bd5dba30a7247304b7e)) - MRDGH2821
+- **(services)** :wrench: extend container config in a different way - ([fb4bd59](https://github.com/MRDGH2821/nix-config/commit/fb4bd591318f577020707f3322add3003a8010d3)) - MRDGH2821
+- **(services)** :sparkles: add pgadmin4 service - ([ff75ccd](https://github.com/MRDGH2821/nix-config/commit/ff75ccddbffd49cfc891bc780698d1f57e5ee753)) - MRDGH2821
+- **(services)** :wrench: add authentik config - ([98cbddb](https://github.com/MRDGH2821/nix-config/commit/98cbddb9528edbf60152fef30f3881860bca6005)) - MRDGH2821
+- **(services)** :fire: remove unneeded services - ([eb6405b](https://github.com/MRDGH2821/nix-config/commit/eb6405bb7cf64da117d5fa9b72299b151f281533)) - MRDGH2821
+- **(services)** :wrench: add forgejo service - ([2da7834](https://github.com/MRDGH2821/nix-config/commit/2da7834bf7fa862b5738c894ace8a0e327f4529e)) - MRDGH2821
+- **(services)** :wrench: add firewall configuration for Forgejo service - ([9c11df0](https://github.com/MRDGH2821/nix-config/commit/9c11df0a28b5c3ca6c4beea4bde7ec2c0311f3f4)) - MRDGH2821
+- **(services)** :fire: remove msmtp - ([e645449](https://github.com/MRDGH2821/nix-config/commit/e6454496a7915da65dc1dbee825735cd4aad59e5)) - MRDGH2821
+- **(services)** :sparkles: add vert-sh - ([144861f](https://github.com/MRDGH2821/nix-config/commit/144861fb362a1031401b6d2038296696194257ed)) - MRDGH2821
+- **(services)** :sparkles: add omni-tools service - ([0841b48](https://github.com/MRDGH2821/nix-config/commit/0841b48a0b45d3b9d4a95a3cab289b7e9578bdad)) - MRDGH2821
+- **(services)** :wrench: add portnote - ([a68e586](https://github.com/MRDGH2821/nix-config/commit/a68e58697d5a8fb17432a62112be66f03bedf685)) - MRDGH2821
+- **(services)** :sparkles: add ollama service configuration - ([0a99ab5](https://github.com/MRDGH2821/nix-config/commit/0a99ab56d3fc61324e5efe989e06955fa53ae6fa)) - MRDGH2821
+- **(services)** :sparkles: add linkwarden service and configuration - ([93dc365](https://github.com/MRDGH2821/nix-config/commit/93dc3651b91b743bc1701dc85e1322a87fec0ae9)) - MRDGH2821
+- **(services)** :fire: delete portnote service - ([5142eff](https://github.com/MRDGH2821/nix-config/commit/5142eff0b627e4a2e5f04470a2eab90291489d9c)) - MRDGH2821
+- **(services)** :fire: remove oauth config from pgadmin - ([614b4ff](https://github.com/MRDGH2821/nix-config/commit/614b4ff92603157a3c20fd0a2bb0e5d3dd3123e2)) - MRDGH2821
+- **(services)** :sparkles: add logging configuration for forgejo service - ([cf2ac0d](https://github.com/MRDGH2821/nix-config/commit/cf2ac0d53265d82d16a211b418d1e8c500318e38)) - MRDGH2821
+- **(services)** :wrench: add peertube config - ([5dffa7d](https://github.com/MRDGH2821/nix-config/commit/5dffa7dc379ee576b3e50c442ba3e81c28d9ed31)) - MRDGH2821
+- **(services)** :wrench: add navidrome - ([1c42a25](https://github.com/MRDGH2821/nix-config/commit/1c42a25de65cb62ff97924c4a20fd58443f96386)) - MRDGH2821
+- **(services)** :wrench: use bentopdf instead of stirling-pdf - ([7e28dff](https://github.com/MRDGH2821/nix-config/commit/7e28dff17c496791987033c9c4ce3e833f2dcdf5)) - MRDGH2821
+- **(services)** :sparkles: enable peertube service and configure peertubeSecret - ([4bf6218](https://github.com/MRDGH2821/nix-config/commit/4bf621884c925cfb2f10c3e0ec6b53a9c82369b7)) - MRDGH2821
+- **(services)** :sparkles: add docker-socket-proxy container service - ([592b1cd](https://github.com/MRDGH2821/nix-config/commit/592b1cd9b318cf887a9379669c4f24e7e075e2b9)) - MRDGH2821
+- **(services)** :wrench: make mounts read only - ([c727457](https://github.com/MRDGH2821/nix-config/commit/c727457c0adfb4aa576f77be8efdb3dd09a5bd5f)) - MRDGH2821
+- **(services)** add nextcloud - ([ce5472d](https://github.com/MRDGH2821/nix-config/commit/ce5472dfb0e3c11dfee27357041246b2cb619082)) - MRDGH2821
+- **(services)** configure nextcloud - ([e9bc68f](https://github.com/MRDGH2821/nix-config/commit/e9bc68fafc8f8943b1331d38065c8f70c60c51cf)) - MRDGH2821
+- **(services)** add resume matcher - ([c809c42](https://github.com/MRDGH2821/nix-config/commit/c809c42dad1d36fbb9051f0941aa07ba6f764067)) - MRDGH2821
+- **(services)** enable tailscale - ([9b7f0d7](https://github.com/MRDGH2821/nix-config/commit/9b7f0d7d07cd067b282b19126db1b4233c0154c8)) - MRDGH2821
+- **(services)** add open webui - ([537ae98](https://github.com/MRDGH2821/nix-config/commit/537ae985eba7fbe40b4a080a4d2e6a521cac000d)) - MRDGH2821
+- **(services)** add hermes workspace - ([1961abd](https://github.com/MRDGH2821/nix-config/commit/1961abdfc507fb98bbf0a8639435dfc4468a9b6f)) - MRDGH2821
+- **(services)** set hermes-workspace dashboard URL and docs - ([666ba9a](https://github.com/MRDGH2821/nix-config/commit/666ba9ae3744eb78fcc7a27d6b2b0f85e1c4b68a)) - MRDGH2821
+- **(services)** add bentopdf - ([9764c8a](https://github.com/MRDGH2821/nix-config/commit/9764c8ac6b39ae3de4043ce9949abbe23b3a73ee)) - MRDGH2821
+- **(services)** add honcho memory - ([e821876](https://github.com/MRDGH2821/nix-config/commit/e8218764fcc97c3fe54ecc06a354565e837a834f)) - MRDGH2821
+- **(services)** use network host mode - ([48db937](https://github.com/MRDGH2821/nix-config/commit/48db9375ca66548d2d49e7cc82e000db0a829ccb)) - MRDGH2821
+- **(services)** add jellyfin - ([d5f3955](https://github.com/MRDGH2821/nix-config/commit/d5f3955fc0bdf933384d637618e3f60e0bd5529b)) - MRDGH2821
+- **(services)** add omniroute service - ([855e9b9](https://github.com/MRDGH2821/nix-config/commit/855e9b9060bc1b78395ba3b1a96dcaf870a64482)) - MRDGH2821
+- **(services)** add searxng - ([7a4c415](https://github.com/MRDGH2821/nix-config/commit/7a4c4154aaad4c9d0d10c3861c22473b7ac03a52)) - MRDGH2821
+- **(services)** mount tailscale into omniroute container - ([7672327](https://github.com/MRDGH2821/nix-config/commit/76723276d334d5bf071adf9de4215e90d1246cd5)) - MRDGH2821
+- **(services)** update container tag - ([a641230](https://github.com/MRDGH2821/nix-config/commit/a641230e6a600902b58df68a69a2d57a1cf11d70)) - MRDGH2821
+- **(services)** add forgejo runner - ([4f144c7](https://github.com/MRDGH2821/nix-config/commit/4f144c7e1fa8870b6c2afee69c0fe77ef2ffe4bd)) - MRDGH2821
+- **(services)** configure forgejo runner - ([9a8b5c0](https://github.com/MRDGH2821/nix-config/commit/9a8b5c02922fd96d79cf5eeedbd6a6a6d160c657)) - MRDGH2821
+- **(services)** configure gitlab-runner with docker executor - ([b1a721c](https://github.com/MRDGH2821/nix-config/commit/b1a721c00850b50243dac465f6bc3565b7044791)) - MRDGH2821
+- **(services)** rebuild forgejo-runner as a declarative module using pkgs.formats.yaml and LoadCredential - ([ca742aa](https://github.com/MRDGH2821/nix-config/commit/ca742aa4ef4792a6d930c110020af37a4717932c)) - MRDGH2821
+- **(services)** increase gitlab runner concurrency - ([f31d064](https://github.com/MRDGH2821/nix-config/commit/f31d06420f13d55ceba334b41b77a6bdde704947)) - MRDGH2821
+- **(services)** add homelab backup scripts - ([011a3e2](https://github.com/MRDGH2821/nix-config/commit/011a3e21409ba3703862eb91a80ecf116f1f428a)) - MRDGH2821
+- **(shell)** :wrench: add zsh customizations - ([f1486ff](https://github.com/MRDGH2821/nix-config/commit/f1486ff818857d39388a30a067f75766f5b1f38c)) - MRDGH2821
+- **(shell)** :hammer: add prompt init script - ([bee90a5](https://github.com/MRDGH2821/nix-config/commit/bee90a5169f434eff243bd1439f78d2193b14654)) - MRDGH2821
+- **(shell)** :wrench: mirror zsh config from my dotfiles - ([216102b](https://github.com/MRDGH2821/nix-config/commit/216102b989b857b456ff9467dee47caf3899eef3)) - MRDGH2821
+- **(shell)** :hammer: add zimfw shell config - ([d141791](https://github.com/MRDGH2821/nix-config/commit/d141791abf566a20260d680d6f28643086a7daa9)) - MRDGH2821
+- **(shell)** move zsh stack to Home Manager with oh-my-zsh - ([b026dac](https://github.com/MRDGH2821/nix-config/commit/b026dac47f971303d10713c9138233a645901133)) - MRDGH2821
+- **(shell)** port chezmoi shell env, functions and aliases to Home Manager - ([c9621fd](https://github.com/MRDGH2821/nix-config/commit/c9621fd16f9465e9d966ac12ed2a8782681bd677)) - MRDGH2821
+- **(variables)** :wrench: add persistant storage option - ([9ab887f](https://github.com/MRDGH2821/nix-config/commit/9ab887f95b4f10167a9c263e0baeda4d043a94e5)) - MRDGH2821
+- **(variables)** :wrench: add username option - ([36cae12](https://github.com/MRDGH2821/nix-config/commit/36cae12d810a56fe399a3bc5d872ea18023e82ef)) - MRDGH2821
+- **(vscode)** :wrench: change options to be shell agnostic - ([3f5fed6](https://github.com/MRDGH2821/nix-config/commit/3f5fed6bf3a9b4a46890c95c80c4b088d636aa87)) - MRDGH2821
+- **(vscode)** :wrench: refactor args & add root path arg to compose2nix - ([bc93db3](https://github.com/MRDGH2821/nix-config/commit/bc93db381a951277959db84e9f0cc9b12101380a)) - MRDGH2821
+- **(zed)** port chezmoi Zed settings/keymap/tasks to programs.zed-editor - ([3ddc4a0](https://github.com/MRDGH2821/nix-config/commit/3ddc4a08d7d08af1ad078d9fc685f83130ffd209)) - MRDGH2821
+- :memo: add readme - ([fe54f66](https://github.com/MRDGH2821/nix-config/commit/fe54f66c93fe6a44287d7c47b4bc8c3c33b19a40)) - MRDGH2821
+- :wrench: add minimal nix os config - ([f4b1ba1](https://github.com/MRDGH2821/nix-config/commit/f4b1ba142ebb305802ebc18f01c920592f264688)) - MRDGH2821
+- :hammer: add config & nixos-anywhere script runner - ([88eb681](https://github.com/MRDGH2821/nix-config/commit/88eb6815091bd263950d8420fdf29a31d51f7aec)) - MRDGH2821
+- :wrench: add config generated by numtide blueprint - ([118727f](https://github.com/MRDGH2821/nix-config/commit/118727f22a3e9eb65374e9fd24e1ba26355cd84f)) - MRDGH2821
+- :fire: remove dev shell config - ([74ebae4](https://github.com/MRDGH2821/nix-config/commit/74ebae441898a0e81e7f67af25aed76cac9ed767)) - MRDGH2821
+- :truck: rename file & add nano package - ([f95a27a](https://github.com/MRDGH2821/nix-config/commit/f95a27a25dbd04fda59b06277be17db7ef57d3d4)) - MRDGH2821
+- :wrench: add systems attribute - ([0931909](https://github.com/MRDGH2821/nix-config/commit/0931909c7d52f3654aeffbbae7f698ee433b5085)) - MRDGH2821
+- :wrench: ensure openssh is installed - ([bd49121](https://github.com/MRDGH2821/nix-config/commit/bd491212e0c9aae398ebc803e3d55b4d9d9c9686)) - MRDGH2821
+- :wrench: add user config in vars - ([1e598c6](https://github.com/MRDGH2821/nix-config/commit/1e598c67096f6aed024a2c71ea577455338fa96e)) - MRDGH2821
+- :hammer: add nixos rebuild command - ([9db3d2e](https://github.com/MRDGH2821/nix-config/commit/9db3d2e18dc968d5106d0e24e5074b5009b83b6b)) - MRDGH2821
+- migrate to nixos-generate-config for hardware config - ([d6a98c7](https://github.com/MRDGH2821/nix-config/commit/d6a98c76203aac6a07a33550e097a0c203922c26)) - MRDGH2821
+- :fire: remove blueprint - ([e2e78c9](https://github.com/MRDGH2821/nix-config/commit/e2e78c963b1076047d79541b774c920c63022d51)) - MRDGH2821
+- :wrench: change user needed to rebuild - ([2a6d57d](https://github.com/MRDGH2821/nix-config/commit/2a6d57daf8ee2cf3b7f8c1f7747a251b2ac631fe)) - MRDGH2821
+- :hammer: add conditional to run with sudo if on localhost - ([74cffa7](https://github.com/MRDGH2821/nix-config/commit/74cffa7ca8994c986ef482252c049a5cffa7f487)) - MRDGH2821
+- :wrench: add nil in workspace flake - ([ecb3c1e](https://github.com/MRDGH2821/nix-config/commit/ecb3c1ecca71dc2536f3b55fff3dbbb4216cd195)) - MRDGH2821
+- :hammer: add nix store permission fixing script - ([e696da6](https://github.com/MRDGH2821/nix-config/commit/e696da60166a5dccf7248d67d90a3506561968e0)) - MRDGH2821
+- :sparkles: add auto importer nix module - ([42e6320](https://github.com/MRDGH2821/nix-config/commit/42e63207a61b590725d6b0ba397409fdec7dd64d)) - MRDGH2821
+- :hammer: update exported env variables - ([86995ad](https://github.com/MRDGH2821/nix-config/commit/86995ad05021abde162633d5c4dc07c39c98a88f)) - MRDGH2821
+- :wrench: convert into proper flake unit - ([cb0e5d1](https://github.com/MRDGH2821/nix-config/commit/cb0e5d1185d0dd2bc8be99800a89dc4a92131f40)) - MRDGH2821
+- add git-agecrypt filter for secrets directory - ([14c5078](https://github.com/MRDGH2821/nix-config/commit/14c507802944ce0f3fbe3b0407e534c06ea92339)) - MRDGH2821
+- add initial cog configuration file with git hooks and settings - ([a105f03](https://github.com/MRDGH2821/nix-config/commit/a105f03e2212bc7d7a963384a688e164cacdcdac)) - MRDGH2821
+- add git-agecrypt configuration and test file - ([2084d40](https://github.com/MRDGH2821/nix-config/commit/2084d40b1fadf681f6858bbd4c1d7a8269596674)) - MRDGH2821
+- :wrench: allow login using u2f - ([92530b3](https://github.com/MRDGH2821/nix-config/commit/92530b3eee701935c6a980c65426be12f29ac6c7)) - MRDGH2821
+- migrate to nginx - ([cc5dce1](https://github.com/MRDGH2821/nix-config/commit/cc5dce1e8ebc4d288a689ba20da74fb05d39c06d)) - MRDGH2821
+- :sparkles: add function which throws error on empty value & rename file - ([97543e4](https://github.com/MRDGH2821/nix-config/commit/97543e45ea7de38e71992b7acb6aadf0631358bf)) - MRDGH2821
+- :wrench: add auto-import functionality for container services - ([7211533](https://github.com/MRDGH2821/nix-config/commit/72115339bad51714dfc45d4e67b464021cd9a54b)) - MRDGH2821
+- :sparkles: build locally then deploy remotely - ([76cd698](https://github.com/MRDGH2821/nix-config/commit/76cd698126bd5f30fb62cdc2d6e5be0bbdd3cd7b)) - MRDGH2821
+- :wrench: add more services in dashboard - ([16cec5b](https://github.com/MRDGH2821/nix-config/commit/16cec5b205f4bfa5dc46d5ee84b6804314db03b6)) - MRDGH2821
+- add openclaw and homemanager config - ([c4d83f9](https://github.com/MRDGH2821/nix-config/commit/c4d83f9c451b1802419500274da8c9e5c82240f6)) - MRDGH2821
+- add cachix - ([f928ddb](https://github.com/MRDGH2821/nix-config/commit/f928ddb787aabc8068c9195d35af97fafef6a906)) - MRDGH2821
+- remove open webui - ([e4e83df](https://github.com/MRDGH2821/nix-config/commit/e4e83dfe293eddc8e16b5c0832a363769e103372)) - MRDGH2821
+- remove hermes workspace - ([c297244](https://github.com/MRDGH2821/nix-config/commit/c2972445c73b4d4037346aff50416ec9f039aefe)) - MRDGH2821
+- add home manager - ([d9f93a6](https://github.com/MRDGH2821/nix-config/commit/d9f93a60148805eae21fb02f84893f94290faef5)) - MRDGH2821
+- update flakes and add hyprland flake - ([6d9b439](https://github.com/MRDGH2821/nix-config/commit/6d9b4394246f0061977640296a505c5107f198b5)) - MRDGH2821
+- add hyprland plugins - ([e2e68c9](https://github.com/MRDGH2821/nix-config/commit/e2e68c98b9daec524e76ab5de0c0e91e39c541b7)) - MRDGH2821
+- add hyprnix - ([fe73c7a](https://github.com/MRDGH2821/nix-config/commit/fe73c7a8d53bd0aabb16ba0dff980840d8197c6b)) - MRDGH2821
+- use lxqt instead of hyprland - ([0eb6104](https://github.com/MRDGH2821/nix-config/commit/0eb6104e3405aa67e6ba4c9c4495a3ada77280b5)) - MRDGH2821
+- use plasma desktop - ([6aa0246](https://github.com/MRDGH2821/nix-config/commit/6aa0246ceb56563aa54ed8946f4469cb0ed46118)) - MRDGH2821
+- enable hardware graphics - ([282b2d4](https://github.com/MRDGH2821/nix-config/commit/282b2d43277249d6722bb5c391c30ee34d00e975)) - MRDGH2821
+- add folder mount - ([be58026](https://github.com/MRDGH2821/nix-config/commit/be580269d1f427f11fca13b8d917309fbaadd566)) - MRDGH2821
+- add user - ([292f817](https://github.com/MRDGH2821/nix-config/commit/292f817ef02a7325ba9793859a1fa8809af8de45)) - MRDGH2821
+
+### Miscellaneous Chores
+
+- **(bewcloud)** :fire: remove redundant quotes & volumes - ([4031a07](https://github.com/MRDGH2821/nix-config/commit/4031a07ab6d8b1dfbb5a03740033966751dff693)) - MRDGH2821
+- **(cog)** remove cog configuration file - ([8e63ee0](https://github.com/MRDGH2821/nix-config/commit/8e63ee0b04a43a50d9c85f578daf4b68a5c5effa)) - MRDGH2821
+- **(cog)** add cocogitto config - ([75f83aa](https://github.com/MRDGH2821/nix-config/commit/75f83aaa667917eff59a16be5dc847396d2089ad)) - MRDGH2821
+- **(cog)** update commit scopes - ([72ef721](https://github.com/MRDGH2821/nix-config/commit/72ef72154de9ce449774471bd99029b116d3083f)) - MRDGH2821
+- **(copier)** initialise template - ([0ab71cf](https://github.com/MRDGH2821/nix-config/commit/0ab71cf681cd15a2d42452b0a280db19f491efcb)) - MRDGH2821
+- **(copier)** add agents - ([70408bc](https://github.com/MRDGH2821/nix-config/commit/70408bc4056487bc308e0b48a717315bc364e51f)) - MRDGH2821
+- **(copier)** update template - ([d6df68f](https://github.com/MRDGH2821/nix-config/commit/d6df68f64883567faefcc176d1d0cda7e01307f1)) - MRDGH2821
+- **(copier)** update template - ([53fbfaf](https://github.com/MRDGH2821/nix-config/commit/53fbfafa8909f87f0e1723a474bdbd9c44a5d03a)) - MRDGH2821
+- **(copier)** update template - ([ed87501](https://github.com/MRDGH2821/nix-config/commit/ed87501b4def97ca4abcf20b2bc524fdd658591b)) - MRDGH2821
+- **(copier)** update template - ([540189b](https://github.com/MRDGH2821/nix-config/commit/540189b42e2ba5e302bc3379832a4bc95df93247)) - MRDGH2821
+- **(copier)** update template - ([e37b24c](https://github.com/MRDGH2821/nix-config/commit/e37b24c35d8cc8e2f599c68f9751b801f404a6c9)) - MRDGH2821
+- **(copier)** update template & more - ([bc05391](https://github.com/MRDGH2821/nix-config/commit/bc05391c92e75cbf50be007190c86967932eebcd)) - MRDGH2821
+- **(copier)** update template - ([23a7723](https://github.com/MRDGH2821/nix-config/commit/23a77233622ad9a9dcba4cd38854005b5ee21d24)) - MRDGH2821
+- **(copier)** update template - ([d0aa1fa](https://github.com/MRDGH2821/nix-config/commit/d0aa1fa2b59e1ee95b137fd155c211d13ed5f9e9)) - MRDGH2821
+- **(copier)** update template - ([5b5db77](https://github.com/MRDGH2821/nix-config/commit/5b5db77e31d16279c8a0841a33c31da74a1ce187)) - MRDGH2821
+- **(copier)** update template - ([c1a291d](https://github.com/MRDGH2821/nix-config/commit/c1a291d26d0b1fa2c09a088aa90f68634dfbad69)) - MRDGH2821
+- **(copier)** update repo - ([5afb099](https://github.com/MRDGH2821/nix-config/commit/5afb099c9f661d28f6f4136d06d04037c27afff1)) - MRDGH2821
+- **(copier)** update template - ([fb9791a](https://github.com/MRDGH2821/nix-config/commit/fb9791ab15adf3b1017c6ad0b5dbecbb6b360140)) - MRDGH2821
+- **(copier)** update template - ([955838b](https://github.com/MRDGH2821/nix-config/commit/955838b4189b78a91f3216424ccfb44e266e2667)) - MRDGH2821
+- **(copier)** update template - ([62fbac8](https://github.com/MRDGH2821/nix-config/commit/62fbac8406b386cd06f8b7ae47376bf457f03d42)) - MRDGH2821
+- **(copier)** update template - ([93f3f30](https://github.com/MRDGH2821/nix-config/commit/93f3f30b9aac8ec0f79a96d4151bd88e1087ae4d)) - MRDGH2821
+- **(copier)** update template - ([844e6ac](https://github.com/MRDGH2821/nix-config/commit/844e6acf4700c0a018d46d39b7def43aa04e8527)) - MRDGH2821
+- **(copier)** update template - ([f02345d](https://github.com/MRDGH2821/nix-config/commit/f02345d298ed065807cdcf388de5377bb6d0e84c)) - MRDGH2821
+- **(copier)** update template - ([6848d85](https://github.com/MRDGH2821/nix-config/commit/6848d853b19606b2562595673006e903765916a3)) - MRDGH2821
+- **(cspell)** :wrench: add words - ([c31bffe](https://github.com/MRDGH2821/nix-config/commit/c31bffeb17e229f5f36fc5a9120e3b6f4932b607)) - MRDGH2821
+- **(cspell)** :wrench: add words - ([87b7dce](https://github.com/MRDGH2821/nix-config/commit/87b7dce3ba7755e683e9c2207a92201b176a5ba5)) - MRDGH2821
+- **(cspell)** :wrench: add ignore paths & use git ignore - ([4b29813](https://github.com/MRDGH2821/nix-config/commit/4b29813e5ea92a3fda492f5cc1bae7608b89d944)) - MRDGH2821
+- **(cspell)** :wrench: add ignore paths & words - ([10a797f](https://github.com/MRDGH2821/nix-config/commit/10a797fb6ca936eb600b5838d4aa51d02c513d15)) - MRDGH2821
+- **(cspell)** :wrench: add words - ([1f071c9](https://github.com/MRDGH2821/nix-config/commit/1f071c9f5e697d84e312b8cc9b4dbc67b3f5f064)) - MRDGH2821
+- **(cspell)** :wrench: update word list - ([9f4d0f2](https://github.com/MRDGH2821/nix-config/commit/9f4d0f2496bfcbb7544997c8f906f8ef88b8ebce)) - MRDGH2821
+- **(cspell)** update ignore paths - ([573fcb1](https://github.com/MRDGH2821/nix-config/commit/573fcb166ecd98ff87c1c053f3b8f58154e3a19d)) - MRDGH2821
+- **(cspell)** update words - ([5154388](https://github.com/MRDGH2821/nix-config/commit/515438800811ca9be09e224442999d6541fc010f)) - MRDGH2821
+- **(cspell)** update words - ([d88d064](https://github.com/MRDGH2821/nix-config/commit/d88d064cd090c24c44fccf3a2b860655eadfd382)) - MRDGH2821
+- **(cspell)** update words - ([390b89d](https://github.com/MRDGH2821/nix-config/commit/390b89dbd6c429af4f8fe7fd3cc89cf03a457f08)) - MRDGH2821
+- **(cspell)** update word list - ([296229f](https://github.com/MRDGH2821/nix-config/commit/296229fc03378064c9cb3e10df0f40754271a607)) - MRDGH2821
+- **(cspell)** update word list - ([5386d31](https://github.com/MRDGH2821/nix-config/commit/5386d317556320d4d6109c1a002a830d2fd60a77)) - MRDGH2821
+- **(devshell)** :package: add deno package - ([1e6ec57](https://github.com/MRDGH2821/nix-config/commit/1e6ec572ec7e68c0ac4593ba36cb896c542dfcfb)) - MRDGH2821
+- **(devshell)** :fire: remove unused devshell config - ([8029dc4](https://github.com/MRDGH2821/nix-config/commit/8029dc4eb67205ac25fe299d44194ffd356bc004)) - MRDGH2821
+- **(devshell)** :fire: remove scalpel - ([d56550c](https://github.com/MRDGH2821/nix-config/commit/d56550c6e689c94d63c95a1eb373596ae33973d6)) - MRDGH2821
+- **(devshell)** :package: update package list - ([722308d](https://github.com/MRDGH2821/nix-config/commit/722308d55ddd1e54e20ed852fe48c58ce88239bd)) - MRDGH2821
+- **(devshell)** :wrench: update to newer syntax & remove unneeded packages - ([4172fa8](https://github.com/MRDGH2821/nix-config/commit/4172fa8b1fed803118cc6a67e3e8ea978a5c4918)) - MRDGH2821
+- **(devshell)** add nil - ([f1a61f0](https://github.com/MRDGH2821/nix-config/commit/f1a61f0b23c8cf2828a3c078fb0a07f9a94d75fe)) - MRDGH2821
+- **(devshell)** add shell hooks - ([d3778ce](https://github.com/MRDGH2821/nix-config/commit/d3778ce7b76a860a1e7f23915a72e7508fa4eee9)) - MRDGH2821
+- **(devshell)** remove rtk init scripts - ([0c493e1](https://github.com/MRDGH2821/nix-config/commit/0c493e10605023b4f6a8a1a4c4c632a1dfd8c01f)) - MRDGH2821
+- **(features)** :fire: remove redundant config - ([e306072](https://github.com/MRDGH2821/nix-config/commit/e3060729eea449958c1b1b57b73ab4afc5e8889e)) - MRDGH2821
+- **(features)** enable docker socket compatibility - ([22c02bd](https://github.com/MRDGH2821/nix-config/commit/22c02bddef7fe983edd984574497be8f295c3496)) - MRDGH2821
+- **(flake)** remove openclaw and home-manager integration - ([9e9377b](https://github.com/MRDGH2821/nix-config/commit/9e9377bba7c2181ee187353d2627880694f6f684)) - MRDGH2821
+- **(flake)** update lock file - ([21ea4f4](https://github.com/MRDGH2821/nix-config/commit/21ea4f460b4cf711cc102cd0f022c4a7ca03a957)) - MRDGH2821
+- **(flake)** remove deno & update lock - ([fcbbac1](https://github.com/MRDGH2821/nix-config/commit/fcbbac1b73ca64e1c7f4ef6a37a2373171615dfd)) - MRDGH2821
+- **(flake)** complete numtide blueprint migration and pass validation - ([02e1bd9](https://github.com/MRDGH2821/nix-config/commit/02e1bd9d02c9bc5680a24c7b27027422ba69ed6e)) - MRDGH2821
+- **(git)** merge PR 18 review fix into issue 8-herdr-directory - ([f9a49d6](https://github.com/MRDGH2821/nix-config/commit/f9a49d649b55819977b38b4b938844b6a83fea8c)) - MRDGH2821
+- **(hermes-agent)** change default model - ([8f47a2c](https://github.com/MRDGH2821/nix-config/commit/8f47a2c6ef4a1e4cca4d397b51938eda7febc16b)) - MRDGH2821
+- **(hermes-agent)** change model - ([962f200](https://github.com/MRDGH2821/nix-config/commit/962f200c0b07d8e429e5a77804c0b328181bc6b9)) - MRDGH2821
+- **(hermes-agent)** add systemd units - ([0b30a51](https://github.com/MRDGH2821/nix-config/commit/0b30a51073070ad36c1f0c8f9b90010c5281969b)) - MRDGH2821
+- **(hermes-agent)** change default model - ([9156a29](https://github.com/MRDGH2821/nix-config/commit/9156a29c486299dcef9188900867493298d4ba9a)) - MRDGH2821
+- **(homepage-dashboard)** update syntax - ([2f5e78c](https://github.com/MRDGH2821/nix-config/commit/2f5e78c9108b967ada8cf2a51abf28df6fde7a63)) - MRDGH2821
+- **(hosts/home-lab)** :bulb: add config modules as comments & generate flake.lock - ([95c3cdf](https://github.com/MRDGH2821/nix-config/commit/95c3cdf4dd5c990e60832c9bd52b853f1c1599d5)) - MRDGH2821
+- **(hosts/home-lab)** update flake.lock - ([1092680](https://github.com/MRDGH2821/nix-config/commit/109268003651f669db5a5c4efa043c166b8d8a11)) - MRDGH2821
+- **(hosts/home-lab)** :wrench: remove wireless config - ([6b0efe5](https://github.com/MRDGH2821/nix-config/commit/6b0efe50f6686f73ae843c03d4a2cab59c6c7a3a)) - MRDGH2821
+- **(hosts/test-bed)** :fire: remove test-bed config - ([5d34a45](https://github.com/MRDGH2821/nix-config/commit/5d34a45f1f5f6dacebfee109b883d6b4c051087f)) - MRDGH2821
+- **(justfile)** update section header for clarity on server commands - ([7717287](https://github.com/MRDGH2821/nix-config/commit/771728796465837318c55dd0100852c1e575c198)) - MRDGH2821
+- **(nix)** add checks - ([9cf0bae](https://github.com/MRDGH2821/nix-config/commit/9cf0baee286c6910450a65806dad2ea6a4fc9305)) - MRDGH2821
+- **(pre-commit)** update scopes - ([9dd9613](https://github.com/MRDGH2821/nix-config/commit/9dd961336132e60046086c4d78380addf1f344a7)) - MRDGH2821
+- **(revert)** "refactor(vscode): :wrench: output file as default.nix" - ([7a0e592](https://github.com/MRDGH2821/nix-config/commit/7a0e592f728e15b6e6992fe12e546c1a08c5413b)) - MRDGH2821
+- **(revert)** "feat: :sparkles: build locally then deploy remotely" - ([1332299](https://github.com/MRDGH2821/nix-config/commit/13322998b8e6d33f2d06d1c51811e163a1596e0a)) - MRDGH2821
+- **(scalpel)** :fire: remove scalpel related code - ([6b9a944](https://github.com/MRDGH2821/nix-config/commit/6b9a944523ec2d3293130f2a226f912ef9c271cd)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: remove pangolin secret - ([8f27f0b](https://github.com/MRDGH2821/nix-config/commit/8f27f0b5eb76a40a2c6a51de88747407d95c1452)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: add both paths for agecrypt - ([4cdc188](https://github.com/MRDGH2821/nix-config/commit/4cdc18811ff6ef8352f3b9015cf3f84a235edfdd)) - MRDGH2821
+- **(secrets)** :fire: delete secret - ([73326bb](https://github.com/MRDGH2821/nix-config/commit/73326bbec436e1a3b8e0892728858222287f0347)) - MRDGH2821
+- **(secrets)** add new test file for agecrypt - ([4628d88](https://github.com/MRDGH2821/nix-config/commit/4628d88cd5121f3bc26e1fb7e2d941af07d4a3f6)) - MRDGH2821
+- **(secrets)** add initial content to agecrypt test file - ([d6eac5d](https://github.com/MRDGH2821/nix-config/commit/d6eac5d5e6af731e72dfba587d7b792fc68ac435)) - MRDGH2821
+- **(secrets)** :fire: delete unneeded secrets - ([5c50e6d](https://github.com/MRDGH2821/nix-config/commit/5c50e6df313a529d20ce738874ec62abc1574d6a)) - MRDGH2821
+- **(secrets)** :fire: remove old secrets - ([18351bf](https://github.com/MRDGH2821/nix-config/commit/18351bf9c89cf0d2871a2056002d0495544e4149)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: update bewcloud secrets - ([f48b580](https://github.com/MRDGH2821/nix-config/commit/f48b580db249ee26df3dd79aaa98e04dadd01f31)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: update dummy password - ([3741787](https://github.com/MRDGH2821/nix-config/commit/37417872a38610387abed932d66419f1f0b65441)) - MRDGH2821
+- **(secrets)** :fire: remove unnecessary comment - ([be92a86](https://github.com/MRDGH2821/nix-config/commit/be92a8641d4118026c034012d63fbde376a6a96f)) - MRDGH2821
+- **(secrets)** :fire: remove portnote secrets - ([1f49d42](https://github.com/MRDGH2821/nix-config/commit/1f49d425acd2afa2d33a5082ffb87fb423ab2438)) - MRDGH2821
+- **(secrets)** update file - ([31b4f75](https://github.com/MRDGH2821/nix-config/commit/31b4f75d833e107ebbf52d7370a9de2123a80588)) - MRDGH2821
+- **(secrets)** update recovery key - ([693b2a5](https://github.com/MRDGH2821/nix-config/commit/693b2a530ed816819d9dc24be1e17497425dffaf)) - MRDGH2821
+- **(secrets)** configure oauth for open webui - ([f33ad2e](https://github.com/MRDGH2821/nix-config/commit/f33ad2e410b7294ec69141de76d86255d1d549ee)) - MRDGH2821
+- **(secrets)** add nvidia api key - ([11f5fb9](https://github.com/MRDGH2821/nix-config/commit/11f5fb9f1a7ba2b4eda1a34ba7f17e796e65005e)) - MRDGH2821
+- **(secrets)** clean up old stuff - ([b2e4be6](https://github.com/MRDGH2821/nix-config/commit/b2e4be6692f42bb2fcbde540d21c9b52daa234cf)) - MRDGH2821
+- **(secrets)** update forgejo token - ([6feaf76](https://github.com/MRDGH2821/nix-config/commit/6feaf766802845d91f2454135f0e84cb1bc9e619)) - MRDGH2821
+- **(service)** clean up honcho service - ([fb604e8](https://github.com/MRDGH2821/nix-config/commit/fb604e8b79458a9e5bba680b9e99ae985f628c2a)) - MRDGH2821
+- **(service)** consolidate shared secrets - ([e5fc800](https://github.com/MRDGH2821/nix-config/commit/e5fc800a7ed29a5d0bc8bb80de61fb05c525eb62)) - MRDGH2821
+- **(service)** update config - ([9d779d7](https://github.com/MRDGH2821/nix-config/commit/9d779d74ecbd4eed0c243d67defb857ad185a512)) - MRDGH2821
+- **(services)** :fire: remove redundant flakes - ([54f9d1f](https://github.com/MRDGH2821/nix-config/commit/54f9d1fbbd408d8780f845df2a842bc9e51e66a6)) - MRDGH2821
+- **(services)** :fire: remove unused config & disable caddy - ([c85c1e4](https://github.com/MRDGH2821/nix-config/commit/c85c1e447d0b935800462213ebf654c09d405a59)) - MRDGH2821
+- **(services)** :wrench: disable homer - ([28582ec](https://github.com/MRDGH2821/nix-config/commit/28582ecf88f5f27ba1d0cf99ff40e523e808e264)) - MRDGH2821
+- **(services)** :fire: disable radicale from bewcloud - ([49d71bd](https://github.com/MRDGH2821/nix-config/commit/49d71bd8c1601ed4552465cc1999fa7a59609f7a)) - MRDGH2821
+- **(services)** :wrench: add auto importer for bewcloud - ([18e0cba](https://github.com/MRDGH2821/nix-config/commit/18e0cba00d53c33fde528f0d2313fc4ca2196407)) - MRDGH2821
+- **(services)** :fire: remove unnecessary code - ([1915696](https://github.com/MRDGH2821/nix-config/commit/19156963ffb4ea766bdfcfe8f8d521f480f47580)) - MRDGH2821
+- **(services)** :fire: remove radicale config - ([2de20ad](https://github.com/MRDGH2821/nix-config/commit/2de20ad11f0140437376e0300c47aac2336f5067)) - MRDGH2821
+- **(services)** :wrench: disable peertube - ([9014958](https://github.com/MRDGH2821/nix-config/commit/90149589dd709cde4480ab90acb04f07922988e2)) - MRDGH2821
+- **(services)** delete ocis - ([7153c45](https://github.com/MRDGH2821/nix-config/commit/7153c4587c2f5b6188c48c432a2b5b83b3bf18fd)) - MRDGH2821
+- **(services)** delete bewcloud & radicale - ([05eda2a](https://github.com/MRDGH2821/nix-config/commit/05eda2ae4e90815b843175a7fb7317fd2594b5bb)) - MRDGH2821
+- **(services)** disable peertube & navidrome - ([dc48f00](https://github.com/MRDGH2821/nix-config/commit/dc48f0095b907b75b93c9f113368e95cb7566792)) - MRDGH2821
+- **(services)** remove unneeded services - ([182da5f](https://github.com/MRDGH2821/nix-config/commit/182da5fc4860a94272c4c0b4327610bf85752dab)) - MRDGH2821
+- **(services)** update versions - ([2f7d184](https://github.com/MRDGH2821/nix-config/commit/2f7d1843c33a686a62b5864b73a2d9de391680ab)) - MRDGH2821
+- **(services)** unmount tailscale - ([1f7e2cb](https://github.com/MRDGH2821/nix-config/commit/1f7e2cbf94237119d721b68c267ca64c545a24e6)) - MRDGH2821
+- **(services)** update omniroute - ([39e4496](https://github.com/MRDGH2821/nix-config/commit/39e4496c0cf530fb4f65db3f84ec6406f6ccf718)) - MRDGH2821
+- **(services)** set real forgejo-runner UUID - ([4ff43f2](https://github.com/MRDGH2821/nix-config/commit/4ff43f2a10894a4c10d598725e2937f9f4fe6466)) - MRDGH2821
+- **(services)** merge forgejo-runner declarative module - ([6d11dce](https://github.com/MRDGH2821/nix-config/commit/6d11dced58768e64386f0e64a2d5b30a940bba9f)) - MRDGH2821
+- **(services)** delete unneeded services - ([95bebdc](https://github.com/MRDGH2821/nix-config/commit/95bebdc3f35158b1cd6bb1cfc6db73c662c5405e)) - MRDGH2821
+- **(treefmt)** add nixpkgs-fmt - ([eca3b21](https://github.com/MRDGH2821/nix-config/commit/eca3b21b03ac8b2c70e8e4b9d586f497f9f00b4d)) - MRDGH2821
+- **(treefmt)** update config - ([93a6277](https://github.com/MRDGH2821/nix-config/commit/93a627711b152bdac5c5396b7365650f6d359b63)) - MRDGH2821
+- **(treefmt)** update config - ([2775a09](https://github.com/MRDGH2821/nix-config/commit/2775a09604253fb575ec41c87c823650115232d7)) - MRDGH2821
+- **(treefmt)** add exclusions - ([6181f0e](https://github.com/MRDGH2821/nix-config/commit/6181f0e232fb775792d418f0cc433dbedf366859)) - MRDGH2821
+- **(treefmt)** fix typo - ([9ea77b2](https://github.com/MRDGH2821/nix-config/commit/9ea77b2ca2c202908e9a8ed8e9a173da8cbf28d1)) - MRDGH2821
+- **(vscode)** :wrench: add settings - ([ccd1971](https://github.com/MRDGH2821/nix-config/commit/ccd19712f870ae2e348036a8506f7348d2df130f)) - MRDGH2821
+- **(vscode)** :wrench: enable language server - ([25a33bf](https://github.com/MRDGH2821/nix-config/commit/25a33bf79921c0c189863021da9f08ceed8525e4)) - MRDGH2821
+- **(vscode)** :wrench: use nil lsp - ([7909707](https://github.com/MRDGH2821/nix-config/commit/790970770583dc3e87482f2af0f6d0198c92d7ea)) - MRDGH2821
+- **(vscode)** :wrench: add commit scopes - ([c6d16b4](https://github.com/MRDGH2821/nix-config/commit/c6d16b4b6c462ca16a7309b3dbed944ec57ffec9)) - MRDGH2821
+- **(vscode)** :wrench: add commit scopes - ([e8f1d99](https://github.com/MRDGH2821/nix-config/commit/e8f1d992672bd49bb84f999940cecb407700b76c)) - MRDGH2821
+- **(vscode)** :wrench: add new commit scope - ([8760c63](https://github.com/MRDGH2821/nix-config/commit/8760c633e0c30de99403351d4a0de50df946186a)) - MRDGH2821
+- **(vscode)** :wrench: update commit scopes - ([a7d5760](https://github.com/MRDGH2821/nix-config/commit/a7d5760f2df6539585cc5c43e4a58d350cf59211)) - MRDGH2821
+- **(vscode)** :wrench: add new commit scope - ([57ca309](https://github.com/MRDGH2821/nix-config/commit/57ca309482a904e097da2c0c0a996aecda6a0840)) - MRDGH2821
+- **(vscode)** :wrench: add vscode task to generate compose.nix file - ([3ba034f](https://github.com/MRDGH2821/nix-config/commit/3ba034fe80891f39c857efde83e90c1bac60880e)) - MRDGH2821
+- **(vscode)** add 'secrets' scope to conventional commits - ([2ad7f26](https://github.com/MRDGH2821/nix-config/commit/2ad7f26c7efcb929817f094399ba446d7f656148)) - MRDGH2821
+- **(vscode)** add YAML schema for SOPS configuration - ([15fe11b](https://github.com/MRDGH2821/nix-config/commit/15fe11ba9329deff9b7403130383bd8ab9f77550)) - MRDGH2821
+- **(vscode)** :wrench: add new commit scope - ([0eaca7f](https://github.com/MRDGH2821/nix-config/commit/0eaca7feaea466cce8dcd9c258531955d06b4e19)) - MRDGH2821
+- **(vscode)** :wrench: add ssh terminal config - ([01fde37](https://github.com/MRDGH2821/nix-config/commit/01fde37dc1b21b026b945025b7889753a3a67c5b)) - MRDGH2821
+- **(vscode)** update terminal command to include git pull - ([0033a6d](https://github.com/MRDGH2821/nix-config/commit/0033a6d38b4e3bbde93c50e9da71fca69c08c09b)) - MRDGH2821
+- **(vscode)** :gear: add git diagnostics and commit settings - ([cc77822](https://github.com/MRDGH2821/nix-config/commit/cc778223b1b30b26d158ab40b78e9294fdfd52dd)) - MRDGH2821
+- **(vscode)** :wrench: add task to open SOPS excrypted file - ([11bcb93](https://github.com/MRDGH2821/nix-config/commit/11bcb93ec639d4ec3bd7e150a75844c5c73ae12a)) - MRDGH2821
+- **(vscode)** :wrench: add nix related tasks - ([a82a4b8](https://github.com/MRDGH2821/nix-config/commit/a82a4b804397e5ba2a1a409c44d23dedaa0e40e7)) - MRDGH2821
+- **(vscode)** :wrench: update coomit scopes - ([8de7d7a](https://github.com/MRDGH2821/nix-config/commit/8de7d7a1f503c2052ddfb9bacf02cbd5f84645e4)) - MRDGH2821
+- **(vscode)** :wrench: remove formatOnSave setting - ([2ad3a3b](https://github.com/MRDGH2821/nix-config/commit/2ad3a3be2729f837e3047ea825a249bfee783436)) - MRDGH2821
+- **(vscode)** add Just language server configuration - ([d20b1cc](https://github.com/MRDGH2821/nix-config/commit/d20b1cc60f98a95243a621dcf287432e6a7203f8)) - MRDGH2821
+- **(vscode)** add task to format Just file using just-formatter - ([6ece0b9](https://github.com/MRDGH2821/nix-config/commit/6ece0b94a7994a73a2cb24aa95ae6d6e6778db65)) - MRDGH2821
+- **(vscode)** :wrench: add extension recommendations - ([b695d7d](https://github.com/MRDGH2821/nix-config/commit/b695d7d3dd1802b459c0756a95a9a51243591bdb)) - MRDGH2821
+- **(zed)** add settings & tasks - ([8d74ae2](https://github.com/MRDGH2821/nix-config/commit/8d74ae22ae4da91249c68d48f8ba22b5092b71d2)) - MRDGH2821
+- **(zed)** add formatter settings - ([5b0749a](https://github.com/MRDGH2821/nix-config/commit/5b0749ae63ae29c3c471c99fa2c5d528a1c65a94)) - MRDGH2821
+- **(zed)** add task to update flake.lock - ([23bde6d](https://github.com/MRDGH2821/nix-config/commit/23bde6d24fe025633b411050d9e6c59107b22392)) - MRDGH2821
+- **(zed)** simplify Nix formatter config - ([0e630a9](https://github.com/MRDGH2821/nix-config/commit/0e630a9e2f3c354d2291cfe69acede11135c0cf0)) - MRDGH2821
+- **(zed)** update settings - ([330f834](https://github.com/MRDGH2821/nix-config/commit/330f8348750637415e3c56c07b5553282eb9da8b)) - MRDGH2821
+- **(zed)** add task to regenerate all compose files - ([c71d0fc](https://github.com/MRDGH2821/nix-config/commit/c71d0fc80892e547ce21bbc0de8b7202eecaf6a3)) - MRDGH2821
+- **(zed)** apply shellcheck and shfmt fixes to c2n.sh - ([e13d10b](https://github.com/MRDGH2821/nix-config/commit/e13d10bc4084e4fe9e6fe81a65fa6493aefe7289)) - MRDGH2821
+- **(zed)** remove unnecessary regression script - ([c52e672](https://github.com/MRDGH2821/nix-config/commit/c52e6721be186036f567580aca2738c7b5477a45)) - MRDGH2821
+- initial commit - ([a6c3796](https://github.com/MRDGH2821/nix-config/commit/a6c3796adeff891199ac0b79738e80fb9a63168b)) - MRDGH2821
+- :wrench: update state version - ([14a20c2](https://github.com/MRDGH2821/nix-config/commit/14a20c2edf914950ac601250e75099d7bd37f2e0)) - MRDGH2821
+- :wrench: add packages & config - ([ee1077e](https://github.com/MRDGH2821/nix-config/commit/ee1077e97d1ef334192cd49a53f1360899a80991)) - MRDGH2821
+- :wrench: regenerate config - ([7b1d5ff](https://github.com/MRDGH2821/nix-config/commit/7b1d5ffda670825c606bd7955a8cb7063c3048bd)) - MRDGH2821
+- :fire: remove uneeded files - ([6c7ea15](https://github.com/MRDGH2821/nix-config/commit/6c7ea15105204d3c8fe02d852a72f2790eddae1d)) - MRDGH2821
+- :fire: remove authorized ssh key from root - ([d1b54d6](https://github.com/MRDGH2821/nix-config/commit/d1b54d6dc7f0af4ba1e8876f88e7ad0b56a91337)) - MRDGH2821
+- :wrench: update flake.lock - ([d370ff4](https://github.com/MRDGH2821/nix-config/commit/d370ff4604335b4e050ca6519486583046061e22)) - MRDGH2821
+- :wrench: add outputs - ([18efce8](https://github.com/MRDGH2821/nix-config/commit/18efce847a9ae74edb883dba213b402ad599e5db)) - MRDGH2821
+- update flake.lock - ([864cd5f](https://github.com/MRDGH2821/nix-config/commit/864cd5f6e9356ac6e2ebbdebf31fdcde819b8f7e)) - MRDGH2821
+- :closed_lock_with_key: add sample secret - ([d571e30](https://github.com/MRDGH2821/nix-config/commit/d571e3078f81188a187210e5d70aaaaad330a2df)) - MRDGH2821
+- :see_no_evil: ignore .env files - ([0c15b8f](https://github.com/MRDGH2821/nix-config/commit/0c15b8f28f50710890b92133e3eed39c1af16bc2)) - MRDGH2821
+- add top level name - ([e329c8c](https://github.com/MRDGH2821/nix-config/commit/e329c8c1398904348b88db766bc626b33ba92b8b)) - MRDGH2821
+- :see_no_evil: ignore pangolin dirs - ([2e7d6f0](https://github.com/MRDGH2821/nix-config/commit/2e7d6f0307d45f4618c786df4d2b128354f6230d)) - MRDGH2821
+- update flake.lock files - ([66fedae](https://github.com/MRDGH2821/nix-config/commit/66fedae8f6fe772c671e6b8fa6ef00982e17e121)) - MRDGH2821
+- :wrench: add editorconfig - ([c01d22d](https://github.com/MRDGH2821/nix-config/commit/c01d22df6a8674d76f7f91311cd8590489164797)) - MRDGH2821
+- :see_no_evil: ignore debug folder - ([c5f108b](https://github.com/MRDGH2821/nix-config/commit/c5f108b47afd4f70d58ddd499863b2e8b18a4eb9)) - MRDGH2821
+- :see_no_evil: ignore mcfly generated file - ([b7285a1](https://github.com/MRDGH2821/nix-config/commit/b7285a1eb1e878279d7ede2b812fde3ab8495347)) - MRDGH2821
+- remove lock and unlock scripts from configuration - ([1767852](https://github.com/MRDGH2821/nix-config/commit/176785272167539d796b57ea47d6b1e46fc26b07)) - MRDGH2821
+- add relative path for git-agecrypt filter - ([5f0a58d](https://github.com/MRDGH2821/nix-config/commit/5f0a58d1851297bfa1ff539b9920db10b110bf46)) - MRDGH2821
+- correct file path for git-agecrypt test configuration - ([23cb74a](https://github.com/MRDGH2821/nix-config/commit/23cb74a22d46cab6bf0769a17b64bafad8aad53f)) - MRDGH2821
+- add additional paths for secrets.nix configuration - ([ad2fbcf](https://github.com/MRDGH2821/nix-config/commit/ad2fbcf5e86cb249ccc45d2441d9edaaae8cf87d)) - MRDGH2821
+- :fire: remove redundant scripts - ([ff738c5](https://github.com/MRDGH2821/nix-config/commit/ff738c5756722e717eb43894d2f8e0b4cfad847b)) - MRDGH2821
+- :hammer: add git pull command before deployment - ([19e1f7d](https://github.com/MRDGH2821/nix-config/commit/19e1f7d2940fc08cff335c99ab35c68e1a44cf85)) - MRDGH2821
+- :hammer: add a workaround for direnv in vscode - ([2603910](https://github.com/MRDGH2821/nix-config/commit/2603910bffa243c9a96127be362daa1ae11ceef7)) - MRDGH2821
+- add prettier config - ([29ab8a7](https://github.com/MRDGH2821/nix-config/commit/29ab8a759d6badfae3f97fab2bf77d652717405c)) - MRDGH2821
+- update flake.lock - ([5ff40b3](https://github.com/MRDGH2821/nix-config/commit/5ff40b3592c6b50bf2d8a9714523957bcb928838)) - MRDGH2821
+- use nixos-rebuild instead - ([6cf5019](https://github.com/MRDGH2821/nix-config/commit/6cf5019598acdcc3b776d82003e6e0b3bdf1b900)) - MRDGH2821
+- revert "build(packages): use upstream authentik and update lock file" - ([d9c786c](https://github.com/MRDGH2821/nix-config/commit/d9c786c3e0959b1c3fa6dcec8d49326d2a269f7a)) - MRDGH2821
+- ignore devenv folder - ([8c16dab](https://github.com/MRDGH2821/nix-config/commit/8c16dab6c0d4976fe1d25d32a5eaa81e0aaeb5df)) - MRDGH2821
+- update flake.lock - ([1e3733a](https://github.com/MRDGH2821/nix-config/commit/1e3733af60fa13f9fd9c77719888b554e7a7c522)) - MRDGH2821
+- update package - ([f85f8cf](https://github.com/MRDGH2821/nix-config/commit/f85f8cf1029f92bbc7843fe51661edbebc7645c7)) - MRDGH2821
+- update flake.lock - ([77789f0](https://github.com/MRDGH2821/nix-config/commit/77789f0c1b61a2f03d1a05ed971bfcf63844a76a)) - MRDGH2821
+- update flake.lock - ([0c3447f](https://github.com/MRDGH2821/nix-config/commit/0c3447f8ef775730e2cea8bf387f8c7cca0ebd1e)) - MRDGH2821
+- add uv package - ([73d64a1](https://github.com/MRDGH2821/nix-config/commit/73d64a1d82169258f530e2b9da2fad943e9f01b7)) - MRDGH2821
+- remove overlay - ([64bec5e](https://github.com/MRDGH2821/nix-config/commit/64bec5e0decae3ff378d77a478b3a180e1862f04)) - MRDGH2821
+- add lazygit - ([9f6f8ed](https://github.com/MRDGH2821/nix-config/commit/9f6f8eda1da0363a2bbb82fb15a1ecb3ef848efc)) - MRDGH2821
+- delete vscode settings - ([0de3360](https://github.com/MRDGH2821/nix-config/commit/0de3360e16a766673f0e7297e32c76cb8f3402b3)) - MRDGH2821
+- add package.json - ([0323260](https://github.com/MRDGH2821/nix-config/commit/0323260cb9970e40d6263b4e02ffcc514d0603f2)) - MRDGH2821
+- ignore ggshield cache - ([1596e71](https://github.com/MRDGH2821/nix-config/commit/1596e71d6da1512e2c186167d4d46b4667eb6612)) - MRDGH2821
+- remove dashboard & matrix integration - ([ae38881](https://github.com/MRDGH2821/nix-config/commit/ae38881b49f2b3b30abec23b4da068c51193ddf3)) - MRDGH2821
+- delete hermes webui - ([2f8b8cb](https://github.com/MRDGH2821/nix-config/commit/2f8b8cbc9c045cba9f463f3d0b14e70512a7b8b2)) - MRDGH2821
+- add version tag in compose files - ([816b314](https://github.com/MRDGH2821/nix-config/commit/816b314c95e769eb96a8bec344f7c55c31b1176b)) - MRDGH2821
+- apply linter fixes - ([74392cb](https://github.com/MRDGH2821/nix-config/commit/74392cb54769f164605df955c52ca876fb98fe1c)) - MRDGH2821
+- disable forgejo runner - ([c883ec5](https://github.com/MRDGH2821/nix-config/commit/c883ec5e4cbf2b17811e4db3c845a13cc400f247)) - MRDGH2821
+- add cachix for hyperland - ([08f0ffc](https://github.com/MRDGH2821/nix-config/commit/08f0ffc23884ac3d56bcea947fac6efea9d16b24)) - MRDGH2821
+- remove just-formatter - ([24817cf](https://github.com/MRDGH2821/nix-config/commit/24817cf0a99b3a122bdd1fe9cb3f93a4238d3423)) - MRDGH2821
+- add some config - ([97ffce9](https://github.com/MRDGH2821/nix-config/commit/97ffce95f551bd21b1a9dcbbeb5384ebecc2621f)) - MRDGH2821
+- update repo - ([2626644](https://github.com/MRDGH2821/nix-config/commit/2626644bba0020cc36ab680abd8fe7b640fd308e)) - MRDGH2821
+- remove unneeded info - ([0dac0d7](https://github.com/MRDGH2821/nix-config/commit/0dac0d722c3ca2007675c4a3db94f40053f97fce)) - MRDGH2821
+- update repository - ([a13e4fc](https://github.com/MRDGH2821/nix-config/commit/a13e4fcb6c13ea3eb9ff940439b04d05c0e743d0)) - MRDGH2821
+- merge branch 'main' into desktop-env - ([7e79e67](https://github.com/MRDGH2821/nix-config/commit/7e79e673745f37e661c69032523a74deeaff3bb7)) - Mihir Rabade
+- merge pull request #2 from MRDGH2821/desktop-env - ([197c36c](https://github.com/MRDGH2821/nix-config/commit/197c36cdd9654a72f2ef5b5839f340652c7f4278)) - Mihir Rabade
+- update versions - ([a290e72](https://github.com/MRDGH2821/nix-config/commit/a290e727913a12f3087008105324d3f6b2c65325)) - MRDGH2821
+- add nixos mcp - ([e71d17b](https://github.com/MRDGH2821/nix-config/commit/e71d17bc370dd5cf678e31f91e3e518194ac749e)) - MRDGH2821
+- update repo - ([d068b7c](https://github.com/MRDGH2821/nix-config/commit/d068b7cabc833aa125c0bfe1bacf8137663a9399)) - MRDGH2821
+- add claude target - ([4480911](https://github.com/MRDGH2821/nix-config/commit/4480911636defc6710e1ba82f7b0d6f2301244a2)) - MRDGH2821
+- merge branch 'fix/hosts-home-lab-deploy-debug' - ([e2f4e9f](https://github.com/MRDGH2821/nix-config/commit/e2f4e9ff0c06d38e0a9f9817efe9c9f8921a6217)) - MRDGH2821
+- add gemini target - ([5e8e993](https://github.com/MRDGH2821/nix-config/commit/5e8e993d2feeb2ffef5ad74961722c52be23ac75)) - MRDGH2821
+- ignore skills dir - ([9dafe08](https://github.com/MRDGH2821/nix-config/commit/9dafe0857c37d4137492002c732622a37de635c0)) - MRDGH2821
+- make indent size 2 - ([7b93e8a](https://github.com/MRDGH2821/nix-config/commit/7b93e8a8546b8e678b651388c70034e351f8d046)) - MRDGH2821
+- update gitignore - ([2e6ed08](https://github.com/MRDGH2821/nix-config/commit/2e6ed08cd34cdb9b4a0a9fa418883792a54cd666)) - MRDGH2821
+- update apm lock file - ([7d58233](https://github.com/MRDGH2821/nix-config/commit/7d582333c9af0c3b52f443e5e30bfb792c690ef7)) - MRDGH2821
+- update repo - ([dbe170e](https://github.com/MRDGH2821/nix-config/commit/dbe170e41b0c5ebd011a8e1c658d0cc882584dce)) - MRDGH2821
+- ignore files - ([52b38f2](https://github.com/MRDGH2821/nix-config/commit/52b38f20436290d7e1c8afe5699bd8f4ef1892cd)) - MRDGH2821
+- attempt fixing stuff using ai - ([60ae263](https://github.com/MRDGH2821/nix-config/commit/60ae263c52bf5258d471efca701e07a8a7b5cde1)) - MRDGH2821
+- revert instrumentation done in nextcloud - ([7b440e7](https://github.com/MRDGH2821/nix-config/commit/7b440e700ec73dbaec47f16c04710a82a5c07724)) - MRDGH2821
+- merge refactor/blueprint-hm-phase2 into blueprint-simplify - ([299ad75](https://github.com/MRDGH2821/nix-config/commit/299ad7528af7230bf6f3a719227ea8183402b4b5)) - MRDGH2821
+- update repo - ([42fa9cb](https://github.com/MRDGH2821/nix-config/commit/42fa9cb1b99af71d5f4981bdcdee5a770a5080a6)) - MRDGH2821
+- update git metadata - ([7a1fa59](https://github.com/MRDGH2821/nix-config/commit/7a1fa59bf8f38b3e22fb51e9cb6885e5980a40ff)) - MRDGH2821
+- update apm.lock.yaml - ([37376a8](https://github.com/MRDGH2821/nix-config/commit/37376a8f3915dc93d95d16f4d13938e16a867f8e)) - MRDGH2821
+- update services version - ([7fa5a26](https://github.com/MRDGH2821/nix-config/commit/7fa5a26c5f3baf0470ae0ebb027d0da5ec1efafe)) - MRDGH2821
+- remove vscode - ([e764a65](https://github.com/MRDGH2821/nix-config/commit/e764a6580bc04f1987bec08eee4945910817dc4f)) - MRDGH2821
+- make a minimal config - ([5ec1e07](https://github.com/MRDGH2821/nix-config/commit/5ec1e07d352c6b1cf9102ae9bd83822a5ac03c87)) - MRDGH2821
+- add state version - ([18349a4](https://github.com/MRDGH2821/nix-config/commit/18349a43d55db45628fdd9c280724457f4ff01ec)) - MRDGH2821
+- add apm.lock.yaml - ([e7111c4](https://github.com/MRDGH2821/nix-config/commit/e7111c46cf7c7be976767ada2dc4f64391c3c64b)) - MRDGH2821
+- add mattpocock skill bundle - ([bf835fd](https://github.com/MRDGH2821/nix-config/commit/bf835fdbe83df3eee4d273b557723459875258e7)) - MRDGH2821
+- merge pull request #19 from MRDGH2821/mihir/fix/issue-8-herdr-directory - ([f6735b8](https://github.com/MRDGH2821/nix-config/commit/f6735b803020816a4f4de48a3744e6578ceb3d54)) - Mihir Rabade
+- merge pull request #23 from MRDGH2821/mihir/fix/issue-16-honcho-migrations - ([5d634ef](https://github.com/MRDGH2821/nix-config/commit/5d634ef4101f3ed3d20db58c7a195d2e53fc572b)) - Mihir Rabade
+- merge pull request #26 from MRDGH2821/mihir/docs/coordinator-action-logs - ([3066f72](https://github.com/MRDGH2821/nix-config/commit/3066f72b4ce72b2f4be94c5de3e521c7d431e15d)) - Mihir Rabade
+- switch to capabilities - ([c12b3b7](https://github.com/MRDGH2821/nix-config/commit/c12b3b77dddf2c404d83049af0cc63eaf51400a3)) - MRDGH2821
+- remove apm - ([9306380](https://github.com/MRDGH2821/nix-config/commit/930638073789895e58a7efa9ef8051004e518316)) - MRDGH2821
+- merge pull request #28 from MRDGH2821/MRDGH2821/fix/flake-check - ([33a7feb](https://github.com/MRDGH2821/nix-config/commit/33a7feb95640cce8279a77148149ba6a03f561bb)) - Mihir Rabade
+- remove apm in prehook - ([8520ca9](https://github.com/MRDGH2821/nix-config/commit/8520ca991ad6a08e1534eb89b7a12eaac6d77276)) - MRDGH2821
+
+### Refactoring
+
+- **(disko)** :wrench: use ext4 example - ([4980e80](https://github.com/MRDGH2821/nix-config/commit/4980e80b8674130247385c2947aa3fa288c5b0c5)) - MRDGH2821
+- **(features)** :recycle: move sops-nix into dev shell - ([a12e5ee](https://github.com/MRDGH2821/nix-config/commit/a12e5ee14bbc8a282332c98c6de7e514eec61fed)) - MRDGH2821
+- **(features)** deduplicate SSH key into shared nix/keys/ssh-keys.nix - ([4278464](https://github.com/MRDGH2821/nix-config/commit/4278464cd00b224ab96069d216b605be9b2d3b7b)) - MRDGH2821
+- **(features)** flatten home modules, drop the mine.* namespace - ([df64c98](https://github.com/MRDGH2821/nix-config/commit/df64c98847254fc06188ceeac47bee181727e629)) - MRDGH2821
+- **(flake)** centralize mylib via specialArgs - ([378c30b](https://github.com/MRDGH2821/nix-config/commit/378c30ba196567ef21786a86e04184962265074e)) - MRDGH2821
+- **(flake)** initialize numtide blueprint entrypoint - ([05605a6](https://github.com/MRDGH2821/nix-config/commit/05605a659c8d64f6a09d2a808621f0eb0b77e073)) - MRDGH2821
+- **(flake)** purify lib with explicit URL helpers - ([d83b5e7](https://github.com/MRDGH2821/nix-config/commit/d83b5e72d339557485313178136ab8278c5e7a76)) - MRDGH2821
+- **(hermes-agent)** reconfigure service - ([906b1ce](https://github.com/MRDGH2821/nix-config/commit/906b1ce79861c7352d84639a1b6a86c6828982b3)) - MRDGH2821
+- **(homepage)** change layout - ([63a102c](https://github.com/MRDGH2821/nix-config/commit/63a102c7b41c8fa5cf686e0dd8ac0c406f6930ba)) - MRDGH2821
+- **(hosts)** adapt home-lab and test-bed for blueprint discovery - ([e0e189c](https://github.com/MRDGH2821/nix-config/commit/e0e189ca289b299642b5ca6ba16bd84435ea86bc)) - MRDGH2821
+- **(hosts)** align host configurations with concise native blueprint syntax - ([3c001db](https://github.com/MRDGH2821/nix-config/commit/3c001db8b23ac826771676f7585b9d21ff9f2b83)) - MRDGH2821
+- **(hosts)** switch to Blueprint-native configuration.nix - ([0e5cdc3](https://github.com/MRDGH2821/nix-config/commit/0e5cdc3d1646d218f13c027bbdf3613185ce766e)) - MRDGH2821
+- **(hosts)** move home.username from shared module to user stubs - ([c928ea0](https://github.com/MRDGH2821/nix-config/commit/c928ea023afc1a18497429e2bbd2a5bd285f63df)) - MRDGH2821
+- **(hosts/home-lab)** :recycle: move configuration to its own file - ([9fcc1c0](https://github.com/MRDGH2821/nix-config/commit/9fcc1c0cc33c8051cae5d4ab2e79422bc0d7d9f7)) - MRDGH2821
+- **(hosts/home-lab)** :truck: rename files & paths - ([e76ffbb](https://github.com/MRDGH2821/nix-config/commit/e76ffbb431eff981cf0c4b8997f72ab2ab181a09)) - MRDGH2821
+- **(hosts/home-lab)** :wrench: move home lab flake to main flake file - ([0c87ae6](https://github.com/MRDGH2821/nix-config/commit/0c87ae6b9d272a30cbe66a9def0f6a066d88eaf2)) - MRDGH2821
+- **(hosts/home-lab)** :recycle: move modules into a sub folder for conveinence - ([6b00dfa](https://github.com/MRDGH2821/nix-config/commit/6b00dfa0003d1aa8a62725dd3b51ac4dbfc2899e)) - MRDGH2821
+- **(nix)** expose custom library via blueprint lib output - ([b76a321](https://github.com/MRDGH2821/nix-config/commit/b76a321ab1911dcbd90b2023fe39ad6484ab7f9d)) - MRDGH2821
+- **(nix)** adapt devshell, formatter, and checks for blueprint - ([add8881](https://github.com/MRDGH2821/nix-config/commit/add88810d2aa4572b091548145eced382bdae1c5)) - MRDGH2821
+- **(nix)** simplify verbose syntax across codebase - ([a7c17d9](https://github.com/MRDGH2821/nix-config/commit/a7c17d984172fc133c6eca6a98ffe1f8c2fe9cf4)) - MRDGH2821
+- **(pangolin)** remove placeholder comments and streamline environment file path - ([ac630ff](https://github.com/MRDGH2821/nix-config/commit/ac630ffe770b2a0958c6e045de51630254a8cc17)) - MRDGH2821
+- **(peertube)** :recycle: comment out unused directory configurations and update SMTP password placeholder - ([00d75a7](https://github.com/MRDGH2821/nix-config/commit/00d75a78e3d1f31cd7587e7e42fd2b0b3c31e5a8)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: remove owner & group from pangolin secrets - ([365dd2b](https://github.com/MRDGH2821/nix-config/commit/365dd2b215709dbbda6572181b02ccf5cd522518)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: rename secret key - ([16c8223](https://github.com/MRDGH2821/nix-config/commit/16c82231c865b68245ecb7f88535631d8545a53d)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: provide secret value directly - ([fe58dba](https://github.com/MRDGH2821/nix-config/commit/fe58dbab01ece639881a1bc4903ff974c2ef899c)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: migrate pangolin config & secrets - ([4ffd141](https://github.com/MRDGH2821/nix-config/commit/4ffd1416947ff3b3753a14f0572bd45038f39fdc)) - MRDGH2821
+- **(secrets)** :truck: move into subfolder - ([563d675](https://github.com/MRDGH2821/nix-config/commit/563d6757130bd5f11ee0cba20f04d5ddb6c6142f)) - MRDGH2821
+- **(secrets)** :truck: update paths - ([6910bd8](https://github.com/MRDGH2821/nix-config/commit/6910bd8e5b506c4317ef8cb7174cf75a11606696)) - MRDGH2821
+- **(secrets)** :recycle: split secrets - ([07488ce](https://github.com/MRDGH2821/nix-config/commit/07488ce014f1689285407714bdbf53e068717626)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: migrate PII secrets into dedicated file - ([b61a427](https://github.com/MRDGH2821/nix-config/commit/b61a4276732e7c30efa4bdecda7db2255ebf333c)) - MRDGH2821
+- **(secrets)** :recycle: remove secret & put domain in vars folder - ([148038d](https://github.com/MRDGH2821/nix-config/commit/148038ded747bf6fbaf1bccc01744094cf7288e2)) - MRDGH2821
+- **(secrets)** :recycle: move config values into container service module - ([e6b7b08](https://github.com/MRDGH2821/nix-config/commit/e6b7b08ff6a7bc0a23020fea500cf1c85762a9bf)) - MRDGH2821
+- **(secrets)** :truck: utilise common secrets & remove redundant onees - ([52c968b](https://github.com/MRDGH2821/nix-config/commit/52c968b3cb3945c15c5412585c7fff295b33798b)) - MRDGH2821
+- **(secrets)** :closed_lock_with_key: use a different way to provide secrets to pgadmin - ([4b97ddb](https://github.com/MRDGH2821/nix-config/commit/4b97ddb0b9fbc4c49929fe1893c741061dd69d8a)) - MRDGH2821
+- **(secrets)** move secrets into .env - ([fe0c91f](https://github.com/MRDGH2821/nix-config/commit/fe0c91fd990dd2d230b316d185bdd188e2e116a9)) - MRDGH2821
+- **(secrets)** use env file to supply secrets - ([4bac768](https://github.com/MRDGH2821/nix-config/commit/4bac768ae1d573d6f60743a079289eacb41bedcf)) - MRDGH2821
+- **(services)** :wrench: move avahi under services - ([b0cf567](https://github.com/MRDGH2821/nix-config/commit/b0cf5679c9fb0385b571a205ae94b00047393f06)) - MRDGH2821
+- **(services)** :wrench: move domain config to secrets - ([2994729](https://github.com/MRDGH2821/nix-config/commit/299472964cabbc93b9af4c8c086a2412e5bf961f)) - MRDGH2821
+- **(services)** :truck: move db config to bewcloud config - ([119aa8b](https://github.com/MRDGH2821/nix-config/commit/119aa8b32ef9942799dc4a9511013f6ff3491e77)) - MRDGH2821
+- **(services)** :truck: move pgadmin config to parent folder - ([dbdced8](https://github.com/MRDGH2821/nix-config/commit/dbdced8d2e4ec6ceba9d4b4dab6dd3e13eb1ed61)) - MRDGH2821
+- **(services)** :wrench: mount rclone folders in navidrome - ([eb24fbd](https://github.com/MRDGH2821/nix-config/commit/eb24fbd347d545c2ead42281d036ff9ee5984cb5)) - MRDGH2821
+- **(services)** build service from source - ([14a1033](https://github.com/MRDGH2821/nix-config/commit/14a1033644056eb4634426242065d44e714bf297)) - MRDGH2821
+- **(services)** prefer container image - ([2453533](https://github.com/MRDGH2821/nix-config/commit/2453533406e98c3b87557ab32e9be9949c5c3582)) - MRDGH2821
+- **(services)** change volume path - ([1b72a78](https://github.com/MRDGH2821/nix-config/commit/1b72a78429f42b9d6fcb8e87199a80edb4b6e716)) - MRDGH2821
+- **(services)** modernize NixOS service definitions with concise syntax - ([073f654](https://github.com/MRDGH2821/nix-config/commit/073f65491012ad9ef676971cb5ce26a5b1690f62)) - MRDGH2821
+- **(shell)** :truck: move shell related stuff in shell folder - ([606175e](https://github.com/MRDGH2821/nix-config/commit/606175e9c8e3959a9dc0a2a11f98509b6e8d49ba)) - MRDGH2821
+- **(shell)** :wrench: make the script inline - ([b4c7250](https://github.com/MRDGH2821/nix-config/commit/b4c72507673f1ebbb37e25ad7428506d3ec601a3)) - MRDGH2821
+- **(shell)** use concise single-line and dot notation for shell features - ([ae2ad1e](https://github.com/MRDGH2821/nix-config/commit/ae2ad1e503ab8d074b5ddcc2233f7a9ad40191c1)) - MRDGH2821
+- **(treefmt)** port all settings in nix - ([d17a89b](https://github.com/MRDGH2821/nix-config/commit/d17a89b194056cf713fd976b72b47f75cb65d5b5)) - MRDGH2821
+- **(variables)** :recycle: move user config into dedicated file & put recursive importer - ([306087c](https://github.com/MRDGH2821/nix-config/commit/306087cf14a40b757b88d0f6d1741a6b5e611dc8)) - MRDGH2821
+- **(variables)** :truck: rename `vars` to `networking` - ([eba4202](https://github.com/MRDGH2821/nix-config/commit/eba4202e2506876c93fba8d8727bc75dd29e5080)) - MRDGH2821
+- **(variables)** move shared options under modules/nixos/vars - ([f731e20](https://github.com/MRDGH2821/nix-config/commit/f731e203908a967a1bccd0577d942c807c15bb71)) - MRDGH2821
+- **(vscode)** :wrench: output file as default.nix - ([297a94b](https://github.com/MRDGH2821/nix-config/commit/297a94b3586828286eefb4673a9b73121224c1c6)) - MRDGH2821
+- **(zed)** extract flake.lock update to script with change detection - ([bb15574](https://github.com/MRDGH2821/nix-config/commit/bb15574c4e3be42adfbc50768703a42e4f5b1395)) - MRDGH2821
+- :truck: use en-IN spelling & add file extension - ([5c5d83e](https://github.com/MRDGH2821/nix-config/commit/5c5d83ed10b1a6c5df68c825b47951a331f9fb61)) - MRDGH2821
+- :wrench: specify flake as variable - ([bf18cd1](https://github.com/MRDGH2821/nix-config/commit/bf18cd12433b3232671ca7ae0d9020886bc7b171)) - MRDGH2821
+- :truck: rename hardware config file - ([fcdb765](https://github.com/MRDGH2821/nix-config/commit/fcdb76592086d23b5db5660484943472327026bc)) - MRDGH2821
+- :truck: update hardware config file paths - ([03c4d92](https://github.com/MRDGH2821/nix-config/commit/03c4d92e7e340197de2218649cf5a1c83f5ba5d3)) - MRDGH2821
+- :truck: move files inside sub folder - ([7769bab](https://github.com/MRDGH2821/nix-config/commit/7769babcb994ca8ff83910ad761f04a947cc2b8f)) - MRDGH2821
+- :truck: move configs inside host folder - ([5efa64f](https://github.com/MRDGH2821/nix-config/commit/5efa64f1a618d4ef2bde4acb727d9ac0b094e09e)) - MRDGH2821
+- :truck: move inside nix folder - ([2ca26df](https://github.com/MRDGH2821/nix-config/commit/2ca26df0ab9d52cd2c3549c11f380f6748e4d834)) - MRDGH2821
+- :package: move packages to its own flake - ([f2cf6a6](https://github.com/MRDGH2821/nix-config/commit/f2cf6a65b2be844fb3bc55d66a66b9bd4d68aa5a)) - MRDGH2821
+- :hammer: move & rename files to align with direnv - ([9844dc4](https://github.com/MRDGH2821/nix-config/commit/9844dc4e1c824e13bdc6610abb928abced8b4f35)) - MRDGH2821
+- :hammer: flip the condition & directly run the command on system - ([9bad284](https://github.com/MRDGH2821/nix-config/commit/9bad284534d65997eac48957158bba395c56fad3)) - MRDGH2821
+- :wrench: move dev shell config to dedicated file - ([a1fc7bf](https://github.com/MRDGH2821/nix-config/commit/a1fc7bf7c4513bfbd0e25d70802ab497411b8a97)) - MRDGH2821
+- :recycle: add isNixModule function to exclude sample and hidden files - ([84ad055](https://github.com/MRDGH2821/nix-config/commit/84ad05562bd4f61afb6fb16875977d721691d2b1)) - MRDGH2821
+- :hammer: watch flake.nix instead of devshell file - ([7579ae5](https://github.com/MRDGH2821/nix-config/commit/7579ae5384aea3660a7dce8626f1d0709cf0ad29)) - MRDGH2821
+- :hammer: remove unused CI/testing shell and export modules in flake.nix - ([cd49344](https://github.com/MRDGH2821/nix-config/commit/cd493445e7e856b02b2d52e2e5fe520df2fa5c20)) - MRDGH2821
+- add template method - ([3ad1f3b](https://github.com/MRDGH2821/nix-config/commit/3ad1f3bbeeb94cf369148465e47ad0fbc81474aa)) - MRDGH2821
+- :recycle: enhance imports by concatenating auto-imported modules and folders - ([83a3510](https://github.com/MRDGH2821/nix-config/commit/83a351091ec713e1532058bcc76d6579313b5a30)) - MRDGH2821
+- restructure sops.templates for improved clarity - ([2797126](https://github.com/MRDGH2821/nix-config/commit/279712679409181dc7e0935d93a5ba1c877a8bf7)) - MRDGH2821
+- migrate to podman - ([9ba5257](https://github.com/MRDGH2821/nix-config/commit/9ba525797c4f30da950b74c763237380bda4a0c2)) - MRDGH2821
+- use shell variables to get value from environment - ([18d7294](https://github.com/MRDGH2821/nix-config/commit/18d72944db5f49a330f6772aa81db6a2a69ca6fe)) - MRDGH2821
+- move files - ([b5b53d2](https://github.com/MRDGH2821/nix-config/commit/b5b53d229546615fa7b4f2e4fe0b6af86f4ee83a)) - MRDGH2821
+- invert import order - ([46bbde2](https://github.com/MRDGH2821/nix-config/commit/46bbde2885c062f47bfef32fe27c5da963246651)) - MRDGH2821
+- use variables to express inputs - ([97382dc](https://github.com/MRDGH2821/nix-config/commit/97382dc6fa803e3ded010e82717e60769028a98f)) - MRDGH2821
+- move home modules - ([8e35275](https://github.com/MRDGH2821/nix-config/commit/8e35275bf64366bd9247c9aa12586271e1d2f418)) - MRDGH2821
+- move modules - ([03353c4](https://github.com/MRDGH2821/nix-config/commit/03353c4fed44f98db57867e961e1ec4d4fa5677a)) - MRDGH2821
+- move lib - ([8ddb77b](https://github.com/MRDGH2821/nix-config/commit/8ddb77bf5dbb65161c4e3496769a45ff8b2f9c10)) - MRDGH2821
+- wire barrels through flake.lib auto-import - ([1e4a9a4](https://github.com/MRDGH2821/nix-config/commit/1e4a9a424394e19ee1ae2e0684c023455c1d1fdb)) - MRDGH2821
+- close mkUrl over config.networking.baseDomain - ([6c731ca](https://github.com/MRDGH2821/nix-config/commit/6c731ca8e5131eaf6d468c04cd8dd7f404f34aac)) - MRDGH2821
+- use flake.lib auto-import in barrel modules - ([ddabac0](https://github.com/MRDGH2821/nix-config/commit/ddabac0ff6582335cd203692df09726c11a8686c)) - MRDGH2821
+
+### Revert
+
+- "fix(scalpel): update scalpel script configuration and preStart handling" - ([68c3fd3](https://github.com/MRDGH2821/nix-config/commit/68c3fd318e0c9731a3f66b4951faed01d7b0051c)) - MRDGH2821
+
+### Style
+
+- **(secrets)** align indentation and structure in pangolin.yaml - ([733736a](https://github.com/MRDGH2821/nix-config/commit/733736a875867648f1d80fb955e3578eef9e20c2)) - MRDGH2821
+- :art: format using alejandra - ([54a90b9](https://github.com/MRDGH2821/nix-config/commit/54a90b916b7e928f37a2cedb1c4198d59aa3aa0b)) - MRDGH2821
+- :art: format files - ([fd8a9c3](https://github.com/MRDGH2821/nix-config/commit/fd8a9c308e61764f22ef320d3282dc34edc43f18)) - MRDGH2821
+- :art: remove unnecessary space - ([4f375b3](https://github.com/MRDGH2821/nix-config/commit/4f375b3fc7719effd065240d4255e93ad289d432)) - MRDGH2821
+- format & sort json properties - ([23d4d00](https://github.com/MRDGH2821/nix-config/commit/23d4d0060acabf483900a37eb901be600685d8a2)) - MRDGH2821
+- format files with prettier - ([0ffb9f3](https://github.com/MRDGH2821/nix-config/commit/0ffb9f36a126c90a578d89de3db136cdc909f38a)) - MRDGH2821
+- format & sort keys - ([e50e9c7](https://github.com/MRDGH2821/nix-config/commit/e50e9c74fb0e0947ad45f18e9e20836f2446b126)) - MRDGH2821
+- de-anchor & sort keys - ([a1d6caf](https://github.com/MRDGH2821/nix-config/commit/a1d6caf997b2495cf7d17546442e565b6bb3691f)) - MRDGH2821
+- format files with prettier - ([22c6098](https://github.com/MRDGH2821/nix-config/commit/22c60980e604ee8a6b641862840c61c60986a025)) - MRDGH2821
+- add toml overrides - ([9dca2ee](https://github.com/MRDGH2821/nix-config/commit/9dca2ee4db114ed36744c0f2a8f4a6d2848f0cec)) - MRDGH2821
+- format files - ([6c3ffac](https://github.com/MRDGH2821/nix-config/commit/6c3ffacca73df7ac40c10e72d89b42c7b2de129e)) - MRDGH2821
+- format file with prettier - ([ea61154](https://github.com/MRDGH2821/nix-config/commit/ea611541550a6a00829cb01f784bd0595086e614)) - MRDGH2821
+- format files - ([7fe0167](https://github.com/MRDGH2821/nix-config/commit/7fe0167704039debd5646ecc2c086a8605f11478)) - MRDGH2821
+- format file - ([7ac4f63](https://github.com/MRDGH2821/nix-config/commit/7ac4f63f77f41a4b85fcf2afd38172c0a38d1b8c)) - MRDGH2821
+- format files - ([b46e019](https://github.com/MRDGH2821/nix-config/commit/b46e0196c20cda9303151375f691ed7fcb2d9e6a)) - MRDGH2821
+- format files - ([d21648e](https://github.com/MRDGH2821/nix-config/commit/d21648efebf32801fa0646100fd6cff0bb08f662)) - MRDGH2821
+- format file - ([c4881f0](https://github.com/MRDGH2821/nix-config/commit/c4881f0f33cd0f41678c228bc4f85bd460f7aea7)) - MRDGH2821
+- format files - ([3282940](https://github.com/MRDGH2821/nix-config/commit/3282940fc1cb57e67d1d51340b4d58cb6acbff13)) - MRDGH2821
+- format files - ([1ce8c1a](https://github.com/MRDGH2821/nix-config/commit/1ce8c1a2842173e2c01ee19bc2d7a8b8fb16ec33)) - MRDGH2821
+- add pedantix and format files - ([1541ae9](https://github.com/MRDGH2821/nix-config/commit/1541ae956241667b42fdf900ee0908a0d92e6481)) - MRDGH2821
+- format Blueprint simplify docs for treefmt check - ([1a44b05](https://github.com/MRDGH2821/nix-config/commit/1a44b05ae1057b9bedafba9311ac4c67a8fc0d29)) - MRDGH2821
+- format files - ([767f778](https://github.com/MRDGH2821/nix-config/commit/767f778bcfc9346a9178eb25078caa80448323bf)) - MRDGH2821
+- format files - ([f2dc732](https://github.com/MRDGH2821/nix-config/commit/f2dc732e890fa7a43a99a6f248ee8c14628457ee)) - MRDGH2821
+- format files - ([3528fb0](https://github.com/MRDGH2821/nix-config/commit/3528fb0d606703ed00b31cd9c77d5b177f5eb853)) - MRDGH2821
+- format files - ([216f208](https://github.com/MRDGH2821/nix-config/commit/216f20899d69513652b665e9de36082524f19825)) - MRDGH2821
+- format files - ([d49c01b](https://github.com/MRDGH2821/nix-config/commit/d49c01bc248e2afcfd9a8b32f6236cf90b90a5aa)) - MRDGH2821
+- format files - ([7831001](https://github.com/MRDGH2821/nix-config/commit/7831001895f16ae2e91d2cf36b7a4fafe09344dc)) - MRDGH2821
+- format files - ([d137d1b](https://github.com/MRDGH2821/nix-config/commit/d137d1b5d610e5ab6a465c5d040a35644145024d)) - MRDGH2821
+
+### Tests
+
+- **(hosts/home-lab)** add isolated homelab sandbox - ([234c38c](https://github.com/MRDGH2821/nix-config/commit/234c38c9a764a2b620cca96dadd5d94e581cf950)) - MRDGH2821
+
+### Build
+
+- **(devshell)** :package: update flake.lock - ([c63d5e4](https://github.com/MRDGH2821/nix-config/commit/c63d5e4ea49679f25656a8f1f0b50b91c35c4aeb)) - MRDGH2821
+- **(devshell)** :wrench: remove flake utils & simplify the devshell config - ([f60027a](https://github.com/MRDGH2821/nix-config/commit/f60027aa183aa75d20e6b064897a31d98741b824)) - MRDGH2821
+- **(devshell)** add nixos-rebuild - ([daf7097](https://github.com/MRDGH2821/nix-config/commit/daf70970c7cb1c71fd0b50c83fc03104c0f89c17)) - MRDGH2821
+- **(flake)** update flake.lock - ([a412b3d](https://github.com/MRDGH2821/nix-config/commit/a412b3d9586796ddc6c26dd9430d03af71403f45)) - MRDGH2821
+- **(flake)** update flake.lock - ([31773a1](https://github.com/MRDGH2821/nix-config/commit/31773a11309c1a59990abb2250871bbd5146ce1d)) - MRDGH2821
+- **(flake)** update flake.lock - ([9e5a13b](https://github.com/MRDGH2821/nix-config/commit/9e5a13bcee16f65210534220ba8d999f42dd0fd0)) - MRDGH2821
+- **(flake)** update flake.lock - ([d5fcbe8](https://github.com/MRDGH2821/nix-config/commit/d5fcbe8b325883257b7fb33fe160079cee35cba0)) - MRDGH2821
+- **(flake)** update flake.lock - ([e8ebc52](https://github.com/MRDGH2821/nix-config/commit/e8ebc5226ca6987740911f8bcaeebe745b0531b2)) - MRDGH2821
+- **(flake)** update flake.lock - ([2e3fa5f](https://github.com/MRDGH2821/nix-config/commit/2e3fa5f243544acee2a7815e6fce8d1b5906b652)) - MRDGH2821
+- **(flake)** update flake.lock - ([404316e](https://github.com/MRDGH2821/nix-config/commit/404316ebdf6ccb484859933081c43612aa5446d4)) - MRDGH2821
+- **(flake)** update flake.lock - ([80419d1](https://github.com/MRDGH2821/nix-config/commit/80419d164aab8725b4d23f3f5daa89fe77acd199)) - MRDGH2821
+- **(flake)** update flake.lock - ([e3d3b36](https://github.com/MRDGH2821/nix-config/commit/e3d3b36e95af264dcc48efc3487132feaea1ee8f)) - MRDGH2821
+- **(flake)** update flake.lock - ([8984996](https://github.com/MRDGH2821/nix-config/commit/8984996b9a6ff13bdd3fe5f0c5871951f6cb99bf)) - MRDGH2821
+- **(flake)** update flake.lock - ([d623b2a](https://github.com/MRDGH2821/nix-config/commit/d623b2a35ddfa0e2d364bb6976225b7eb066cb46)) - MRDGH2821
+- **(flake)** update flake.lock - ([2fdd89c](https://github.com/MRDGH2821/nix-config/commit/2fdd89cede14b77e12aedaba599edee102cb24a5)) - MRDGH2821
+- **(flake)** update flake.lock - ([279eb70](https://github.com/MRDGH2821/nix-config/commit/279eb7061690b43175fd9428929e1f6abb1927d2)) - MRDGH2821
+- **(flake)** update flake.lock - ([f2e857a](https://github.com/MRDGH2821/nix-config/commit/f2e857af3c25bb6a2440c935f66e5d7d29b9cd87)) - MRDGH2821
+- **(flake)** update flake.lock - ([b63fd3d](https://github.com/MRDGH2821/nix-config/commit/b63fd3dc0c1b3cb67af2318495b3c319fe72a79c)) - MRDGH2821
+- **(flake)** update flake.lock - ([721c9e8](https://github.com/MRDGH2821/nix-config/commit/721c9e88ccc722634798821c7b4d36f7e6f2a7d3)) - MRDGH2821
+- **(flake)** update flake.lock - ([d962b71](https://github.com/MRDGH2821/nix-config/commit/d962b7151b9f3a500bb1d5646ef87a4b2a5cff1a)) - MRDGH2821
+- **(flake)** update flake.lock - ([7f29918](https://github.com/MRDGH2821/nix-config/commit/7f29918a979793c1bb0a70371025c08d4ecc584e)) - MRDGH2821
+- **(flake)** add nixos-hardware and llm-agents inputs - ([d5695f8](https://github.com/MRDGH2821/nix-config/commit/d5695f8521f12adf20778d7445d5dbd31102fb3c)) - MRDGH2821
+- **(flake)** update flake.lock - ([7b84a16](https://github.com/MRDGH2821/nix-config/commit/7b84a1679cacdf5176fe6f706cce71ceb5b3689f)) - MRDGH2821
+- **(flake)** pin smt version - ([9f45f81](https://github.com/MRDGH2821/nix-config/commit/9f45f81c6c6033b4de884a7ad32e55e6d400c046)) - MRDGH2821
+- **(hosts/home-lab)** update nixpkgs hash - ([1cd09ca](https://github.com/MRDGH2821/nix-config/commit/1cd09cab7a0b3bbe228ab2579ecf77f729f077d2)) - MRDGH2821
+- **(hosts/home-lab)** :wrench: update flake.lock - ([0dbcb84](https://github.com/MRDGH2821/nix-config/commit/0dbcb84ba91723f219136aa856d9c5a932f6ee16)) - MRDGH2821
+- **(hosts/home-lab)** :wrench: update flake.lock - ([a9532d8](https://github.com/MRDGH2821/nix-config/commit/a9532d85f29a4b15f1af5c69d392c5239862e1a7)) - MRDGH2821
+- **(packages)** :package: update flake.lock - ([79cf4d0](https://github.com/MRDGH2821/nix-config/commit/79cf4d0c1ca979289b630272c7c079a3a7be418b)) - MRDGH2821
+- **(packages)** use upstream authentik and update lock file - ([606ad10](https://github.com/MRDGH2821/nix-config/commit/606ad109241d3779ff816aadff552a8ff21351b0)) - MRDGH2821
+- **(packages)** use nixos-cli for deployment - ([b805453](https://github.com/MRDGH2821/nix-config/commit/b80545342ed29dd5e56f2edb9e5bd878991ab5dc)) - MRDGH2821
+- **(services)** update nextcloud - ([2d1ebce](https://github.com/MRDGH2821/nix-config/commit/2d1ebce561cf8030208913a0da9d1a7abcb0bd3b)) - MRDGH2821
+- **(services)** update authentik - ([332a475](https://github.com/MRDGH2821/nix-config/commit/332a475c921a8698ec8b49bfd5ab7007c7701b54)) - MRDGH2821
+- :construction_worker: add flake.lock - ([89e1e36](https://github.com/MRDGH2821/nix-config/commit/89e1e36203feb68cc713ff298f54d5a91edcf6c7)) - MRDGH2821
+- :package: update flake.lock - ([0a57869](https://github.com/MRDGH2821/nix-config/commit/0a578699dc0de130030d2e8bfaf13f5fc6d45df2)) - MRDGH2821
+- :package: update flake.lock - ([8ebf19d](https://github.com/MRDGH2821/nix-config/commit/8ebf19dcddfac258efbbe1dd1b765ca357a9f943)) - MRDGH2821
+- update flake.lock - ([30d53b6](https://github.com/MRDGH2821/nix-config/commit/30d53b6a4b33b131ffa22634de71d2d9aaaf806a)) - MRDGH2821
+- update flake.lock - ([9bef1fb](https://github.com/MRDGH2821/nix-config/commit/9bef1fb9acb3be1fd162088887e000bcc896bd7d)) - MRDGH2821
+- update flake.lock - ([f41f6ad](https://github.com/MRDGH2821/nix-config/commit/f41f6ad8615f4fb75c1f4f5fb04a702e4a3116cd)) - MRDGH2821
+- update flake.lock - ([2fc3273](https://github.com/MRDGH2821/nix-config/commit/2fc3273c55c5da1e2a1f8bd76202da8b0391a0cd)) - MRDGH2821
+- update flake.lock - ([3a7b078](https://github.com/MRDGH2821/nix-config/commit/3a7b07834ecfcf47cb74746b6c7c33de68f6127e)) - MRDGH2821
+- update flake.lock - ([b7753bf](https://github.com/MRDGH2821/nix-config/commit/b7753bf1f0bbcbc5741f178c6b195135952c91c2)) - MRDGH2821
+- update flake.lock - ([86c1339](https://github.com/MRDGH2821/nix-config/commit/86c1339fa9d0a0198cbee4029af98c617f1452ad)) - MRDGH2821
+- update flake.lock - ([27ff424](https://github.com/MRDGH2821/nix-config/commit/27ff424f13ff27b6d11c476549c8ba78b546c55a)) - MRDGH2821
+- update flake.lock - ([dc586d5](https://github.com/MRDGH2821/nix-config/commit/dc586d5d08e28ddf55e45b23e35cef24c46d5e6b)) - MRDGH2821
+- pin hermes agent version - ([eac4b69](https://github.com/MRDGH2821/nix-config/commit/eac4b69e531d64bea0e882dd156fc84ace2b07d6)) - MRDGH2821
+- update flake.lock - ([f630082](https://github.com/MRDGH2821/nix-config/commit/f6300827767eb5d0b0c8e84af942a18e34b75139)) - MRDGH2821
+- upgrade nextcloud - ([03f6ff5](https://github.com/MRDGH2821/nix-config/commit/03f6ff572c66a32820cc6530340e1ae807a53717)) - MRDGH2821
+- update flake.lock - ([9fcb03d](https://github.com/MRDGH2821/nix-config/commit/9fcb03d0bb24125b9405d9c9099aa00d998f79c3)) - MRDGH2821
+- add compose2nix - ([8879ff0](https://github.com/MRDGH2821/nix-config/commit/8879ff042f1402fa867c27615f81fce006477321)) - MRDGH2821
+- update flake.lock - ([34d0f88](https://github.com/MRDGH2821/nix-config/commit/34d0f885eaeda3a20bf8bf65b80aa8b50980b2c9)) - MRDGH2821
+- update flake.lock - ([952e283](https://github.com/MRDGH2821/nix-config/commit/952e283c183e9a1b00a1c658aa5d6b8f6f5b5703)) - MRDGH2821
+
+<!-- generated by git-cliff -->
