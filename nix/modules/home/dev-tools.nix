@@ -76,7 +76,6 @@ _: {
     };
     mise = {
       enable = true;
-      enableMutableConfig = true; # user still runs `mise use`
       enableZshIntegration = true;
       globalConfig.tools = {
         apm = "latest";
@@ -122,6 +121,7 @@ _: {
         yq = "latest";
         zoxide = "latest";
       };
+      mutableSettings = true; # user still runs `mise use`
     };
     topgrade = {
       enable = true;

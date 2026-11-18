@@ -2,28 +2,53 @@
 # Does not affect bare metal deploys of home-lab.
 {lib, ...}: {
   virtualisation.vmVariant = {
-    security.pam.services = {
-      login.u2fAuth = lib.mkForce false;
-      sudo.u2fAuth = lib.mkForce false;
-    };
-    # Console login: production uses SSH keys + U2F, neither works alone in a local VM.
-    users.users = {
-      mr-nix.initialPassword = "vm";
-      root.initialPassword = "vm";
-    };
-    # Enough RAM for pods + lab services; tune if the host is tight.
+    imports = [../../../tests/home-lab/sandbox.nix];
     virtualisation = {
-      cores = 4;
-      diskSize = 20480; # MiB guest disk image
-      forwardPorts = [
+      fileSystems."/nix/.ro-store" = {
+        device = "nix-store";
+        fsType = "9p";
+        neededForBoot = true;
+        options = [
+          "trans=virtio"
+          "version=9p2000.L"
+          "ro"
+          "x-systemd.requires=modprobe@9pnet_virtio.service"
+        ];
+      };
+      forwardPorts = lib.mkForce [
         {
           from = "host";
           guest.port = 22;
-          host.port = 2222;
+          host = {
+            address = "127.0.0.1";
+            port = 2222;
+          };
+        }
+        {
+          from = "host";
+          guest.port = 80;
+          host = {
+            address = "127.0.0.1";
+            port = 8080;
+          };
+        }
+        {
+          from = "host";
+          guest.port = 443;
+          host = {
+            address = "127.0.0.1";
+            port = 8443;
+          };
         }
       ];
       graphics = false; # serial console (Ctrl-a x to exit QEMU)
-      memorySize = 8192;
+      qemu.options = [
+        "-virtfs local,path=${builtins.storeDir},security_model=none,mount_tag=nix-store,readonly=on"
+      ];
+      restrictNetwork = lib.mkForce true;
+      # Drop qemu-vm's writable xchg/shared host directories.
+      sharedDirectories = lib.mkForce {};
+      useHostCerts = lib.mkForce false;
     };
   };
 }

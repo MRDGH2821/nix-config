@@ -6,11 +6,7 @@
   services = {
     nextcloud = {
       caching.redis = true;
-      config = {
-        adminpassFile = config.sops.secrets.dummyPassword.path;
-        adminuser = "mrdgh2821";
-        dbtype = "pgsql";
-      };
+      config.dbtype = "pgsql";
       configureRedis = true;
       database.createLocally = true;
       enable = true;

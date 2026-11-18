@@ -5,10 +5,10 @@
     nssmdns4 = true;
     nssmdns6 = true;
     openFirewall = true;
-    publish = {
-      addresses = true; # Broadcast IP addresses
-      enable = true;
-      workstation = true; # Advertise this machine as a workstation
+    settings.publish = {
+      disable-publishing = false;
+      publish-addresses = true;
+      publish-workstation = true;
     };
   };
 }

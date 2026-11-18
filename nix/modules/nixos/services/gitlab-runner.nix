@@ -13,4 +13,6 @@
     };
     settings.concurrent = 3;
   };
+  # The GitLab runner uses Podman's Docker-compatible socket.
+  virtualisation.docker.enable = false;
 }

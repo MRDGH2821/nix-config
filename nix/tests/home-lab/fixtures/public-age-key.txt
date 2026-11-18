@@ -1,0 +1,4 @@
+# DELIBERATELY PUBLIC TEST KEY. Never use for production secrets.
+# created: 2026-10-25T10:40:29+11:00
+# public key: age1drd9s3u5r7njdqwaf48gp7kgcfdfdl48zkl3qgq659rsmw4yqczsvr7yf0
+AGE-SECRET-KEY-1UWDF8RPJKH2J7UL394HXWWJ5LPRHCLHCS5H3NEU8N7FS6H9YYW6SGST60W

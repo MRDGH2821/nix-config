@@ -62,7 +62,12 @@ inputs.git-hooks.lib.${pkgs.stdenv.hostPlatform.system}.run {
       enable = true;
       # soar's vendored config carries the upstream repo's minisign *public*
       # key (verifies release signatures, published upstream) — not a secret.
-      excludes = ["nix/modules/home/files/soar-config\\.toml"];
+      excludes = [
+        "nix/modules/home/files/soar-config\\.toml"
+        # Deliberately public sandbox identities, never production credentials.
+        "^nix/tests/home-lab/fixtures/public-age-key\\.txt$"
+        "^nix/tests/home-lab/fixtures/public-tls-key\\.pem$"
+      ];
     };
     typos = {
       enable = true;

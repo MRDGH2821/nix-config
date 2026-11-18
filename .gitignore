@@ -50,6 +50,11 @@ apm_modules/
 .cursor/skills
 .gemini/settings.json
 .github/skills
+.codex/config.toml
+.agents/hooks.json
+.codex/agents
+.cursor/agents
+.cursor/hooks.json
 .mcp.json
 .opencode/skills
 .rtk
@@ -85,4 +90,3 @@ public
 home-lab.qcow2
 report/
 target/
-/.codex/config.toml
