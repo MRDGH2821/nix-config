@@ -36,6 +36,7 @@
         restartUnits = ["forgejo-runner.service"];
         sopsFile = ../secrets/fjr-default.env;
       };
+      gh-runner1.sopsFile = ../secrets/gh-runner1.yaml;
       glr-an = {
         format = "dotenv";
         key = "";
