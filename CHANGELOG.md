@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file. See [conven
 
 ---
 
+## [0.2.0](https://github.com/MRDGH2821/nix-config/compare/v0.1.0..v0.2.0) - 2026-11-18
+
+### Bug Fixes
+
+- **(hosts/home-lab)** isolate GitHub runner in integration test - ([f5ea0e8](https://github.com/MRDGH2821/nix-config/commit/f5ea0e8d446d5804a265316c215a4a6df86224fa)) - MRDGH2821
+- **(services)** fix runner url - ([0813667](https://github.com/MRDGH2821/nix-config/commit/081366723829e6cbec9914a17f677f03f1fa2cdf)) - MRDGH2821
+
+### Features
+
+- **(services)** bump nextcloud - ([281b9ab](https://github.com/MRDGH2821/nix-config/commit/281b9abc57933bdcfa9d3530458acb93766c25c2)) - MRDGH2821
+- **(services)** add github-runner - ([ba352e6](https://github.com/MRDGH2821/nix-config/commit/ba352e64a86934881722e22d497f09edcb8aa338)) - MRDGH2821
+
+### Miscellaneous Chores
+
+- **(cspell)** update word list - ([5d89be5](https://github.com/MRDGH2821/nix-config/commit/5d89be54c95d09d5db5d6cbb8cbfbea0ef894147)) - MRDGH2821
+- **(secrets)** update token - ([8dfa499](https://github.com/MRDGH2821/nix-config/commit/8dfa4992e689f564d0775fd954a7c3fb501a6f19)) - MRDGH2821
+- merge pull request #30 from MRDGH2821/chore/release - ([6198a9e](https://github.com/MRDGH2821/nix-config/commit/6198a9ec288316c50c7060535575c615d37a2631)) - Mihir Rabade
+- exclude changelog - ([578d022](https://github.com/MRDGH2821/nix-config/commit/578d022604092627dda1075ccf18495a948800e1)) - MRDGH2821
+
+---
+
 ## [0.1.0] - 2026-11-18
 
 ### Bug Fixes
