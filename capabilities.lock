@@ -1,6 +1,6 @@
 version: 1
 generator: capa@2.4.0
-generatedAt: '2026-10-24T23:05:22.643Z'
+generatedAt: '2026-11-18T10:44:57.063Z'
 skills:
   - id: atomic-commits
     source: github
@@ -68,26 +68,4 @@ plugins:
     resolvedVersion: null
     manifestName: discovered
     manifestVersion: null
-  - id: paad
-    source: github
-    repo: Ovid/paad
-    subpath: plugins/paad
-    requestedSearchName: null
-    requestedVersion: null
-    requestedRef: null
-    resolvedRef: 3e0b871428a22801e319ce06c0330fce4ab194de
-    resolvedVersion: null
-    manifestName: paad
-    manifestVersion: 2.0.2
-  - id: superpowers
-    source: github
-    repo: obra/superpowers
-    subpath: null
-    requestedSearchName: null
-    requestedVersion: null
-    requestedRef: null
-    resolvedRef: 2ce8aa15d05bd57213e6f746f953aafb7ded7a8b
-    resolvedVersion: v7.0.1
-    manifestName: superpowers
-    manifestVersion: 7.0.1
 hooks: []
