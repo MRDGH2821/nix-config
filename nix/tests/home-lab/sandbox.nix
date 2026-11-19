@@ -16,8 +16,6 @@
     "duckDnsToken"
     "dummyPassword"
     "fjr-runner-token"
-    "gh-runner1"
-    "glr-an"
     "hermes-env"
     "homepage-dashboard"
     "honcho-memory"
@@ -103,8 +101,6 @@ in {
       services = {
         automatic-timezoned.enable = lib.mkForce false;
         forgejo-runner.enable = lib.mkForce false;
-        github-runners.runner1.enable = lib.mkForce false;
-        gitlab-runner.enable = lib.mkForce false;
         hermes-agent = {
           container.enable = lib.mkForce false;
           enable = lib.mkForce false;
@@ -188,11 +184,7 @@ in {
         # Override only ciphertext source/format/key: keep owners and templates.
         secrets = lib.genAttrs secretNames (name: {
           format = lib.mkForce "yaml";
-          key = lib.mkForce (
-            if name == "gh-runner1"
-            then "fjr-runner-token"
-            else name
-          );
+          key = lib.mkForce name;
           sopsFile = lib.mkForce ./fixtures/secrets.yaml;
         });
       };
