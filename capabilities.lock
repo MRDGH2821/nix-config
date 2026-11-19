@@ -1,6 +1,6 @@
 version: 1
 generator: capa@2.4.0
-generatedAt: '2026-11-18T10:44:57.063Z'
+generatedAt: '2026-11-18T10:49:52.647Z'
 skills:
   - id: atomic-commits
     source: github
@@ -65,6 +65,17 @@ plugins:
     requestedVersion: null
     requestedRef: null
     resolvedRef: 1f49aff31296bb71faed0b247637406a7547158b
+    resolvedVersion: null
+    manifestName: discovered
+    manifestVersion: null
+  - id: nix-skills
+    source: github
+    repo: olafkfreund/nix-skills
+    subpath: null
+    requestedSearchName: null
+    requestedVersion: null
+    requestedRef: null
+    resolvedRef: f5c8e8b3b3255e323e5b84192d0b6ed2e79ef4f4
     resolvedVersion: null
     manifestName: discovered
     manifestVersion: null

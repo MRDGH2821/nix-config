@@ -19,6 +19,10 @@ plugins:
       repo: gitlab-org/ai/skills::.claude-plugin/plugins/nix
     id: nix
     type: gitlab
+  - def:
+      repo: olafkfreund/nix-skills
+    id: nix-skills
+    type: github
 providers:
   - antigravity
   - codex
